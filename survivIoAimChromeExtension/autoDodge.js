@@ -2,6 +2,7 @@ var autoDodge = function(game, variables) {
 	
 	var bulletBarn = variables.bulletBarn;
 	var player = variables.player;
+	var key = variables.key;
 	// console.log(bulletBarn.prototype.render);
 	var binded = false;
 
@@ -10,39 +11,47 @@ var autoDodge = function(game, variables) {
 		return;
 	}
 
-	var pressKey = function(keyCode) {
-		if(!game.scope.input.keys[keyCode]) {
-			setTimeout(function() {
-				game.scope.input.keys[keyCode] = true;
-				setTimeout(function() {
-					delete game.scope.input.keys[keyCode]
-				}, 20);
-			}, 0);
-		}
-	}
-
-	var pressW = function() {
-		pressKey("87");
-		console.log("pressW");
-	}
-
-	var pressD = function() {
-		pressKey("68");
-		console.log("pressD");
-	}
-
-	var pressS = function() {
-		pressKey("83");
-		console.log("pressS");
-	}
-
-	var pressA = function() {
-		pressKey("65");
-		console.log("pressA");
-	}
-
 	var getSelfPos = function() {
-		return game.scope.activePlayer.pos;
+		return game.scope.lt.pos;
+	}
+
+	/* duration - msec */
+	var pressKey = function(keyCode, duration) {
+		game.scope.we.keys[keyCode] = true;
+	}
+
+	var releaseKey = function(keyCode) {
+		delete game.scope.we.keys[keyCode];
+	}
+
+	var posErr = 1;
+	var moveToAbsCoords = function(targetX, targetY) {
+		var selfPos = getSelfPos();
+
+		releaseKey(key.W);
+		releaseKey(key.A);
+		releaseKey(key.S);
+		releaseKey(key.D);
+
+		if(	Math.abs(targetX - selfPos.x) < posErr &&
+		 	Math.abs(targetY - selfPos.y) < posErr) 
+		 	return;
+
+		if(selfPos.x < targetX) {
+			pressKey(key.D);
+		} else if(selfPos.x > targetX) {
+			pressKey(key.A);
+		}
+
+		if(selfPos.y < targetY) {
+			pressKey(key.W);
+		} else if(selfPos.Y > targetY) {
+			pressKey(key.S);
+		}
+
+		setTimeout(function() {
+			moveToAbsCoords(targetX, targetY);
+		}, 50);
 	}
 
 	var calculateXCoordLineIntersection = function(Mx, My, px, py) {
@@ -58,16 +67,16 @@ var autoDodge = function(game, variables) {
 		var selfPos = getSelfPos();
 		var intersectionWarningThreshold = player.maxVisualRadius * Math.sqrt(2); // Attention radius
 
-		for(var i = 0; i < game.scope.bulletBarn.bullets.length; i++) {
-			if(game.scope.bulletBarn.bullets[i].alive) {
-				if(game.scope.activePlayer.layer == game.scope.bulletBarn.bullets[i].layer) {
+		for(var i = 0; i < game.scope.Ce.bullets.length; i++) {
+			if(game.scope.Ce.bullets[i].alive) {
+				if(game.scope.lt.layer == game.scope.Ce.bullets[i].layer) {
 					
 					var bulletRelativePos = {
-						x: game.scope.bulletBarn.bullets[i].pos.x - selfPos.x,
-						y: game.scope.bulletBarn.bullets[i].pos.y - selfPos.y
+						x: game.scope.Ce.bullets[i].pos.x - selfPos.x,
+						y: game.scope.Ce.bullets[i].pos.y - selfPos.y
 					}
 
-					var bulletDir = game.scope.bulletBarn.bullets[i].dir;
+					var bulletDir = game.scope.Ce.bullets[i].dir;
 
 					// Check if the bullet flying from ourself
 					if(	Math.sign(bulletRelativePos.x) == Math.sign(bulletDir.x) &&
@@ -86,7 +95,7 @@ var autoDodge = function(game, variables) {
 							Math.abs(intersectionOfCoordLines.y) < intersectionWarningThreshold) {
 
 							result.push({
-								bullet: game.scope.bulletBarn.bullets[i],
+								bullet: game.scope.Ce.bullets[i],
 								intersectionOfCoordLines: intersectionOfCoordLines
 							});
 						}
@@ -104,33 +113,30 @@ var autoDodge = function(game, variables) {
 
 	var dodge = function(bullets) {
 		if(!bullets.length) return;
+		
 		var selfPos = getSelfPos();
+		var intersectionWarningThreshold = player.maxVisualRadius * Math.sqrt(2);
+
+		var avgMoveD = {
+			x: 0,
+			y: 0
+		}
 
 		for(var i = 0; i < bullets.length; i++) {
-			var absoluteIntersectonCoords = {
-				x: selfPos.x + bullets[i].intersectionOfCoordLines.x,
-				y: selfPos.y + bullets[i].intersectionOfCoordLines.y
-			}
-			
-			var intersectionDistance = {
-				x: calculateDistance(bullets[i].bullet.pos.x, bullets[i].bullet.pos.y, absoluteIntersectonCoords.x, selfPos.y),
-				y: calculateDistance(bullets[i].bullet.pos.x, bullets[i].bullet.pos.y, selfPos.x, absoluteIntersectonCoords.y)
-			}
+			var moveDx = intersectionWarningThreshold - Math.abs(bullets[i].intersectionOfCoordLines.x);
+			var moveDy = intersectionWarningThreshold - Math.abs(bullets[i].intersectionOfCoordLines.y);
 
-			if(intersectionDistance.x < intersectionDistance.y) {
-				if(Math.sign(bullets[i].intersectionOfCoordLines.x) < 0) {
-					pressD();
-				} else {
-					pressA();
-				}
-			} else {
-				if(Math.sign(bullets[i].intersectionOfCoordLines.y) < 0) {
-					pressW();
-				} else {
-					pressS();
-				}
-			}
+			moveDx *= -Math.sign(bullets[i].intersectionOfCoordLines.x);
+			moveDy *= -Math.sign(bullets[i].intersectionOfCoordLines.y);
+
+			avgMoveD.x += moveDx;
+			avgMoveD.y += moveDy;
 		}
+
+		avgMoveD.x /= bullets.length;
+		avgMoveD.y /= bullets.length;
+
+		moveToAbsCoords(selfPos.x + avgMoveD.x, selfPos.y + avgMoveD.y);
 	}
 
 	var defaultBulletBarnRenderFunction = function(e) {};

@@ -1,4 +1,4 @@
-var menu = function(options, callbacks) {
+window.menu = function(options, callbacks) {
 	var binded = false;
 	var menuOpened = false;
 
@@ -8,19 +8,24 @@ var menu = function(options, callbacks) {
 		cheatMenuContainer.style = "display:block;z-index:10;pointer-events:all;position:absolute;max-height:500px;width:25%;overflow:auto;"
 
 		var particlesTransparencySlider = document.createElement('div');
-		var ceilingTrancparencySlider = document.createElement('div');
+		var ceilingTransparencySlider = document.createElement('div');
 
 		var fragGernadeColorSlider = document.createElement('div');
 		var fragGernadeSizeSlider = document.createElement('div');
 		var defaultFragGernadePropertiesButton = document.createElement('div');
 		var smokeGernadeAlphaSlider = document.createElement('div');
 
+		var bigMapTransparencySlider = document.createElement('div');
+
 		var autoAimEnabledCheckbox = document.createElement('div');
 		var autoAimTargetNameVisibilityCheckbox = document.createElement('div');
 		var forwardFiringCoeffSlider = document.createElement('div');
 
 		var autoLootEnabledCheckbox = document.createElement('div');
+		var autoHealEnabledCheckbox = document.createElement('div');
+		var autoDodgeEnabledCheckbox = document.createElement('div');
 		var autoOpeningDoorsEnabledCheckbox = document.createElement('div');
+		var gernadeTimerEnabledCheckbox = document.createElement('div');
 		var zoomRadiusManagerEnabledCheckbox = document.createElement('div');
 
 		var storeOptionsButton = document.createElement('div');
@@ -48,8 +53,8 @@ var menu = function(options, callbacks) {
 			particlesTransparencySlider.appendChild(input);
 		}
 
-		if(callbacks.ceilingTrancparencyCb) {
-			ceilingTrancparencySlider.className = "modal-settings-item slider-container";
+		if(callbacks.ceilingTransparencyCb) {
+			ceilingTransparencySlider.className = "modal-settings-item slider-container";
 
 			var description = document.createElement('p');
 			description.className = "slider-text";
@@ -61,14 +66,37 @@ var menu = function(options, callbacks) {
 			input.min = "0";
 			input.max = "1";
 			input.step = "0.01";
-			input.value = options.ceilingTrancparency;
+			input.value = options.ceilingTransparency;
 
 			input.addEventListener("input", function() {
-				callbacks.ceilingTrancparencyCb(this.value);
+				callbacks.ceilingTransparencyCb(this.value);
 			}, false);
 
-			ceilingTrancparencySlider.appendChild(description);
-			ceilingTrancparencySlider.appendChild(input);
+			ceilingTransparencySlider.appendChild(description);
+			ceilingTransparencySlider.appendChild(input);
+		}
+
+		if(callbacks.bigMapTransparencyCb) {
+			bigMapTransparencySlider.className = "modal-settings-item slider-container";
+
+			var description = document.createElement('p');
+			description.className = "slider-text";
+			description.innerHTML = "Big map transparency level";
+
+			var input = document.createElement('input');
+			input.className = "slider";
+			input.type = "range";
+			input.min = "0";
+			input.max = "1";
+			input.step = "0.01";
+			input.value = options.bigMapTransparency;
+
+			input.addEventListener("input", function() {
+				callbacks.bigMapTransparencyCb(this.value);
+			}, false);
+
+			bigMapTransparencySlider.appendChild(description);
+			bigMapTransparencySlider.appendChild(input);
 		}
 
 		if(callbacks.gernadePropertiesCb && callbacks.defaultGernadePropertiesCb) {
@@ -224,6 +252,42 @@ var menu = function(options, callbacks) {
 			autoLootEnabledCheckbox.appendChild(input);
 		}
 
+		if(callbacks.autoHealEnableCb) {
+			var description = document.createElement('p');
+			description.className = "modal-settings-checkbox-text";
+			description.innerHTML = "Auto heal enabled";
+
+			var input = document.createElement('input');
+			input.type = "checkbox";
+			input.checked = options.autoHealEnabled;
+
+			input.addEventListener("change", function() {
+				callbacks.autoHealEnableCb();
+				this.checked = options.autoHealEnabled;
+			}, false);
+
+			autoHealEnabledCheckbox.appendChild(description);
+			autoHealEnabledCheckbox.appendChild(input);
+		}
+
+		if(callbacks.autoDodgeEnableCb) {
+			var description = document.createElement('p');
+			description.className = "modal-settings-checkbox-text";
+			description.innerHTML = "Auto dodge enabled";
+
+			var input = document.createElement('input');
+			input.type = "checkbox";
+			input.checked = options.autoDodgeEnabled;
+
+			input.addEventListener("change", function() {
+				callbacks.autoDodgeEnableCb();
+				this.checked = options.autoDodgeEnabled;
+			}, false);
+
+			autoDodgeEnabledCheckbox.appendChild(description);
+			autoDodgeEnabledCheckbox.appendChild(input);
+		}
+
 		if(callbacks.autoOpeningDoorsEnableCb) {
 			var description = document.createElement('p');
 			description.className = "modal-settings-checkbox-text";
@@ -241,6 +305,24 @@ var menu = function(options, callbacks) {
 			autoOpeningDoorsEnabledCheckbox.appendChild(description);
 			autoOpeningDoorsEnabledCheckbox.appendChild(input);
 		}
+
+		if(callbacks.gernadeTimerEnableCb) {
+			var description = document.createElement('p');
+			description.className = "modal-settings-checkbox-text";
+			description.innerHTML = "Gernade timer enabled";
+
+			var input = document.createElement('input');
+			input.type = "checkbox";
+			input.checked = options.gernadeTimerEnabled;
+
+			input.addEventListener("change", function() {
+				callbacks.gernadeTimerEnableCb();
+				this.checked = options.gernadeTimerEnabled;
+			}, false);
+
+			gernadeTimerEnabledCheckbox.appendChild(description);
+			gernadeTimerEnabledCheckbox.appendChild(input);
+		}		
 
 		if(callbacks.zoomRadiusManagerEnableCb) {
 			var description = document.createElement('p');
@@ -272,7 +354,8 @@ var menu = function(options, callbacks) {
 		}
 
 		cheatMenuContainer.appendChild(particlesTransparencySlider);
-		cheatMenuContainer.appendChild(ceilingTrancparencySlider);
+		cheatMenuContainer.appendChild(ceilingTransparencySlider);
+		cheatMenuContainer.appendChild(bigMapTransparencySlider);
 
 		cheatMenuContainer.appendChild(fragGernadeColorSlider);
 		cheatMenuContainer.appendChild(fragGernadeSizeSlider);
@@ -284,7 +367,10 @@ var menu = function(options, callbacks) {
 		cheatMenuContainer.appendChild(forwardFiringCoeffSlider);
 
 		cheatMenuContainer.appendChild(autoLootEnabledCheckbox);
+		cheatMenuContainer.appendChild(autoHealEnabledCheckbox);
+		cheatMenuContainer.appendChild(autoDodgeEnabledCheckbox);
 		cheatMenuContainer.appendChild(autoOpeningDoorsEnabledCheckbox);
+		cheatMenuContainer.appendChild(gernadeTimerEnabledCheckbox);
 		cheatMenuContainer.appendChild(zoomRadiusManagerEnabledCheckbox);
 
 		cheatMenuContainer.appendChild(storeOptionsButton);

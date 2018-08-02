@@ -1,13 +1,13 @@
-var autoOpeningDoors = function(game, emitActionCb, interactionEmitter) {
+window.autoOpeningDoors = function(game, emitActionCb, interactionEmitter) {
 
 	var binded = false;
 
 	var pressF = function() {
-		if(!game.scope.input.keys["70"]) {
+		if(!game.scope.we.keys["70"]) {
 			setTimeout(function() {
-				game.scope.input.keys["70"] = true;
+				game.scope.we.keys["70"] = true;
 				setTimeout(function() {
-					delete game.scope.input.keys["70"]
+					delete game.scope.we.keys["70"]
 				}, 50);
 			}, 50);
 		}

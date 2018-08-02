@@ -1,14 +1,36 @@
 
-var variableNames = {};
-variableNames.game = '_' + Math.random().toString(36).substring(7);
-variableNames.exports = '_' + Math.random().toString(36).substring(7);
-variableNames.interactionEmitter = '_' + Math.random().toString(36).substring(7);
-variableNames.emitActionCb = '_' + Math.random().toString(36).substring(7);
-variableNames.smokeAlpha = '_' + Math.random().toString(36).substring(7);
+var generateVaribaleName = function() {
+	return '_' + Math.random().toString(36).substring(7);
+}
+
+var variableNames = {
+	game: generateVaribaleName(),
+	exports: generateVaribaleName(),
+	interactionEmitter: generateVaribaleName(),
+	emitActionCb: generateVaribaleName(),
+	smokeAlpha: generateVaribaleName()
+}
 
 var options = null;
 
-function patchManifestCode(manifestCode) {
+var moduleNames = [
+	"autoAim", 
+	"autoLoot", 
+	"autoHeal",
+	"autoDodge",
+	"autoOpeningDoors",
+	"bigMapManager",
+	"gernadeTimer", 
+	"menu", 
+	"smokeAlphaManager", 
+	"zoomRadiusManager"
+];
+
+/*
+	When you working with options, its need to repatching code every time.
+*/
+var patchManifestCode = function(manifestCode) {
+
 	var patchRules = [
 		{
 			name: "Exports exports scope",
@@ -20,7 +42,6 @@ function patchManifestCode(manifestCode) {
 	patchRules.forEach(function(item) {
 		if(item.from.test(manifestCode)) {
 			manifestCode = manifestCode.replace(item.from, item.to);
-			console.log(item.name + " patched");
 		} else {
 			console.log("Err patching: " + item.name);
 		}
@@ -29,7 +50,22 @@ function patchManifestCode(manifestCode) {
 	return manifestCode;
 }
 
-function wrapAppCode(appCode) {
+var stringifyModules = function(moduleNames) {
+	var modulesObj = '';
+
+	modulesObj = '{';
+
+	moduleNames.forEach(function(name, index) {
+		modulesObj = modulesObj + name + ':';
+		modulesObj = modulesObj + window[name] + ',';
+	});
+
+	modulesObj += '}';
+
+	return modulesObj;
+}
+
+var wrapAppCode = function(appCode) {
 	/*
 		game: 		 		actual game state
 		exports: 			game constants and additional functions
@@ -38,26 +74,12 @@ function wrapAppCode(appCode) {
 	*/
 	
 	var wrapCode = '';
-	var modules = '';
-	
+
 	// Exporting modules from extension files
-	modules = '{';
-	modules = modules + 'autoAim:';
-	modules = modules + autoAim + ',';
-	modules = modules + 'autoDodge:';
-	modules = modules + autoDodge + ',';
-	modules = modules + 'autoLoot:';
-	modules = modules + autoLoot + ',';
-	modules = modules + 'autoOpeningDoors:';
-	modules = modules + autoOpeningDoors + ',';
-	modules = modules + 'menu:';
-	modules = modules + menu + ',';
-	modules = modules + 'smokeGernadeManager:';
-	modules = modules + smokeGernadeManager + ',';
-	modules = modules + 'zoomRadiusManager:';
-	modules = modules + zoomRadiusManager + '}';
+	var modules = stringifyModules(moduleNames);
 
 	wrapCode = '(function(';
+
 	wrapCode = wrapCode + variableNames.game + ',';
 	wrapCode = wrapCode + variableNames.exports + ',';
 	wrapCode = wrapCode + variableNames.interactionEmitter + ',';
@@ -84,13 +106,13 @@ function wrapAppCode(appCode) {
 	return appCode;
 }
 
-function patchAppCode(appCode, callback) {
+function patchAppCode(appCode) {
 
 	var patchRules = [
 		{
 			name: "Export game scope",
-			from: /init:function\(\){var ([a-z]),([a-z])=this.pixi.renderer/,
-			to: 'init:function(){' + variableNames.game + '.scope=this;var $1,$2=this.pixi.renderer'
+			from: /var ([a-z]),([a-z])=this.pixi.renderer/,
+			to: variableNames.game + '.scope=this;var $1,$2=this.pixi.renderer'
 		},
 		{
 			name: "Action emitter export",
@@ -126,15 +148,15 @@ function patchAppCode(appCode, callback) {
 		}
 	];
 
-	appCode = wrapAppCode(appCode);
-
 	patchRules.forEach(function(item) {
 		if(item.from.test(appCode)) {
 			appCode = appCode.replace(item.from, item.to);
 		} else {
 			console.log("Err patching: " + item.name);
 		}
-	});	
+	});
+
+	appCode = wrapAppCode(appCode);
 
 	return appCode;
 }
@@ -160,12 +182,11 @@ var codeInjector = (function(){
 				return onError();
 			}
 
-			var patchedManifestCode = patchManifestCode(xhr.responseText);
 			chrome.storage.local.set({
-				'manifestCode': patchedManifestCode,
+				'manifestCode': xhr.responseText,
 				'mainfestVer': url.match(/manifest\.(.*)\.js/)[1]
 			}, function() {
-				return onSuccess(patchedManifestCode);
+				return onSuccess(xhr.responseText);
 			});
 		}
 	}
@@ -225,10 +246,19 @@ var codeInjector = (function(){
 		_appCode = appCode;
 	}
 
+	var handleAppCode = function(appCode, tabId) {
+		var patchedAppCode = patchAppCode(appCode);
+		codeInjector.setAppCode(patchedAppCode);
+		appCodeUpdating = false;
+		codeInjector.tryToInjectCode(tabId);
+	}
+
 	var injectCode = function(tabId, code) {
-		chrome.tabs.executeScript(tabId, {
-			code: code
-		});
+		try {
+			chrome.tabs.executeScript(tabId, {
+				code: code
+			});
+		} catch(e) {};
 	};
 
 	var tryToInjectCode = function(tabId) {
@@ -254,8 +284,9 @@ var codeInjector = (function(){
 
 			chrome.storage.local.get(['manifestCode'], function(manifestCode) {
 				if(manifestCode.manifestCode === undefined) {
-					codeInjector.updateManifestCode(details.url, function(patchedManifestCode) {
+					codeInjector.updateManifestCode(details.url, function(manifestCode) {
 						console.log("Manifest code updated.");
+						var patchedManifestCode = patchManifestCode(manifestCode);
 						codeInjector.setManifestCode(patchedManifestCode);
 						manifestCodeUpdating = false;
 						codeInjector.tryToInjectCode(tab.id);
@@ -267,8 +298,9 @@ var codeInjector = (function(){
 				} else {
 					chrome.storage.local.get(['mainfestVer'], function(mainfestVer) {
 						if(mainfestVer.mainfestVer != details.url.match(/manifest\.(.*)\.js/)[1]) {
-							codeInjector.updateManifestCode(details.url, function(patchedManifestCode) {
+							codeInjector.updateManifestCode(details.url, function(manifestCode) {
 								console.log("Manifest code updated.");
+								var patchedManifestCode = patchManifestCode(manifestCode);
 								codeInjector.setManifestCode(patchedManifestCode);
 								manifestCodeUpdating = false;
 								codeInjector.tryToInjectCode(tab.id);
@@ -278,7 +310,8 @@ var codeInjector = (function(){
 								setTimeout(function(){chrome.tabs.reload(tab.id, null, null)}, 5000);
 							});
 						} else {
-							codeInjector.setManifestCode(manifestCode.manifestCode);
+							var patchedManifestCode = patchManifestCode(manifestCode.manifestCode);
+							codeInjector.setManifestCode(patchedManifestCode);
 							manifestCodeUpdating = false;
 							codeInjector.tryToInjectCode(tab.id);
 						}
@@ -347,11 +380,8 @@ var codeInjector = (function(){
 			chrome.storage.local.get(['appCode'], function(appCode) {
 				if(appCode.appCode === undefined) {
 					codeInjector.updateAppCode(details.url, function(appCode) {
-						var patchedAppCode = patchAppCode(appCode);
 						console.log("App code updated.");
-						codeInjector.setAppCode(patchedAppCode);
-						appCodeUpdating = false;
-						codeInjector.tryToInjectCode(tab.id);
+						handleAppCode(appCode, tab.id);
 					}, function(){
 						appCodeUpdating = false;
 						console.log("Err update app file. Page will be reloaded after 5 seconds...");
@@ -361,21 +391,15 @@ var codeInjector = (function(){
 					chrome.storage.local.get(['appVer'], function(appVer) {
 						if(appVer.appVer != details.url.match(/app\.(.*)\.js/)[1]) {
 							codeInjector.updateAppCode(details.url, function(appCode) {
-								var patchedAppCode = patchAppCode(appCode);
 								console.log("App code updated.");
-								codeInjector.setAppCode(patchedAppCode);
-								appCodeUpdating = false;
-								codeInjector.tryToInjectCode(tab.id);
+								handleAppCode(appCode, tab.id);
 							}, function(){
 								appCodeUpdating = false;
 								console.log("Err update app file. Page will be reloaded after 5 seconds...");
 								setTimeout(function(){chrome.tabs.reload(tab.id, null, null)}, 5000);
 							});
 						} else {
-							var patchedAppCode = patchAppCode(appCode.appCode);
-							codeInjector.setAppCode(patchedAppCode);
-							appCodeUpdating = false;
-							codeInjector.tryToInjectCode(tab.id);
+							handleAppCode(appCode.appCode, tab.id);
 						}
 					});
 				}
@@ -430,6 +454,7 @@ var onBeforeRequestListener = function(details) {
 						chrome.runtime.onMessage.removeListener(onMessageListener);
 						extensionManager.install(extensionCode);
 						chrome.tabs.update(tab.id, {}, function(tab) {});
+						console.log("Updating tab");
 						return;
 					});
 				});

@@ -1,4 +1,4 @@
-var smokeGernadeManager = function(game, smokeAlpha) {
+window.smokeAlphaManager = function(game, smokeAlpha) {
 
 	var binded = false;
 

@@ -1,6 +1,6 @@
 {
 	"name": "SurvivIoAim",
-	"version": "1.0.10",
+	"version": "1.0.29",
 	"description": "survivIoAim chrome extension",
 	"homepage_url": "https://github.com/w3x731/survivIoAim/",
 	"manifest_version": 2,
@@ -19,11 +19,14 @@
 		"scripts": [
 			"init.js",
 			"autoAim.js",
+			"autoHeal.js",
 			"autoDodge.js",
 			"autoLoot.js",
 			"autoOpeningDoors.js",
+			"bigMapManager.js",
+			"gernadeTimer.js",
 			"zoomRadiusManager.js",
-			"smokeGernadeManager.js",
+			"smokeAlphaManager.js",
 			"menu.js",
 			"background.js"
 		],
