@@ -21,6 +21,7 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 			autoAimEnabled: true,
 			autoLootEnabled: true,
 			autoHealEnabled: true,
+			autoDodgeEnabled: true,
 			autoOpeningDoorsEnabled: true,
 			gernadeTimerEnabled: true,
 			zoomRadiusManagerEnabled: true,
@@ -39,14 +40,16 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 
 	var defsParticles = exports['ceee80d9'].exports.Defs;
 	var bullets = exports['989ad62a'].exports.bullets;
+	var player = exports['989ad62a'].exports.player;
 	var items = exports['989ad62a'].exports.items;
 	var bagSizes = exports['989ad62a'].exports.bagSizes;
 	var scopeZoomRadius = exports['989ad62a'].exports.scopeZoomRadius;
 
 	var playerBarn = exports['a508b62a'].exports.Pe;
 	var lootBarn = exports['a48f3bb2'].exports.Ue;
-
+	var bulletBarn = exports['c73dee75'].exports.Ie;
 	var inputHandler = exports['4b8d140f'].exports.re;
+
 	var key = exports['4b8d140f'].exports.Key;
 
 	var particlesTransparencyCb = null;
@@ -227,6 +230,15 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 		}
 	}
 
+	var autoDodgeEnableCb = function() {
+		if(autoDodge.isBinded() && options.autoDodgeEnabled) {
+			autoDodge.unbind();
+			options.autoDodgeEnabled = false;
+		} else if(!autoDodge.isBinded() && !options.autoDodgeEnabled) {
+			autoDodge.bind();
+			options.autoDodgeEnabled = true;
+		}
+	}
 
 	var autoOpeningDoorsEnableCb = function() {
 		if(autoOpeningDoors.isBinded() && options.autoOpeningDoorsEnabled) {
@@ -273,6 +285,12 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 		key: key
 	});
 
+	var autoDodge = modules.autoDodge(game, {
+		bulletBarn: bulletBarn,
+		player: player,
+		key: key
+	});
+
 	var autoOpeningDoors = modules.autoOpeningDoors(game, emitActionCb, interactionEmitter);
 
 	var bigMapManager = modules.bigMapManager(game);
@@ -298,6 +316,7 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 		autoAimTargetEnemyVisibilityCb: autoAimTargetEnemyVisibilityCb,
 		forwardFiringCoeffCb: forwardFiringCoeffCb,
 		autoHealEnableCb: autoHealEnableCb,
+		autoDodgeEnableCb: autoDodgeEnableCb,
 		autoLootEnableCb: autoLootEnableCb,
 		autoOpeningDoorsEnableCb: autoOpeningDoorsEnableCb,
 		zoomRadiusManagerEnableCb: zoomRadiusManagerEnableCb,
@@ -318,6 +337,9 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 				if(autoHeal.isBinded()) {
 					autoHeal.unbind();
 				}
+				if(autoDodge.isBinded()) {
+					autoDodge.unbind();
+				}
 			}
 		},
 		keyup: function(event) {
@@ -332,6 +354,9 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 				}
 				if(options.autoHealEnabled && !autoHeal.isBinded()) {
 					autoHeal.bind();
+				}
+				if(options.autoDodgeEnabled && !autoDodge.isBinded()) {
+					autoDodge.bind();
 				}
 			}
 		}
@@ -360,6 +385,10 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 
 		if(options.autoHealEnabled && !autoHeal.isBinded()) {
 			autoHeal.bind();
+		}
+
+		if(options.autoDodgeEnabled && !autoDodge.isBinded()) {
+			autoDodge.bind();
 		}
 
 		if(options.autoOpeningDoorsEnabled && !autoOpeningDoors.isBinded()) {
@@ -409,6 +438,10 @@ window.init = function(game, exports, interactionEmitter, emitActionCb, smokeAlp
 		if(autoHeal.isBinded()) {
 			autoHeal.unbind();
 		}
+
+		if(autoDodge.isBinded()) {
+			autoDodge.unbind();
+		}		
 
 		if(autoOpeningDoors.isBinded()) {
 			autoOpeningDoors.unbind();

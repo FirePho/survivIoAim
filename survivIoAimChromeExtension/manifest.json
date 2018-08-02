@@ -20,6 +20,7 @@
 			"init.js",
 			"autoAim.js",
 			"autoHeal.js",
+			"autoDodge.js",
 			"autoLoot.js",
 			"autoOpeningDoors.js",
 			"bigMapManager.js",

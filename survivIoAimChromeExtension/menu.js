@@ -23,6 +23,7 @@ window.menu = function(options, callbacks) {
 
 		var autoLootEnabledCheckbox = document.createElement('div');
 		var autoHealEnabledCheckbox = document.createElement('div');
+		var autoDodgeEnabledCheckbox = document.createElement('div');
 		var autoOpeningDoorsEnabledCheckbox = document.createElement('div');
 		var gernadeTimerEnabledCheckbox = document.createElement('div');
 		var zoomRadiusManagerEnabledCheckbox = document.createElement('div');
@@ -269,6 +270,24 @@ window.menu = function(options, callbacks) {
 			autoHealEnabledCheckbox.appendChild(input);
 		}
 
+		if(callbacks.autoDodgeEnableCb) {
+			var description = document.createElement('p');
+			description.className = "modal-settings-checkbox-text";
+			description.innerHTML = "Auto dodge enabled";
+
+			var input = document.createElement('input');
+			input.type = "checkbox";
+			input.checked = options.autoDodgeEnabled;
+
+			input.addEventListener("change", function() {
+				callbacks.autoDodgeEnableCb();
+				this.checked = options.autoDodgeEnabled;
+			}, false);
+
+			autoDodgeEnabledCheckbox.appendChild(description);
+			autoDodgeEnabledCheckbox.appendChild(input);
+		}
+
 		if(callbacks.autoOpeningDoorsEnableCb) {
 			var description = document.createElement('p');
 			description.className = "modal-settings-checkbox-text";
@@ -349,6 +368,7 @@ window.menu = function(options, callbacks) {
 
 		cheatMenuContainer.appendChild(autoLootEnabledCheckbox);
 		cheatMenuContainer.appendChild(autoHealEnabledCheckbox);
+		cheatMenuContainer.appendChild(autoDodgeEnabledCheckbox);
 		cheatMenuContainer.appendChild(autoOpeningDoorsEnabledCheckbox);
 		cheatMenuContainer.appendChild(gernadeTimerEnabledCheckbox);
 		cheatMenuContainer.appendChild(zoomRadiusManagerEnabledCheckbox);
