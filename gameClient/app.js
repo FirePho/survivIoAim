@@ -622,12 +622,12 @@ webpackJsonp([0], {
                 this.smokeEmitter && (this.smokeEmitter.stop(),
                 this.smokeEmitter = null),
                 !this.isNew)) {
-                    for (var A = n.Defs[this.type], I = o.toAabb(this.collider), D = m.mul(m.sub(I.max, I.min), .5), O = m.add(I.min, D), E = Math.floor(l.random(5, 11)), L = 0; L < E; L++) {
-                        var B = m.mul(m.randomUnit(), l.random(5, 15))
+                    for (var I = n.Defs[this.type], A = o.toAabb(this.collider), D = m.mul(m.sub(A.max, A.min), .5), O = m.add(A.min, D), B = Math.floor(l.random(5, 11)), E = 0; E < B; E++) {
+                        var L = m.mul(m.randomUnit(), l.random(5, 15))
                           , F = Array.isArray(this.explodeParticle) ? this.explodeParticle[Math.floor(Math.random() * this.explodeParticle.length)] : this.explodeParticle;
-                        a.addParticle(F, this.layer, O, B)
+                        a.addParticle(F, this.layer, O, L)
                     }
-                    i.playSound(A.sound.explode, {
+                    i.playSound(I.sound.explode, {
                         channel: "sfx",
                         soundPos: O,
                         layer: this.layer,
@@ -638,11 +638,11 @@ webpackJsonp([0], {
                 this.sprite.visible) {
                     var R = this.dead ? 5 : this.sprite.zIdx
                       , j = this.__id
-                      , q = this.layer;
+                      , N = this.layer;
                     !this.dead && R >= 50 && 0 == this.layer && 0 == r.layer && (R += 100,
-                    q |= 2),
-                    c.addPIXIObj(this.sprite, q, R, j),
-                    this.isDoor && this.door.casingSprite && c.addPIXIObj(this.door.casingSprite, q, R + this.door.casingSprite.zIdx, j)
+                    N |= 2),
+                    c.addPIXIObj(this.sprite, N, R, j),
+                    this.isDoor && this.door.casingSprite && c.addPIXIObj(this.door.casingSprite, N, R + this.door.casingSprite.zIdx, j)
                 }
                 this.isNew = !1
             },
@@ -3312,18 +3312,10 @@ webpackJsonp([0], {
     },
     "26be8056": function(e, t, a) {
         "use strict";
-        function i(e) {
-            if (Array.isArray(e)) {
-                for (var t = 0, a = Array(e.length); t < e.length; t++)
-                    a[t] = e[t];
-                return a
-            }
-            return Array.from(e)
-        }
-        function r() {
+        function i() {
             window.appk = 1
         }
-        function o(e, t) {
+        function r(e, t) {
             t || (t = window.location.href),
             e = e.replace(/[\[\]]/g, "\\$&");
             var a = new RegExp("[?&]" + e + "(=([^&#]*)|&|#|$)")
@@ -3331,7 +3323,7 @@ webpackJsonp([0], {
             if (i)
                 return i[2] ? decodeURIComponent(i[2].replace(/\+/g, " ")) : ""
         }
-        function n(e) {
+        function o(e) {
             for (var t = e + "=", a = decodeURIComponent(document.cookie), i = a.split(";"), r = 0; r < i.length; r++) {
                 for (var o = i[r]; " " == o.charAt(0); )
                     o = o.substring(1);
@@ -3340,34 +3332,34 @@ webpackJsonp([0], {
             }
             return ""
         }
-        function s(e) {
+        function n(e) {
             var t = e.trim();
-            return t.length > T.kNameMaxLen && (t = t.substring(0, T.kNameMaxLen)),
+            return t.length > M.kNameMaxLen && (t = t.substring(0, M.kNameMaxLen)),
             t
         }
-        function l(e) {
+        function s(e) {
             return e = e || "",
             e.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
         }
-        function m(e, t, a) {
-            var i = A.getContext("2d");
+        function l(e, t, a) {
+            var i = P.getContext("2d");
             i.font = t;
             for (var r = e.length, o = e; r > 0 && !(i.measureText(o).width <= a); )
                 o = e.substring(0, --r) + "…";
             return o
         }
-        function c(e) {
+        function m(e) {
             return void 0 === e ? "undefined" : null === e ? "null" : JSON.stringify(e)
         }
-        function d() {
+        function c() {
             for (var e = ["localhost", "surviv.io", "surviv2.io", "2dbattleroyale.com", "2dbattleroyale.org"], t = window.location.hostname, a = !1, i = 0; i < e.length; i++)
                 if (-1 != t.indexOf(e[i])) {
                     a = !0;
                     break
                 }
-            return P.dev || a
+            return T.dev || a
         }
-        function p() {
+        function d() {
             var e = navigator.language || navigator.userLanguage;
             e = e.toLowerCase();
             for (var t = ["pt", "de", "es", "fr", "ko", "ru", "en"], a = 0; a < t.length; a++)
@@ -3380,16 +3372,16 @@ webpackJsonp([0], {
                     return e = i[r];
             return ""
         }
-        function u() {
+        function p() {
             return !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/) && this.detectiOS()
         }
-        function h() {
+        function u() {
             return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
         }
-        function g() {
-            return h() && 375 == screen.width && 812 == screen.height
+        function h() {
+            return u() && 375 == screen.width && 812 == screen.height
         }
-        function y() {
+        function g() {
             var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0]
               , t = window.navigator.userAgent
               , a = t.indexOf("MSIE ")
@@ -3397,55 +3389,62 @@ webpackJsonp([0], {
               , r = t.indexOf("Edge/");
             return a > 0 || i > 0 || e && r > 0
         }
-        function f(e, t) {
-            var a = document.body
-              , r = !1;
-            if (e) {
-                for (var o = [[99, 104, 101, 97, 116], [104, 97, 99, 107], [109, 101, 103, 97, 109, 111, 100]], n = [], s = 0; s < o.length; s++)
-                    n.push(String.fromCharCode.apply(String, i(o[s])));
-                for (var l = Object.keys(localStorage), m = 0; m < l.length; m++)
-                    for (var c = 0; c < n.length; c++)
-                        -1 !== l[m].toLowerCase().indexOf(n[c]) && (delete localStorage[l[m]],
-                        r = !0)
-            }
-            r && (t && t.close(),
-            a && a.parentNode && a.parentNode.removeChild(a),
-            C.storeGeneric("error", "err"),
-            C.enabled = !1)
-        }
-        function x() {
+        function y() {
             return window.innerWidth > window.innerHeight || 90 == window.orientation || -90 == window.orientation
         }
-        function w() {
-            return x() ? "landscape" : "portrait"
+        function f() {
+            return y() ? "landscape" : "portrait"
         }
-        function b() {
+        function x() {
             var e = window.innerWidth
               , t = window.innerHeight;
-            if (h()) {
+            if (u()) {
                 if (e = screen.width,
                 t = screen.height,
-                x()) {
+                y()) {
                     var a = t;
                     t = e,
                     e = a
                 }
-                g() && (x() ? e -= 88 : t -= 88)
+                h() && (y() ? e -= 88 : t -= 88)
             }
             return {
                 width: e,
                 height: t
             }
         }
-        function _(e) {
+        function w(e) {
             var t = document.documentElement;
             document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement || e ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen() : t.requestFullscreen ? t.requestFullscreen() : t.msRequestFullscreen ? (t = document.body,
             t.msRequestFullscreen()) : t.mozRequestFullScreen ? t.mozRequestFullScreen() : t.webkitRequestFullscreen && t.webkitRequestFullscreen()
         }
-        function v() {
-            return void 0 !== o("debug") || !1
+        function b() {
+            return void 0 !== r("debug") || !1
         }
-        function S(e, t) {
+        function _(e) {
+            var t = z("<input>");
+            if (z("body").append(t),
+            t.val(e),
+            u()) {
+                var a = t.get(0)
+                  , i = a.contentEditable
+                  , r = a.readOnly;
+                a.contentEditable = !0,
+                a.readOnly = !0;
+                var o = document.createRange();
+                o.selectNodeContents(a);
+                var n = window.getSelection();
+                n.removeAllRanges(),
+                n.addRange(o),
+                a.setSelectionRange(0, 999999),
+                a.contentEditable = i,
+                a.readOnly = r
+            } else
+                t.select();
+            document.execCommand("copy"),
+            t.remove()
+        }
+        function v(e, t) {
             !function a(i, r) {
                 if (i >= r)
                     return void t("full");
@@ -3454,7 +3453,7 @@ webpackJsonp([0], {
                         a(i + 1, r)
                     }, 250)
                 };
-                M.ajax({
+                z.ajax({
                     type: "POST",
                     url: "/api/find_game",
                     data: JSON.stringify(e),
@@ -3477,7 +3476,7 @@ webpackJsonp([0], {
                 })
             }(0, 3)
         }
-        function k(e, t, a) {
+        function S(e, t, a) {
             var i = "https:" == window.location.protocol
               , r = i ? "wss:" : "ws:"
               , o = i ? t.hosts : t.addrs;
@@ -3490,44 +3489,45 @@ webpackJsonp([0], {
                 };
                 if (r.length > 0) {
                     var n = r.shift();
-                    v() && console.log("Joining game", n, t.zone),
+                    b() && console.log("Joining game", n, t.zone),
                     e.k(t.data, n, o)
                 } else
                     a()
             }(n)
         }
-        function z() {
-            M(".qc-cmp-ui-container").remove(),
-            M(".qc-cmp-ui-showing").removeClass("qc-cmp-ui-showing")
+        function k() {
+            z(".qc-cmp-ui-container").remove(),
+            z(".qc-cmp-ui-showing").removeClass("qc-cmp-ui-showing"),
+            z(".qc-cmp-persistent-link").css("display", "none")
         }
-        var M = a("8ee62bea")
-          , T = a("300e2704")
-          , P = a("ce29f17f")
-          , C = a("f398b7c7")
-          , A = document.createElement("canvas");
+        var z = a("8ee62bea")
+          , M = a("300e2704")
+          , T = a("ce29f17f")
+          , P = (a("f398b7c7"),
+        document.createElement("canvas"));
         e.exports = {
-            I: r,
-            getParameterByName: o,
-            getCookie: n,
-            sanitizeNameInput: s,
-            htmlEscape: l,
-            truncateString: m,
-            varToString: c,
-            authLocation: d,
-            detectLanguage: p,
-            detectiOS: h,
-            detectiPhoneX: g,
-            detectMobileSafari: u,
-            detectIE: y,
-            O: f,
-            getOrientation: w,
-            isLandscape: x,
-            getScreenDimensions: b,
-            toggleFullScreen: _,
-            logDebug: v,
-            findGame: S,
-            joinGame: k,
-            removeConsent: z
+            I: i,
+            getParameterByName: r,
+            getCookie: o,
+            sanitizeNameInput: n,
+            htmlEscape: s,
+            truncateString: l,
+            varToString: m,
+            authLocation: c,
+            detectLanguage: d,
+            detectiOS: u,
+            detectiPhoneX: h,
+            detectMobileSafari: p,
+            detectIE: g,
+            getOrientation: f,
+            isLandscape: y,
+            getScreenDimensions: x,
+            toggleFullScreen: w,
+            logDebug: b,
+            removeConsent: k,
+            copyTextToClipboard: _,
+            findGame: v,
+            joinGame: S
         }
     },
     "2701b048": function(e, t, a) {
@@ -3538,7 +3538,7 @@ webpackJsonp([0], {
             this.sprite.visible = !1
         }
         function r() {
-            this.B = new d.Pool(i)
+            this.O = new d.Pool(i)
         }
         var o = a("80ac57a6")
           , n = a("6b42806d")
@@ -3573,11 +3573,11 @@ webpackJsonp([0], {
         },
         r.prototype = {
             o: function() {
-                for (var e = this.B.m(), t = 0; t < e.length; t++)
+                for (var e = this.O.m(), t = 0; t < e.length; t++)
                     e[t].o()
             },
             l: function(e, t, a, i, r, o, d) {
-                for (var p = this.B.m(), u = 0; u < p.length; u++) {
+                for (var p = this.O.m(), u = 0; u < p.length; u++) {
                     var h = p[u];
                     if (h.active) {
                         h.fallTicker += e;
@@ -3646,7 +3646,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            j: r
+            B: r
         }
     },
     "29d4cdc4": function(e, t, a) {
@@ -4353,7 +4353,7 @@ webpackJsonp([0], {
             None: 0,
             Join: 1,
             Disconnect: 2,
-            Move: 3,
+            Input: 3,
             Edit: 4,
             Joined: 5,
             PlayerInfo: 6,
@@ -4367,7 +4367,7 @@ webpackJsonp([0], {
             Emote: 14,
             PlayerStats: 15
         }
-          , A = function() {
+          , I = function() {
             function e() {
                 i(this, e),
                 this.protocol = 0,
@@ -4404,7 +4404,7 @@ webpackJsonp([0], {
             }]),
             e
         }()
-          , I = function() {
+          , A = function() {
             function e() {
                 i(this, e),
                 this.reason = ""
@@ -4432,26 +4432,19 @@ webpackJsonp([0], {
                 this.moveDown = !1,
                 this.shootStart = !1,
                 this.shootHold = !1,
-                this.reload = !1,
-                this.interaction = !1,
-                this.equipPrimary = !1,
-                this.equipSecondary = !1,
-                this.equipThrowable = !1,
-                this.equipMelee = !1,
-                this.equipLast = !1,
-                this.swapWeapSlots = !1,
-                this.cancelAction = !1,
-                this.scrollDown = !1,
-                this.scrollUp = !1,
-                this.useItem = "",
-                this.useScope = "",
+                this.portrait = !1,
                 this.toMouseDir = v.create(1, 0),
                 this.toMouseLen = 0,
-                this.portrait = !1,
-                this.editMode = !1,
-                this.moveLen = 255
+                this.moveLen = 255,
+                this.inputs = [],
+                this.useItem = ""
             }
             return h(e, [{
+                key: "addInput",
+                value: function(e) {
+                    this.inputs.length < 8 && -1 === this.inputs.indexOf(e) && this.inputs.push(e)
+                }
+            }, {
                 key: "serialize",
                 value: function(e) {
                     e.writeUint8(this.seq),
@@ -4461,25 +4454,14 @@ webpackJsonp([0], {
                     e.writeBoolean(this.moveDown),
                     e.writeBoolean(this.shootStart),
                     e.writeBoolean(this.shootHold),
-                    e.writeBoolean(this.reload),
-                    e.writeBoolean(this.interaction),
-                    e.writeBoolean(this.equipPrimary),
-                    e.writeBoolean(this.equipSecondary),
-                    e.writeBoolean(this.equipThrowable),
-                    e.writeBoolean(this.equipMelee),
-                    e.writeBoolean(this.equipLast),
-                    e.writeBoolean(this.swapWeapSlots),
-                    e.writeBoolean(this.cancelAction),
-                    e.writeBoolean(this.editMode),
-                    e.writeBoolean(this.scrollDown),
-                    e.writeBoolean(this.scrollUp),
                     e.writeBoolean(this.portrait),
                     e.writeUnitVec(this.toMouseDir, 9),
                     e.writeFloat(this.toMouseLen, 0, 64, 12),
-                    e.writeItemType(this.useItem),
-                    e.writeItemType(this.useScope),
                     e.writeUint8(this.moveLen),
-                    e.writeBits(0, 5)
+                    e.writeBits(this.inputs.length, 3);
+                    for (var t = 0; t < this.inputs.length; t++)
+                        e.writeUint8(this.inputs[t]);
+                    e.writeItemType(this.useItem)
                 }
             }, {
                 key: "deserialize",
@@ -4491,25 +4473,15 @@ webpackJsonp([0], {
                     this.moveDown = e.readBoolean(),
                     this.shootStart = e.readBoolean(),
                     this.shootHold = e.readBoolean(),
-                    this.reload = e.readBoolean(),
-                    this.interaction = e.readBoolean(),
-                    this.equipPrimary = e.readBoolean(),
-                    this.equipSecondary = e.readBoolean(),
-                    this.equipThrowable = e.readBoolean(),
-                    this.equipMelee = e.readBoolean(),
-                    this.equipLast = e.readBoolean(),
-                    this.swapWeapSlots = e.readBoolean(),
-                    this.cancelAction = e.readBoolean(),
-                    this.editMode = e.readBoolean(),
-                    this.scrollDown = e.readBoolean(),
-                    this.scrollUp = e.readBoolean(),
                     this.portrait = e.readBoolean(),
                     this.toMouseDir = e.readUnitVec(9),
                     this.toMouseLen = e.readFloat(0, 64, 12),
-                    this.useItem = e.readItemType(),
-                    this.useScope = e.readItemType(),
-                    this.moveLen = e.readUint8(),
-                    e.readBits(5)
+                    this.moveLen = e.readUint8();
+                    for (var t = e.readBits(3), a = 0; a < t; a++) {
+                        var i = e.readUint8();
+                        this.inputs.push(i)
+                    }
+                    this.useItem = e.readItemType()
                 }
             }]),
             e
@@ -4517,25 +4489,28 @@ webpackJsonp([0], {
           , O = function() {
             function e() {
                 i(this, e),
+                this.enabled = !1,
                 this.zoom = 1,
                 this.cull = !1
             }
             return h(e, [{
                 key: "serialize",
                 value: function(e) {
+                    e.writeBoolean(this.enabled),
                     e.writeBoolean(this.cull),
                     e.writeFloat32(this.zoom)
                 }
             }, {
                 key: "deserialize",
                 value: function(e) {
+                    this.enabled = e.readBoolean(),
                     this.cull = e.readBoolean(),
                     this.zoom = e.readFloat32()
                 }
             }]),
             e
         }()
-          , E = function() {
+          , B = function() {
             function e() {
                 i(this, e),
                 this.item = "",
@@ -4556,7 +4531,7 @@ webpackJsonp([0], {
             }]),
             e
         }()
-          , L = function() {
+          , E = function() {
             function e() {
                 i(this, e),
                 this.type = 0,
@@ -4588,7 +4563,7 @@ webpackJsonp([0], {
             }]),
             e
         }()
-          , B = function() {
+          , L = function() {
             function e() {
                 i(this, e),
                 this.id = 0,
@@ -4640,7 +4615,7 @@ webpackJsonp([0], {
                     this.started = e.readUint8(),
                     this.gameOpts = e.readUint8();
                     for (var t = e.readUint16(), a = 0; a < t; a++) {
-                        var i = new B;
+                        var i = new L;
                         i.deserialize(e),
                         this.playerInfoMsgs.push(i)
                     }
@@ -4703,7 +4678,7 @@ webpackJsonp([0], {
             Emotes: 512,
             Planes: 1024
         }
-          , q = function() {
+          , N = function() {
             function e() {
                 i(this, e),
                 this.delObjIds = [],
@@ -4802,7 +4777,7 @@ webpackJsonp([0], {
                             this.bullets.push(T)
                         }
                     if (0 != (a & j.Explosions))
-                        for (var A = e.readUint8(), I = 0; I < A; I++) {
+                        for (var I = e.readUint8(), A = 0; A < I; A++) {
                             var D = {};
                             D.pos = e.readVec(0, 0, 1024, 1024, 16),
                             D.type = e.readItemType(),
@@ -4810,20 +4785,20 @@ webpackJsonp([0], {
                             this.explosions.push(D)
                         }
                     if (0 != (a & j.Emotes))
-                        for (var O = e.readUint8(), E = 0; E < O; E++) {
-                            var L = {};
-                            L.type = e.readUint8(),
-                            L.isPing = e.readUint8(),
-                            L.playerId = e.readUint16(),
-                            L.pos = e.readVec(0, 0, 1024, 1024, 16),
-                            this.emotes.push(L)
+                        for (var O = e.readUint8(), B = 0; B < O; B++) {
+                            var E = {};
+                            E.type = e.readUint8(),
+                            E.isPing = e.readUint8(),
+                            E.playerId = e.readUint16(),
+                            E.pos = e.readVec(0, 0, 1024, 1024, 16),
+                            this.emotes.push(E)
                         }
                     if (0 != (a & j.Planes))
-                        for (var B = e.readUint8(), F = 0; F < B; F++) {
+                        for (var L = e.readUint8(), F = 0; F < L; F++) {
                             var R = {};
                             R.id = e.readUint8();
-                            var q = e.readVec(0, 0, 2048, 2048, 8);
-                            R.pos = v.create(q.x - 512, q.y - 512),
+                            var N = e.readVec(0, 0, 2048, 2048, 8);
+                            R.pos = v.create(N.x - 512, N.y - 512),
                             R.planeDir = e.readUnitVec(8),
                             R.dropDeployed = e.readBoolean(),
                             e.readBits(7),
@@ -4834,7 +4809,7 @@ webpackJsonp([0], {
             }]),
             e
         }()
-          , N = function() {
+          , q = function() {
             function e() {
                 i(this, e),
                 this.itemSourceType = "",
@@ -4876,7 +4851,7 @@ webpackJsonp([0], {
             }]),
             e
         }()
-          , G = function() {
+          , U = function() {
             function e() {
                 i(this, e),
                 this.playerId = 0,
@@ -4908,7 +4883,7 @@ webpackJsonp([0], {
             }]),
             e
         }()
-          , U = function() {
+          , G = function() {
             function e() {
                 i(this, e),
                 this.teamId = 0,
@@ -4926,7 +4901,7 @@ webpackJsonp([0], {
                     e.writeUint8(this.victory),
                     e.writeUint8(this.playerStats.length);
                     for (var t = 0; t < this.playerStats.length; t++) {
-                        var a = new G;
+                        var a = new U;
                         a.playerStats = this.playerStats[t],
                         a.serialize(e)
                     }
@@ -4939,7 +4914,7 @@ webpackJsonp([0], {
                     this.gameOver = e.readUint8(),
                     this.victory = e.readUint8();
                     for (var t = e.readUint8(), a = 0; a < t; a++) {
-                        var i = new G;
+                        var i = new U;
                         i.deserialize(e),
                         this.playerStats.push(i.playerStats)
                     }
@@ -4955,7 +4930,7 @@ webpackJsonp([0], {
             Success: 4,
             GunCannotFire: 5
         }
-          , H = function() {
+          , W = function() {
             function e() {
                 i(this, e),
                 this.type = 0,
@@ -4979,7 +4954,7 @@ webpackJsonp([0], {
             }]),
             e
         }()
-          , W = function() {
+          , H = function() {
             function e() {
                 i(this, e),
                 this.specNext = !1,
@@ -5007,22 +4982,22 @@ webpackJsonp([0], {
             kSmokeMaxRad: 10,
             MsgStream: T,
             Msg: C,
-            JoinMsg: A,
-            PlayerInfoMsg: B,
-            DisconnectMsg: I,
-            MoveMsg: D,
+            JoinMsg: I,
+            PlayerInfoMsg: L,
+            DisconnectMsg: A,
+            InputMsg: D,
             EditMsg: O,
-            DropItemMsg: E,
+            DropItemMsg: B,
             JoinedMsg: F,
-            UpdateMsg: q,
+            UpdateMsg: N,
             MapMsg: R,
-            KillMsg: N,
-            PlayerStatsMsg: G,
-            GameOverMsg: U,
+            KillMsg: q,
+            PlayerStatsMsg: U,
+            GameOverMsg: G,
             PickupMsgType: V,
-            PickupMsg: H,
-            SpectateMsg: W,
-            EmoteMsg: L
+            PickupMsg: W,
+            SpectateMsg: H,
+            EmoteMsg: E
         }
     },
     "3160ea28": function(e, t, a) {
@@ -5045,12 +5020,14 @@ webpackJsonp([0], {
             (t > 0 || a > 0) && (r += a + "m "),
             r += i + "s"
         }
-        function o(e, t, a, r, o, n, c) {
-            var p = this;
+        function o(e, t, a, r, o, n, c, u, f) {
+            var w = this;
             this.game = e,
             this.particleBarn = r,
             this.localization = o,
             this.touch = c,
+            this.inputBinds = u,
+            this.inputBindUi = f,
             this.gameElem = l("#ui-game"),
             this.statsMain = l("#ui-stats"),
             this.statsElem = l("#ui-stats-bg"),
@@ -5101,7 +5078,7 @@ webpackJsonp([0], {
             l("#ui-map-wrapper").css("display", "block"),
             l("#ui-team").css("display", "block"),
             this.curAction = {
-                type: g.None
+                type: y.None
             },
             this.displayMapDirty = !1,
             this.displayMapClear = !1,
@@ -5109,18 +5086,18 @@ webpackJsonp([0], {
                 e.stopPropagation()
             }),
             l(".ui-map-expand").on("click", function(e) {
-                w.touch ? p.bigmapDisplayed || p.displayMapLarge() : w.layout == w.Layout.Lg && p.displayMapLarge(p.bigmapDisplayed)
+                b.touch ? w.bigmapDisplayed || w.displayMapLarge() : b.layout == b.Layout.Lg && w.displayMapLarge(w.bigmapDisplayed)
             }),
             l("#ui-map-minimize").on("mousedown", function(e) {
                 e.stopPropagation()
             }),
             l("#ui-map-minimize").on("click", function(e) {
                 e.stopPropagation(),
-                p.toggleMiniMap()
+                w.toggleMiniMap()
             }),
             l("#ui-menu-display").on("click", function(e) {
                 e.stopPropagation(),
-                p.toggleEscMenu()
+                w.toggleEscMenu()
             }),
             this.bigmap = l("#big-map"),
             this.bigmapCollision = l("#big-map-collision"),
@@ -5133,77 +5110,87 @@ webpackJsonp([0], {
                 c.toggleAimStyle()
             }),
             l(document).on("keyup", function(e) {
-                76 != e.which || p.game.gameOver || k.toggleFullScreen()
+                var t = e.which || e.keyCode
+                  , a = w.inputBinds.getBind(p.Fullscreen);
+                a && t == a.code && !w.game.gameOver && z.toggleFullScreen()
             }),
             this.onTouchScreen = function(e) {
-                "cvs" == e.target.id && p.toggleEscMenu(!0)
+                "cvs" == e.target.id && w.toggleEscMenu(!0)
             }
             ,
             l(document).on("touchstart", this.onTouchScreen),
             this.bigmapClose = l("#big-map-close"),
             this.bigmapClose.on("touchend", function(e) {
                 e.stopPropagation(),
-                p.displayMapLarge(!0)
+                w.displayMapLarge(!0)
             }),
             this.bigmapClose.on("mousedown", function(e) {
                 e.stopPropagation()
             }),
             this.bigmapClose.on("click", function(e) {
                 e.stopPropagation(),
-                p.displayMapLarge(!0)
+                w.displayMapLarge(!0)
             }),
+            this.gameTabs = l(".ui-game-tab"),
+            this.gameTabBtns = l(".btn-game-tab-select"),
+            this.gameKeybindBtns = l(".btn-keybind-desc"),
+            this.currentGameTab = "settings",
+            this.gameTabBtns.on("click", function(e) {
+                w.setCurrentGameTab(l(e.target).data("tab"))
+            }),
+            this.setCurrentGameTab(this.currentGameTab),
             this.fullScreenButton = l("#btn-game-fullscreen"),
             this.fullScreenButton.on("mousedown", function(e) {
                 e.stopPropagation()
             }),
             this.fullScreenButton.on("click", function() {
-                k.toggleFullScreen(),
-                p.toggleEscMenu()
+                z.toggleFullScreen(),
+                w.toggleEscMenu()
             }),
             this.resumeButton = l("#btn-game-resume"),
             this.resumeButton.on("mousedown", function(e) {
                 e.stopPropagation()
             }),
             this.resumeButton.on("click", function() {
-                p.toggleEscMenu()
+                w.toggleEscMenu()
             }),
             l("#btn-spectate-quit").on("click", function() {
-                p.doQuitGame(!0)
+                w.doQuitGame(!0)
             }),
             l("#btn-game-quit").on("mousedown", function(e) {
                 e.stopPropagation()
             }),
             l("#btn-game-quit").on("click", function() {
-                p.doQuitGame(!0)
+                w.doQuitGame(!0)
             }),
             this.specStatsButton = l("#btn-spectate-view-stats"),
             this.specStatsButton.on("click", function() {
-                p.toggleLocalStats()
+                w.toggleLocalStats()
             }),
             this.beginSpectating = !1,
             this.specNext = !1,
             this.specPrev = !1,
             this.specNextButton = l("#btn-spectate-next-player"),
             this.specNextButton.on("click", function() {
-                p.specNext = !0
+                w.specNext = !0
             }),
             this.specPrevButton = l("#btn-spectate-prev-player"),
             this.specPrevButton.on("click", function() {
-                p.specPrev = !0
+                w.specPrev = !0
             }),
             this.interactionElems = l("#ui-interaction-press, #ui-interaction"),
             this.interactionTouched = !1,
             this.interactionElems.css("pointer-events", "auto"),
             this.interactionElems.on("touchstart", function(e) {
                 e.stopPropagation(),
-                p.interactionTouched = !0
+                w.interactionTouched = !0
             }),
             this.reloadElems = l("#ui-current-clip, #ui-remaining-ammo, #ui-reload-button"),
             this.reloadTouched = !1,
             this.reloadElems.css("pointer-events", "auto"),
             this.reloadElems.on("touchstart", function(e) {
                 e.stopPropagation(),
-                p.reloadTouched = !0
+                w.reloadTouched = !0
             }),
             this.healthRed = new s(255,0,0),
             this.healthDarkpink = new s(255,45,45),
@@ -5212,9 +5199,10 @@ webpackJsonp([0], {
             this.healthGrey = new s(179,179,179),
             this.minimapDisplayed = !0,
             this.visibilityMode = 0,
-            this.gasRenderer = new v(n,0),
-            this.gasSafeZoneRenderer = new S;
-            var y = this;
+            this.hudVisible = !0,
+            this.gasRenderer = new S(n,0),
+            this.gasSafeZoneRenderer = new k;
+            var _ = this;
             this.weapsDirty = !1,
             this.weapSwitches = l("#ui-weapon-id-1, #ui-weapon-id-2"),
             this.weapNoSwitches = l("#ui-weapon-id-3, #ui-weapon-id-4"),
@@ -5224,42 +5212,42 @@ webpackJsonp([0], {
             this.weapDragging = !1,
             this.weapDropped = !1,
             this.resetWeapSlotStyling = function() {
-                y.weapDraggedDiv && (y.weapSwitches.css({
+                _.weapDraggedDiv && (_.weapSwitches.css({
                     left: "",
                     top: ""
                 }),
                 l("#ui-game").css({
                     "pointer-events": ""
                 })),
-                y.weapDraggedDiv = null,
-                y.weapDragging = !1,
-                y.weapDropped = !1,
-                y.weapSwitches.hasClass("ui-weapon-dragged") && y.weapSwitches.removeClass("ui-weapon-dragged"),
-                y.weapNoSwitches.hasClass("ui-outline-hover") || y.weapNoSwitches.addClass("ui-outline-hover")
+                _.weapDraggedDiv = null,
+                _.weapDragging = !1,
+                _.weapDropped = !1,
+                _.weapSwitches.hasClass("ui-weapon-dragged") && _.weapSwitches.removeClass("ui-weapon-dragged"),
+                _.weapNoSwitches.hasClass("ui-outline-hover") || _.weapNoSwitches.addClass("ui-outline-hover")
             }
             ,
-            w.touch || (this.weapSwitches.on("mousedown", function(e) {
-                0 == e.button && (y.weapDraggedDiv = l(this),
-                y.weapDraggedId = l(this).data("slot"))
+            b.touch || (this.weapSwitches.on("mousedown", function(e) {
+                0 == e.button && (_.weapDraggedDiv = l(this),
+                _.weapDraggedId = l(this).data("slot"))
             }),
             l("#ui-game").on("mousemove", function(e) {
-                y.weapDraggedDiv && !y.weapDropped && (y.weapDragging ? (y.weapDraggedDiv.css({
+                _.weapDraggedDiv && !_.weapDropped && (_.weapDragging ? (_.weapDraggedDiv.css({
                     left: e.pageX - 80,
                     top: e.pageY - 30
                 }),
-                y.weapDraggedDiv.addClass("ui-weapon-dragged")) : (l("#ui-game").css({
+                _.weapDraggedDiv.addClass("ui-weapon-dragged")) : (l("#ui-game").css({
                     "pointer-events": "initial"
                 }),
-                y.weapNoSwitches.removeClass("ui-outline-hover"),
-                y.weapDragging = !0))
+                _.weapNoSwitches.removeClass("ui-outline-hover"),
+                _.weapDragging = !0))
             }),
             l("#ui-game, #ui-weapon-id-1, #ui-weapon-id-2").on("mouseup", function(e) {
-                0 == e.button && null != y.weapDraggedDiv && (y.weapSwitches.each(function() {
+                0 == e.button && null != _.weapDraggedDiv && (_.weapSwitches.each(function() {
                     var e = l(this).data("slot");
-                    l(this).is(":hover") && y.weapDraggedId != e && (y.swapWeapSlots = !0,
-                    y.weapDropped = !0)
+                    l(this).is(":hover") && _.weapDraggedId != e && (_.swapWeapSlots = !0,
+                    _.weapDropped = !0)
                 }),
-                y.swapWeapSlots || y.resetWeapSlotStyling())
+                _.swapWeapSlots || _.resetWeapSlotStyling())
             })),
             this.container = new m.Container,
             this.container.mask = new m.Graphics,
@@ -5282,18 +5270,18 @@ webpackJsonp([0], {
             this.mapWidth = 0,
             this.bigmapDisplayed = !1,
             this.screenScaleFactor = 1;
-            var x = (k.getScreenDimensions().width,
+            var v = (z.getScreenDimensions().width,
             this.getMinimapMargin())
-              , b = this.getMinimapSize();
-            this.minimapPos = f.create(x + b / 2, e.q.screenHeight - b / 2 - x),
+              , M = this.getMinimapSize();
+            this.minimapPos = x.create(v + M / 2, e.j.screenHeight - M / 2 - v),
             this.playerOuter = m.Sprite.fromImage("player-map-outer.img"),
             this.playerOuter.anchor = new m.Point(.5,.5),
-            this.playerOuterBaseScale = new m.Point(w.layout == w.Layout.Sm ? .25 : .3,w.layout == w.Layout.Sm ? .25 : .3),
+            this.playerOuterBaseScale = new m.Point(b.layout == b.Layout.Sm ? .25 : .3,b.layout == b.Layout.Sm ? .25 : .3),
             this.playerOuter.scale = this.playerOuterBaseScale,
             this.playerOuter.tint = 16777215,
             this.player = m.Sprite.fromImage("player-map-inner.img"),
             this.player.anchor = new m.Point(.5,.5),
-            this.playerBaseScale = new m.Point(w.layout == w.Layout.Sm ? .15 : .2,w.layout == w.Layout.Sm ? .15 : .2),
+            this.playerBaseScale = new m.Point(b.layout == b.Layout.Sm ? .15 : .2,b.layout == b.Layout.Sm ? .15 : .2),
             this.player.scale = this.playerBaseScale,
             this.player.tint = 16777215,
             this.dead = !1,
@@ -5303,14 +5291,14 @@ webpackJsonp([0], {
             this.muteButtonImage = this.muteButton.find("img"),
             this.muteOffImg = "audio-off.img",
             this.muteOnImg = "audio-on.img";
-            var _ = this.audioManager.mute;
-            this.muteButtonImage.attr("src", _ ? this.muteOffImg : this.muteOnImg),
+            var P = this.audioManager.mute;
+            this.muteButtonImage.attr("src", P ? this.muteOffImg : this.muteOnImg),
             this.muteButton.on("mousedown", function(e) {
                 e.stopPropagation()
             }),
             this.muteButton.on("click", function(e) {
-                var t = p.audioManager.muteToggle();
-                p.muteButtonImage.attr("src", t ? p.muteOffImg : p.muteOnImg),
+                var t = w.audioManager.muteToggle();
+                w.muteButtonImage.attr("src", t ? w.muteOffImg : w.muteOnImg),
                 t = null
             }),
             this.pieTimer = a,
@@ -5319,52 +5307,52 @@ webpackJsonp([0], {
             this.teamMemberHeight = 48,
             this.teamPlayerCount = 0,
             this.teamSelectors = [];
-            for (var z = 0; z < 4; z++) {
-                var T, P = this.topLeft, C = z, A = m.Sprite.fromImage("ping-map-pulse.img");
-                A.anchor = this.playerOuter.anchor,
-                A.scale = new m.Point(0,0),
-                A.tint = d.teamColors[z],
-                A.visible = !1,
-                this.display.teammates.addChild(A);
-                var I = m.Sprite.fromImage("ping-map-coming.img");
-                I.anchor = this.player.anchor,
-                I.scale = this.playerBaseScale,
-                I.tint = d.teamColors[z],
-                I.visible = !1,
-                this.display.teammates.addChild(I);
-                var D = m.Sprite.fromImage("ping-map-danger.img");
-                D.anchor = this.player.anchor,
-                D.scale = this.playerBaseScale,
-                D.tint = d.teamColors[z],
-                D.visible = !1,
-                this.display.teammates.addChild(D);
-                var O = m.Sprite.fromImage("ping-map-help.img");
-                O.anchor = this.player.anchor,
-                O.scale = this.playerBaseScale,
-                O.tint = d.teamColors[z],
+            for (var C = 0; C < 4; C++) {
+                var I, A = this.topLeft, D = C, O = m.Sprite.fromImage("ping-map-pulse.img");
+                O.anchor = this.playerOuter.anchor,
+                O.scale = new m.Point(0,0),
+                O.tint = d.teamColors[C],
                 O.visible = !1,
                 this.display.teammates.addChild(O);
-                var E = m.Sprite.fromImage("player-map-outer.img");
-                E.anchor = this.playerOuter.anchor,
-                E.scale = this.playerOuterBaseScale,
-                E.tint = this.playerOuter.tint,
+                var B = m.Sprite.fromImage("ping-map-coming.img");
+                B.anchor = this.player.anchor,
+                B.scale = this.playerBaseScale,
+                B.tint = d.teamColors[C],
+                B.visible = !1,
+                this.display.teammates.addChild(B);
+                var E = m.Sprite.fromImage("ping-map-danger.img");
+                E.anchor = this.player.anchor,
+                E.scale = this.playerBaseScale,
+                E.tint = d.teamColors[C],
                 E.visible = !1,
                 this.display.teammates.addChild(E);
-                var L = m.Sprite.fromImage("player-map-inner.img");
+                var L = m.Sprite.fromImage("ping-map-help.img");
                 L.anchor = this.player.anchor,
                 L.scale = this.playerBaseScale,
-                L.tint = d.teamColors[z],
+                L.tint = d.teamColors[C],
                 L.visible = !1,
-                this.display.teammates.addChild(L),
+                this.display.teammates.addChild(L);
+                var F = m.Sprite.fromImage("player-map-outer.img");
+                F.anchor = this.playerOuter.anchor,
+                F.scale = this.playerOuterBaseScale,
+                F.tint = this.playerOuter.tint,
+                F.visible = !1,
+                this.display.teammates.addChild(F);
+                var R = m.Sprite.fromImage("player-map-inner.img");
+                R.anchor = this.player.anchor,
+                R.scale = this.playerBaseScale,
+                R.tint = d.teamColors[C],
+                R.visible = !1,
+                this.display.teammates.addChild(R),
                 this.teamSelectors.push({
                     teamNameHtml: "",
-                    teamId: l(P).find("[data-id=" + C + "]"),
+                    teamId: l(A).find("[data-id=" + D + "]"),
                     teamIdDisplayed: !1,
-                    teamName: l(P).find("[data-id=" + C + "]").find(".ui-team-member-name"),
-                    teamIcon: l(P).find("[data-id=" + C + "]").find(".ui-team-member-icon"),
-                    teamStatus: l(P).find("[data-id=" + C + "]").find(".ui-team-member-status"),
-                    teamHealthInner: l(P).find("[data-id=" + C + "]").find(".ui-health-actual"),
-                    teamHealthDepleted: l(P).find("[data-id=" + C + "]").find(".ui-health-depleted"),
+                    teamName: l(A).find("[data-id=" + D + "]").find(".ui-team-member-name"),
+                    teamIcon: l(A).find("[data-id=" + D + "]").find(".ui-team-member-icon"),
+                    teamStatus: l(A).find("[data-id=" + D + "]").find(".ui-team-member-status"),
+                    teamHealthInner: l(A).find("[data-id=" + D + "]").find(".ui-health-actual"),
+                    teamHealthDepleted: l(A).find("[data-id=" + D + "]").find(".ui-health-depleted"),
                     prevHealth: 0,
                     prevStatus: {
                         disconnected: !1,
@@ -5373,28 +5361,28 @@ webpackJsonp([0], {
                     },
                     indicators: {
                         main: {
-                            elem: l("#ui-team-indicators").find(".ui-indicator-main[data-id=" + C + "]"),
+                            elem: l("#ui-team-indicators").find(".ui-indicator-main[data-id=" + D + "]"),
                             displayed: !1
                         }
                     },
-                    mapSprites: (T = {
+                    mapSprites: (I = {
                         outer: {
-                            sprite: E,
-                            position: f.create(0, 0),
+                            sprite: F,
+                            position: x.create(0, 0),
                             usePlayerPosition: !0,
                             showOnDeath: !1,
                             displayed: !0
                         },
                         inner: {
-                            sprite: L,
-                            position: f.create(0, 0),
+                            sprite: R,
+                            position: x.create(0, 0),
                             usePlayerPosition: !0,
                             showOnDeath: !0,
                             displayed: !0
                         },
                         pingPulseWave: {
-                            sprite: A,
-                            position: f.create(0, 0),
+                            sprite: O,
+                            position: x.create(0, 0),
                             usePlayerPosition: !1,
                             showOnDeath: !0,
                             displayed: !1,
@@ -5405,66 +5393,66 @@ webpackJsonp([0], {
                             maxLife: 0
                         }
                     },
-                    i(T, u.Coming, {
-                        sprite: I,
-                        position: f.create(0, 0),
+                    i(I, h.Coming, {
+                        sprite: B,
+                        position: x.create(0, 0),
                         usePlayerPosition: !1,
                         showOnDeath: !0,
                         displayed: !1,
                         life: 0,
                         maxLife: 0
                     }),
-                    i(T, u.Danger, {
-                        sprite: D,
-                        position: f.create(0, 0),
+                    i(I, h.Danger, {
+                        sprite: E,
+                        position: x.create(0, 0),
                         usePlayerPosition: !1,
                         showOnDeath: !0,
                         displayed: !1,
                         life: 0,
                         maxLife: 0
                     }),
-                    i(T, u.Help, {
-                        sprite: O,
-                        position: f.create(0, 0),
+                    i(I, h.Help, {
+                        sprite: L,
+                        position: x.create(0, 0),
                         usePlayerPosition: !1,
                         showOnDeath: !0,
                         displayed: !1,
                         life: 0,
                         maxLife: 0
                     }),
-                    T),
+                    I),
                     mapSpritesLocal: !1
                 })
             }
             this.airdropSprites = [],
             this.airdropSpriteIdx = 0;
-            for (var B = 0; B < M; B++) {
-                var F = m.Sprite.fromImage("ping-map-airdrop.img");
-                F.anchor = this.player.anchor,
-                F.scale = this.playerBaseScale,
-                F.tint = h[u.Airdrop].tint,
-                F.alpha = 0,
-                F.visible = !1,
-                this.display.teammates.addChild(F);
-                var R = m.Sprite.fromImage("ping-map-pulse.img");
-                R.anchor = this.playerOuter.anchor,
-                R.scale = new m.Point(0,0),
-                R.tint = h[u.Airdrop].tint,
-                R.alpha = 0,
-                R.visible = !1,
-                this.display.teammates.addChild(R);
-                var j = {
-                    sprite: F,
-                    position: f.create(0, 0),
+            for (var j = 0; j < T; j++) {
+                var N = m.Sprite.fromImage("ping-map-airdrop.img");
+                N.anchor = this.player.anchor,
+                N.scale = this.playerBaseScale,
+                N.tint = g[h.Airdrop].tint,
+                N.alpha = 0,
+                N.visible = !1,
+                this.display.teammates.addChild(N);
+                var q = m.Sprite.fromImage("ping-map-pulse.img");
+                q.anchor = this.playerOuter.anchor,
+                q.scale = new m.Point(0,0),
+                q.tint = g[h.Airdrop].tint,
+                q.alpha = 0,
+                q.visible = !1,
+                this.display.teammates.addChild(q);
+                var U = {
+                    sprite: N,
+                    position: x.create(0, 0),
                     usePlayerPosition: !1,
                     showOnDeath: !0,
                     displayed: !1,
                     life: 0,
                     maxLife: 0
                 }
-                  , q = {
-                    sprite: R,
-                    position: f.create(0, 0),
+                  , G = {
+                    sprite: q,
+                    position: x.create(0, 0),
                     usePlayerPosition: !1,
                     showOnDeath: !0,
                     displayed: !1,
@@ -5475,8 +5463,8 @@ webpackJsonp([0], {
                     maxLife: 0
                 };
                 this.airdropSprites.push({
-                    mapSprite: j,
-                    pingPulseWave: q
+                    mapSprite: U,
+                    pingPulseWave: G
                 })
             }
             this.a()
@@ -5507,25 +5495,27 @@ webpackJsonp([0], {
           , c = a("34e32c48")
           , d = (a("6b42806d"),
         a("989ad62a"))
-          , p = a("b198b546")
-          , u = p.PingType
-          , h = p.PingData
-          , g = d.Action
-          , y = d.GasMode
-          , f = (a("300e2704"),
+          , p = d.Input
+          , u = a("b198b546")
+          , h = u.PingType
+          , g = u.PingData
+          , y = d.Action
+          , f = d.GasMode
+          , x = (a("300e2704"),
         a("c2a798c8"))
-          , x = a("10899aea")
-          , w = (a("1901e2d9"),
+          , w = a("10899aea")
+          , b = (a("1901e2d9"),
         a("2bb110d0"),
         a("ce29f17f"))
-          , b = a("f398b7c7")
-          , _ = a("a7f094a3")
-          , v = _.GasRenderer
-          , S = _.GasSafeZoneRenderer
-          , k = a("26be8056")
-          , z = (a("119e8c4c"),
+          , _ = a("f398b7c7")
+          , v = a("a7f094a3")
+          , S = v.GasRenderer
+          , k = v.GasSafeZoneRenderer
+          , z = a("26be8056")
+          , M = (a("d306eab6"),
+        a("119e8c4c"),
         a("6e43d1d7"))
-          , M = 20;
+          , T = 20;
         o.prototype = {
             o: function() {
                 this.gasRenderer.free(),
@@ -5561,6 +5551,9 @@ webpackJsonp([0], {
                 this.bigmapClose.off("touchend"),
                 l(document).off("touchstart", this.onTouchScreen),
                 l(".ui-team-member-health").find(".ui-bar-inner").css("width", this.teamMemberHealthBarWidth),
+                l("#ui-center").off("mouseenter mouseleave"),
+                this.inputBinds.menuHovered = !1,
+                this.hudVisible || this.cycleHud(),
                 this.a()
             },
             a: function() {
@@ -5576,240 +5569,240 @@ webpackJsonp([0], {
                 this.game.gameOver = !0,
                 this.game.onQuit()
             },
-            l: function(e, t, a, i, r, o, n, s, l, p) {
-                var u = this
-                  , h = t.N
-                  , _ = t.U
-                  , v = t;
+            l: function(e, t, a, i, r, o, n, s, l) {
+                var p = this
+                  , u = t.N
+                  , h = t.q
+                  , g = t;
                 this.mapWidth = i.width,
                 this.mapHeight = i.height,
                 this.weapsDirty && this.resetWeapSlotStyling(),
                 this.weapsDirty = !1,
                 this.mapSprite.texture == m.Texture.EMPTY && null != i.getMapTexture() && (this.mapSprite.texture = i.getMapTexture(),
                 this.redraw(s));
-                var S = Math.max(Math.floor(r.duration * (1 - r.circleT)), 0)
-                  , M = {
+                var v = Math.max(Math.floor(r.duration * (1 - r.circleT)), 0)
+                  , S = {
                     mode: r.mode,
-                    time: S
+                    time: v
                 };
-                if (this.gasState.mode != M.mode || this.gasState.time != M.time) {
-                    this.gasState = M;
-                    var T = this.gasState.mode == y.Moving;
+                if (this.gasState.mode != S.mode || this.gasState.time != S.time) {
+                    this.gasState = S;
+                    var k = this.gasState.mode == f.Moving;
                     this.mapInfo.removeClass("icon-pulse"),
                     this.gasIcon.removeClass("gas-icon"),
                     this.gasIcon.removeClass("danger-icon"),
-                    T && this.mapInfo.addClass("icon-pulse"),
-                    this.gasIcon.addClass(T ? "danger-icon" : "gas-icon");
-                    var P = Math.floor(this.gasState.time / 60)
-                      , C = this.gasState.time % 60
-                      , A = ("0" + C).slice(-2);
-                    this.gasTimer.html(P + ":" + A)
+                    k && this.mapInfo.addClass("icon-pulse"),
+                    this.gasIcon.addClass(k ? "danger-icon" : "gas-icon");
+                    var T = Math.floor(this.gasState.time / 60)
+                      , P = this.gasState.time % 60
+                      , C = ("0" + P).slice(-2);
+                    this.gasTimer.html(T + ":" + C)
                 }
-                this.spectatorCount = _.spectatorCount,
+                this.spectatorCount = h.spectatorCount,
                 this.updateSpectatorCountDisplay(!1),
-                h.dead && !this.dead && (this.dead = !0,
+                u.dead && !this.dead && (this.dead = !0,
                 this.pieTimer.o(!0)),
-                (v.downed || this.dead) && this.resetWeapSlotStyling();
-                var I = _.action
-                  , D = x.eqAbs(x.clamp(I.time, 0, I.duration), I.duration, .2);
-                if (!(this.curAction.type == I.type && this.curAction.item == I.item && this.curAction.duration == I.duration || D || this.displayingStats)) {
+                (g.downed || this.dead) && this.resetWeapSlotStyling();
+                var I = h.action
+                  , A = w.eqAbs(w.clamp(I.time, 0, I.duration), I.duration, .2);
+                if (!(this.curAction.type == I.type && this.curAction.item == I.item && this.curAction.duration == I.duration || A || this.displayingStats)) {
                     this.curAction = {
                         type: I.type,
                         item: I.item,
                         time: I.time,
                         duration: I.duration
                     };
-                    var O = I.type != g.Reload;
-                    if (this.pieTimer.o(O),
+                    var D = I.type != y.Reload;
+                    if (this.pieTimer.o(D),
                     this.actionSoundInstance && (this.audioManager.stopSound(this.actionSoundInstance),
                     this.actionSoundInstance = !1),
-                    I.type != g.None) {
-                        var E = ""
-                          , L = ""
+                    I.type != y.None) {
+                        var O = ""
                           , B = ""
-                          , F = null
-                          , R = !1;
+                          , E = ""
+                          , L = null
+                          , F = !1;
                         switch (I.type) {
-                        case g.Reload:
+                        case y.Reload:
+                            if ("" != I.item) {
+                                var R = d.items[I.item];
+                                B = this.localization.translate("game-reloading"),
+                                L = R.sound.reload,
+                                F = "reload" == R.caseTiming
+                            }
+                            break;
+                        case y.UseItem:
                             if ("" != I.item) {
                                 var j = d.items[I.item];
-                                L = this.localization.translate("game-reloading"),
-                                F = j.sound.reload,
-                                R = "reload" == j.caseTiming
+                                B = this.localization.translate("game-using"),
+                                E = this.localization.translate("game-" + I.item),
+                                L = j.sound.use
                             }
                             break;
-                        case g.UseItem:
-                            if ("" != I.item) {
-                                var q = d.items[I.item];
-                                L = this.localization.translate("game-using"),
-                                B = this.localization.translate("game-" + I.item),
-                                F = q.sound.use
-                            }
-                            break;
-                        case g.Revive:
-                            var N = n.H(I.targetId).name;
-                            L = this.localization.translate("game-reviving"),
-                            B = v.downed ? "" : N
+                        case y.Revive:
+                            var N = n.U(I.targetId).name;
+                            B = this.localization.translate("game-reviving"),
+                            E = g.downed ? "" : N
                         }
-                        if ("" == L && "" == B || ("svo" == this.localization.translate("word-order") ? (E += L || "",
-                        E += B ? " " + B : "") : "sov" == this.localization.translate("word-order") && (E += B ? B + " " : "",
-                        E += L ? " " + L : ""),
+                        if ("" == B && "" == E || ("svo" == this.localization.translate("word-order") ? (O += B || "",
+                        O += E ? " " + E : "") : "sov" == this.localization.translate("word-order") && (O += E ? E + " " : "",
+                        O += B ? " " + B : ""),
                         this.pieTimer.a(function() {
-                            u.curAction.type = g.None
-                        }, this.curAction.duration - this.curAction.time, E, !1)),
-                        F && (this.actionSoundInstance = this.audioManager.playSound(F),
+                            p.curAction.type = y.None
+                        }, this.curAction.duration - this.curAction.time, O, !1)),
+                        L && (this.actionSoundInstance = this.audioManager.playSound(L),
                         this.audioManager.stopLocalActionSound()),
-                        R && "" != I.item)
-                            for (var G = d.items[I.item], U = 0; U < G.maxClip; U++) {
-                                var V = U % 2 == 0 ? -1 : 1
-                                  , H = Math.PI + Math.PI / 4 * V;
-                                z.createCasingParticle(I.item, H, t.pos, t.dir, t.N.layer, this.particleBarn)
+                        F && "" != I.item)
+                            for (var q = d.items[I.item], U = 0; U < q.maxClip; U++) {
+                                var G = U % 2 == 0 ? -1 : 1
+                                  , V = Math.PI + Math.PI / 4 * G;
+                                M.createCasingParticle(I.item, V, t.pos, t.dir, t.N.layer, this.particleBarn)
                             }
                     }
                 }
                 this.bigmapDisplayed || (this.mapSprite.x = this.minimapPos.x + this.mapSprite.width / 2 - t.pos.x / i.width * this.mapSprite.width,
                 this.mapSprite.y = this.minimapPos.y - this.mapSprite.height / 2 + t.pos.y / i.height * this.mapSprite.height);
-                var W = f.create(.5 * s.screenWidth / s.z(), .5 * s.screenHeight / s.z())
-                  , K = {
-                    min: f.sub(s.pos, W),
-                    max: f.add(s.pos, W)
+                var W = x.create(.5 * s.screenWidth / s.z(), .5 * s.screenHeight / s.z())
+                  , H = {
+                    min: x.sub(s.pos, W),
+                    max: x.add(s.pos, W)
                 }
-                  , X = n.H(t.__id).teamId
-                  , Y = n.getTeamInfo(X);
-                if (!Y) {
-                    var Z = {
+                  , K = n.U(t.__id).teamId
+                  , X = n.getTeamInfo(K);
+                if (!X) {
+                    var Y = {
                         playerId: t.__id,
-                        teamId: X,
+                        teamId: K,
                         spectating: this.spectating,
                         playing: this.game.playingTicker,
                         teamInfo: n.teamInfo
                     };
-                    b.logError("badTeamInfo_1: " + JSON.stringify(Z))
+                    _.logError("badTeamInfo_1: " + JSON.stringify(Y))
                 }
-                for (var Q = w.layout == w.Layout.Sm, J = 0; J < this.airdropSprites.length; J++) {
-                    var $ = this.airdropSprites[J].mapSprite;
-                    if ($.displayed) {
-                        var ee = $.sprite
-                          , te = $.position;
-                        this.updateMapPosition(ee, te, !0, i),
-                        this.updateMapSprite($, ee, e),
-                        $ = this.airdropSprites[J].pingPulseWave,
-                        ee = $.sprite,
-                        te = $.position,
-                        this.updateMapPosition(ee, te, !0, i),
-                        this.updateMapSprite($, ee, e)
+                for (var Z = b.layout == b.Layout.Sm, J = 0; J < this.airdropSprites.length; J++) {
+                    var Q = this.airdropSprites[J].mapSprite;
+                    if (Q.displayed) {
+                        var $ = Q.sprite
+                          , ee = Q.position;
+                        this.updateMapPosition($, ee, !0, i),
+                        this.updateMapSprite(Q, $, e),
+                        Q = this.airdropSprites[J].pingPulseWave,
+                        $ = Q.sprite,
+                        ee = Q.position,
+                        this.updateMapPosition($, ee, !0, i),
+                        this.updateMapSprite(Q, $, e)
                     }
                 }
-                for (var ae = Y.playerIds.length, ie = 0; ie < ae; ie++) {
-                    var re = this.teamSelectors[ie]
-                      , oe = Y.playerIds[ie]
-                      , ne = n.H(oe)
-                      , se = oe == v.__id
-                      , le = n.getTeammateData(oe);
-                    if (le) {
-                        for (var me in re.mapSprites)
-                            if (re.mapSprites.hasOwnProperty(me)) {
-                                var ce = re.mapSprites[me]
-                                  , de = ce.sprite
-                                  , pe = ce.usePlayerPosition ? le.pos : ce.position
-                                  , ue = ce.displayed && (!le.dead || ce.showOnDeath);
-                                "outer" != me || se || (ue = !1),
-                                this.updateMapPosition(de, pe, ue, i),
-                                this.updateMapSprite(ce, de, e)
+                for (var te = X.playerIds.length, ae = 0; ae < te; ae++) {
+                    var ie = this.teamSelectors[ae]
+                      , re = X.playerIds[ae]
+                      , oe = n.U(re)
+                      , ne = re == g.__id
+                      , se = n.getTeammateData(re);
+                    if (se) {
+                        for (var le in ie.mapSprites)
+                            if (ie.mapSprites.hasOwnProperty(le)) {
+                                var me = ie.mapSprites[le]
+                                  , ce = me.sprite
+                                  , de = me.usePlayerPosition ? se.pos : me.position
+                                  , pe = me.displayed && (!se.dead || me.showOnDeath);
+                                "outer" != le || ne || (pe = !1),
+                                this.updateMapPosition(ce, de, pe, i),
+                                this.updateMapSprite(me, ce, e)
                             }
-                        if (se && !re.mapSpritesLocal ? (this.display.player.addChild(re.mapSprites.outer.sprite, re.mapSprites.inner.sprite),
-                        re.mapSpritesLocal = !0) : !se && re.mapSpritesLocal && (this.display.teammates.addChild(re.mapSprites.outer.sprite, re.mapSprites.inner.sprite),
-                        re.mapSpritesLocal = !1),
+                        if (ne && !ie.mapSpritesLocal ? (this.display.player.addChild(ie.mapSprites.outer.sprite, ie.mapSprites.inner.sprite),
+                        ie.mapSpritesLocal = !0) : !ne && ie.mapSpritesLocal && (this.display.teammates.addChild(ie.mapSprites.outer.sprite, ie.mapSprites.inner.sprite),
+                        ie.mapSpritesLocal = !1),
                         l > 1) {
-                            re.teamIdDisplayed || (re.teamId.css("display", "block"),
-                            re.teamIdDisplayed = !0),
-                            this.updateTeam(ie, k.htmlEscape(ne.name), le.health, {
-                                disconnected: le.disconnected,
-                                dead: le.dead,
-                                downed: le.downed
+                            ie.teamIdDisplayed || (ie.teamId.css("display", "block"),
+                            ie.teamIdDisplayed = !0),
+                            this.updateTeam(ae, z.htmlEscape(oe.name), se.health, {
+                                disconnected: se.disconnected,
+                                dead: se.dead,
+                                downed: se.downed
                             }, !1);
-                            for (var he in re.indicators)
-                                if (re.indicators.hasOwnProperty(he)) {
-                                    var ge = re.indicators[he]
-                                      , ye = ge.elem
-                                      , fe = !0;
-                                    if (!se || ge.displayAll) {
-                                        var xe = le.pos
-                                          , we = f.normalizeSafe(f.sub(xe, s.pos), f.create(1, 0))
-                                          , be = c.intersectRayAabb(s.pos, we, K.min, K.max)
-                                          , _e = Math.atan2(we.y, -we.x) + .5 * Math.PI
-                                          , ve = s.pointToScreen(be)
-                                          , Se = c.testCircleAabb(xe, d.player.radius, K.min, K.max);
-                                        if (!le.dead && !Se) {
-                                            var ke = 32
-                                              , ze = "translate(-50%, -50%) rotate(" + _e + "rad)";
-                                            Q && (ke = 16,
-                                            ze += " scale(0.5)"),
-                                            fe = !1,
-                                            ye.css({
-                                                left: x.clamp(ve.x, ke, s.screenWidth - ke),
-                                                top: x.clamp(ve.y, ke, s.screenHeight - ke),
-                                                transform: ze
+                            for (var ue in ie.indicators)
+                                if (ie.indicators.hasOwnProperty(ue)) {
+                                    var he = ie.indicators[ue]
+                                      , ge = he.elem
+                                      , ye = !0;
+                                    if (!ne || he.displayAll) {
+                                        var fe = se.pos
+                                          , xe = x.normalizeSafe(x.sub(fe, s.pos), x.create(1, 0))
+                                          , we = c.intersectRayAabb(s.pos, xe, H.min, H.max)
+                                          , be = Math.atan2(xe.y, -xe.x) + .5 * Math.PI
+                                          , _e = s.pointToScreen(we)
+                                          , ve = c.testCircleAabb(fe, d.player.radius, H.min, H.max);
+                                        if (!se.dead && !ve) {
+                                            var Se = 32
+                                              , ke = "translate(-50%, -50%) rotate(" + be + "rad)";
+                                            Z && (Se = 16,
+                                            ke += " scale(0.5)"),
+                                            ye = !1,
+                                            ge.css({
+                                                left: w.clamp(_e.x, Se, s.screenWidth - Se),
+                                                top: w.clamp(_e.y, Se, s.screenHeight - Se),
+                                                transform: ke
                                             }),
-                                            ge.displayed || (ye.css("display", "block"),
-                                            ge.displayed = !0)
+                                            he.displayed || (ge.css("display", "block"),
+                                            he.displayed = !0)
                                         }
                                     }
-                                    fe && ge.displayed && (ye.css("display", "none"),
-                                    ge.displayed = !1)
+                                    ye && he.displayed && (ge.css("display", "none"),
+                                    he.displayed = !1)
                                 }
                         }
                     }
                 }
-                for (var Me = ae; Me < this.teamSelectors.length; Me++) {
-                    var Te = this.teamSelectors[Me];
-                    for (var Pe in Te.mapSprites)
-                        if (Te.mapSprites.hasOwnProperty(Pe)) {
-                            var Ce = Te.mapSprites[Pe];
-                            Ce.visible = !1
+                for (var ze = te; ze < this.teamSelectors.length; ze++) {
+                    var Me = this.teamSelectors[ze];
+                    for (var Te in Me.mapSprites)
+                        if (Me.mapSprites.hasOwnProperty(Te)) {
+                            var Pe = Me.mapSprites[Te];
+                            Pe.visible = !1
                         }
-                    for (var Ae in Te.indicators)
-                        if (Te.indicators.hasOwnProperty(Ae)) {
-                            var Ie = Te.indicators[Ae];
+                    for (var Ce in Me.indicators)
+                        if (Me.indicators.hasOwnProperty(Ce)) {
+                            var Ie = Me.indicators[Ce];
                             Ie.displayed && (Ie.elem.css("display", "none"),
                             Ie.displayed = !1)
                         }
-                    if (Te.teamIdDisplayed) {
-                        for (var De in Te.mapSprites)
-                            if (Te.mapSprites.hasOwnProperty(De)) {
-                                var Oe = Te.mapSprites[De]
-                                  , Ee = Oe.sprite;
-                                Ee.visible = !1
+                    if (Me.teamIdDisplayed) {
+                        for (var Ae in Me.mapSprites)
+                            if (Me.mapSprites.hasOwnProperty(Ae)) {
+                                var De = Me.mapSprites[Ae]
+                                  , Oe = De.sprite;
+                                Oe.visible = !1
                             }
-                        Te.teamId.css("display", "none"),
-                        Te.teamIdDisplayed = !1
+                        Me.teamId.css("display", "none"),
+                        Me.teamIdDisplayed = !1
                     }
                 }
-                l > 1 && this.teamPlayerCount != ae && w.layout == w.Layout.Lg && (this.teamPlayerCount = ae,
+                l > 1 && this.teamPlayerCount != te && b.layout == b.Layout.Lg && (this.teamPlayerCount = te,
                 this.spectateOptionsWrapper.css({
                     top: this.teamPlayerCount * this.teamMemberHeight + 12
                 }))
             },
             getMinimapMargin: function() {
-                return w.layout == w.Layout.Sm ? 4 : 16
+                return b.layout == b.Layout.Sm ? 4 : 16
             },
             getMinimapSize: function() {
-                return w.layout == w.Layout.Sm ? 192 : 256
+                return b.layout == b.Layout.Sm ? 192 : 256
             },
             getMinimapBorderWidth: function() {
-                return w.layout == w.Layout.Sm ? 1 : 4
+                return b.layout == b.Layout.Sm ? 1 : 4
             },
             setPlayerPing: function(e, t, a, i) {
                 var r = this.teamSelectors[t];
                 if (r) {
                     var o = void 0
                       , n = void 0;
-                    if (e == u.Airdrop) {
+                    if (e == h.Airdrop) {
                         var s = this.airdropSpriteIdx;
                         o = this.airdropSprites[s].mapSprite,
                         n = this.airdropSprites[s].pingPulseWave,
                         this.airdropSpriteIdx++,
-                        this.airdropSpriteIdx = this.airdropSpriteIdx == M ? 0 : this.airdropSpriteIdx
+                        this.airdropSpriteIdx = this.airdropSpriteIdx == T ? 0 : this.airdropSpriteIdx
                     } else
                         o = r.mapSprites[e],
                         n = r.mapSprites.pingPulseWave;
@@ -5841,15 +5834,15 @@ webpackJsonp([0], {
             getMapPosFromWorldPos: function(e, t) {
                 var a = this.mapSprite.x - this.mapSprite.width / 2 + e.x / t.width * this.mapSprite.width
                   , i = this.mapSprite.y + this.mapSprite.height / 2 - e.y / t.height * this.mapSprite.height;
-                return f.create(a, i)
+                return x.create(a, i)
             },
             getWorldPosFromMapPos: function(e, t, a) {
                 var i = !1;
-                if (k.getScreenDimensions().width,
+                if (z.getScreenDimensions().width,
                 this.bigmapDisplayed) {
                     var r = (a.screenWidth - this.mapSprite.width) / 2
                       , o = (a.screenHeight - this.mapSprite.height) / 2;
-                    w.layout != w.Layout.Sm || k.isLandscape() || (o = 0),
+                    b.layout != b.Layout.Sm || z.isLandscape() || (o = 0),
                     i = e.x > r && e.x < a.screenWidth - r && e.y > o && e.y < a.screenHeight - o
                 } else if (this.minimapDisplayed) {
                     var n = this.getMinimapSize()
@@ -5859,10 +5852,10 @@ webpackJsonp([0], {
                     i = e.x > this.minimapPos.x - m && e.x < this.minimapPos.x + m && e.y > this.minimapPos.y - m && e.y < this.minimapPos.y + m
                 }
                 if (i) {
-                    var c = f.create(this.mapSprite.x - this.mapSprite.width / 2, this.mapSprite.y + this.mapSprite.height / 2)
+                    var c = x.create(this.mapSprite.x - this.mapSprite.width / 2, this.mapSprite.y + this.mapSprite.height / 2)
                       , d = (e.x - c.x) / this.mapSprite.width * this.mapWidth
                       , p = (c.y - e.y) / this.mapSprite.height * this.mapHeight;
-                    return f.create(d, p)
+                    return x.create(d, p)
                 }
                 return !1
             },
@@ -5883,7 +5876,7 @@ webpackJsonp([0], {
                     placementName: "survivio_300x250_main",
                     slotId: "ad-block-main-med-rect"
                 }]),
-                w.mobile || window.freestar.newAdSlots([{
+                b.mobile || window.freestar.newAdSlots([{
                     placementName: "survivio_728x90_main",
                     slotId: "ad-block-main-leader-bot"
                 }]))
@@ -5924,7 +5917,7 @@ webpackJsonp([0], {
             clearUI: function() {
                 this.pieTimer.o(!0),
                 this.curAction = {
-                    type: g.None
+                    type: y.None
                 },
                 this.displayMapLarge(!0),
                 this.displayMiniMap(),
@@ -6027,13 +6020,13 @@ webpackJsonp([0], {
                             html: t
                         }))
                     }
-                      , m = w.layout == w.Layout.Sm ? 125 : 250
+                      , m = b.layout == b.Layout.Sm ? 125 : 250
                       , c = 0;
                     c -= (e.stats.length - 1) * m / 2,
                     c -= 10 * (e.stats.length - 1);
                     for (var d = 0; d < e.stats.length; d++) {
                         var p = e.stats[d]
-                          , u = t.H(p.playerId)
+                          , u = t.U(p.playerId)
                           , h = r(p.timeAlive)
                           , g = "ui-stats-info-player";
                         g += p.dead ? " ui-stats-info-status" : "";
@@ -6045,7 +6038,7 @@ webpackJsonp([0], {
                         y.css("left", c),
                         y.append(l("<div/>", {
                             class: "ui-stats-info-player-name",
-                            html: k.htmlEscape(u.name)
+                            html: z.htmlEscape(u.name)
                         })),
                         y.append(s(this.localization.translate("game-kills"), "" + p.kills)).append(s(this.localization.translate("game-damage-dealt"), p.damageDealt)).append(s(this.localization.translate("game-damage-taken"), p.damageTaken)).append(s(this.localization.translate("game-survived"), h)),
                         this.statsInfoBox.append(y),
@@ -6061,11 +6054,11 @@ webpackJsonp([0], {
                     this.statsOptions.append(f),
                     e.gameOver || this.waitingForPlayers)
                         f.css({
-                            width: w.layout != w.Layout.Sm || w.tablet ? 225 : 130
+                            width: b.layout != b.Layout.Sm || b.tablet ? 225 : 130
                         });
                     else {
                         f.css({
-                            left: w.layout != w.Layout.Sm || w.tablet ? -72 : -46
+                            left: b.layout != b.Layout.Sm || b.tablet ? -72 : -46
                         });
                         var x = l("<a/>", {
                             class: "btn-green btn-darken menu-option",
@@ -6079,18 +6072,18 @@ webpackJsonp([0], {
                         this.statsOptions.append(x)
                     }
                     if (!e.victory && void 0 !== window.freestar.newAdSlots) {
-                        var b = i - 150;
+                        var w = i - 150;
                         setTimeout(function() {
                             a.refreshMainPageAds(),
                             a.killElem.stop(),
                             a.killElem.hide(),
-                            l(w.mobile ? "#ui-stats-ad-container-mobile" : "#ui-stats-ad-container-desktop").css("display", "inline-block");
-                            var e = w.mobile ? "surviv-io_300x250_mobile_2" : "surviv-io_300x250_2";
+                            l(b.mobile ? "#ui-stats-ad-container-mobile" : "#ui-stats-ad-container-desktop").css("display", "inline-block");
+                            var e = b.mobile ? "surviv-io_300x250_mobile_2" : "surviv-io_300x250_2";
                             window.freestar.newAdSlots([{
                                 placementName: "survivio_300x250_respawn",
                                 slotId: e
                             }])
-                        }, b)
+                        }, w)
                     }
                     var _ = 0
                       , v = 250 / Math.max(1, e.stats.length)
@@ -6162,12 +6155,12 @@ webpackJsonp([0], {
                         this.spectateMode.css("display", "none")
             },
             setSpectatedPlayer: function(e, t) {
-                t = k.htmlEscape(t),
+                t = z.htmlEscape(t),
                 this.spectatedPlayerId != e && (this.spectatedPlayerText.find("#spectate-player").html(t),
                 this.spectatedPlayerName = t,
                 this.spectatedPlayerId = e,
                 this.curAction = {
-                    type: g.None
+                    type: y.None
                 })
             },
             setLocalStats: function(e) {
@@ -6201,12 +6194,12 @@ webpackJsonp([0], {
             displayMapLarge: function(e) {
                 this.bigmapDisplayed = !e && !this.bigmapDisplayed,
                 this.bigmapDisplayed ? this.container.alpha = 1 : this.container.alpha = this.minimapDisplayed ? 1 : 0;
-                var t = w.layout == w.Layout.Sm ? ".js-ui-mobile-map-hidden" : "js-ui-desktop-map-hidden";
+                var t = b.layout == b.Layout.Sm ? ".js-ui-mobile-map-hidden" : "js-ui-desktop-map-hidden";
                 t += ", .js-ui-map-hidden",
                 l(2 == this.visibilityMode ? ".js-ui-hud-show" : t).css("display", this.bigmapDisplayed ? "none" : "block"),
                 l(".js-ui-map-show").css("display", this.bigmapDisplayed ? "block" : "none"),
                 this.updateSpectatorCountDisplay(!0),
-                this.redraw(this.game.q)
+                this.redraw(this.game.j)
             },
             updateSpectatorCountDisplay: function(e) {
                 var t = !this.bigmapDisplayed && this.spectatorCount > 0;
@@ -6233,8 +6226,10 @@ webpackJsonp([0], {
             },
             cycleHud: function() {
                 "none" == this.gameElem.css("display") ? (this.gameElem.css("display", "block"),
-                this.displayMiniMap()) : (this.gameElem.css("display", "none"),
-                this.hideMiniMap())
+                this.displayMiniMap(),
+                this.hudVisible = !0) : (this.gameElem.css("display", "none"),
+                this.hideMiniMap(),
+                this.hudVisible = !1)
             },
             hideMiniMap: function() {
                 this.bigmapDisplayed || (this.minimapDisplayed = !1,
@@ -6247,7 +6242,7 @@ webpackJsonp([0], {
             },
             displayMiniMap: function() {
                 if (!this.bigmapDisplayed) {
-                    var e = w.layout == w.Layout.Sm;
+                    var e = b.layout == b.Layout.Sm;
                     this.minimapDisplayed = !0,
                     this.container.alpha = 1,
                     this.mapInfo.css("bottom", this.mapInfoBottom),
@@ -6260,7 +6255,7 @@ webpackJsonp([0], {
             displayAnnouncement: function(e, t) {
                 var a = "";
                 switch (e) {
-                case y.Waiting:
+                case f.Waiting:
                     a = this.localization.translate("game-red-zone-advances");
                     var i = Math.floor(t / 60)
                       , r = t - 60 * i;
@@ -6268,7 +6263,7 @@ webpackJsonp([0], {
                     a += 1 == i ? " " + i + " " + this.localization.translate("game-minute") : "",
                     a += r > 0 ? " " + Math.floor(r) + " " + this.localization.translate("game-seconds") : "";
                     break;
-                case y.Moving:
+                case f.Moving:
                     a = this.localization.translate("game-red-zone-advancing")
                 }
                 a.length > 0 && (this.announcement.html(a),
@@ -6285,13 +6280,13 @@ webpackJsonp([0], {
             render: function(e, t, a, i) {
                 var r = t.getCircle()
                   , o = this.getMapPosFromWorldPos(r.pos, i)
-                  , n = this.getMapPosFromWorldPos(f.add(r.pos, f.create(r.rad, 0)), i)
-                  , s = f.length(f.sub(n, o));
+                  , n = this.getMapPosFromWorldPos(x.add(r.pos, x.create(r.rad, 0)), i)
+                  , s = x.length(x.sub(n, o));
                 this.gasRenderer.render(o, s, t.isActive());
                 var l = t.circleNew
                   , m = this.getMapPosFromWorldPos(l.pos, i)
-                  , c = this.getMapPosFromWorldPos(f.add(l.pos, f.create(l.rad, 0)), i)
-                  , d = f.length(f.sub(c, m))
+                  , c = this.getMapPosFromWorldPos(x.add(l.pos, x.create(l.rad, 0)), i)
+                  , d = x.length(x.sub(c, m))
                   , p = this.getMapPosFromWorldPos(e, i)
                   , u = t.isActive()
                   , h = t.isActive() && !this.bigmapDisplayed;
@@ -6312,8 +6307,8 @@ webpackJsonp([0], {
                             backgroundColor: "red"
                         });
                     else {
-                        x.eqAbs(s, 100, .2) ? (l = this.healthGrey,
-                        m = this.healthGrey) : x.eqAbs(s, 75, .2) || s >= 75 ? (l = this.healthWhite,
+                        w.eqAbs(s, 100, .2) ? (l = this.healthGrey,
+                        m = this.healthGrey) : w.eqAbs(s, 75, .2) || s >= 75 ? (l = this.healthWhite,
                         m = this.healthWhite) : (l = this.healthDarkpink,
                         m = this.healthLightpink);
                         var c = l.getColors()
@@ -6350,7 +6345,7 @@ webpackJsonp([0], {
                     l && (c.attr("class", "ui-team-member-status"),
                     i.disconnected ? c.addClass("ui-team-member-status-disconnected") : i.dead ? c.addClass("ui-team-member-status-dead") : i.downed && c.addClass("ui-team-member-status-downed").addClass("icon-pulse"),
                     i.dead && (this.teamSelectors[e].mapSprites.inner.sprite.texture = m.Texture.fromImage("skull-team-outlined.img"),
-                    this.teamSelectors[e].mapSprites.inner.sprite.scale = f.mul(this.playerBaseScale, 1.5)),
+                    this.teamSelectors[e].mapSprites.inner.sprite.scale = x.mul(this.playerBaseScale, 1.5)),
                     (i.disconnected || i.dead) && o.css("opacity", .3)),
                     r.css("display", "block"),
                     this.teamSelectors[e].prevStatus = i,
@@ -6366,7 +6361,7 @@ webpackJsonp([0], {
                 this.teamSelectors = []
             },
             resize: function(e) {
-                this.screenScaleFactor = w.layout == w.Layout.Sm ? .5626 : Math.min(1, x.clamp(e.screenWidth / 1280, .75, 1) * x.clamp(e.screenHeight / 1024, .75, 1)),
+                this.screenScaleFactor = b.layout == b.Layout.Sm ? .5626 : Math.min(1, w.clamp(e.screenWidth / 1280, .75, 1) * w.clamp(e.screenHeight / 1024, .75, 1)),
                 this.pieTimer.resize(this.touch, this.screenScaleFactor),
                 this.gasRenderer.resize(),
                 this.redraw(e)
@@ -6377,11 +6372,11 @@ webpackJsonp([0], {
                   , i = this.getMinimapMargin()
                   , r = this.getMinimapSize()
                   , o = this.getMinimapBorderWidth()
-                  , n = w.layout == w.Layout.Sm;
+                  , n = b.layout == b.Layout.Sm;
                 if (this.display.border.clear(),
                 this.container.mask.clear(),
                 this.bigmapDisplayed) {
-                    var s = x.min(t, a);
+                    var s = w.min(t, a);
                     this.mapSprite.width = s,
                     this.mapSprite.height = s,
                     this.mapSprite.x = t / 2,
@@ -6390,7 +6385,7 @@ webpackJsonp([0], {
                     this.container.mask.beginFill(16777215, 1),
                     this.container.mask.drawRect(this.mapSprite.x - this.mapSprite.width / 2, this.mapSprite.y - this.mapSprite.height / 2, this.mapSprite.width, this.mapSprite.height),
                     this.container.mask.endFill(),
-                    w.touch && this.bigmapCollision.css({
+                    b.touch && this.bigmapCollision.css({
                         width: a,
                         height: t
                     })
@@ -6426,21 +6421,39 @@ webpackJsonp([0], {
                 }
             },
             toggleEscMenu: function() {
-                var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
+                var e = this
+                  , t = arguments.length > 0 && void 0 !== arguments[0] && arguments[0];
                 if (!this.displayingStats) {
-                    if (this.escMenuDisplayed || e)
+                    if (this.escMenuDisplayed || t)
                         return this.escMenuDisplayed = !1,
-                        void this.escMenuElem.css("display", "none");
+                        this.escMenuElem.css("display", "none"),
+                        this.setCurrentGameTab("settings"),
+                        l("#ui-center").off("mouseenter mouseleave"),
+                        void (this.inputBinds.menuHovered = !1);
                     if (this.bigmapDisplayed)
                         return void this.displayMapLarge(!0);
                     2 == this.visibilityMode && this.cycleVisibilityMode(),
                     this.escMenuDisplayed = !0,
-                    this.escMenuElem.css("display", "block")
+                    this.escMenuElem.css("display", "block"),
+                    l("#ui-center").hover(function() {
+                        e.inputBinds.menuHovered = !0
+                    }, function() {
+                        e.inputBinds.menuHovered = !1
+                    }),
+                    this.inputBinds.menuHovered = !1
                 }
+            },
+            setCurrentGameTab: function(e) {
+                this.currentGameTab = e,
+                this.gameTabs.css("display", "none"),
+                this.gameTabBtns.removeClass("btn-game-menu-selected"),
+                l("#ui-game-tab-" + this.currentGameTab).css("display", "block"),
+                l("#btn-game-" + this.currentGameTab).addClass("btn-game-menu-selected"),
+                "keybinds" == this.currentGameTab ? this.inputBindUi.refresh() : this.inputBindUi.cancelBind()
             }
         },
         e.exports = {
-            K: o
+            H: o
         }
     },
     "33375c30": function(e, t, a) {
@@ -6588,7 +6601,7 @@ webpackJsonp([0], {
                 var u = this.ceiling;
                 u.visionTicker -= e;
                 for (var h = !1, g = u.vision, y = 0; y < u.scopeIn.length; y++)
-                    if (c.scanCollider(u.scopeIn[y], t.Y.m(), n.pos, n.layer, .5, 2 * g.width, g.dist, 5)) {
+                    if (c.scanCollider(u.scopeIn[y], t.K.m(), n.pos, n.layer, .5, 2 * g.width, g.dist, 5)) {
                         h = !0;
                         break
                     }
@@ -7550,136 +7563,196 @@ webpackJsonp([0], {
     },
     "484b3444": function(e, t, a) {
         "use strict";
-        function i(e) {
-            d.push(e)
+        function i(e, t, a, i) {
+            var r = c("<div/>", {
+                class: "copy-toast",
+                html: e
+            });
+            t.append(r),
+            r.css({
+                left: i.pageX - parseInt(r.css("width")) / 2,
+                top: a.offset().top
+            }),
+            r.animate({
+                top: "-=25",
+                opacity: 1
+            }, {
+                queue: !1,
+                duration: 300,
+                complete: function() {
+                    c(this).fadeOut(250, function() {
+                        c(this).remove()
+                    })
+                }
+            })
         }
         function r(e, t) {
-            l(".modal").fadeOut(200),
-            l("#start-bottom-right").fadeIn(200),
-            l("#start-top-left").fadeIn(200),
-            l("#start-top-right").fadeIn(200);
-            for (var a = 0; a < d.length; a++)
-                d[a](e, t)
-        }
-        function o(e) {
-            l(e.target).closest(".modal-content").length || (l(".modal").each(function() {
-                "block" == l(this).css("display") && r(e, l(this))
-            }),
-            l(document).off("click touchend", o))
-        }
-        function n() {
-            l(document).on("click touchend", o)
-        }
-        function s() {
-            l(document).off("click touchend", o)
-        }
-        var l = a("8ee62bea")
-          , m = a("ce29f17f")
-          , c = a("26be8056");
-        l(document).ready(function() {
-            var e = l("#start-menu");
-            l("#btn-help").click(function() {
-                var t = l("#start-help");
-                e.addClass("display-help");
-                var a = (t.position().top,
-                e.css("height"));
-                return t.css("display", "block"),
-                e.animate({
-                    scrollTop: a
+            var a = c("#start-menu");
+            c("#btn-help").click(function() {
+                var e = c("#start-help");
+                a.addClass("display-help");
+                var t = (e.position().top,
+                a.css("height"));
+                return e.css("display", "block"),
+                a.animate({
+                    scrollTop: t
                 }, 1e3),
                 !1
             });
-            var t = l("#team-mobile-link")
-              , a = l("#team-mobile-link-desc")
-              , i = l("#team-mobile-link-warning")
-              , o = l("#team-link-input")
-              , s = l("#social-share-block")
-              , d = l("#news-block");
-            l("#btn-join-team").click(function() {
-                return l("#server-warning").css("display", "none"),
-                o.val(""),
-                t.css("display", "block"),
-                a.css("display", "block"),
-                i.css("display", "none"),
-                e.css("display", "none"),
-                d.css("display", "none"),
-                s.css("display", "none"),
-                !1
-            }),
-            l("#btn-team-mobile-link-leave").click(function() {
-                return t.css("display", "none"),
-                o.val(""),
-                e.css("display", "block"),
-                d.css("display", "block"),
+            var r = c("#team-mobile-link")
+              , s = c("#team-mobile-link-desc")
+              , m = c("#team-mobile-link-warning")
+              , u = c("#team-link-input")
+              , h = c("#social-share-block")
+              , g = c("#news-block");
+            c("#btn-join-team").click(function() {
+                return c("#server-warning").css("display", "none"),
+                u.val(""),
+                r.css("display", "block"),
                 s.css("display", "block"),
+                m.css("display", "none"),
+                a.css("display", "none"),
+                g.css("display", "none"),
+                h.css("display", "none"),
                 !1
             }),
-            l("#team-link-input").on("keypress", function(e) {
-                13 === (e.which || e.keyCode) && (l("#btn-team-mobile-link-join").trigger("click"),
-                l(this).blur())
+            c("#btn-team-mobile-link-leave").click(function() {
+                return r.css("display", "none"),
+                u.val(""),
+                a.css("display", "block"),
+                g.css("display", "block"),
+                h.css("display", "block"),
+                !1
             }),
-            l("#player-name-input-solo").on("keypress", function(e) {
-                13 === (e.which || e.keyCode) && l(this).blur()
+            c("#team-link-input").on("keypress", function(e) {
+                13 === (e.which || e.keyCode) && (c("#btn-team-mobile-link-join").trigger("click"),
+                c(this).blur())
             }),
-            m.mobile && !c.detectMobileSafari() && (l("#player-name-input-solo").on("focus", function() {
-                if (c.isLandscape()) {
-                    var e = c.getScreenDimensions().height
+            c("#player-name-input-solo").on("keypress", function(e) {
+                13 === (e.which || e.keyCode) && c(this).blur()
+            }),
+            d.mobile && !p.detectMobileSafari() && (c("#player-name-input-solo").on("focus", function() {
+                if (p.isLandscape()) {
+                    var e = p.getScreenDimensions().height
                       , t = e <= 282 ? 18 : 36;
-                    document.body.scrollTop = l(this).offset().top - t
+                    document.body.scrollTop = c(this).offset().top - t
                 }
             }),
-            l("#player-name-input-solo").on("blur", function() {
+            c("#player-name-input-solo").on("blur", function() {
                 document.body.scrollTop = 0
             }));
-            var p = l(".modal")
-              , u = (l(".modal-content"),
-            l("#start-bottom-right"))
-              , h = l("#start-top-left")
-              , g = l("#start-top-right")
-              , y = l("#modal-settings");
-            l(".btn-settings").click(function() {
-                return y.finish(),
-                y.css("display", "block"),
-                u.fadeOut(200),
-                g.fadeOut(200),
-                n(),
-                !1
-            });
-            var f = l("#modal-hamburger");
-            l("#btn-hamburger").click(function() {
-                return f.finish(),
-                f.css("display", "block"),
-                h.fadeOut(200),
-                n(),
+            var y = c(".modal")
+              , f = (c(".modal-content"),
+            c("#start-bottom-right"))
+              , x = c("#start-top-left")
+              , w = c("#start-top-right")
+              , b = c("#ui-modal-keybind");
+            c(".btn-keybind").click(function() {
+                return b.finish(),
+                b.css("display", "block"),
+                f.fadeOut(200),
+                w.fadeOut(200),
+                c("#ui-modal-keybind-share").css("display", "none"),
+                c("#keybind-warning").css("display", "none"),
+                c("#ui-modal-keybind-list").css("height", "420px"),
+                c("#keybind-code-input").html(""),
+                l(),
+                t.refresh(),
                 !1
             }),
-            l(".account-details-guest, .account-details-user").click(function() {
-                if (m.mobile) {
-                    var e = l("#modal-mobile-account");
+            o(function(e, a) {
+                (a.is(c("#ui-modal-keybind")) || a.parents("#ui-modal-keybind").length > 0) && (e.stopPropagation(),
+                t.cancelBind())
+            }),
+            c(".js-btn-keybind-share").click(function() {
+                "block" == c("#ui-modal-keybind-share").css("display") ? (c("#ui-modal-keybind-share").css("display", "none"),
+                c("#ui-modal-keybind-list").css("height", "420px")) : (c("#ui-modal-keybind-share").css("display", "block"),
+                c("#ui-modal-keybind-list").css("height", "275px"))
+            }),
+            c("#keybind-link, #keybind-copy").click(function(e) {
+                i("Copied!", b, c("#keybind-link"), e);
+                var t = c("#keybind-link").html();
+                p.copyTextToClipboard(t)
+            }),
+            c("#btn-keybind-code-load").on("click", function(a) {
+                var r = c("#keybind-code-input").val();
+                c("#keybind-code-input").val("");
+                var o = e.fromBase64(r);
+                c("#keybind-warning").css("display", o ? "none" : "block"),
+                o && i("Loaded!", b, c("#btn-keybind-code-load"), a),
+                t.refresh()
+            });
+            var _ = c("#modal-settings");
+            c(".btn-settings").click(function() {
+                return _.finish(),
+                _.css("display", "block"),
+                f.fadeOut(200),
+                w.fadeOut(200),
+                l(),
+                !1
+            });
+            var v = c("#modal-hamburger");
+            c("#btn-hamburger").click(function() {
+                return v.finish(),
+                v.css("display", "block"),
+                x.fadeOut(200),
+                l(),
+                !1
+            }),
+            c(".account-details-guest, .account-details-user").click(function() {
+                if (d.mobile) {
+                    var e = c("#modal-mobile-account");
                     return e.finish(),
                     e.css("display", "block"),
-                    l("#start-top-right").fadeOut(200),
-                    n(),
+                    c("#start-top-right").fadeOut(200),
+                    l(),
                     !1
                 }
             }),
-            p.find(".close").click(function(e) {
-                r(e, l(this))
+            y.find(".close").click(function(e) {
+                n(e, c(this))
             }),
-            l(".modal-settings-text").click(function() {
-                var e = l(this).siblings("input:checkbox");
+            c(".modal-settings-text").click(function() {
+                var e = c(this).siblings("input:checkbox");
                 e.prop("checked", !e.is(":checked")),
                 e.trigger("change")
             }),
-            l("#force-refresh").click(function() {
+            c("#force-refresh").click(function() {
                 window.location.reload(!0)
             })
-        });
-        var d = [];
+        }
+        function o(e) {
+            u.push(e)
+        }
+        function n(e, t) {
+            c(".modal").fadeOut(200),
+            c("#start-bottom-right").fadeIn(200),
+            c("#start-top-left").fadeIn(200),
+            c("#start-top-right").fadeIn(200);
+            for (var a = 0; a < u.length; a++)
+                u[a](e, t)
+        }
+        function s(e) {
+            c(e.target).closest(".modal-content").length || (c(".modal").each(function() {
+                "block" == c(this).css("display") && n(e, c(this))
+            }),
+            c(document).off("click touchend", s))
+        }
+        function l() {
+            c(document).on("click touchend", s)
+        }
+        function m() {
+            c(document).off("click touchend", s)
+        }
+        var c = a("8ee62bea")
+          , d = a("ce29f17f")
+          , p = a("26be8056")
+          , u = [];
         e.exports = {
-            addModalCloseListener: n,
-            addModalCloseCallback: i,
-            removeModalCloseListener: s
+            init: r,
+            addModalCloseListener: l,
+            addModalCloseCallback: o,
+            removeModalCloseListener: m
         }
     },
     "48eca919": function(e, t, a) {
@@ -8009,7 +8082,11 @@ webpackJsonp([0], {
     },
     "4b8d140f": function(e, t, a) {
         "use strict";
-        function i() {
+        function i(e, t) {
+            if (!(e instanceof t))
+                throw new TypeError("Cannot call a class as a function")
+        }
+        function r() {
             this.id = 0,
             this.pos = {
                 x: 0,
@@ -8029,11 +8106,11 @@ webpackJsonp([0], {
             this.isDead = !1,
             this.osId = 0
         }
-        function r(e) {
+        function o(e) {
             var t = this;
+            this.touchElem = e,
             this.keys = {},
             this.keysOld = {},
-            this.shiftKey = !1,
             this.mousePos = {
                 x: 0,
                 y: 0
@@ -8042,16 +8119,15 @@ webpackJsonp([0], {
                 x: 0,
                 y: 0
             },
-            this.mouseButton = !1,
-            this.mouseButtonOld = !1,
-            this.rightMouseButton = !1,
-            this.rightMouseButtonOld = !1,
+            this.mouseButtons = {},
+            this.mouseButtonsOld = {},
             this.mouseWheelState = 0,
             this.touches = [],
             this.touchIdCounter = 0,
             this.leftTouch = null,
             this.rightTouch = null,
-            this.elem = e,
+            this.lostFocus = !1,
+            this.captureNextInputCb = null,
             this.bOnWindowFocus = function(e) {
                 t.onWindowFocus(e)
             }
@@ -8097,6 +8173,7 @@ webpackJsonp([0], {
             }
             ,
             window.addEventListener("focus", this.bOnWindowFocus, !1),
+            window.addEventListener("blur", this.bOnWindowFocus, !1),
             window.addEventListener("keydown", this.bOnKeyDown, !1),
             window.addEventListener("keyup", this.bOnKeyUp, !1),
             window.addEventListener("mousemove", this.bOnMouseMove, !1),
@@ -8106,14 +8183,34 @@ webpackJsonp([0], {
                 capture: !1,
                 passive: !0
             }),
-            this.elem.addEventListener("touchmove", this.bOnTouchMove, !1),
-            this.elem.addEventListener("touchstart", this.bOnTouchStart, !1),
-            this.elem.addEventListener("touchend", this.bOnTouchEnd, !1),
-            this.elem.addEventListener("touchcancel", this.bOnTouchCancel, !1)
+            this.touchElem.addEventListener("touchmove", this.bOnTouchMove, !1),
+            this.touchElem.addEventListener("touchstart", this.bOnTouchStart, !1),
+            this.touchElem.addEventListener("touchend", this.bOnTouchEnd, !1),
+            this.touchElem.addEventListener("touchcancel", this.bOnTouchCancel, !1)
         }
-        var o = (a("c2a798c8"),
+        var n = function() {
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
+                    i.enumerable = i.enumerable || !1,
+                    i.configurable = !0,
+                    "value"in i && (i.writable = !0),
+                    Object.defineProperty(e, i.key, i)
+                }
+            }
+            return function(t, a, i) {
+                return a && e(t.prototype, a),
+                i && e(t, i),
+                t
+            }
+        }()
+          , s = (a("c2a798c8"),
         Object.freeze({
+            Backspace: 8,
             Enter: 13,
+            Shift: 16,
+            Control: 17,
+            Alt: 18,
             Escape: 27,
             Space: 32,
             Left: 37,
@@ -8121,6 +8218,7 @@ webpackJsonp([0], {
             Right: 39,
             Down: 40,
             A: 65,
+            C: 67,
             D: 68,
             S: 83,
             W: 87,
@@ -8144,69 +8242,168 @@ webpackJsonp([0], {
             Eight: 56,
             Nine: 57,
             Zero: 48,
+            LeftShift: 67,
+            T: 84,
+            Windows: 91,
+            ContextMenu: 93,
+            F1: 112,
+            F2: 113,
+            F3: 114,
+            F4: 115,
+            F5: 116,
+            F6: 117,
+            F7: 118,
+            F8: 119,
+            F9: 120,
+            F10: 121,
+            F11: 122,
+            F12: 123,
             Plus: 187,
             Minus: 189,
             FwdSlash: 191,
-            Tilde: 192,
-            C: 16,
-            LeftShift: 67,
-            T: 84
+            Tilde: 192
         }))
-          , n = Object.freeze({
+          , l = Object.freeze({
+            Left: 0,
+            Middle: 1,
+            Right: 2,
+            Thumb1: 3,
+            Thumb2: 4
+        })
+          , m = Object.freeze({
+            None: 0,
+            Up: 1,
+            Down: 2
+        })
+          , c = {
+            None: 0,
+            Key: 1,
+            MouseButton: 2,
+            MouseWheel: 3
+        }
+          , d = ["", "", "", "Cancel", "", "", "Help", "", "Backspace", "Tab", "", "", "Clear", "Enter", "Enter", "", "Shift", "Control", "Alt", "Pause", "Capslock", "Kana", "Eisu", "Junja", "Final", "Hanja", "", "ESC", "Convert", "Nonconvert", "Accept", "Modechange", "Space", "Page Up", "Page Down", "End", "Home", "←", "↑", "→", "↓", "Select", "Print", "Execute", "Printscreen", "Insert", "Delete", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", ";", "<", "=", ">", "?", "@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Windows Key", "", "Context Menu", "", "Sleep", "Numpad 0", "Numpad 1", "Numpad 2", "Numpad 3", "Numpad 4", "Numpad 5", "Numpad 6", "Numpad 7", "Numpad 8", "Numpad 9", "*", "+", "Separator", "-", ".", "/", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "", "", "", "", "", "", "", "", "Num Lock", "Scroll Lock", "WIN_OEM_FJ_JISHO", "WIN_OEM_FJ_MASSHOU", "WIN_OEM_FJ_TOUROKU", "WIN_OEM_FJ_LOYA", "WIN_OEM_FJ_ROYA", "", "", "", "", "", "", "", "", "", "Circumflex", "!", '"', "#", "$", "%", "&", "_", "(", ")", "*", "+", "|", "Hyphen Minus", "{", "}", "~", "", "", "", "", "Volume Mute", "Volume Down", "Volume Up", "", "", ";", "=", ",", "-", ".", "/", "Backquote", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "[", "\\", "]", "'", "", "Meta", "ALTGR", "", "WIN_ICO_HELP", "WIN_ICO_00", "", "WIN_ICO_CLEAR", "", "", "WIN_OEM_RESET", "WIN_OEM_JUMP", "WIN_OEM_PA1", "WIN_OEM_PA2", "WIN_OEM_PA3", "WIN_OEM_WSCTRL", "WIN_OEM_CUSEL", "WIN_OEM_ATTN", "WIN_OEM_FINISH", "WIN_OEM_COPY", "WIN_OEM_AUTO", "WIN_OEM_ENLW", "WIN_OEM_BACKTAB", "ATTN", "CRSEL", "EXSEL", "EREOF", "PLAY", "ZOOM", "", "PA1", "WIN_OEM_CLEAR", ""]
+          , p = ["Left Mouse", "Middle Mouse", "Right Mouse", "Thumb Mouse 1", "Thumb Mouse 2"]
+          , u = ["", "Mouse Wheel Up", "Mouse Wheel Down"]
+          , h = function() {
+            function e(t, a) {
+                i(this, e),
+                this.type = t,
+                this.code = a
+            }
+            return n(e, [{
+                key: "equals",
+                value: function(e) {
+                    return this.type == e.type && this.code == e.code
+                }
+            }, {
+                key: "toString",
+                value: function() {
+                    return this.type == c.None ? "" : this.type == c.Key ? d[this.code] || "Key " + this.code : this.type == c.MouseButton ? p[this.code] || "Mouse " + this.code : u[this.code] || "Mouse Wheel " + this.code
+                }
+            }]),
+            e
+        }()
+          , g = Object.freeze({
             Move: 0,
             Start: 1,
             End: 2,
             Cancel: 3
         });
-        r.prototype = {
+        o.prototype = {
             o: function() {
                 window.removeEventListener("focus", this.bOnWindowFocus),
+                window.removeEventListener("blur", this.bOnWindowFocus),
                 window.removeEventListener("keydown", this.bOnKeyDown),
                 window.removeEventListener("keyup", this.bOnKeyUp),
                 window.removeEventListener("mousemove", this.bOnMouseMove),
                 window.removeEventListener("mousedown", this.bOnMouseDown),
                 window.removeEventListener("mouseup", this.bOnMouseUp),
                 window.removeEventListener("wheel", this.bOnMouseWheel),
-                this.elem.removeEventListener("touchmove", this.bOnTouchMove),
-                this.elem.removeEventListener("touchstart", this.bOnTouchStart),
-                this.elem.removeEventListener("touchend", this.bOnTouchEnd),
-                this.elem.removeEventListener("touchcancel", this.bOnTouchCancel)
+                this.touchElem.removeEventListener("touchmove", this.bOnTouchMove),
+                this.touchElem.removeEventListener("touchstart", this.bOnTouchStart),
+                this.touchElem.removeEventListener("touchend", this.bOnTouchEnd),
+                this.touchElem.removeEventListener("touchcancel", this.bOnTouchCancel)
             },
             onWindowFocus: function() {
                 this.keys = {},
                 this.keysOld = {},
-                this.mouseButton = !1,
-                this.shiftKey = !1,
-                this.touches.length = 0
+                this.mouseButtons = {},
+                this.mouseButtonsOld = {},
+                this.mouseWheelState = 0,
+                this.touches.length = 0,
+                this.lostFocus = !0
             },
             flush: function() {
                 this.keysOld = Object.assign({}, this.keys),
-                this.mouseButtonOld = this.mouseButton,
-                this.rightMouseButtonOld = this.rightMouseButton,
-                this.mouseWheelState = 0,
-                this.shiftKey = !1;
+                this.mouseButtonsOld = Object.assign({}, this.mouseButtons),
+                this.mouseWheelState = 0;
                 for (var e = 0; e < this.touches.length; e++)
                     this.touches[e].posOld.x = this.touches[e].pos.x,
                     this.touches[e].posOld.y = this.touches[e].pos.y,
                     this.touches[e].isNew = !1,
                     this.touches[e].isDead && (this.touches.splice(e, 1),
-                    --e)
+                    --e);
+                this.lostFocus = !1
+            },
+            captureNextInput: function(e) {
+                this.captureNextInputCb = e
+            },
+            checkCaptureInput: function(e, t, a) {
+                return !(!this.captureNextInputCb || !this.captureNextInputCb(e, new h(t,a)) || (this.captureNextInputCb = null,
+                0))
+            },
+            isInputValuePressed: function(e) {
+                switch (e.type) {
+                case c.Key:
+                    return this.Y(e.code);
+                case c.MouseButton:
+                    return this.Z(e.code);
+                case c.MouseWheel:
+                    return this.J() == e.code;
+                default:
+                    return !1
+                }
+            },
+            isInputValueReleased: function(e) {
+                switch (e.type) {
+                case c.Key:
+                    return this.$(e.code);
+                case c.MouseButton:
+                    return this.ee(e.code);
+                case c.MouseWheel:
+                    return this.J() == e.code;
+                default:
+                    return !1
+                }
+            },
+            isInputValueDown: function(e) {
+                switch (e.type) {
+                case c.Key:
+                    return this.te(e.code);
+                case c.MouseButton:
+                    return this.ae(e.code);
+                case c.MouseWheel:
+                    return this.J() == e.code;
+                default:
+                    return !1
+                }
             },
             onKeyDown: function(e) {
-                this.keys[e.keyCode] = !0,
-                this.shiftKey |= e.shiftKey
+                var t = e.keyCode;
+                9 == t && e.preventDefault(),
+                this.checkCaptureInput(e, c.Key, t) || (this.keys[t] = !0)
             },
             onKeyUp: function(e) {
-                delete this.keys[e.keyCode]
+                this.keys[e.keyCode] = !1
             },
-            Z: function(e) {
-                return void 0 !== this.keys[e]
+            te: function(e) {
+                return !!this.keys[e]
             },
-            J: function(e) {
-                return void 0 === this.keysOld[e] && this.Z(e)
+            Y: function(e) {
+                return !this.keysOld[e] && !!this.keys[e]
             },
             $: function(e) {
-                return this.keysOld[e] && !this.Z(e)
+                return !!this.keysOld[e] && !this.keys[e]
             },
             onMouseMove: function(e) {
                 this.mousePosOld = Object.assign({}, this.mousePos),
@@ -8214,71 +8411,68 @@ webpackJsonp([0], {
                 this.mousePos.y = e.clientY
             },
             onMouseDown: function(e) {
-                this.mouseButton = this.mouseButton || 0 === e.button,
-                this.rightMouseButton = this.rightMouseButton || 2 === e.button
+                var t = 0;
+                t = "which"in e ? e.which - 1 : e.button,
+                this.checkCaptureInput(e, c.MouseButton, t) || (this.mouseButtons[t] = !0)
             },
             onMouseUp: function(e) {
-                this.mouseButton = 0 !== e.button && this.mouseButton,
-                this.rightMouseButton = 2 !== e.button && this.rightMouseButton
+                var t = 0;
+                t = "which"in e ? e.which - 1 : e.button,
+                this.mouseButtons[t] = !1
             },
             onMouseWheel: function(e) {
-                this.mouseWheelState = e.deltaY < 0 ? -1 : 1
+                var t = e.deltaY < 0 ? m.Up : m.Down;
+                this.checkCaptureInput(e, c.MouseWheel, t) || (this.mouseWheelState = t)
             },
-            ee: function() {
-                return this.mouseButton
+            ae: function(e) {
+                return !!this.mouseButtons[e]
             },
-            te: function() {
-                return !this.mouseButtonOld && this.mouseButton
+            Z: function(e) {
+                return !this.mouseButtonsOld[e] && !!this.mouseButtons[e]
             },
-            ae: function() {
-                return this.mouseButtonOld && !this.mouseButton
+            ee: function(e) {
+                return !!this.mouseButtonsOld[e] && !this.mouseButtons[e]
             },
-            ie: function() {
-                return !this.rightMouseButtonOld && this.rightMouseButton
-            },
-            re: function() {
+            J: function() {
                 return this.mouseWheelState
             },
-            resetMouseWheel: function() {
-                this.mouseWheelState = 0
-            },
             onTouchShared: function(e, t) {
-                t != n.Cancel && e.preventDefault();
-                for (var a = e.timeStamp || performance.now(), r = 0; r < e.changedTouches.length; r++) {
-                    for (var o = e.changedTouches[r], s = o.identifier, l = o.clientX, m = o.clientY, c = null, d = 0; d < this.touches.length; d++)
-                        if (this.touches[d].osId == s && !this.touches[d].isDead) {
-                            c = this.touches[d];
+                t != g.Cancel && e.preventDefault();
+                for (var a = e.timeStamp || performance.now(), i = 0; i < e.changedTouches.length; i++) {
+                    for (var o = e.changedTouches[i], n = o.identifier, s = o.clientX, l = o.clientY, m = null, c = 0; c < this.touches.length; c++)
+                        if (this.touches[c].osId == n && !this.touches[c].isDead) {
+                            m = this.touches[c];
                             break
                         }
-                    t != n.Start || c || (c = new i,
-                    this.touches.push(c),
+                    t != g.Start || m || (m = new r,
+                    this.touches.push(m),
                     ++this.touchIdCounter,
-                    c.id = this.touchIdCounter,
-                    c.osId = s,
-                    c.posOld.x = l,
-                    c.posOld.y = m,
-                    c.posDown.x = l,
-                    c.posDown.y = m,
-                    c.startTime = a,
-                    c.isNew = !0,
-                    c.isDead = !1),
-                    t != n.End && t != n.Cancel || !c || (c.isDead = !0),
-                    c && (c.pos.x = l,
-                    c.pos.y = m,
-                    c.lastUpdateTime = a)
+                    m.id = this.touchIdCounter,
+                    m.osId = n,
+                    m.posOld.x = s,
+                    m.posOld.y = l,
+                    m.posDown.x = s,
+                    m.posDown.y = l,
+                    m.startTime = a,
+                    m.isNew = !0,
+                    m.isDead = !1),
+                    t != g.End && t != g.Cancel || !m || (m.isDead = !0),
+                    m && (m.pos.x = s,
+                    m.pos.y = l,
+                    m.lastUpdateTime = a)
                 }
             },
             onTouchMove: function(e) {
-                this.onTouchShared(e, n.Move)
+                this.onTouchShared(e, g.Move)
             },
             onTouchStart: function(e) {
-                this.onTouchShared(e, n.Start)
+                this.onTouchShared(e, g.Start)
             },
             onTouchEnd: function(e) {
-                this.onTouchShared(e, n.End)
+                this.onTouchShared(e, g.End)
             },
             onTouchCancel: function(e) {
-                this.onTouchShared(e, n.Cancel)
+                this.onTouchShared(e, g.Cancel)
             },
             getTouchById: function(e) {
                 for (var t = 0; t < this.touches.length; t++)
@@ -8288,9 +8482,13 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            oe: r,
-            Key: o,
-            Touch: i
+            ie: o,
+            InputType: c,
+            InputValue: h,
+            Key: s,
+            MouseButton: l,
+            MouseWheel: m,
+            Touch: r
         }
     },
     51683873: function(e, t, a) {
@@ -15090,7 +15288,7 @@ webpackJsonp([0], {
                 }
             }, {
                 meta: {
-                    image: "imgs-4696fdc7.png",
+                    image: "imgs-7a1e7e68.png",
                     size: {
                         w: 2048,
                         h: 2048
@@ -18661,7 +18859,7 @@ webpackJsonp([0], {
                 }
             }, {
                 meta: {
-                    image: "imgs-ac9260e4.png",
+                    image: "imgs-2f1d3e31.png",
                     size: {
                         w: 512,
                         h: 512
@@ -19224,7 +19422,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            ne: r
+            re: r
         }
     },
     "61fc98e9": function(e, t, a) {
@@ -19323,7 +19521,7 @@ webpackJsonp([0], {
                 }),
                 n("#team-copy-url, #team-desc-text").click(function(e) {
                     var t = n("<div/>", {
-                        class: "team-copy-toast",
+                        class: "copy-toast",
                         html: "Copied!"
                     });
                     n("#start-menu-wrapper").append(t),
@@ -19343,28 +19541,8 @@ webpackJsonp([0], {
                             })
                         }
                     });
-                    var a = n("#team-url").html()
-                      , i = n("<input>");
-                    if (n("body").append(i),
-                    i.val(a),
-                    m.detectiOS()) {
-                        var r = i.get(0)
-                          , o = r.contentEditable
-                          , s = r.readOnly;
-                        r.contentEditable = !0,
-                        r.readOnly = !0;
-                        var l = document.createRange();
-                        l.selectNodeContents(r);
-                        var c = window.getSelection();
-                        c.removeAllRanges(),
-                        c.addRange(l),
-                        r.setSelectionRange(0, 999999),
-                        r.contentEditable = o,
-                        r.readOnly = s
-                    } else
-                        i.select();
-                    document.execCommand("copy"),
-                    i.remove()
+                    var a = n("#team-url").html();
+                    m.copyTextToClipboard(a)
                 })
             }
             return o(e, [{
@@ -19588,8 +19766,8 @@ webpackJsonp([0], {
                         for (var z = f.pops || {}, M = Object.keys(z), T = 0; T < M.length; T++) {
                             var P = M[T]
                               , C = z[P]
-                              , A = n("#team-server-opts").children('option[value="' + P + '"]');
-                            A.html(A.attr("data-label") + " [" + C + "]")
+                              , I = n("#team-server-opts").children('option[value="' + P + '"]');
+                            I.html(I.attr("data-label") + " [" + C + "]")
                         }
                         s.find("option").each(function() {
                             this.selected = this.value == x.region
@@ -19602,7 +19780,6 @@ webpackJsonp([0], {
                         n("#team-code").html(x.roomUrl.substring(1)),
                         window.history && window.history.replaceState("", "", x.roomUrl)),
                         a.html(x.findingGame || y ? '<div class="ui-spinner"></div>' : a.attr("data-label")),
-                        4 == x.teamMode ? a.addClass("btn-flare-mode") : a.removeClass("btn-flare-mode"),
                         _ ? (o.addClass("btn-darken"),
                         o.removeClass("btn-disabled"),
                         o.removeClass("btn-opaque")) : (o.addClass("btn-disabled"),
@@ -19612,28 +19789,28 @@ webpackJsonp([0], {
                         o.prop("disabled", !_),
                         s.prop("disabled", !_),
                         n("#btn-start-team").css("display", _ ? "block" : "none");
-                        for (var I = !1, D = 0; D < w.length; D++)
-                            w[D].isLeader && (I = w[D].inGame);
+                        for (var A = !1, D = 0; D < w.length; D++)
+                            w[D].isLeader && (A = w[D].inGame);
                         var O = n("#msg-wait-reason");
                         if (O.css("display", _ ? "none" : "block"),
-                        x.findingGame || y ? O.html('<div class="ui-spinner" style="margin-right:16px"></div>' + t.translate("index-joining-game") + "<span> ...</span>") : I ? O.html(t.translate("index-game-in-progress") + "<span> ...</span>") : O.html(t.translate("index-waiting-for-leader") + "<span> ...</span>"),
+                        x.findingGame || y ? O.html('<div class="ui-spinner" style="margin-right:16px"></div>' + t.translate("index-joining-game") + "<span> ...</span>") : A ? O.html(t.translate("index-game-in-progress") + "<span> ...</span>") : O.html(t.translate("index-waiting-for-leader") + "<span> ...</span>"),
                         _) {
-                            var E = w.length <= 2;
-                            E || (l.addClass("btn-disabled btn-opaque"),
+                            var B = w.length <= 2;
+                            B || (l.addClass("btn-disabled btn-opaque"),
                             l.removeClass("btn-darken btn-hollow-selected")),
-                            l.prop("disabled", !E)
+                            l.prop("disabled", !B)
                         }
-                        var L = n("#team-menu-member-list");
-                        L.empty();
-                        for (var B = 0; B < x.teamMode; B++) {
+                        var E = n("#team-menu-member-list");
+                        E.empty();
+                        for (var L = 0; L < x.teamMode; L++) {
                             var F = {
                                 name: "",
                                 playerId: 0,
                                 isLeader: !1,
                                 inGame: !1
                             };
-                            if (B < w.length) {
-                                var R = w[B];
+                            if (L < w.length) {
+                                var R = w[L];
                                 F = {
                                     name: R.name,
                                     playerId: R.playerId,
@@ -19644,37 +19821,37 @@ webpackJsonp([0], {
                             var j = n("<div/>", {
                                 class: "team-menu-member"
                             })
-                              , q = "";
-                            F.isLeader ? q = " icon-leader" : _ && 0 != F.playerId && (q = " icon-kick");
-                            var N = "name-text";
-                            F.playerId == b && (N += " name-self"),
-                            F.inGame && (N += " name-in-game"),
+                              , N = "";
+                            F.isLeader ? N = " icon-leader" : _ && 0 != F.playerId && (N = " icon-kick");
+                            var q = "name-text";
+                            F.playerId == b && (q += " name-self"),
+                            F.inGame && (q += " name-in-game"),
                             j.append(n("<div/>", {
-                                class: "icon" + q,
+                                class: "icon" + N,
                                 "data-playerid": F.playerId
                             })),
                             j.append(n("<div/>", {
                                 class: "name menu-option"
                             }).append(n("<div/>", {
-                                class: N,
+                                class: q,
                                 html: m.htmlEscape(F.name)
                             }))),
                             j.append(n("<div/>", {
                                 class: "icon " + (F.inGame ? "icon-in-game" : "")
                             })),
-                            L.append(j)
+                            E.append(j)
                         }
-                        n(".icon-kick", L).click(function(t) {
+                        n(".icon-kick", E).click(function(t) {
                             var a = n(t.currentTarget).attr("data-playerid");
                             e.sendMessage("kick", {
                                 playerId: a
                             })
                         });
-                        var G = w.find(function(e) {
+                        var U = w.find(function(e) {
                             return e.playerId == b
                         })
-                          , U = G && !G.inGame;
-                        !document.hasFocus() && this.prevPlayerCount < w.length && w.length > 1 && U && v.playSound("notification_join_01", {
+                          , G = U && !U.inGame;
+                        !document.hasFocus() && this.prevPlayerCount < w.length && w.length > 1 && G && v.playSound("notification_join_01", {
                             channel: "ui"
                         }),
                         this.prevPlayerCount = w.length
@@ -20081,7 +20258,7 @@ webpackJsonp([0], {
                 args: a
             }
         }
-        var s, l, m, c, d, p, u, h, g, y, f, x, w, b, _, v, S, k, z, M, T, P, C, A, I, D, O, E, L, B, F, R, j = function() {
+        var s, l, m, c, d, p, u, h, g, y, f, x, w, b, _, v, S, k, z, M, T, P, C, I, A, D, O, B, E, L, F, R, j = function() {
             function e(e, t) {
                 for (var a = 0; a < t.length; a++) {
                     var i = t[a];
@@ -20096,20 +20273,20 @@ webpackJsonp([0], {
                 i && e(t, i),
                 t
             }
-        }(), q = a("989ad62a"), N = (q.Anim,
-        a("0e566746")), G = a("10899aea"), U = a("c2a798c8"), V = function() {
+        }(), N = a("989ad62a"), q = (N.Anim,
+        a("0e566746")), U = a("10899aea"), G = a("c2a798c8"), V = function() {
             function e(t, a, i) {
                 r(this, e),
-                this.pivot = U.copy(t || U.create(0, 0)),
+                this.pivot = G.copy(t || G.create(0, 0)),
                 this.rot = 0,
-                this.pos = U.copy(i || U.create(0, 0))
+                this.pos = G.copy(i || G.create(0, 0))
             }
             return j(e, [{
                 key: "copy",
                 value: function(e) {
-                    U.set(this.pivot, e.pivot),
+                    G.set(this.pivot, e.pivot),
                     this.rot = e.rot,
-                    U.set(this.pos, e.pos)
+                    G.set(this.pos, e.pos)
                 }
             }, {
                 key: "rotate",
@@ -20120,151 +20297,151 @@ webpackJsonp([0], {
             }, {
                 key: "offset",
                 value: function(e) {
-                    return this.pos = U.copy(e),
+                    return this.pos = G.copy(e),
                     this
                 }
             }]),
             e
         }();
-        V.identity = new V(U.create(0, 0)),
+        V.identity = new V(G.create(0, 0)),
         V.lerp = function(e, t, a) {
             var i = new V;
-            return i.pos = U.lerp(e, t.pos, a.pos),
-            i.rot = G.lerp(e, t.rot, a.rot),
-            i.pivot = U.lerp(e, t.pivot, a.pivot),
+            return i.pos = G.lerp(e, t.pos, a.pos),
+            i.rot = U.lerp(e, t.rot, a.rot),
+            i.pivot = G.lerp(e, t.pivot, a.pivot),
             i
         }
         ;
-        var H = {
+        var W = {
             HandL: 0,
             HandR: 1,
             FootL: 2,
             FootR: 3
         };
-        N(Object.keys(H).length % 2 == 0);
-        var W = {
+        q(Object.keys(W).length % 2 == 0);
+        var H = {
             fists: (s = {},
-            i(s, H.HandL, new V(U.create(14, -12.25))),
-            i(s, H.HandR, new V(U.create(14, 12.25))),
+            i(s, W.HandL, new V(G.create(14, -12.25))),
+            i(s, W.HandR, new V(G.create(14, 12.25))),
             s),
             slash: (l = {},
-            i(l, H.HandL, new V(U.create(18, -8.25))),
-            i(l, H.HandR, new V(U.create(6, 20.25))),
+            i(l, W.HandL, new V(G.create(18, -8.25))),
+            i(l, W.HandR, new V(G.create(6, 20.25))),
             l),
             meleeTwoHanded: (m = {},
-            i(m, H.HandL, new V(U.create(10.5, -14.25))),
-            i(m, H.HandR, new V(U.create(18, 6.25))),
+            i(m, W.HandL, new V(G.create(10.5, -14.25))),
+            i(m, W.HandR, new V(G.create(18, 6.25))),
             m),
             rifle: (c = {},
-            i(c, H.HandL, new V(U.create(28, 5.25))),
-            i(c, H.HandR, new V(U.create(14, 1.75))),
+            i(c, W.HandL, new V(G.create(28, 5.25))),
+            i(c, W.HandR, new V(G.create(14, 1.75))),
             c),
             pistol: (d = {},
-            i(d, H.HandL, new V(U.create(14, 1.75))),
-            i(d, H.HandR, new V(U.create(14, 1.75))),
+            i(d, W.HandL, new V(G.create(14, 1.75))),
+            i(d, W.HandR, new V(G.create(14, 1.75))),
             d),
             dualPistol: (p = {},
-            i(p, H.HandL, new V(U.create(15.75, -8.75))),
-            i(p, H.HandR, new V(U.create(15.75, 8.75))),
+            i(p, W.HandL, new V(G.create(15.75, -8.75))),
+            i(p, W.HandR, new V(G.create(15.75, 8.75))),
             p),
             throwable: (u = {},
-            i(u, H.HandL, new V(U.create(15.75, -9.625))),
-            i(u, H.HandR, new V(U.create(15.75, 9.625))),
+            i(u, W.HandL, new V(G.create(15.75, -9.625))),
+            i(u, W.HandR, new V(G.create(15.75, 9.625))),
             u),
             downed: (h = {},
-            i(h, H.HandL, new V(U.create(14, -12.25))),
-            i(h, H.HandR, new V(U.create(14, 12.25))),
-            i(h, H.FootL, new V(U.create(-15.75, -9))),
-            i(h, H.FootR, new V(U.create(-15.75, 9))),
+            i(h, W.HandL, new V(G.create(14, -12.25))),
+            i(h, W.HandR, new V(G.create(14, 12.25))),
+            i(h, W.FootL, new V(G.create(-15.75, -9))),
+            i(h, W.FootR, new V(G.create(-15.75, 9))),
             h)
         }
-          , K = q.items.fists
-          , X = q.items.hook
-          , Y = q.items.woodaxe
+          , K = N.items.fists
+          , X = N.items.hook
+          , Y = N.items.woodaxe
           , Z = {
             none: {
                 keyframes: [],
                 effects: []
             },
             fists: {
-                keyframes: [o(0, i({}, H.HandR, new V(U.create(14, 12.25)))), o(K.damageTime, i({}, H.HandR, new V(U.create(29.75, 1.75)))), o(K.cooldownTime, i({}, H.HandR, new V(U.create(14, 12.25))))],
+                keyframes: [o(0, i({}, W.HandR, new V(G.create(14, 12.25)))), o(K.damageTime, i({}, W.HandR, new V(G.create(29.75, 1.75)))), o(K.cooldownTime, i({}, W.HandR, new V(G.create(14, 12.25))))],
                 effects: [n(0, "animPlaySound", {
                     sound: "swing"
                 }), n(K.damageTime, "animMeleeCollision", {})]
             },
             cut: {
-                keyframes: [o(0, i({}, H.HandR, new V(U.create(14, 12.25)))), o(.25 * K.damageTime, i({}, H.HandR, new V(U.create(14, 12.25)).rotate(.35 * -Math.PI))), o(1 * K.damageTime, i({}, H.HandR, new V(U.create(14, 12.25)).rotate(.35 * Math.PI))), o(K.cooldownTime, i({}, H.HandR, new V(U.create(14, 12.25))))],
+                keyframes: [o(0, i({}, W.HandR, new V(G.create(14, 12.25)))), o(.25 * K.damageTime, i({}, W.HandR, new V(G.create(14, 12.25)).rotate(.35 * -Math.PI))), o(1 * K.damageTime, i({}, W.HandR, new V(G.create(14, 12.25)).rotate(.35 * Math.PI))), o(K.cooldownTime, i({}, W.HandR, new V(G.create(14, 12.25))))],
                 effects: [n(0, "animPlaySound", {
                     sound: "swing"
                 }), n(K.damageTime, "animMeleeCollision", {})]
             },
             thrust: {
-                keyframes: [o(0, i({}, H.HandR, new V(U.create(14, 12.25)))), o(.4 * K.damageTime, i({}, H.HandR, new V(U.create(5, 12.25)).rotate(.1 * Math.PI))), o(1 * K.damageTime, i({}, H.HandR, new V(U.create(25, 6.25)).rotate(0 * -Math.PI))), o(K.cooldownTime, i({}, H.HandR, new V(U.create(14, 12.25))))],
+                keyframes: [o(0, i({}, W.HandR, new V(G.create(14, 12.25)))), o(.4 * K.damageTime, i({}, W.HandR, new V(G.create(5, 12.25)).rotate(.1 * Math.PI))), o(1 * K.damageTime, i({}, W.HandR, new V(G.create(25, 6.25)).rotate(0 * -Math.PI))), o(K.cooldownTime, i({}, W.HandR, new V(G.create(14, 12.25))))],
                 effects: [n(0, "animPlaySound", {
                     sound: "swing"
                 }), n(K.damageTime, "animMeleeCollision", {})]
             },
             slash: {
                 keyframes: [o(0, (g = {},
-                i(g, H.HandL, new V(U.create(18, -8.25))),
-                i(g, H.HandR, new V(U.create(6, 20.25))),
+                i(g, W.HandL, new V(G.create(18, -8.25))),
+                i(g, W.HandR, new V(G.create(6, 20.25))),
                 g)), o(K.damageTime, (y = {},
-                i(y, H.HandL, new V(U.create(6, -22.25))),
-                i(y, H.HandR, new V(U.create(6, 20.25)).rotate(.6 * -Math.PI)),
+                i(y, W.HandL, new V(G.create(6, -22.25))),
+                i(y, W.HandR, new V(G.create(6, 20.25)).rotate(.6 * -Math.PI)),
                 y)), o(K.cooldownTime, (f = {},
-                i(f, H.HandL, new V(U.create(18, -8.25))),
-                i(f, H.HandR, new V(U.create(6, 20.25)).rotate(0)),
+                i(f, W.HandL, new V(G.create(18, -8.25))),
+                i(f, W.HandR, new V(G.create(6, 20.25)).rotate(0)),
                 f))],
                 effects: [n(0, "animPlaySound", {
                     sound: "swing"
                 }), n(K.damageTime, "animMeleeCollision", {})]
             },
             hook: {
-                keyframes: [o(0, i({}, H.HandR, new V(U.create(14, 12.25)))), o(.25 * X.damageTime, i({}, H.HandR, new V(U.create(14, 12.25)).rotate(.1 * Math.PI))), o(.75 * X.damageTime, i({}, H.HandR, new V(U.create(24, 1.75)))), o(.5 * X.cooldownTime, i({}, H.HandR, new V(U.create(14, 12.25)).rotate(-.3 * Math.PI))), o(.5 * X.cooldownTime, i({}, H.HandR, new V(U.create(14, 12.25))))],
+                keyframes: [o(0, i({}, W.HandR, new V(G.create(14, 12.25)))), o(.25 * X.damageTime, i({}, W.HandR, new V(G.create(14, 12.25)).rotate(.1 * Math.PI))), o(.75 * X.damageTime, i({}, W.HandR, new V(G.create(24, 1.75)))), o(.5 * X.cooldownTime, i({}, W.HandR, new V(G.create(14, 12.25)).rotate(-.3 * Math.PI))), o(.5 * X.cooldownTime, i({}, W.HandR, new V(G.create(14, 12.25))))],
                 effects: [n(0, "animPlaySound", {
                     sound: "swing"
                 }), n(X.damageTime, "animMeleeCollision", {})]
             },
             pan: {
-                keyframes: [o(0, i({}, H.HandR, new V(U.create(14, 12.25)))), o(.15, i({}, H.HandR, new V(U.create(22, -8.25)).rotate(.2 * -Math.PI))), o(.1, i({}, H.HandR, new V(U.create(28, -8.25)).rotate(.5 * Math.PI))), o(.3, i({}, H.HandR, new V(U.create(14, 12.25))))],
+                keyframes: [o(0, i({}, W.HandR, new V(G.create(14, 12.25)))), o(.15, i({}, W.HandR, new V(G.create(22, -8.25)).rotate(.2 * -Math.PI))), o(.1, i({}, W.HandR, new V(G.create(28, -8.25)).rotate(.5 * Math.PI))), o(.3, i({}, W.HandR, new V(G.create(14, 12.25))))],
                 effects: [n(0, "animPlaySound", {
                     sound: "swing"
-                }), n(q.items.pan.damageTime, "animMeleeCollision", {})]
+                }), n(N.items.pan.damageTime, "animMeleeCollision", {})]
             },
             twoHandSwing: {
                 keyframes: [o(0, (x = {},
-                i(x, H.HandL, new V(U.create(10.5, -14.25))),
-                i(x, H.HandR, new V(U.create(18, 6.25))),
+                i(x, W.HandL, new V(G.create(10.5, -14.25))),
+                i(x, W.HandR, new V(G.create(18, 6.25))),
                 x)), o(.4 * Y.damageTime, (w = {},
-                i(w, H.HandL, new V(U.create(9, -14.25)).rotate(.4 * Math.PI)),
-                i(w, H.HandR, new V(U.create(18, 6.25)).rotate(.4 * Math.PI)),
+                i(w, W.HandL, new V(G.create(9, -14.25)).rotate(.4 * Math.PI)),
+                i(w, W.HandR, new V(G.create(18, 6.25)).rotate(.4 * Math.PI)),
                 w)), o(.6 * Y.damageTime, (b = {},
-                i(b, H.HandL, new V(U.create(9, -14.25)).rotate(.4 * -Math.PI)),
-                i(b, H.HandR, new V(U.create(18, 6.25)).rotate(.4 * -Math.PI)),
+                i(b, W.HandL, new V(G.create(9, -14.25)).rotate(.4 * -Math.PI)),
+                i(b, W.HandR, new V(G.create(18, 6.25)).rotate(.4 * -Math.PI)),
                 b)), o(Y.cooldownTime, (_ = {},
-                i(_, H.HandL, new V(U.create(10.5, -14.25))),
-                i(_, H.HandR, new V(U.create(18, 6.25))),
+                i(_, W.HandL, new V(G.create(10.5, -14.25))),
+                i(_, W.HandR, new V(G.create(18, 6.25))),
                 _))],
                 effects: [n(Y.damageTime, "animPlaySound", {
                     sound: "swing"
-                }), n(q.items.woodaxe.damageTime, "animMeleeCollision", {})]
+                }), n(N.items.woodaxe.damageTime, "animMeleeCollision", {})]
             },
             cook: {
                 keyframes: [o(0, (v = {},
-                i(v, H.HandL, new V(U.create(15.75, -9.625))),
-                i(v, H.HandR, new V(U.create(15.75, 9.625))),
+                i(v, W.HandL, new V(G.create(15.75, -9.625))),
+                i(v, W.HandR, new V(G.create(15.75, 9.625))),
                 v)), o(.1, (S = {},
-                i(S, H.HandL, new V(U.create(14, -1.75))),
-                i(S, H.HandR, new V(U.create(14, 1.75))),
+                i(S, W.HandL, new V(G.create(14, -1.75))),
+                i(S, W.HandR, new V(G.create(14, 1.75))),
                 S)), o(.2, (k = {},
-                i(k, H.HandL, new V(U.create(14, -1.75))),
-                i(k, H.HandR, new V(U.create(14, 1.75))),
+                i(k, W.HandL, new V(G.create(14, -1.75))),
+                i(k, W.HandR, new V(G.create(14, 1.75))),
                 k)), o(.1, (z = {},
-                i(z, H.HandL, new V(U.create(22.75, -1.75))),
-                i(z, H.HandR, new V(U.create(1.75, 14))),
+                i(z, W.HandL, new V(G.create(22.75, -1.75))),
+                i(z, W.HandR, new V(G.create(1.75, 14))),
                 z)), o(99999, (M = {},
-                i(M, H.HandL, new V(U.create(22.75, -1.75))),
-                i(M, H.HandR, new V(U.create(1.75, 14))),
+                i(M, W.HandL, new V(G.create(22.75, -1.75))),
+                i(M, W.HandR, new V(G.create(1.75, 14))),
                 M))],
                 effects: [n(0, "animPlaySound", {
                     sound: "pullPin"
@@ -20274,14 +20451,14 @@ webpackJsonp([0], {
             },
             throw: {
                 keyframes: [o(0, (T = {},
-                i(T, H.HandL, new V(U.create(22.75, -1.75))),
-                i(T, H.HandR, new V(U.create(1.75, 14.175))),
+                i(T, W.HandL, new V(G.create(22.75, -1.75))),
+                i(T, W.HandR, new V(G.create(1.75, 14.175))),
                 T)), o(.15, (P = {},
-                i(P, H.HandL, new V(U.create(5.25, -15.75))),
-                i(P, H.HandR, new V(U.create(29.75, 1.75))),
-                P)), o(q.player.throwTime, (C = {},
-                i(C, H.HandL, new V(U.create(15.75, -9.625))),
-                i(C, H.HandR, new V(U.create(15.75, 9.625))),
+                i(P, W.HandL, new V(G.create(5.25, -15.75))),
+                i(P, W.HandR, new V(G.create(29.75, 1.75))),
+                P)), o(N.player.throwTime, (C = {},
+                i(C, W.HandL, new V(G.create(15.75, -9.625))),
+                i(C, W.HandR, new V(G.create(15.75, 9.625))),
                 C))],
                 effects: [n(0, "animPlaySound", {
                     sound: "throwing"
@@ -20290,50 +20467,64 @@ webpackJsonp([0], {
                 }), n(0, "animThrowableParticles", {})]
             },
             crawl_forward: {
-                keyframes: [o(q.player.crawlTime / 3, (A = {},
-                i(A, H.HandL, new V(U.create(19.25, -10.5))),
-                i(A, H.FootL, new V(U.create(-20.25, -9))),
-                A)), o(q.player.crawlTime / 3, (I = {},
-                i(I, H.HandL, new V(U.create(5.25, -15.75))),
-                i(I, H.FootL, new V(U.create(-11.25, -9))),
-                I)), o(q.player.crawlTime / 3, (D = {},
-                i(D, H.HandL, new V(U.create(14, -12.25))),
-                i(D, H.FootL, new V(U.create(-15.75, -9))),
+                keyframes: [o(N.player.crawlTime / 3, (I = {},
+                i(I, W.HandL, new V(G.create(19.25, -10.5))),
+                i(I, W.FootL, new V(G.create(-20.25, -9))),
+                I)), o(N.player.crawlTime / 3, (A = {},
+                i(A, W.HandL, new V(G.create(5.25, -15.75))),
+                i(A, W.FootL, new V(G.create(-11.25, -9))),
+                A)), o(N.player.crawlTime / 3, (D = {},
+                i(D, W.HandL, new V(G.create(14, -12.25))),
+                i(D, W.FootL, new V(G.create(-15.75, -9))),
                 D))],
                 effects: []
             },
             crawl_backward: {
-                keyframes: [o(q.player.crawlTime / 3, (O = {},
-                i(O, H.HandL, new V(U.create(5.25, -15.75))),
-                i(O, H.FootL, new V(U.create(-11.25, -9))),
-                O)), o(q.player.crawlTime / 3, (E = {},
-                i(E, H.HandL, new V(U.create(19.25, -10.5))),
-                i(E, H.FootL, new V(U.create(-20.25, -9))),
-                E)), o(q.player.crawlTime / 3, (L = {},
-                i(L, H.HandL, new V(U.create(14, -12.25))),
-                i(L, H.FootL, new V(U.create(-15.75, -9))),
-                L))],
+                keyframes: [o(N.player.crawlTime / 3, (O = {},
+                i(O, W.HandL, new V(G.create(5.25, -15.75))),
+                i(O, W.FootL, new V(G.create(-11.25, -9))),
+                O)), o(N.player.crawlTime / 3, (B = {},
+                i(B, W.HandL, new V(G.create(19.25, -10.5))),
+                i(B, W.FootL, new V(G.create(-20.25, -9))),
+                B)), o(N.player.crawlTime / 3, (E = {},
+                i(E, W.HandL, new V(G.create(14, -12.25))),
+                i(E, W.FootL, new V(G.create(-15.75, -9))),
+                E))],
                 effects: []
             },
             revive: {
-                keyframes: [o(0, (B = {},
-                i(B, H.HandL, new V(U.create(14, -12.25))),
-                i(B, H.HandR, new V(U.create(14, 12.25))),
-                B)), o(.2, (F = {},
-                i(F, H.HandL, new V(U.create(24.5, -8.75))),
-                i(F, H.HandR, new V(U.create(5.25, 21))),
-                F)), o(q.player.reviveDuration, (R = {},
-                i(R, H.HandL, new V(U.create(24.5, -8.75))),
-                i(R, H.HandR, new V(U.create(5.25, 21))),
+                keyframes: [o(0, (L = {},
+                i(L, W.HandL, new V(G.create(14, -12.25))),
+                i(L, W.HandR, new V(G.create(14, 12.25))),
+                L)), o(.2, (F = {},
+                i(F, W.HandL, new V(G.create(24.5, -8.75))),
+                i(F, W.HandR, new V(G.create(5.25, 21))),
+                F)), o(N.player.reviveDuration, (R = {},
+                i(R, W.HandL, new V(G.create(24.5, -8.75))),
+                i(R, W.HandR, new V(G.create(5.25, 21))),
                 R))],
                 effects: []
             }
         };
         e.exports = {
             Pose: V,
-            Bones: H,
-            IdlePoses: W,
+            Bones: W,
+            IdlePoses: H,
             Animations: Z
+        }
+    },
+    "6d61bfc0": function(e, t, a) {
+        "use strict";
+        function i(e) {
+            for (var t = 0, a = 0; a < e.length; a++) {
+                var i = e[a];
+                t = 65535 & (r[255 & (t ^ i)] ^ t >> 8)
+            }
+            return t
+        }
+        var r = [0, 49345, 49537, 320, 49921, 960, 640, 49729, 50689, 1728, 1920, 51009, 1280, 50625, 50305, 1088, 52225, 3264, 3456, 52545, 3840, 53185, 52865, 3648, 2560, 51905, 52097, 2880, 51457, 2496, 2176, 51265, 55297, 6336, 6528, 55617, 6912, 56257, 55937, 6720, 7680, 57025, 57217, 8e3, 56577, 7616, 7296, 56385, 5120, 54465, 54657, 5440, 55041, 6080, 5760, 54849, 53761, 4800, 4992, 54081, 4352, 53697, 53377, 4160, 61441, 12480, 12672, 61761, 13056, 62401, 62081, 12864, 13824, 63169, 63361, 14144, 62721, 13760, 13440, 62529, 15360, 64705, 64897, 15680, 65281, 16320, 16e3, 65089, 64001, 15040, 15232, 64321, 14592, 63937, 63617, 14400, 10240, 59585, 59777, 10560, 60161, 11200, 10880, 59969, 60929, 11968, 12160, 61249, 11520, 60865, 60545, 11328, 58369, 9408, 9600, 58689, 9984, 59329, 59009, 9792, 8704, 58049, 58241, 9024, 57601, 8640, 8320, 57409, 40961, 24768, 24960, 41281, 25344, 41921, 41601, 25152, 26112, 42689, 42881, 26432, 42241, 26048, 25728, 42049, 27648, 44225, 44417, 27968, 44801, 28608, 28288, 44609, 43521, 27328, 27520, 43841, 26880, 43457, 43137, 26688, 30720, 47297, 47489, 31040, 47873, 31680, 31360, 47681, 48641, 32448, 32640, 48961, 32e3, 48577, 48257, 31808, 46081, 29888, 30080, 46401, 30464, 47041, 46721, 30272, 29184, 45761, 45953, 29504, 45313, 29120, 28800, 45121, 20480, 37057, 37249, 20800, 37633, 21440, 21120, 37441, 38401, 22208, 22400, 38721, 21760, 38337, 38017, 21568, 39937, 23744, 23936, 40257, 24320, 40897, 40577, 24128, 23040, 39617, 39809, 23360, 39169, 22976, 22656, 38977, 34817, 18624, 18816, 35137, 19200, 35777, 35457, 19008, 19968, 36545, 36737, 20288, 36097, 19904, 19584, 35905, 17408, 33985, 34177, 17728, 34561, 18368, 18048, 34369, 33281, 17088, 17280, 33601, 16640, 33217, 32897, 16448];
+        e.exports = {
+            crc16: i
         }
     },
     "6e43d1d7": function(e, t, a) {
@@ -20380,7 +20571,7 @@ webpackJsonp([0], {
                     if (l.active) {
                         var m = o.items[l.weaponType];
                         if (0 == l.ticker) {
-                            var c = a.se(l.playerId)
+                            var c = a.oe(l.playerId)
                               , d = l.lastShot ? m.sound.shootLast : m.sound.shoot;
                             if (n.playSound(d, {
                                 channel: l.playerId == t ? "activePlayer" : "otherPlayers",
@@ -20391,7 +20582,7 @@ webpackJsonp([0], {
                             }),
                             c) {
                                 if (c.__id == t && "single" == m.fireMode && m.pullDelay) {
-                                    var p = c.U.weapons[c.U.curWeapIdx].ammo
+                                    var p = c.q.weapons[c.q.curWeapIdx].ammo
                                       , u = p > 0 ? m.sound.cycle : m.sound.pull;
                                     n.localActionSoundInstance = n.playSound(u)
                                 }
@@ -20402,7 +20593,7 @@ webpackJsonp([0], {
                         }
                         if (l.ticker += e,
                         l.ticker >= l.pullDelay) {
-                            var y = a.se(l.playerId);
+                            var y = a.oe(l.playerId);
                             y && !y.N.dead && y.N.curWeapType == l.weaponType && "shoot" == m.caseTiming && i(l.weaponType, Math.PI / 2 * -1, y.N.pos, y.N.dir, y.layer, r),
                             l.active = !1
                         }
@@ -20412,7 +20603,7 @@ webpackJsonp([0], {
         },
         e.exports = {
             createCasingParticle: i,
-            le: r
+            ne: r
         }
     },
     "72409abe": function(e, t, a) {
@@ -20453,7 +20644,7 @@ webpackJsonp([0], {
             this.container.visible = this.sprite
         }
         function o(e) {
-            this.me = new d.Pool(r),
+            this.se = new d.Pool(r),
             this.anonPlayerNames = e
         }
         var n = (a("0e566746"),
@@ -20481,15 +20672,15 @@ webpackJsonp([0], {
         },
         o.prototype = {
             l: function(e, t, a, i, r, o) {
-                for (var n = this, l = this.me.m(), m = 0; m < l.length; m++) {
+                for (var n = this, l = this.se.m(), m = 0; m < l.length; m++) {
                     var c = l[m];
                     if (c.active) {
                         c.nameTextSet || function() {
                             c.nameTextSet = !0;
-                            var e = t.H(c.playerId)
-                              , i = t.H(a.__id).teamId;
+                            var e = t.U(c.playerId)
+                              , i = t.U(a.__id).teamId;
                             n.anonPlayerNames ? function(e) {
-                                return e.playerId == n.ce || e.teamId == i
+                                return e.playerId == n.le || e.teamId == i
                             }(e) || (c.nameText.text = e.anonName) : c.nameText.text = e.name
                         }();
                         var d = s.createCircle(c.pos, 1)
@@ -20507,7 +20698,7 @@ webpackJsonp([0], {
                 }
             },
             getDeadBodyById: function(e) {
-                for (var t = this.me.m(), a = 0; a < t.length; a++) {
+                for (var t = this.se.m(), a = 0; a < t.length; a++) {
                     var i = t[a];
                     if (i.active && i.playerId == e)
                         return i
@@ -20516,7 +20707,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            de: o
+            me: o
         }
     },
     "753d6e4b": function(e, t, a) {
@@ -20526,7 +20717,7 @@ webpackJsonp([0], {
             this.creator = {
                 type: e
             },
-            this.pe = [],
+            this.ce = [],
             this.activeCount = 0
         }
         function r(e) {
@@ -20538,13 +20729,13 @@ webpackJsonp([0], {
           , n = a("f398b7c7");
         i.prototype = {
             alloc: function() {
-                for (var e = null, t = 0; t < this.pe.length; t++)
-                    if (!this.pe[t].active) {
-                        e = this.pe[t];
+                for (var e = null, t = 0; t < this.ce.length; t++)
+                    if (!this.ce[t].active) {
+                        e = this.ce[t];
                         break
                     }
                 return e || (e = new this.creator.type,
-                this.pe.push(e)),
+                this.ce.push(e)),
                 e.active = !0,
                 e.a(),
                 this.activeCount++,
@@ -20554,14 +20745,14 @@ webpackJsonp([0], {
                 if (e.o(),
                 e.active = !1,
                 this.activeCount--,
-                this.pe.length > 128 && this.activeCount < this.pe.length / 2) {
-                    for (var t = [], a = 0; a < this.pe.length; a++)
-                        this.pe[a].active && t.push(this.pe[a]);
-                    this.pe = t
+                this.ce.length > 128 && this.activeCount < this.ce.length / 2) {
+                    for (var t = [], a = 0; a < this.ce.length; a++)
+                        this.ce[a].active && t.push(this.ce[a]);
+                    this.ce = t
                 }
             },
             m: function() {
-                return this.pe
+                return this.ce
             }
         },
         r.prototype = {
@@ -22840,11 +23031,44 @@ webpackJsonp([0], {
     "989ad62a": function(e, t, a) {
         "use strict";
         e.exports = {
-            Action: {
-                None: 0,
-                Reload: 1,
-                UseItem: 2,
-                Revive: 3
+            protocolVersion: 32,
+            Input: {
+                MoveLeft: 0,
+                MoveRight: 1,
+                MoveUp: 2,
+                MoveDown: 3,
+                Fire: 4,
+                Reload: 5,
+                Cancel: 6,
+                Interact: 7,
+                Revive: 8,
+                Use: 9,
+                Loot: 10,
+                EquipPrimary: 11,
+                EquipSecondary: 12,
+                EquipMelee: 13,
+                EquipThrowable: 14,
+                EquipFragGrenade: 15,
+                EquipSmokeGrenade: 16,
+                EquipNextWeap: 17,
+                EquipPrevWeap: 18,
+                EquipLastWeap: 19,
+                EquipOtherGun: 20,
+                EquipPrevScope: 21,
+                EquipNextScope: 22,
+                UseBandage: 23,
+                UseHealthKit: 24,
+                UseSoda: 25,
+                UsePainkiller: 26,
+                StowWeapons: 27,
+                SwapWeapSlots: 28,
+                ToggleMap: 29,
+                CycleUIMode: 30,
+                EmoteMenu: 31,
+                TeamPingMenu: 32,
+                Fullscreen: 33,
+                HideUI: 34,
+                Count: 35
             },
             WeaponSlot: {
                 Primary: 0,
@@ -22860,6 +23084,12 @@ webpackJsonp([0], {
                 Gas: 2,
                 Airdrop: 3
             },
+            Action: {
+                None: 0,
+                Reload: 1,
+                UseItem: 2,
+                Revive: 3
+            },
             Anim: {
                 None: 0,
                 Melee: 1,
@@ -22874,7 +23104,6 @@ webpackJsonp([0], {
                 Waiting: 1,
                 Moving: 2
             },
-            protocolVersion: 31,
             map: {
                 baseWidth: 512,
                 baseHeight: 512,
@@ -22897,7 +23126,6 @@ webpackJsonp([0], {
                 boostMoveSpeed: 1.9,
                 boostHealAmount: .33,
                 boostBreakpoints: [1, 1, 1.5, .5],
-                scopeDelay: .25,
                 baseSwitchDelay: .25,
                 freeSwitchCooldown: 1,
                 headshotChance: .15,
@@ -25052,7 +25280,7 @@ webpackJsonp([0], {
                     ammoSpawnCount: 20,
                     maxClip: 5,
                     maxReload: 5,
-                    reloadTime: 2.8,
+                    reloadTime: 3.6,
                     fireDelay: 1.5,
                     switchDelay: 1,
                     pullDelay: 1.4,
@@ -26477,61 +26705,65 @@ webpackJsonp([0], {
             }) : e[t] = a,
             e
         }
-        function r(e, t, a, i, r, o) {
+        function r(e, t, a, i, r, o, n, s, l) {
             this.initialized = !1,
             this.teamMode = 0,
-            this.onJoin = r,
-            this.onQuit = o,
+            this.onJoin = s,
+            this.onQuit = l,
             this.pixi = e,
-            this.ue = t,
+            this.de = t,
             this.ambientSounds = {},
             this.victoryMusic = null,
             this.localization = a,
             this.config = i,
+            this.pe = r,
+            this.ue = o,
+            this.he = n,
             this.ws = null,
             this.connecting = !1,
             this.connected = !1
         }
         var o = a("80ac57a6")
           , n = a("989ad62a")
-          , s = a("8649e148")
-          , l = a("b78cf179")
-          , m = l.EmoteSlot
-          , c = (l.EmoteData,
+          , s = n.Input
+          , l = a("8649e148")
+          , m = a("b78cf179")
+          , c = m.EmoteSlot
+          , d = (m.EmoteData,
         a("ceee80d9"))
-          , d = a("10899aea")
-          , p = a("300e2704")
-          , u = a("c2a798c8")
-          , h = a("2bb110d0")
-          , g = a("ce29f17f")
-          , y = a("26be8056")
-          , f = a("2701b048")
-          , x = a("c73dee75")
-          , w = a("1ad3d2a4")
-          , b = a("72409abe")
-          , _ = a("af8ba00f")
-          , v = a("172c57dc")
-          , S = (a("e98400ad"),
+          , p = a("10899aea")
+          , u = a("300e2704")
+          , h = a("c2a798c8")
+          , g = a("2bb110d0")
+          , y = a("ce29f17f")
+          , f = a("26be8056")
+          , x = a("2701b048")
+          , w = a("c73dee75")
+          , b = a("1ad3d2a4")
+          , _ = a("72409abe")
+          , v = a("af8ba00f")
+          , S = a("172c57dc")
+          , k = (a("e98400ad"),
         a("e5d16b4d"))
-          , k = a("604cff9c")
-          , z = a("f398b7c7")
-          , M = a("f034d167")
-          , T = a("a7f094a3")
-          , P = a("4b8d140f")
-          , C = a("a48f3bb2")
+          , z = a("604cff9c")
+          , M = a("f398b7c7")
+          , T = a("f034d167")
+          , P = a("a7f094a3")
+          , C = a("4b8d140f")
+          , I = a("a48f3bb2")
           , A = a("d49cd95c")
-          , I = a("753d6e4b")
-          , D = a("119e8c4c")
-          , O = a("feb8fc30")
+          , D = a("753d6e4b")
+          , O = a("119e8c4c")
+          , B = a("feb8fc30")
           , E = a("fc6a992a")
           , L = a("a508b62a")
-          , B = a("bc83ef37")
-          , F = a("c60b5e9f")
-          , R = a("6e43d1d7")
-          , j = a("0955a76e")
+          , F = a("bc83ef37")
+          , R = a("c60b5e9f")
+          , j = a("6e43d1d7")
+          , N = a("0955a76e")
           , q = (a("ce089fd5"),
         a("e2094860"))
-          , N = a("3160ea28")
+          , U = a("3160ea28")
           , G = a("d3da5587");
         r.prototype = {
             k: function(e, t, a) {
@@ -26560,22 +26792,22 @@ webpackJsonp([0], {
                             i.connecting = !1,
                             i.connected = !0,
                             i.a();
-                            var t = new p.JoinMsg;
+                            var t = new u.JoinMsg;
                             t.protocol = n.protocolVersion,
                             t.privData = e,
                             t.name = i.name,
                             t.emotes = i.emoteLoadout,
-                            t.useTouch = g.touch,
+                            t.useTouch = y.touch,
                             t.bot = !1,
-                            i.he(p.Msg.Join, t)
+                            i.ge(u.Msg.Join, t)
                         }
                         ,
                         this.ws.onmessage = function(e) {
-                            for (var t = new p.MsgStream(e.data); ; ) {
+                            for (var t = new u.MsgStream(e.data); ; ) {
                                 var a = t.deserializeMsgType();
-                                if (a == p.Msg.None)
+                                if (a == u.Msg.None)
                                     break;
-                                i.ge(a, t.getStream())
+                                i.ye(a, t.getStream())
                             }
                         }
                         ,
@@ -26601,67 +26833,65 @@ webpackJsonp([0], {
             },
             a: function() {
                 var e, t = this.pixi.renderer.type == o.RENDERER_TYPE.CANVAS;
-                this.ye = 0,
                 this.fe = 0,
                 this.xe = 0,
                 this.we = 0,
                 this.I = !1,
-                this.be = new P.oe(this.pixi.view),
-                this._e = new q.ve(this.be,this.config),
-                this.q = new w._,
-                this.Se = new F.ke(t),
-                this.ze = new D.d(this.Se),
-                this.Me = new A.Te,
-                this.Pe = new L.Ce,
-                this.Ae = new x.Ie,
-                this.De = new M.Oe,
-                this.Ee = new B.Le,
-                this.Be = new k.ne,
-                this.Fe = new E.Re(this.ue),
-                this.je = new f.j,
-                this.qe = new j.c,
-                this.Ne = new b.de(this.config.get("anonPlayerNames")),
-                this.Ge = new v.u,
-                this.Ue = new C.Ve,
-                this.He = new T.We(t),
-                this.Ke = new O.Xe,
-                this.Ye = new N.K(this,this.ue,this.Ke,this.ze,this.localization,t,this._e),
-                this.Ze = new G.Qe(this.localization),
-                this.Je = new S.$e(this,this.ue,this.Ye,this.Pe,this.q,this.Me),
-                this.et = new R.le(this.ze,this.ue,this.Ye);
+                this.be = new q._e(this.pe,this.config),
+                this.j = new b._,
+                this.ve = new R.Se(t),
+                this.ke = new O.d(this.ve),
+                this.ze = new A.Me,
+                this.Te = new L.Pe,
+                this.Ce = new w.Ie,
+                this.Ae = new T.De,
+                this.Oe = new F.Be,
+                this.Ee = new z.re,
+                this.Le = new E.Fe(this.de),
+                this.Re = new x.B,
+                this.je = new N.c,
+                this.Ne = new _.me(this.config.get("anonPlayerNames")),
+                this.qe = new S.u,
+                this.Ue = new I.Ge,
+                this.Ve = new P.We(t),
+                this.He = new B.Ke,
+                this.Xe = new U.H(this,this.de,this.He,this.ke,this.localization,t,this.be,this.ue,this.he),
+                this.Ye = new G.Ze(this.localization,this.ue),
+                this.Je = new k.Qe(this.de,this.Xe,this.Te,this.j,this.ze),
+                this.$e = new j.ne(this.ke,this.de,this.Xe);
                 var a = (e = {},
-                i(e, s.Type.Player, this.Pe.tt),
-                i(e, s.Type.Obstacle, this.Me.Y),
-                i(e, s.Type.Loot, this.Ue.at),
-                i(e, s.Type.LootSpawner, this.Me.it),
-                i(e, s.Type.DeadBody, this.Ne.me),
-                i(e, s.Type.Building, this.Me.rt),
-                i(e, s.Type.Structure, this.Me.ot),
-                i(e, s.Type.Decal, this.Ge.p),
-                i(e, s.Type.Projectile, this.Ee.nt),
-                i(e, s.Type.Smoke, this.qe.e),
-                i(e, s.Type.Airdrop, this.je.B),
+                i(e, l.Type.Player, this.Te.et),
+                i(e, l.Type.Obstacle, this.ze.K),
+                i(e, l.Type.Loot, this.Ue.tt),
+                i(e, l.Type.LootSpawner, this.ze.at),
+                i(e, l.Type.DeadBody, this.Ne.se),
+                i(e, l.Type.Building, this.ze.it),
+                i(e, l.Type.Structure, this.ze.rt),
+                i(e, l.Type.Decal, this.qe.p),
+                i(e, l.Type.Projectile, this.Oe.ot),
+                i(e, l.Type.Smoke, this.je.e),
+                i(e, l.Type.Airdrop, this.Re.O),
                 e);
-                this.st = new I.Creator;
+                this.nt = new D.Creator;
                 for (var r in a)
-                    a.hasOwnProperty(r) && this.st.registerType(r, a[r]);
+                    a.hasOwnProperty(r) && this.nt.registerType(r, a[r]);
                 this.debugDisplay = new o.Graphics;
-                for (var n = [this.Me.display.water, this.Me.display.background, this.Se.layers[0], this.Se.ground, this.Se.layers[1], this.Se.layers[2], this.Se.layers[3], this.debugDisplay, this.He.gasRenderer.display, this._e.container, this.Je.container, this.Ye.container, this.Je.indContainer, this.Ke.container], l = 0; l < n.length; l++) {
-                    var c = n[l];
-                    c && (c.interactiveChildren = !1,
-                    this.pixi.stage.addChild(c))
+                for (var n = [this.ze.display.water, this.ze.display.background, this.ve.layers[0], this.ve.ground, this.ve.layers[1], this.ve.layers[2], this.ve.layers[3], this.debugDisplay, this.Ve.gasRenderer.display, this.be.container, this.Je.container, this.Xe.container, this.Je.indContainer, this.He.container], s = 0; s < n.length; s++) {
+                    var m = n[s];
+                    m && (m.interactiveChildren = !1,
+                    this.pixi.stage.addChild(m))
                 }
                 this.disconnectMsg = "",
                 this.playing = !1,
                 this.gameOver = !1,
                 this.spectating = !1,
-                this.moveMsgTimeout = 0,
-                this.prevMoveMsg = new p.MoveMsg,
+                this.inputMsgTimeout = 0,
+                this.prevInputMsg = new u.InputMsg,
                 this.playingTicker = 0,
-                this.lt = 0,
-                this.ce = 0,
-                this.mt = null,
-                this.ct = !1,
+                this.st = 0,
+                this.le = 0,
+                this.lt = null,
+                this.mt = !1,
                 this.f = 1,
                 this.debugZoom = 1,
                 this.useDebugZoom = !1,
@@ -26671,38 +26901,38 @@ webpackJsonp([0], {
                 this.seqSendTime = 0,
                 this.pings = [],
                 this.debugPingTime = 0,
-                this.q.setShakeEnabled(this.config.get("screenShake")),
+                this.j.setShakeEnabled(this.config.get("screenShake")),
                 this.name = this.config.get("playerName"),
                 this.anonPlayerNames = this.config.get("anonPlayerNames");
-                var u = {
-                    emoteTop: m.Top,
-                    emoteRight: m.Right,
-                    emoteBottom: m.Bottom,
-                    emoteLeft: m.Left,
-                    emoteWin: m.Win,
-                    emoteDeath: m.Death
+                var d = {
+                    emoteTop: c.Top,
+                    emoteRight: c.Right,
+                    emoteBottom: c.Bottom,
+                    emoteLeft: c.Left,
+                    emoteWin: c.Win,
+                    emoteDeath: c.Death
                 };
                 this.emoteLoadout = [],
-                this.emoteLoadout[m.None] = 0;
-                for (var h = Object.keys(u), g = 0; g < h.length; g++) {
-                    var _ = h[g]
-                      , U = parseInt(this.config.get(_))
-                      , V = d.clamp(U, 1, 255);
-                    this.emoteLoadout[u[_]] = V
+                this.emoteLoadout[c.None] = 0;
+                for (var h = Object.keys(d), g = 0; g < h.length; g++) {
+                    var y = h[g]
+                      , v = parseInt(this.config.get(y))
+                      , C = p.clamp(v, 1, 255);
+                    this.emoteLoadout[d[y]] = C
                 }
                 this.Je.updateEmoteWheel(this.emoteLoadout),
-                void 0 == this.ambientSounds.wavesInst && (this.ambientSounds.wavesInst = this.ue.playSound("ambient_waves_01", {
+                void 0 == this.ambientSounds.wavesInst && (this.ambientSounds.wavesInst = this.de.playSound("ambient_waves_01", {
                     channel: "ambient",
                     startSilent: !0,
                     loop: !0,
                     forceStart: !0
                 })),
-                document.hasFocus() || this.ue.playSound("notification_start_01", {
+                document.hasFocus() || this.de.playSound("notification_start_01", {
                     channel: "ui"
                 }),
-                y.removeConsent(),
-                z.storeGeneric("language", this.config.get("language")),
-                this.dt(),
+                f.removeConsent(),
+                M.storeGeneric("language", this.config.get("language")),
+                this.ct(),
                 this.initialized = !0
             },
             o: function() {
@@ -26715,476 +26945,467 @@ webpackJsonp([0], {
                 this.initialized) {
                     for (this.initialized = !1,
                     this.Je.o(),
-                    this.Ze.o(),
                     this.Ye.o(),
-                    this.Ke.destroy(),
-                    this.He.free(),
-                    this.je.o(),
-                    this.Fe.o(),
-                    this.Me.o(),
-                    this.Se.o(),
-                    this.be.o(); this.pixi.stage.children.length > 0; ) {
+                    this.Xe.o(),
+                    this.He.destroy(),
+                    this.Ve.free(),
+                    this.Re.o(),
+                    this.Le.o(),
+                    this.ze.o(),
+                    this.ve.o(); this.pixi.stage.children.length > 0; ) {
                         var e = this.pixi.stage.children[0];
                         this.pixi.stage.removeChild(e),
                         e.destroy({
                             children: !0
                         })
                     }
-                    z.storeGeneric("socketTimeout", this.I)
+                    M.storeGeneric("socketTimeout", this.I)
                 }
             },
-            pt: function() {
-                return this.initialized && this.playing && !this.spectating && !this.Ye.displayingStats
+            dt: function() {
+                return this.initialized && this.playing && !this.spectating && !this.Xe.displayingStats
             },
             l: function(e) {
-                this.ye++,
                 this.fe++,
                 this.xe++;
-                var t = this.qe.particles
-                  , a = this.Me.Y.m()
-                  , i = c.t
+                var t = this.je.particles
+                  , a = this.ze.K.m()
+                  , i = d.t
                   , r = 0;
                 if (this.playing && (this.playingTicker += e),
-                this.Pe.l(e, this.ce, this.Se, this.ze, this.q, this.Me, this.be, this.ue, this.Je.wheelKeyTriggered, this.gameOver, this.spectating),
+                this.Te.l(e, this.le, this.ve, this.ke, this.j, this.ze, this.ue, this.de, this.Je.wheelKeyTriggered, this.gameOver, this.spectating),
                 this.soundUpdateThrottle -= e,
                 this.soundUpdateThrottle < 0) {
                     this.soundUpdateThrottle = .2;
                     var o = 0
-                      , s = 1;
-                    if ("water" !== this.mt.surface) {
-                        var l = this.Me.distanceToShore(this.mt.pos);
-                        l < 50 && (o = (50 - l) / 50,
-                        s = 1 - o)
+                      , l = 1;
+                    if ("water" !== this.lt.surface) {
+                        var m = this.ze.distanceToShore(this.lt.pos);
+                        m < 50 && (o = (50 - m) / 50,
+                        l = 1 - o)
                     } else
                         o = 1,
-                        s = 0;
-                    this.ue.setVolume(this.ambientSounds.wavesInst, o),
-                    this.ue.setVolume(this.ambientSounds.windInst, s)
+                        l = 0;
+                    this.de.setVolume(this.ambientSounds.wavesInst, o),
+                    this.de.setVolume(this.ambientSounds.windInst, l)
                 }
-                this.q.pos = u.copy(this.mt.pos),
-                this.q.applyShake();
-                var m = this.mt.ut()
-                  , h = d.min(this.q.screenWidth, this.q.screenHeight)
-                  , f = d.max(this.q.screenWidth, this.q.screenHeight)
-                  , x = d.max(h * (16 / 9), f);
-                this.q.f = .5 * x / (m * this.q.ppu);
-                var w = this.mt.zoomFast ? 3 : 2
-                  , b = this.mt.zoomFast ? 3 : 1.4
-                  , _ = this.q.f > this.q.zoom ? w : b;
-                this.q.zoom = d.lerp(e * _, this.q.zoom, this.q.f),
-                this.ue.cameraPos = u.copy(this.q.pos),
-                (this.be.J(P.Key.M) || this.be.J(P.Key.G)) && this.Ye.displayMapLarge(!1),
-                this.be.J(P.Key.Escape) && this.Ye.toggleEscMenu(),
-                this.be.J(P.Key.V) && this.Ye.cycleVisibilityMode();
-                var v = this.mt.pos
-                  , S = this.q.screenToPoint(this.be.mousePos)
-                  , k = u.sub(S, v)
-                  , z = u.length(k)
-                  , M = z > 1e-5 ? u.div(k, z) : u.create(1, 0);
-                this.Je.wheelDisplayed && (z = this.prevMoveMsg.toMouseLen,
-                M = this.prevMoveMsg.toMouseDir);
-                var T = new p.MoveMsg;
-                if (T.seq = this.seq,
+                this.j.pos = h.copy(this.lt.pos),
+                this.j.applyShake();
+                var c = this.lt.pt()
+                  , g = p.min(this.j.screenWidth, this.j.screenHeight)
+                  , x = p.max(this.j.screenWidth, this.j.screenHeight)
+                  , w = p.max(g * (16 / 9), x);
+                this.j.f = .5 * w / (c * this.j.ppu);
+                var b = this.lt.zoomFast ? 3 : 2
+                  , _ = this.lt.zoomFast ? 3 : 1.4
+                  , v = this.j.f > this.j.zoom ? b : _;
+                this.j.zoom = p.lerp(e * v, this.j.zoom, this.j.f),
+                this.de.cameraPos = h.copy(this.j.pos),
+                this.pe.Y(C.Key.Escape) && this.Xe.toggleEscMenu(),
+                (this.ue.isBindPressed(s.ToggleMap) || this.pe.Y(C.Key.G) && !this.ue.isKeyBound(C.Key.G)) && this.Xe.displayMapLarge(!1),
+                this.ue.isBindPressed(s.CycleUIMode) && this.Xe.cycleVisibilityMode(),
+                (this.ue.isBindPressed(s.HideUI) || this.pe.Y(C.Key.Escape) && !this.Xe.hudVisible) && this.Xe.cycleHud();
+                var S = this.lt.pos
+                  , k = this.j.screenToPoint(this.pe.mousePos)
+                  , z = h.sub(k, S)
+                  , M = h.length(z)
+                  , T = M > 1e-5 ? h.div(z, M) : h.create(1, 0);
+                this.Je.wheelDisplayed && (M = this.prevInputMsg.toMouseLen,
+                T = this.prevInputMsg.toMouseDir);
+                var P = new u.InputMsg;
+                if (P.seq = this.seq,
                 !this.spectating) {
-                    var C = this._e.getTouchMovement(this.q);
-                    if (this._e.moveDetected) {
-                        var A = 255 * d.clamp(C.moveLen, 0, 1);
-                        T.moveLeft = C.left,
-                        T.moveRight = C.right,
-                        T.moveUp = C.up,
-                        T.moveDown = C.down,
-                        T.moveLen = A
+                    var I = this.be.getTouchMovement(this.j);
+                    if (this.be.moveDetected) {
+                        var A = 255 * p.clamp(I.moveLen, 0, 1);
+                        P.moveLeft = I.left,
+                        P.moveRight = I.right,
+                        P.moveUp = I.up,
+                        P.moveDown = I.down,
+                        P.moveLen = A
                     } else
-                        T.moveLeft = this.be.Z(P.Key.Left) || this.be.Z(P.Key.A),
-                        T.moveRight = this.be.Z(P.Key.Right) || this.be.Z(P.Key.D),
-                        T.moveUp = this.be.Z(P.Key.Up) || this.be.Z(P.Key.W),
-                        T.moveDown = this.be.Z(P.Key.Down) || this.be.Z(P.Key.S),
-                        T.moveLen = 255;
-                    if (g.touch) {
-                        var I = this.mt.U.curWeapIdx == n.WeaponSlot.Throwable
-                          , D = this._e.getAimMovement(I, this.q);
-                        T.toMouseDir = D.toAimDir;
-                        var O = D.toAimLen / 10;
-                        T.toMouseLen = Math.min(O, p.kMouseMaxLen)
+                        P.moveLeft = this.ue.isBindDown(s.MoveLeft) || this.pe.te(C.Key.Left) && !this.ue.isKeyBound(C.Key.Left),
+                        P.moveRight = this.ue.isBindDown(s.MoveRight) || this.pe.te(C.Key.Right) && !this.ue.isKeyBound(C.Key.Right),
+                        P.moveUp = this.ue.isBindDown(s.MoveUp) || this.pe.te(C.Key.Up) && !this.ue.isKeyBound(C.Key.Up),
+                        P.moveDown = this.ue.isBindDown(s.MoveDown) || this.pe.te(C.Key.Down) && !this.ue.isKeyBound(C.Key.Down),
+                        P.moveLen = 255;
+                    if (y.touch) {
+                        var D = this.lt.q.curWeapIdx == n.WeaponSlot.Throwable
+                          , O = this.be.getAimMovement(D, this.j);
+                        P.toMouseDir = O.toAimDir;
+                        var B = O.toAimLen / 10;
+                        P.toMouseLen = Math.min(B, u.kMouseMaxLen)
                     } else
-                        T.toMouseDir = u.copy(M),
-                        T.toMouseLen = Math.min(z, p.kMouseMaxLen);
-                    T.shootStart = this.be.te() || this._e.shotDetected,
-                    T.shootHold = this.be.ee() || this._e.shotDetected,
-                    T.reload = this.be.J(P.Key.R) || this.Ye.reloadTouched,
-                    T.interaction = this.be.J(P.Key.F) || this.Ye.interactionTouched,
-                    T.cancelAction = this.be.J(P.Key.X) || this.Ye.interactionTouched,
-                    T.equipPrimary = this.be.J(P.Key.One),
-                    T.equipSecondary = this.be.J(P.Key.Two),
-                    T.equipThrowable = this.be.J(P.Key.Four),
-                    T.equipMelee = this.be.J(P.Key.Three) || this.be.J(P.Key.E),
-                    T.equipLast = this.be.J(P.Key.Q),
-                    T.scrollDown = this.be.re() > 0,
-                    T.scrollUp = this.be.re() < 0,
-                    T.portrait = this.q.screenWidth < this.q.screenHeight,
-                    T.swapWeapSlots = this.be.J(P.Key.T) || this.Ye.swapWeapSlots,
-                    T.swapWeapSlots && (this.mt.gunSwitchCooldown = 0);
-                    for (var E = 0; E < this.Ze.uiEvents.length; E++) {
-                        var L = this.Ze.uiEvents[E];
-                        if ("use" == L.action)
-                            if ("weapon" == L.type)
-                                switch (L.data) {
-                                case 0:
-                                    T.equipPrimary = !0;
-                                    break;
-                                case 1:
-                                    T.equipSecondary = !0;
-                                    break;
-                                case 2:
-                                    T.equipMelee = !0;
-                                    break;
-                                case 3:
-                                    T.equipThrowable = !0
-                                }
-                            else
-                                "scope" == L.type ? T.useScope = L.data : T.useItem = L.data
+                        P.toMouseDir = h.copy(T),
+                        P.toMouseLen = Math.min(M, u.kMouseMaxLen);
+                    P.shootStart = this.ue.isBindPressed(s.Fire) || this.be.shotDetected,
+                    P.shootHold = this.ue.isBindDown(s.Fire) || this.be.shotDetected,
+                    P.portrait = this.j.screenWidth < this.j.screenHeight;
+                    for (var E = [s.Reload, s.Interact, s.Revive, s.Use, s.Loot, s.Cancel, s.EquipPrimary, s.EquipSecondary, s.EquipThrowable, s.EquipMelee, s.EquipNextWeap, s.EquipPrevWeap, s.EquipLastWeap, s.EquipOtherGun, s.EquipPrevScope, s.EquipNextScope, s.StowWeapons], L = 0; L < E.length; L++) {
+                        var F = E[L];
+                        this.ue.isBindPressed(F) && P.addInput(F)
                     }
-                    "" === T.useItem && (T.useItem = this.be.J(P.Key.Seven) ? "bandage" : this.be.J(P.Key.Eight) ? "healthkit" : this.be.J(P.Key.Nine) ? "soda" : this.be.J(P.Key.Zero) ? "painkiller" : "");
-                    for (var B = !1, F = 0; F < this.Ze.uiEvents.length; F++) {
-                        var R = this.Ze.uiEvents[F];
-                        if ("drop" == R.action) {
-                            var j = new p.DropItemMsg;
-                            if ("weapon" == R.type) {
-                                var q = this.mt.U.weapons;
-                                j.item = q[R.data].name,
-                                j.weapIdx = R.data
+                    (this.ue.isBindPressed(s.SwapWeapSlots) || this.Xe.swapWeapSlots) && (P.addInput(s.SwapWeapSlots),
+                    this.lt.gunSwitchCooldown = 0),
+                    this.Xe.reloadTouched && P.addInput(s.Reload),
+                    this.Xe.interactionTouched && (P.addInput(s.Interact),
+                    P.addInput(s.Cancel));
+                    for (var R = 0; R < this.Ye.uiEvents.length; R++) {
+                        var j = this.Ye.uiEvents[R];
+                        if ("use" == j.action)
+                            if ("weapon" == j.type) {
+                                var N = {
+                                    0: s.EquipPrimary,
+                                    1: s.EquipSecondary,
+                                    2: s.EquipMelee,
+                                    3: s.EquipThrowable
+                                }
+                                  , q = N[j.data];
+                                q && P.addInput(q)
+                            } else
+                                P.useItem = j.data
+                    }
+                    this.ue.isBindPressed(s.UseBandage) ? P.useItem = "bandage" : this.ue.isBindPressed(s.UseHealthKit) ? P.useItem = "healthkit" : this.ue.isBindPressed(s.UseSoda) ? P.useItem = "soda" : this.ue.isBindPressed(s.UsePainkiller) && (P.useItem = "painkiller");
+                    for (var U = !1, G = 0; G < this.Ye.uiEvents.length; G++) {
+                        var V = this.Ye.uiEvents[G];
+                        if ("drop" == V.action) {
+                            var W = new u.DropItemMsg;
+                            if ("weapon" == V.type) {
+                                var H = this.lt.q.weapons;
+                                W.item = H[V.data].name,
+                                W.weapIdx = V.data
                             } else {
-                                var N = "";
-                                N = "helmet" == R.data ? this.mt.N.helmet : "chest" == R.data ? this.mt.N.chest : R.data,
-                                j.item = N
+                                var K = "";
+                                K = "helmet" == V.data ? this.lt.N.helmet : "chest" == V.data ? this.lt.N.chest : V.data,
+                                W.item = K
                             }
-                            "" != j.item && (this.he(p.Msg.DropItem, j),
-                            B = !0)
+                            "" != W.item && (this.ge(u.Msg.DropItem, W),
+                            U = !0)
                         }
                     }
-                    B && this.ue.playSound("loot_drop_01", {
+                    U && this.de.playSound("loot_drop_01", {
                         channel: "ui"
                     })
                 }
-                var G = this.Ye.specNext || this.spectating && this.be.J(P.Key.Right)
-                  , U = this.Ye.specPrev || this.spectating && this.be.J(P.Key.Left);
-                if (this.Ye.beginSpectating || G || U) {
+                var X = this.Xe.specNext || this.spectating && this.pe.Y(C.Key.Right)
+                  , Y = this.Xe.specPrev || this.spectating && this.pe.Y(C.Key.Left);
+                if (this.Xe.beginSpectating || X || Y) {
                     this.gameOver = !1;
-                    var V = new p.SpectateMsg;
-                    V.specNext = G,
-                    V.specPrev = U,
-                    this.he(p.Msg.Spectate, V)
+                    var Z = new u.SpectateMsg;
+                    Z.specNext = X,
+                    Z.specPrev = Y,
+                    this.ge(u.Msg.Spectate, Z)
                 }
-                this.Ye.beginSpectating = !1,
-                this.Ye.specNext = !1,
-                this.Ye.specPrev = !1,
-                this.Ye.reloadTouched = !1,
-                this.Ye.interactionTouched = !1,
-                this.Ye.swapWeapSlots = !1;
-                var H = !1;
-                for (var W in T)
-                    if (T.hasOwnProperty(W)) {
-                        if ("toMouseDir" == W) {
-                            var K = d.clamp(u.dot(T[W], this.prevMoveMsg[W]), -1, 1)
-                              , X = d.rad2deg(Math.acos(K));
-                            H = X > .4
+                this.Xe.beginSpectating = !1,
+                this.Xe.specNext = !1,
+                this.Xe.specPrev = !1,
+                this.Xe.reloadTouched = !1,
+                this.Xe.interactionTouched = !1,
+                this.Xe.swapWeapSlots = !1;
+                var J = !1;
+                for (var Q in P)
+                    if (P.hasOwnProperty(Q)) {
+                        if ("inputs" == Q)
+                            J = P[Q].length > 0;
+                        else if ("toMouseDir" == Q) {
+                            var $ = p.clamp(h.dot(P[Q], this.prevInputMsg[Q]), -1, 1)
+                              , ee = p.rad2deg(Math.acos($));
+                            J = ee > .4
                         } else
-                            "toMouseLen" == W ? H = Math.abs(this.prevMoveMsg[W] - T[W]) > .5 : "shootStart" == W ? H = T[W] || T[W] != this.prevMoveMsg[W] : this.prevMoveMsg[W] != T[W] && (H = !0);
-                        if (H)
+                            "toMouseLen" == Q ? J = Math.abs(this.prevInputMsg[Q] - P[Q]) > .5 : "shootStart" == Q ? J = P[Q] || P[Q] != this.prevInputMsg[Q] : this.prevInputMsg[Q] != P[Q] && (J = !0);
+                        if (J)
                             break
                     }
-                this.moveMsgTimeout -= e,
-                (H || this.moveMsgTimeout < 0) && (this.seqInFlight || (this.seq = (this.seq + 1) % 256,
-                this.seqSendTime = (new Date).getTime(),
+                this.inputMsgTimeout -= e,
+                (J || this.inputMsgTimeout < 0) && (this.seqInFlight || (this.seq = (this.seq + 1) % 256,
+                this.seqSendTime = Date.now(),
                 this.seqInFlight = !0,
-                T.seq = this.seq),
-                this.he(p.Msg.Move, T),
-                this.moveMsgTimeout = 1,
-                this.prevMoveMsg = T),
-                this.Ze.flushInput(),
-                this.Me.l(e, this.mt, this.ze, this.ue, this.Se, this.q),
-                this.Ue.l(e, this.mt, this.q),
-                this.Ae.l(e, this.Pe, this.Me, this.q, this.mt, this.Se, this.ze, this.ue),
-                this.De.l(e, this.Pe, this.Me, this.q, this.mt, this.Se, this.ze, this.ue),
-                this.Ee.l(e, this.ze, this.ue, this.mt, this.Me, this.Se, this.q),
-                this.Be.l(e, this.Me, this.q, this.ze, this.ue),
-                this.je.l(e, this.mt, this.q, this.Me, this.ze, this.Se, this.ue),
-                this.Fe.l(e, this.q, this.mt, this.Me, this.Se),
-                this.qe.l(e, this.q, this.mt, this.Me, this.Se),
-                this.et.l(e, this.ce, this.Pe, this.ze, this.ue),
-                this.ze.l(e, this.q),
-                this.Ne.l(e, this.Pe, this.mt, this.Me, this.q, this.Se),
-                this.Ge.l(e, this.Me, this.q),
-                this.Ke.l(e, this.mt, this.q),
-                this.Ye.l(e, this.mt, this.ce == this.lt, this.Me, this.He, this.Ue, this.Pe, this.q, this.teamMode, this.be),
-                this.Ze.l(e, this.mt, this.spectating, this.Pe, this.Ue, this.Me),
-                this.Je.l(e, this.lt, this.mt, this.be.mousePos, this.teamMode, this.Ne, this.Se),
-                this._e.updateDisplay(),
-                this.Se.l(e, this.q, this.Me);
-                for (var Y = 0; Y < this.Je.newPings.length; Y++) {
-                    var Z = this.Je.newPings[Y]
-                      , Q = new p.EmoteMsg;
-                    Q.type = Z.type,
-                    Q.pos = Z.pos,
-                    Q.useLoadout = !1,
-                    Q.teamOnly = !0,
-                    Q.isPing = !0,
-                    this.he(p.Msg.Emote, Q)
+                P.seq = this.seq),
+                this.ge(u.Msg.Input, P),
+                this.inputMsgTimeout = 1,
+                this.prevInputMsg = P),
+                this.Ye.flushInput(),
+                this.ze.l(e, this.lt, this.ke, this.de, this.ve, this.j),
+                this.Ue.l(e, this.lt, this.j),
+                this.Ce.l(e, this.Te, this.ze, this.j, this.lt, this.ve, this.ke, this.de),
+                this.Ae.l(e, this.Te, this.ze, this.j, this.lt, this.ve, this.ke, this.de),
+                this.Oe.l(e, this.ke, this.de, this.lt, this.ze, this.ve, this.j),
+                this.Ee.l(e, this.ze, this.j, this.ke, this.de),
+                this.Re.l(e, this.lt, this.j, this.ze, this.ke, this.ve, this.de),
+                this.Le.l(e, this.j, this.lt, this.ze, this.ve),
+                this.je.l(e, this.j, this.lt, this.ze, this.ve),
+                this.$e.l(e, this.le, this.Te, this.ke, this.de),
+                this.ke.l(e, this.j),
+                this.Ne.l(e, this.Te, this.lt, this.ze, this.j, this.ve),
+                this.qe.l(e, this.ze, this.j),
+                this.He.l(e, this.lt, this.j),
+                this.Xe.l(e, this.lt, this.le == this.st, this.ze, this.Ve, this.Ue, this.Te, this.j, this.teamMode),
+                this.Ye.l(e, this.lt, this.spectating, this.Te, this.Ue, this.ze),
+                this.Je.l(e, this.st, this.lt, this.teamMode, this.Ne, this.ve, this.pe, this.ue, this.gameOver),
+                this.be.updateDisplay(),
+                this.ve.l(e, this.j, this.ze);
+                for (var te = 0; te < this.Je.newPings.length; te++) {
+                    var ae = this.Je.newPings[te]
+                      , ie = new u.EmoteMsg;
+                    ie.type = ae.type,
+                    ie.pos = ae.pos,
+                    ie.useLoadout = !1,
+                    ie.teamOnly = !0,
+                    ie.isPing = !0,
+                    this.ge(u.Msg.Emote, ie)
                 }
                 this.Je.newPings = [];
-                for (var J = 0; J < this.Je.newEmotes.length; J++) {
-                    var $ = this.Je.newEmotes[J]
-                      , ee = new p.EmoteMsg;
-                    ee.type = $.type,
-                    ee.pos = $.pos,
-                    ee.useLoadout = $.useLoadout,
-                    ee.teamOnly = !1,
-                    ee.isPing = !1,
-                    this.he(p.Msg.Emote, ee)
+                for (var re = 0; re < this.Je.newEmotes.length; re++) {
+                    var oe = this.Je.newEmotes[re]
+                      , ne = new u.EmoteMsg;
+                    ne.type = oe.type,
+                    ne.pos = oe.pos,
+                    ne.useLoadout = oe.useLoadout,
+                    ne.teamOnly = !1,
+                    ne.isPing = !1,
+                    this.ge(u.Msg.Emote, ne)
                 }
                 if (this.Je.newEmotes = [],
-                this.ht(e),
-                this.be.flush(),
+                this.ut(e),
                 ++this.we % 30 == 0) {
-                    for (var te = (Date.now(),
-                    0); te < t.length; te++) {
-                        var ae = t[te];
-                        ae.active && !ae.fade && i(ae, .8) && r++
+                    for (var se = (Date.now(),
+                    0); se < t.length; se++) {
+                        var le = t[se];
+                        le.active && !le.fade && i(le, .8) && r++
                     }
-                    for (var ie = 0; ie < a.length; ie++) {
-                        var re = a[ie];
-                        re.active && !re.dead && i(re, .9) && r++
+                    for (var me = 0; me < a.length; me++) {
+                        var ce = a[me];
+                        ce.active && !ce.dead && i(ce, .9) && r++
                     }
                     r && (this.I = !0),
-                    r && this.ct && y.I()
+                    r && this.mt && f.I()
                 }
             },
-            ht: function(e) {
-                this.pixi.renderer.backgroundColor = h.background,
-                this.Pe.render(this.q),
-                this.Ae.render(this.q),
-                this.De.render(this.q),
-                this.Me.render(this.q),
-                this.He.render(this.q),
-                this.Ye.render(this.mt.pos, this.He, this.q, this.Me),
-                this.Je.render(this.q),
-                this.Ke.render(this.q),
-                _.flush()
+            ut: function(e) {
+                this.pixi.renderer.backgroundColor = g.background,
+                this.Te.render(this.j),
+                this.Ce.render(this.j),
+                this.Ae.render(this.j),
+                this.ze.render(this.j),
+                this.Ve.render(this.j),
+                this.Xe.render(this.lt.pos, this.Ve, this.j, this.ze),
+                this.Je.render(this.j),
+                this.He.render(this.j),
+                v.flush()
             },
-            dt: function() {
-                var e = y.getScreenDimensions()
+            ct: function() {
+                var e = f.getScreenDimensions()
                   , t = e.width;
-                y.isLandscape() || (t = e.height),
-                g.layout = t <= 850 || g.mobile ? g.Layout.Sm : g.Layout.Lg,
-                this.q.screenWidth = e.width,
-                this.q.screenHeight = e.height,
-                this.Me.resize(this.pixi.renderer),
-                this.He.resize(),
-                this.Ye.resize(this.q),
-                this._e.resize(),
-                this.Se.resize(this.q)
+                f.isLandscape() || (t = e.height),
+                y.layout = t <= 850 || y.mobile ? y.Layout.Sm : y.Layout.Lg,
+                this.j.screenWidth = e.width,
+                this.j.screenHeight = e.height,
+                this.ze.resize(this.pixi.renderer),
+                this.Ve.resize(),
+                this.Xe.resize(this.j),
+                this.be.resize(),
+                this.ve.resize(this.j)
             },
-            gt: function(e) {
+            ht: function(e) {
                 for (var t = {
-                    audioManager: this.ue,
-                    renderer: this.Se,
-                    particleBarn: this.ze,
-                    map: this.Me,
-                    smokeBarn: this.qe
+                    audioManager: this.de,
+                    renderer: this.ve,
+                    particleBarn: this.ke,
+                    map: this.ze,
+                    smokeBarn: this.je
                 }, a = 0; a < e.delObjIds.length; a++)
                     e.delObjIds[a],
-                    this.st.deleteObj(e.delObjIds[a]);
+                    this.nt.deleteObj(e.delObjIds[a]);
                 for (var i = 0; i < e.fullObjects.length; i++) {
                     var r = e.fullObjects[i];
-                    this.st.updateObjFull(r.__type, r.__id, r, t)
+                    this.nt.updateObjFull(r.__type, r.__id, r, t)
                 }
                 for (var o = 0; o < e.partObjects.length; o++) {
                     var s = e.partObjects[o];
-                    this.st.updateObjPart(s.__id, s, t)
+                    this.nt.updateObjPart(s.__id, s, t)
                 }
-                if (e.activePlayerIdDirty && (this.ce = e.activePlayerId),
-                this.spectating = this.ce != this.lt,
-                this.mt = this.Pe.se(this.ce),
-                this.mt.yt(e.activePlayerData, this.Pe),
-                e.activePlayerData.weapsDirty && (this.Ye.weapsDirty = !0),
+                if (e.activePlayerIdDirty && (this.le = e.activePlayerId),
+                this.spectating = this.le != this.st,
+                this.lt = this.Te.oe(this.le),
+                this.lt.gt(e.activePlayerData, this.Te),
+                e.activePlayerData.weapsDirty && (this.Xe.weapsDirty = !0),
                 this.spectating) {
-                    this.Ye.setSpectating(!0);
-                    var l = this.Pe.H(this.ce)
+                    this.Xe.setSpectating(!0);
+                    var l = this.Te.U(this.le)
                       , m = this.anonPlayerNames && 1 == this.teamMode ? l.anonName : l.name;
-                    this.Ye.setSpectatedPlayer(this.ce, m),
-                    this._e.hideAll()
+                    this.Xe.setSpectatedPlayer(this.le, m),
+                    this.be.hideAll()
                 }
-                this.mt.layer = this.mt.N.layer,
-                this.Se.setActiveLayer(this.mt.layer),
-                this.ue.activeLayer = this.mt.layer,
-                e.aliveDirty && this.Ye.updatePlayersAlive(e.aliveCount),
-                this.He.setProgress(e.gasT),
-                e.gasDirty && this.He.setFullState(e.gasT, e.gasData, this.Me, this.Ye);
+                this.lt.layer = this.lt.N.layer,
+                this.ve.setActiveLayer(this.lt.layer),
+                this.de.activeLayer = this.lt.layer,
+                e.aliveDirty && this.Xe.updatePlayersAlive(e.aliveCount),
+                this.Ve.setProgress(e.gasT),
+                e.gasDirty && this.Ve.setFullState(e.gasT, e.gasData, this.ze, this.Xe);
                 for (var c = 0; c < e.teams.length; c++)
-                    this.Pe.setTeamInfo(e.teams[c]);
-                for (var d = this.Pe.H(this.ce).teamId, p = this.Pe.getTeamInfo(d), u = 0; u < e.teamData.length; u++) {
+                    this.Te.setTeamInfo(e.teams[c]);
+                for (var d = this.Te.U(this.le).teamId, p = this.Te.getTeamInfo(d), u = 0; u < e.teamData.length; u++) {
                     var h = e.teamData[u];
-                    this.Pe.setTeammateData(p.playerIds[h.playerIdx], h)
+                    this.Te.setTeammateData(p.playerIds[h.playerIdx], h)
                 }
                 for (var g = 0; g < e.bullets.length; g++) {
                     var y = e.bullets[g];
-                    n.bullets[y.bulletType].addFlare ? this.De.addFlare(y, this.Pe, this.Se) : this.Ae.addBullet(y, this.Pe, this.Se),
-                    y.shotFx && this.et.addShot(y.pos, y.layer, y.playerId, y.shotSourceType, y.shotOffhand, y.lastShot)
+                    n.bullets[y.bulletType].addFlare ? this.Ae.addFlare(y, this.Te, this.ve) : this.Ce.addBullet(y, this.Te, this.ve),
+                    y.shotFx && this.$e.addShot(y.pos, y.layer, y.playerId, y.shotSourceType, y.shotOffhand, y.lastShot)
                 }
                 for (var f = 0; f < e.explosions.length; f++) {
                     var x = e.explosions[f];
-                    this.Be.addExplosion(x.type, x.pos, x.layer)
+                    this.Ee.addExplosion(x.type, x.pos, x.layer)
                 }
                 for (var w = 0; w < e.emotes.length; w++) {
                     var b = e.emotes[w];
                     b.isPing ? this.Je.addPing(b) : this.Je.addEmote(b)
                 }
-                this.Fe.ft(e.planes)
+                this.Le.yt(e.planes)
             },
-            ge: function(e, t) {
+            ye: function(e, t) {
                 var a = this;
                 switch (e) {
-                case p.Msg.Joined:
-                    var i = new p.JoinedMsg;
+                case u.Msg.Joined:
+                    var i = new u.JoinedMsg;
                     i.deserialize(t),
                     this.onJoin(),
                     this.teamMode = i.teamMode,
-                    this.lt = i.playerId,
-                    this.ct = 2 & i.gameOpts;
+                    this.st = i.playerId,
+                    this.mt = 2 & i.gameOpts;
                     for (var r = 0; r < i.playerInfoMsgs.length; r++) {
                         var o = i.playerInfoMsgs[r];
-                        this.Pe.xt(o),
-                        this.Pe.se(o.id)
+                        this.Te.ft(o),
+                        this.Te.oe(o.id)
                     }
-                    i.started || this.Ye.setWaitingForPlayers(!0),
-                    this.Ye.removeAds(),
+                    i.started || this.Xe.setWaitingForPlayers(!0),
+                    this.Xe.removeAds(),
                     this.victoryMusic && (this.victoryMusic.stop(),
-                    this.victoryMusic = null),
-                    1 & i.gameOpts && y.O(this.config.useLocalStorage, this.ws);
+                    this.victoryMusic = null);
                     break;
-                case p.Msg.PlayerInfo:
-                    var s = new p.PlayerInfoMsg;
+                case u.Msg.PlayerInfo:
+                    var s = new u.PlayerInfoMsg;
                     s.deserialize(t),
-                    this.Pe.xt(s);
+                    this.Te.ft(s);
                     break;
-                case p.Msg.Map:
-                    var l = new p.MapMsg;
+                case u.Msg.Map:
+                    var l = new u.MapMsg;
                     l.deserialize(t),
-                    this.Me.setData(l.width, l.height, l.seed, l.places, l.objects, this.q),
-                    this.Me.renderMap(this.pixi.renderer);
+                    this.ze.setData(l.width, l.height, l.seed, l.places, l.objects, this.j),
+                    this.ze.renderMap(this.pixi.renderer);
                     break;
-                case p.Msg.Update:
-                    var m = new p.UpdateMsg;
-                    m.deserialize(t, this.st),
+                case u.Msg.Update:
+                    var m = new u.UpdateMsg;
+                    m.deserialize(t, this.nt),
                     this.playing = !0,
-                    this.gt(m);
+                    this.ht(m);
                     break;
-                case p.Msg.Kill:
-                    var c = new p.KillMsg;
+                case u.Msg.Kill:
+                    var c = new u.KillMsg;
                     c.deserialize(t);
-                    var d = (this.Pe.se(c.targetId),
-                    this.Pe.H(c.targetId))
-                      , u = this.Pe.H(c.killCreditId)
+                    var d = (this.Te.oe(c.targetId),
+                    this.Te.U(c.targetId))
+                      , p = this.Te.U(c.killCreditId)
                       , h = c.itemSourceType || c.mapSourceType
                       , g = this.localization.translate("game-" + h)
-                      , f = this.Pe.H(this.ce).teamId
+                      , y = this.Te.U(this.le).teamId
                       , x = c.downed && !c.killed || c.damageType == n.DamageType.Gas || c.damageType == n.DamageType.Bleeding || c.damageType == n.DamageType.Airdrop
-                      , w = x ? u : this.Pe.H(c.killerId)
+                      , w = x ? p : this.Te.U(c.killerId)
                       , b = d.name
-                      , _ = u.name
+                      , _ = p.name
                       , v = w.name;
                     if (this.anonPlayerNames) {
                         var S = function(e) {
-                            return e.playerId == a.ce || e.teamId == f
+                            return e.playerId == a.le || e.teamId == y
                         };
                         S(d) || (b = d.anonName),
-                        S(u) || (_ = u.anonName),
+                        S(p) || (_ = p.anonName),
                         S(w) || (v = w.anonName)
                     }
-                    b = y.htmlEscape(b),
-                    _ = y.htmlEscape(_),
-                    v = y.htmlEscape(v),
-                    c.killCreditId == this.ce ? this.Ye.showKill({
+                    b = f.htmlEscape(b),
+                    _ = f.htmlEscape(_),
+                    v = f.htmlEscape(v),
+                    c.killCreditId == this.le ? this.Xe.showKill({
                         name: _,
                         kills: c.killerKills,
-                        completeKill: c.killerId == this.ce
+                        completeKill: c.killerId == this.le
                     }, {
                         name: b,
                         suicide: c.killerId == c.targetId || c.killCreditId == c.targetId,
                         killed: c.killed,
                         downed: c.downed,
-                        teamKill: d.teamId == u.teamId
-                    }, g, this.spectating) : c.targetId == this.ce && c.downed && !c.killed && this.Ye.showDowned({
+                        teamKill: d.teamId == p.teamId
+                    }, g, this.spectating) : c.targetId == this.le && c.downed && !c.killed && this.Xe.showDowned({
                         name: _,
                         damageType: c.damageType
                     }, {
                         name: b,
                         suicide: c.killerId == c.targetId || c.killCreditId == c.targetId
                     }, g, this.spectating);
-                    var k = this.Ze.getKillFeedText(b, 0 == w.teamId ? "" : v, g, c.damageType, c.downed && !c.killed)
-                      , z = this.Ze.getKillFeedColor(f, d.teamId, u.teamId);
-                    this.Ze.addKillFeed(k, z),
-                    c.type == n.DamageType.Player && this.Ae.createBulletHit(this.Pe, c.targetId, this.ue);
+                    var k = this.Ye.getKillFeedText(b, 0 == w.teamId ? "" : v, g, c.damageType, c.downed && !c.killed)
+                      , z = this.Ye.getKillFeedColor(y, d.teamId, p.teamId);
+                    this.Ye.addKillFeed(k, z),
+                    c.type == n.DamageType.Player && this.Ce.createBulletHit(this.Te, c.targetId, this.de);
                     break;
-                case p.Msg.PlayerStats:
-                    var M = new p.PlayerStatsMsg;
+                case u.Msg.PlayerStats:
+                    var M = new u.PlayerStatsMsg;
                     M.deserialize(t),
-                    this.Ye.setLocalStats(M.playerStats);
+                    this.Xe.setLocalStats(M.playerStats);
                     break;
-                case p.Msg.GameOver:
-                    var T = new p.GameOverMsg;
+                case u.Msg.GameOver:
+                    var T = new u.GameOverMsg;
                     T.deserialize(t),
                     this.gameOver = T.gameOver,
-                    this.Ye.showStats({
+                    this.Xe.showStats({
                         victory: T.victory,
                         spectating: this.spectating,
                         gameOver: T.gameOver,
                         stats: T.playerStats,
                         teamRank: T.teamRank,
                         teamMode: this.teamMode
-                    }, this.Pe),
-                    this._e.hideAll(),
-                    T.victory && (!this.spectating || this.teamMode > 1) && (this.victoryMusic = this.ue.playSound("menu_music", {
+                    }, this.Te),
+                    this.be.hideAll(),
+                    T.victory && (!this.spectating || this.teamMode > 1) && (this.victoryMusic = this.de.playSound("menu_music", {
                         channel: "music",
                         delay: 1300,
                         forceStart: !0
                     }));
                     break;
-                case p.Msg.Pickup:
-                    var P = new p.PickupMsg;
+                case u.Msg.Pickup:
+                    var P = new u.PickupMsg;
                     if (P.deserialize(t),
-                    P.type == p.PickupMsgType.Success && P.item) {
+                    P.type == u.PickupMsgType.Success && P.item) {
                         var C = n.items[P.item];
-                        this.ue.playSound(C.sound.pickup, {
+                        this.de.playSound(C.sound.pickup, {
                             channel: "ui"
                         }),
-                        "throwable" == C.type && (this.mt.lastThrowablePickupSfxTicker = .3)
+                        "throwable" == C.type && (this.lt.lastThrowablePickupSfxTicker = .3)
                     } else
-                        this.Ze.displayPickupMessage(P.type);
+                        this.Ye.displayPickupMessage(P.type);
                     break;
-                case p.Msg.Disconnect:
-                    var A = new p.DisconnectMsg;
-                    A.deserialize(t),
-                    this.disconnectMsg = this.localization.translate(A.reason)
+                case u.Msg.Disconnect:
+                    var I = new u.DisconnectMsg;
+                    I.deserialize(t),
+                    this.disconnectMsg = this.localization.translate(I.reason)
                 }
             },
-            he: function(e, t) {
-                var a = new p.MsgStream(new ArrayBuffer(4096));
+            ge: function(e, t) {
+                var a = new u.MsgStream(new ArrayBuffer(4096));
                 a.serializeMsg(e, t),
-                this.wt(a)
+                this.xt(a)
             },
-            wt: function(e) {
+            xt: function(e) {
                 if (this.ws && this.ws.readyState == this.ws.OPEN)
                     try {
                         this.ws.send(e.getBuffer())
                     } catch (e) {
-                        z.storeGeneric("error", "sendMessageException"),
+                        M.storeGeneric("error", "sendMessageException"),
                         this.ws.close()
                     }
             }
         },
         e.exports = {
-            bt: r
+            wt: r
         }
     },
     "9e5281a7": function(e, t, a) {
@@ -27428,8 +27649,8 @@ webpackJsonp([0], {
             this.container.addChild(this.sprite)
         }
         function r() {
-            this.at = new c.Pool(i),
-            this._t = null
+            this.tt = new c.Pool(i),
+            this.bt = null
         }
         var o = a("80ac57a6")
           , n = a("989ad62a")
@@ -27475,8 +27696,8 @@ webpackJsonp([0], {
         },
         r.prototype = {
             l: function(e, t, a) {
-                this._t = null;
-                for (var i = Number.MAX_VALUE, r = this.at.m(), o = 0; o < r.length; o++) {
+                this.bt = null;
+                for (var i = Number.MAX_VALUE, r = this.tt.m(), o = 0; o < r.length; o++) {
                     var n = r[o];
                     if (n.active) {
                         if (l.sameLayer(n.layer, t.layer)) {
@@ -27485,7 +27706,7 @@ webpackJsonp([0], {
                               , p = m.sub(t.pos, c)
                               , u = m.lengthSqr(p);
                             u < d * d && u < i && (i = u,
-                            this._t = n)
+                            this.bt = n)
                         }
                         n.ticker += e;
                         var h = s.delerp(n.ticker, 0, 1)
@@ -27497,12 +27718,12 @@ webpackJsonp([0], {
                     }
                 }
             },
-            vt: function() {
-                return this._t
+            _t: function() {
+                return this.bt
             }
         },
         e.exports = {
-            Ve: r
+            Ge: r
         }
     },
     a508b62a: function(e, t, a) {
@@ -27515,7 +27736,7 @@ webpackJsonp([0], {
             var e = {
                 fontFamily: "Arial",
                 fontWeight: "bold",
-                fontSize: v.pixelRatio > 1 ? 30 : 22,
+                fontSize: S.pixelRatio > 1 ? 30 : 22,
                 align: "center",
                 fill: 65535,
                 stroke: 0,
@@ -27552,8 +27773,8 @@ webpackJsonp([0], {
             this.footLSprite = o(),
             this.footRSprite = o(),
             this.hipSprite = o(),
-            this.gunLSprites = new M,
-            this.gunRSprites = new M,
+            this.gunLSprites = new T,
+            this.gunRSprites = new T,
             this.objectLSprite = o(),
             this.objectRSprite = o(),
             this.meleeSprite = o(),
@@ -27603,11 +27824,11 @@ webpackJsonp([0], {
                 ticker: 0,
                 bones: []
             };
-            for (var e = Object.keys(z).length, t = 0; t < e; t++)
-                this.bones.push(new k),
+            for (var e = Object.keys(M).length, t = 0; t < e; t++)
+                this.bones.push(new z),
                 this.anim.bones.push({
                     weight: 0,
-                    pose: new k
+                    pose: new z
                 });
             this.surface = "grass",
             this.isOnBrightSurface = !1,
@@ -27634,21 +27855,21 @@ webpackJsonp([0], {
             this.doorErrorTicker = 0,
             this.noCeilingRevealTicker = 0,
             this.N = {},
-            this.U = {
+            this.q = {
                 action: {
                     type: d.None
                 },
                 spectatorCount: 0
             },
-            this.pos = y.create(0, 0),
-            this.posOld = y.create(0, 0),
-            this.dir = y.create(1, 0),
-            this.dirOld = y.create(1, 0),
+            this.pos = f.create(0, 0),
+            this.posOld = f.create(0, 0),
+            this.dir = f.create(1, 0),
+            this.dirOld = f.create(1, 0),
             this.layer = 0
         }
         function s() {
-            this.tt = new S.Pool(n),
-            this.St = {},
+            this.et = new k.Pool(n),
+            this.vt = {},
             this.teamInfo = {},
             this.teammateData = {}
         }
@@ -27672,23 +27893,24 @@ webpackJsonp([0], {
           , c = a("989ad62a")
           , d = c.Action
           , p = c.Anim
-          , u = a("ceee80d9")
-          , h = a("300e2704")
-          , g = a("1901e2d9")
-          , y = a("c2a798c8")
-          , f = a("10899aea")
-          , x = a("34e32c48")
-          , w = a("6b42806d")
-          , b = (a("2bb110d0"),
+          , u = c.Input
+          , h = a("ceee80d9")
+          , g = a("300e2704")
+          , y = a("1901e2d9")
+          , f = a("c2a798c8")
+          , x = a("10899aea")
+          , w = a("34e32c48")
+          , b = a("6b42806d")
+          , _ = (a("2bb110d0"),
         a("6bad552e"))
-          , _ = a("b58076b1")
-          , v = a("ce29f17f")
-          , S = (a("af8ba00f"),
+          , v = a("b58076b1")
+          , S = a("ce29f17f")
+          , k = (a("af8ba00f"),
         a("26be8056"),
         a("753d6e4b"))
-          , k = b.Pose
-          , z = b.Bones
-          , M = function() {
+          , z = _.Pose
+          , M = _.Bones
+          , T = function() {
             function e() {
                 i(this, e),
                 this.gunBarrel = o(),
@@ -27731,8 +27953,8 @@ webpackJsonp([0], {
                         } else
                             this.gunMag.visible = !1;
                         this.magTop = a.magImg && a.magImg.top;
-                        var r = y.create(-4.25, -1.75);
-                        t.pistol && t.isDual && (r = t.isDual ? y.create(-5.95, 0) : y.create(-4.75, -1.75)),
+                        var r = f.create(-4.25, -1.75);
+                        t.pistol && t.isDual && (r = t.isDual ? f.create(-5.95, 0) : f.create(-4.75, -1.75)),
                         this.container.position.set(r.x, r.y)
                     }
                 }
@@ -27752,8 +27974,8 @@ webpackJsonp([0], {
             },
             n: function(e, t, a, i) {
                 var r = this.N;
-                r.pos = y.copy(e.pos),
-                r.dir = y.copy(e.dir),
+                r.pos = f.copy(e.pos),
+                r.dir = f.copy(e.dir),
                 t && (r.layer = e.layer,
                 r.dead = e.dead,
                 r.downed = e.downed,
@@ -27771,9 +27993,9 @@ webpackJsonp([0], {
                 this.visualsDirty = !0),
                 a && (this.isNew = !0)
             },
-            yt: function(e, t) {
-                var a = this.U.curScope
-                  , i = this.U;
+            gt: function(e, t) {
+                var a = this.q.curScope
+                  , i = this.q;
                 if (i.scopedIn = e.scopedIn,
                 i.health = e.health,
                 e.boostDirty && (i.boost = e.boost),
@@ -27801,21 +28023,21 @@ webpackJsonp([0], {
                     }
                 }
                 e.spectatorCountDirty && (i.spectatorCount = e.spectatorCount),
-                this.U.curScope != a && (this.zoomFast = !0),
-                this.U.scopedIn && (this.zoomFast = !1)
+                this.q.curScope != a && (this.zoomFast = !0),
+                this.q.scopedIn && (this.zoomFast = !1)
             },
-            ut: function() {
-                var e = this.N.downed || this.U.scopedIn ? "1xscope" : this.U.curScope;
+            pt: function() {
+                var e = this.N.downed || this.q.scopedIn ? "1xscope" : this.q.curScope;
                 return c.scopeZoomRadius[e]
             },
-            kt: function() {
+            St: function() {
                 return c.items[this.N.backpack].level
             },
-            zt: function() {
+            kt: function() {
                 return c.items[this.N.curWeapType].type
             },
-            Mt: function(e) {
-                return "" !== this.U.weapons[e].name
+            zt: function(e) {
+                return "" !== this.q.weapons[e].name
             },
             hasActivePan: function() {
                 return this.N.wearingPan || "pan" == this.N.curWeapType && this.currentAnim() != p.Melee
@@ -27824,67 +28046,67 @@ webpackJsonp([0], {
                 var e = this.N.wearingPan ? "unequipped" : "equipped";
                 return c.items.pan.reflectSurface[e]
             },
-            l: function(e, t, a, i, r, o, n, s, l, m, h) {
-                var f = c.items[this.N.curWeapType]
-                  , x = this.__id == s
-                  , v = t.se(s);
-                this.posOld = y.copy(this.pos),
-                this.dirOld = y.copy(this.dir),
-                this.pos = y.copy(this.N.pos),
-                this.dir = y.copy(this.N.dir),
+            l: function(e, t, a, i, r, o, n, s, l, m, g) {
+                var x = c.items[this.N.curWeapType]
+                  , w = this.__id == s
+                  , S = t.oe(s);
+                this.posOld = f.copy(this.pos),
+                this.dirOld = f.copy(this.dir),
+                this.pos = f.copy(this.N.pos),
+                this.dir = f.copy(this.N.dir),
                 this.layer = this.N.layer,
                 this.downed = this.N.downed;
-                var S = this.weapType != this.N.curWeapType;
+                var k = this.weapType != this.N.curWeapType;
                 this.weapType = this.N.curWeapType,
                 this.lastThrowablePickupSfxTicker -= e,
                 this.noCeilingRevealTicker -= e;
-                var z = t.St[s].teamId
-                  , M = t.St[this.__id].teamId == z;
+                var M = t.vt[s].teamId
+                  , T = t.vt[this.__id].teamId == M;
                 if (this.isNew) {
-                    var T = t.H(this.__id);
-                    this.nameText.text = T.name,
-                    this.nameText.visible = !x && M
+                    var P = t.U(this.__id);
+                    this.nameText.text = P.name,
+                    this.nameText.visible = !w && T
                 }
-                for (var P = null, C = null, A = a.Y.m(), I = 0; I < A.length; I++) {
-                    var D = A[I];
-                    if (D.active && !D.dead && D.layer == this.N.layer)
-                        if (D.isBush) {
-                            var O = .25 * c.player.radius;
-                            w.intersectCircle(D.collider, this.pos, O) && (P = D)
-                        } else if (D.isDoor && !D.door.open && D.door.playErrorFx) {
+                for (var C = null, I = null, A = a.K.m(), D = 0; D < A.length; D++) {
+                    var O = A[D];
+                    if (O.active && !O.dead && O.layer == this.N.layer)
+                        if (O.isBush) {
+                            var B = .25 * c.player.radius;
+                            b.intersectCircle(O.collider, this.pos, B) && (C = O)
+                        } else if (O.isDoor && !O.door.open && O.door.playErrorFx) {
                             var E = c.player.radius + .25
-                              , L = y.rotate(y.create(1, 0), D.rot)
-                              , B = y.sub(D.pos, this.pos);
-                            y.dot(B, L) < 0 && w.intersectCircle(D.collider, this.pos, E) && (C = D)
+                              , L = f.rotate(f.create(1, 0), O.rot)
+                              , F = f.sub(O.pos, this.pos);
+                            f.dot(F, L) < 0 && b.intersectCircle(O.collider, this.pos, E) && (I = O)
                         }
                 }
-                var F = null != P;
-                if (F && (this.insideObstacleType = P.type),
+                var R = null != C;
+                if (R && (this.insideObstacleType = C.type),
                 this.lastInsideObstacleTime -= e,
-                this.wasInsideObstacle != F && this.lastInsideObstacleTime < 0 && !this.isNew) {
-                    var R = u.Defs[this.insideObstacleType];
+                this.wasInsideObstacle != R && this.lastInsideObstacleTime < 0 && !this.isNew) {
+                    var j = h.Defs[this.insideObstacleType];
                     this.lastInsideObstacleTime = .2,
-                    i.playSound(R.sound.enter, {
+                    i.playSound(j.sound.enter, {
                         channel: "sfx",
                         soundPos: this.pos,
                         falloff: 1,
                         layer: this.layer,
                         muffled: !0
                     });
-                    for (var j = y.normalizeSafe(y.sub(this.posOld, this.pos), y.create(1, 0)), q = F ? 1 : -1, N = Math.floor(g.random(3, 5)), G = 0; G < N; G++) {
-                        var U = y.mul(y.rotate(y.mul(j, q), (Math.random() - .5) * Math.PI / 1.5), g.random(6, 8));
-                        r.addParticle(R.hitParticle, this.layer, this.pos, U)
+                    for (var N = f.normalizeSafe(f.sub(this.posOld, this.pos), f.create(1, 0)), q = R ? 1 : -1, U = Math.floor(y.random(3, 5)), G = 0; G < U; G++) {
+                        var V = f.mul(f.rotate(f.mul(N, q), (Math.random() - .5) * Math.PI / 1.5), y.random(6, 8));
+                        r.addParticle(j.hitParticle, this.layer, this.pos, V)
                     }
                 }
-                this.wasInsideObstacle = F;
-                var V = this.isNearDoorError;
-                if (this.isNearDoorError = null != C,
+                this.wasInsideObstacle = R;
+                var W = this.isNearDoorError;
+                if (this.isNearDoorError = null != I,
                 this.doorErrorTicker -= e,
-                this.isNearDoorError && !V && this.doorErrorTicker <= 0) {
+                this.isNearDoorError && !W && this.doorErrorTicker <= 0) {
                     this.doorErrorTicker = .5;
-                    var H = u.Defs[C.type]
-                      , W = H.door.sound.error;
-                    i.playSound(W, {
+                    var H = h.Defs[I.type]
+                      , K = H.door.sound.error;
+                    i.playSound(K, {
                         channel: "sfx",
                         soundPos: this.pos,
                         falloff: 1,
@@ -27894,30 +28116,30 @@ webpackJsonp([0], {
                 }
                 this.surface = a.getGroundSurface(this.pos, this.layer),
                 this.isOnBrightSurface = 1 == this.layer && "tile" == this.surface;
-                var K = "water" === this.surface;
-                if (this.updateSubmersion(e, K, a),
-                this.stepDistance += y.length(y.sub(this.posOld, this.pos)),
-                this.stepDistance > 5 && K || K && !this.wasInWater ? (this.stepDistance = 0,
+                var X = "water" === this.surface;
+                if (this.updateSubmersion(e, X, a),
+                this.stepDistance += f.length(f.sub(this.posOld, this.pos)),
+                this.stepDistance > 5 && X || X && !this.wasInWater ? (this.stepDistance = 0,
                 a.addRipple(this.pos, this.layer, 0),
                 i.playGroup("footstep_water", {
                     soundPos: this.pos,
                     fallOff: 3,
                     layer: this.layer,
                     muffled: !0
-                })) : this.stepDistance > 4 && !K && (this.stepDistance = 0,
+                })) : this.stepDistance > 4 && !X && (this.stepDistance = 0,
                 i.playGroup("footstep_" + this.surface, {
                     soundPos: this.pos,
                     fallOff: 3,
                     layer: this.layer,
                     muffled: !0
                 })),
-                this.wasInWater = K,
+                this.wasInWater = X,
                 this.bleedTicker -= e,
                 this.N.downed && !this.N.dead && this.N.actionType == d.None && this.bleedTicker < 0) {
                     this.bleedTicker = c.player.bleedTickRate;
-                    var X = y.mul(this.dir, 1);
-                    X = y.rotate(X, (Math.random() - .5) * Math.PI / 3),
-                    r.addParticle("bloodSplat", this.layer, this.pos, X),
+                    var Y = f.mul(this.dir, 1);
+                    Y = f.rotate(Y, (Math.random() - .5) * Math.PI / 3),
+                    r.addParticle("bloodSplat", this.layer, this.pos, Y),
                     m || i.playSound("player_bullet_hit_02", {
                         channel: "hits",
                         soundPos: this.pos,
@@ -27926,115 +28148,115 @@ webpackJsonp([0], {
                         muffled: !0
                     })
                 }
-                if (x && !h) {
-                    var Y = this.U.curWeapIdx
-                      , Z = this.U.weapons[Y]
-                      , Q = c.items[Z.name];
-                    if (!this.playedDryFire && "gun" == this.zt() && (o.te() || o.ee() && "auto" == Q.fireMode) && 0 === this.U.action.type && !l) {
-                        var J = this.U.inventory[Q.ammo]
-                          , $ = Z.ammo;
-                        0 === J && 0 === $ && (i.playSound(Q.sound.empty),
+                if (w && !g) {
+                    var Z = this.q.curWeapIdx
+                      , J = this.q.weapons[Z]
+                      , Q = c.items[J.name];
+                    if (!this.playedDryFire && "gun" == this.kt() && (o.isBindPressed(u.Fire) || o.isBindDown(u.Fire) && "auto" == Q.fireMode) && 0 === this.q.action.type && !l) {
+                        var $ = this.q.inventory[Q.ammo]
+                          , ee = J.ammo;
+                        0 === $ && 0 === ee && (i.playSound(Q.sound.empty),
                         this.playedDryFire = !0)
                     }
-                    o.te() || o.ee() || (this.playedDryFire = !1)
+                    o.isBindDown(u.Fire) || (this.playedDryFire = !1)
                 }
-                var ee = this.N.actionType;
-                if (!x && this.curAction.type != ee) {
+                var te = this.N.actionType;
+                if (!w && this.curAction.type != te) {
                     i.stopSound(this.actionSoundInstance);
-                    var te = null;
-                    switch (ee) {
+                    var ae = null;
+                    switch (te) {
                     case d.Reload:
-                        var ae = this.N.curWeapType;
-                        "" != ae && (te = c.items[ae].sound.reload)
+                        var ie = this.N.curWeapType;
+                        "" != ie && (ae = c.items[ie].sound.reload)
                     }
-                    te && (this.actionSoundInstance = i.playSound(te, {
+                    ae && (this.actionSoundInstance = i.playSound(ae, {
                         channel: "otherPlayers",
                         soundPos: this.pos,
                         fallOff: 2,
                         layer: this.layer,
                         muffled: !0
                     })),
-                    this.curAction.type = ee
+                    this.curAction.type = te
                 }
                 if (this.gunSwitchCooldown -= e,
-                x && (S || this.curWeapIdx != this.U.curWeapIdx)) {
-                    this.curWeapIdx = this.U.curWeapIdx;
-                    var ie = c.items[this.weapType];
-                    if ("melee" == ie.type || "throwable" == ie.type)
-                        ("throwable" != ie.type || this.lastThrowablePickupSfxTicker <= 0) && i.playSound(ie.sound.deploy, {
+                w && (k || this.curWeapIdx != this.q.curWeapIdx)) {
+                    this.curWeapIdx = this.q.curWeapIdx;
+                    var re = c.items[this.weapType];
+                    if ("melee" == re.type || "throwable" == re.type)
+                        ("throwable" != re.type || this.lastThrowablePickupSfxTicker <= 0) && i.playSound(re.sound.deploy, {
                             channel: "sfx",
                             soundPos: this.pos,
                             fallOff: 3
                         });
-                    else if ("gun" == ie.type) {
-                        var re = "gun_switch_01";
-                        this.gunSwitchCooldown > 0 ? re = ie.sound.deploy : this.gunSwitchCooldown = c.player.freeSwitchCooldown,
+                    else if ("gun" == re.type) {
+                        var oe = "gun_switch_01";
+                        this.gunSwitchCooldown > 0 ? oe = re.sound.deploy : this.gunSwitchCooldown = c.player.freeSwitchCooldown,
                         i.stopLocalActionSound(),
-                        i.playSound(re, {
+                        i.playSound(oe, {
                             channel: "activePlayer"
                         })
                     }
                 }
                 this.gunRecoilL = Math.max(0, this.gunRecoilL - this.gunRecoilL * e * 5 - e),
                 this.gunRecoilR = Math.max(0, this.gunRecoilR - this.gunRecoilR * e * 5 - e);
-                var oe = {
+                var ne = {
                     playerBarn: t,
                     map: a,
                     audioManager: i,
                     particleBarn: r
                 };
-                this.updateAnim(e, oe),
+                this.updateAnim(e, ne),
                 this.currentAnim() == p.None && (this.throwableState = "equip"),
-                this.currentAnim() != p.Cook && this.currentAnim() != p.Throw || "throwable" == f.type || this.playAnim(p.None, 0);
-                for (var ne = this.selectIdlePose(), se = b.IdlePoses[ne], le = 0; le < this.bones.length; le++) {
-                    var me = le
-                      , ce = se[me] || k.identity
-                      , de = this.anim.bones[me];
-                    de.weight > 0 ? this.bones[le].copy(k.lerp(de.weight, ce, de.pose)) : this.bones[le].copy(ce)
+                this.currentAnim() != p.Cook && this.currentAnim() != p.Throw || "throwable" == x.type || this.playAnim(p.None, 0);
+                for (var se = this.selectIdlePose(), le = _.IdlePoses[se], me = 0; me < this.bones.length; me++) {
+                    var ce = me
+                      , de = le[ce] || z.identity
+                      , pe = this.anim.bones[ce];
+                    pe.weight > 0 ? this.bones[me].copy(z.lerp(pe.weight, de, pe.pose)) : this.bones[me].copy(de)
                 }
-                (this.visualsDirty || this.throwableStatePrev != this.throwableState) && this.Tt(),
+                (this.visualsDirty || this.throwableStatePrev != this.throwableState) && this.Mt(),
                 this.visualsDirty = !1,
                 this.throwableStatePrev = this.throwableState,
-                this.Pt();
-                for (var pe = this.layer, ue = w.createCircle(this.pos, c.player.maxVisualRadius), he = !1, ge = !1, ye = !1, fe = a.ot.m(), xe = 0; xe < fe.length; xe++) {
-                    var we = fe[xe];
-                    if (we.active) {
-                        for (var be = 0; be < we.stairs.length; be++) {
-                            var _e = we.stairs[be]
-                              , ve = w.intersect(_e.collision, ue);
-                            if (ve) {
-                                ge = !0;
-                                var Se = y.add(_e.center, y.mul(_e.downDir, -3))
-                                  , ke = y.sub(Se, this.pos)
-                                  , ze = y.length(ke);
-                                ke = ze > 1e-4 ? y.div(ke, ze) : y.create(1, 0),
-                                ye = _.intersectSegment(a.Y.m(), this.pos, ke, ze, .5, this.layer, !1) < ze
+                this.Tt();
+                for (var ue = this.layer, he = b.createCircle(this.pos, c.player.maxVisualRadius), ge = !1, ye = !1, fe = !1, xe = a.rt.m(), we = 0; we < xe.length; we++) {
+                    var be = xe[we];
+                    if (be.active) {
+                        for (var _e = 0; _e < be.stairs.length; _e++) {
+                            var ve = be.stairs[_e]
+                              , Se = b.intersect(ve.collision, he);
+                            if (Se) {
+                                ye = !0;
+                                var ke = f.add(ve.center, f.mul(ve.downDir, -3))
+                                  , ze = f.sub(ke, this.pos)
+                                  , Me = f.length(ze);
+                                ze = Me > 1e-4 ? f.div(ze, Me) : f.create(1, 0),
+                                fe = v.intersectSegment(a.K.m(), this.pos, ze, Me, .5, this.layer, !1) < Me
                             }
-                            x && _e.noCeilingReveal && ve && 0 != this.layer && (this.noCeilingRevealTicker = .25)
+                            w && ve.noCeilingReveal && Se && 0 != this.layer && (this.noCeilingRevealTicker = .25)
                         }
-                        for (var Me = 0; Me < we.mask.length; Me++)
-                            if (w.intersect(we.mask[Me], ue)) {
-                                he = !0;
+                        for (var Te = 0; Te < be.mask.length; Te++)
+                            if (b.intersect(be.mask[Te], he)) {
+                                ge = !0;
                                 break
                             }
                     }
                 }
-                var Te = 18;
-                ge && (1 & pe && (1 & v.layer || !ye) || 2 & v.layer && !he) && (pe |= 2),
-                (1 & pe) != (1 & v.layer) || !ge || he && 0 != v.layer || (pe |= 2,
-                Te += 100);
-                var Pe = this.__id + (this.N.downed ? 0 : 131072) + (x ? 65536 : 0);
-                n.addPIXIObj(this.container, pe, Te, Pe),
+                var Pe = 18;
+                ye && (1 & ue && (1 & S.layer || !fe) || 2 & S.layer && !ge) && (ue |= 2),
+                (1 & ue) != (1 & S.layer) || !ye || ge && 0 != S.layer || (ue |= 2,
+                Pe += 100);
+                var Ce = this.__id + (this.N.downed ? 0 : 131072) + (w ? 65536 : 0);
+                n.addPIXIObj(this.container, ue, Pe, Ce),
                 this.isNew = !1
             },
-            ht: function(e) {
+            ut: function(e) {
                 var t = e.pointToScreen(this.pos)
                   , a = e.pixels(1);
                 this.container.position.set(t.x, t.y),
                 this.container.scale.set(a, a),
                 this.container.visible = !this.N.dead
             },
-            Tt: function() {
+            Mt: function() {
                 var e = c.items[this.N.skin]
                   , t = e.skinImg;
                 this.bodySprite.texture = m.Texture.fromImage(t.baseSprite),
@@ -28078,10 +28300,10 @@ webpackJsonp([0], {
                     this.helmetSprite.tint = o.tint,
                     this.helmetSprite.visible = !0
                 }
-                if (this.kt() > 0 && !e.camo && !this.downed) {
+                if (this.St() > 0 && !e.camo && !this.downed) {
                     var s = (c.items[this.N.backpack],
                     [10.25, 11.5, 12.75])
-                      , l = this.kt()
+                      , l = this.St()
                       , d = s[Math.min(l - 1, s.length - 1)]
                       , u = .5 * (.4 + .03 * l);
                     this.backpackSprite.texture = m.Texture.fromImage("player-circle-base-01.img"),
@@ -28166,16 +28388,16 @@ webpackJsonp([0], {
                         this.bodyContainer.addChild(this.handLContainer),
                         this.bodyContainer.addChild(this.handRContainer)
             },
-            Pt: function() {
+            Tt: function() {
                 var e = function(e, t) {
                     e.position.set(t.pos.x, t.pos.y),
                     e.pivot.set(-t.pivot.x, -t.pivot.y),
                     e.rotation = t.rot
                 };
-                e(this.handLContainer, this.bones[z.HandL]),
-                e(this.handRContainer, this.bones[z.HandR]),
-                e(this.footLContainer, this.bones[z.FootL]),
-                e(this.footRContainer, this.bones[z.FootR]);
+                e(this.handLContainer, this.bones[M.HandL]),
+                e(this.handRContainer, this.bones[M.HandR]),
+                e(this.footLContainer, this.bones[M.FootL]),
+                e(this.footRContainer, this.bones[M.FootR]);
                 var t = c.items[this.N.curWeapType];
                 !this.downed && this.currentAnim() != p.Revive && "gun" == t.type && t.worldImg.leftHandOffset && (this.handLContainer.position.x += t.worldImg.leftHandOffset),
                 this.handLContainer.position.x -= 1.125 * this.gunRecoilL,
@@ -28186,7 +28408,7 @@ webpackJsonp([0], {
                 var e = c.items[this.N.curWeapType]
                   , t = "fists";
                 return t = this.downed ? "downed" : e.anim && e.anim.idlePose ? e.anim.idlePose : "gun" == e.type ? e.pistol ? e.isDual ? "dualPistol" : "pistol" : "rifle" : "throwable" == e.type ? "throwable" : "fists",
-                b.IdlePoses[t] ? t : "fists"
+                _.IdlePoses[t] ? t : "fists"
             },
             selectAnim: function(e) {
                 var t = function(e, t) {
@@ -28239,7 +28461,7 @@ webpackJsonp([0], {
                 this.currentAnim() != p.None) {
                     var a = this.anim.ticker;
                     this.anim.ticker += 1 * e;
-                    for (var i = b.Animations[this.anim.data.name], r = i.keyframes, o = this.anim.ticker, n = -1, s = 0; o >= r[s].time && s < r.length - 1; )
+                    for (var i = _.Animations[this.anim.data.name], r = i.keyframes, o = this.anim.ticker, n = -1, s = 0; o >= r[s].time && s < r.length - 1; )
                         o -= r[s].time,
                         n++,
                         s++;
@@ -28249,17 +28471,17 @@ webpackJsonp([0], {
                           , g = u;
                         d && (g = u % 2 == 0 ? u + 1 : u - 1),
                         void 0 !== m[g] && void 0 !== c[g] && (h.weight = n == s ? l : 1,
-                        h.pose.copy(k.lerp(l, m[g], c[g])),
+                        h.pose.copy(z.lerp(l, m[g], c[g])),
                         d && (h.pose.pos.y *= -1,
                         h.pose.pivot.y *= -1,
                         h.pose.rot *= -1))
                     }
-                    var y = s == r.length - 1 && f.eqAbs(l, 1)
-                      , x = this.anim.ticker;
-                    y && (x += 1);
+                    var y = s == r.length - 1 && x.eqAbs(l, 1)
+                      , f = this.anim.ticker;
+                    y && (f += 1);
                     for (var w = 0; w < i.effects.length; w++) {
-                        var _ = i.effects[w];
-                        _.time >= a && _.time < x && this[_.fn].apply(this, [t, _.args])
+                        var b = i.effects[w];
+                        b.time >= a && b.time < f && this[b.fn].apply(this, [t, b.args])
                     }
                     y && this.playAnim(p.None, this.anim.seq)
                 }
@@ -28279,46 +28501,46 @@ webpackJsonp([0], {
                 this.throwableState = t.state
             },
             animThrowableParticles: function(e, t) {
-                var a = y.rotate(y.create(.75, .75), Math.atan2(this.dir.y, this.dir.x));
-                e.particleBarn.addParticle("fragPin", this.layer, y.add(this.pos, a), y.mul(y.rotate(this.dir, .5 * Math.PI), 4.5));
-                var i = y.rotate(y.create(.75, -.75), Math.atan2(this.dir.y, this.dir.x));
-                e.particleBarn.addParticle("fragLever", this.layer, y.add(this.pos, i), y.mul(y.rotate(this.dir, .25 * -Math.PI), 3.5))
+                var a = f.rotate(f.create(.75, .75), Math.atan2(this.dir.y, this.dir.x));
+                e.particleBarn.addParticle("fragPin", this.layer, f.add(this.pos, a), f.mul(f.rotate(this.dir, .5 * Math.PI), 4.5));
+                var i = f.rotate(f.create(.75, -.75), Math.atan2(this.dir.y, this.dir.x));
+                e.particleBarn.addParticle("fragLever", this.layer, f.add(this.pos, i), f.mul(f.rotate(this.dir, .25 * -Math.PI), 3.5))
             },
             animMeleeCollision: function(e, t) {
                 var a = c.items[this.N.curWeapType];
                 if (a && "melee" == a.type && a.attackOffset) {
-                    for (var i = Math.atan2(this.dir.y, this.dir.x), r = y.add(this.pos, y.rotate(a.attackOffset, i)), o = a.attackRad, n = [], s = null, l = null, m = 0, d = e.map.Y.m(), p = 0; p < d.length; p++) {
-                        var h = d[p];
-                        if (!(!h.active || h.dead || h.height < c.player.meleeHeight) && g.sameLayer(h.layer, 1 & this.layer)) {
-                            var b = w.intersectCircle(h.collider, r, o);
-                            b && b.pen > m && (s = h,
-                            l = b,
-                            m = b.pen)
+                    for (var i = Math.atan2(this.dir.y, this.dir.x), r = f.add(this.pos, f.rotate(a.attackOffset, i)), o = a.attackRad, n = [], s = null, l = null, m = 0, d = e.map.K.m(), p = 0; p < d.length; p++) {
+                        var u = d[p];
+                        if (!(!u.active || u.dead || u.height < c.player.meleeHeight) && y.sameLayer(u.layer, 1 & this.layer)) {
+                            var g = b.intersectCircle(u.collider, r, o);
+                            g && g.pen > m && (s = u,
+                            l = g,
+                            m = g.pen)
                         }
                     }
                     if (s) {
-                        var v = u.Defs[s.type]
-                          , S = y.add(r, y.mul(y.neg(l.dir), o - l.pen))
-                          , k = y.mul(l.dir, 7.5);
-                        k = y.rotate(k, (Math.random() - .5) * Math.PI / 3),
+                        var _ = h.Defs[s.type]
+                          , S = f.add(r, f.mul(f.neg(l.dir), o - l.pen))
+                          , k = f.mul(l.dir, 7.5);
+                        k = f.rotate(k, (Math.random() - .5) * Math.PI / 3),
                         n.push({
                             pos: S,
                             vel: k,
-                            particle: v.hitParticle,
-                            sound: v.sound.punch,
+                            particle: _.hitParticle,
+                            sound: _.sound.punch,
                             soundFn: "playGroup"
                         })
                     }
-                    for (var z = e.playerBarn.tt.m(), M = 0; M < z.length; M++) {
+                    for (var z = e.playerBarn.et.m(), M = 0; M < z.length; M++) {
                         var T = z[M];
-                        if (T.active && T.__id != this.__id && !T.N.dead && g.sameLayer(T.layer, this.layer)) {
-                            var P = y.normalizeSafe(y.sub(T.pos, this.pos), y.create(1, 0))
-                              , C = o + y.length(a.attackOffset);
-                            if (x.testCircleCircle(r, o, T.pos, c.player.radius) && f.eqAbs(C, _.intersectSegment(e.map.Y.m(), this.pos, P, C, c.player.meleeHeight, this.layer, !1))) {
-                                var A = y.rotate(P, (Math.random() - .5) * Math.PI / 3);
+                        if (T.active && T.__id != this.__id && !T.N.dead && y.sameLayer(T.layer, this.layer)) {
+                            var P = f.normalizeSafe(f.sub(T.pos, this.pos), f.create(1, 0))
+                              , C = o + f.length(a.attackOffset);
+                            if (w.testCircleCircle(r, o, T.pos, c.player.radius) && x.eqAbs(C, v.intersectSegment(e.map.K.m(), this.pos, P, C, c.player.meleeHeight, this.layer, !1))) {
+                                var I = f.rotate(P, (Math.random() - .5) * Math.PI / 3);
                                 n.push({
                                     pos: T.pos,
-                                    vel: A,
+                                    vel: I,
                                     particle: "bloodSplat",
                                     sound: a.sound.playerHit,
                                     soundFn: "playSound"
@@ -28327,8 +28549,8 @@ webpackJsonp([0], {
                             }
                         }
                     }
-                    for (var I = 0; I < n.length; I++) {
-                        var D = n[I];
+                    for (var A = 0; A < n.length; A++) {
+                        var D = n[A];
                         e.particleBarn.addParticle(D.particle, this.layer, D.pos, D.vel),
                         e.audioManager[D.soundFn](D.sound, {
                             channel: "hits",
@@ -28362,8 +28584,8 @@ webpackJsonp([0], {
             },
             updateSubmersion: function(e, t, a) {
                 var i = 0;
-                t && (i = f.remap(a.distanceToShore(this.pos), 0, 16, .6, 1)),
-                this.submersion = f.lerp(4 * e, this.submersion, i);
+                t && (i = x.remap(a.distanceToShore(this.pos), 0, 16, .6, 1)),
+                this.submersion = x.lerp(4 * e, this.submersion, i);
                 var r = .8 * this.submersion
                   , o = 2 * (.9 - .4 * this.submersion);
                 this.bodySubmergeSprite.scale.set(o, o),
@@ -28381,16 +28603,16 @@ webpackJsonp([0], {
         },
         s.prototype = {
             l: function(e, t, a, i, r, o, n, s, l, m, d) {
-                for (var p = this.tt.m(), u = 0; u < p.length; u++) {
-                    var g = p[u];
-                    g.active && g.l(e, this, o, s, i, n, a, t, l, m, d)
+                for (var p = this.et.m(), u = 0; u < p.length; u++) {
+                    var h = p[u];
+                    h.active && h.l(e, this, o, s, i, n, a, t, l, m, d)
                 }
-                for (var f = this.H(t).teamId, x = this.getTeamInfo(f), w = 0; w < x.playerIds.length; w++) {
+                for (var y = this.U(t).teamId, x = this.getTeamInfo(y), w = 0; w < x.playerIds.length; w++) {
                     var b = x.playerIds[w]
-                      , _ = this.se(b);
+                      , _ = this.oe(b);
                     _ && b == t && this.setTeammateData(b, {
-                        pos: y.copy(_.N.pos),
-                        health: _.U.health,
+                        pos: f.copy(_.N.pos),
+                        health: _.q.health,
                         disconnected: !1,
                         dead: _.N.dead,
                         downed: _.N.downed
@@ -28399,42 +28621,42 @@ webpackJsonp([0], {
                     if (v)
                         if (_) {
                             var S = this.teammateData[b];
-                            S.pos = y.copy(_.N.pos),
-                            S.posTarget = y.copy(_.N.pos)
+                            S.pos = f.copy(_.N.pos),
+                            S.posTarget = f.copy(_.N.pos)
                         } else if (v) {
                             var k = (c.player.moveSpeed,
-                            y.sub(v.posTarget, v.pos))
-                              , z = y.length(k)
-                              , M = z > 1e-4 ? y.div(k, z) : y.create(1, 0)
-                              , T = Math.min(z, v.posDelta * e / h.kTeamUpdateRate);
-                            v.pos = y.add(v.pos, y.mul(M, T))
+                            f.sub(v.posTarget, v.pos))
+                              , z = f.length(k)
+                              , M = z > 1e-4 ? f.div(k, z) : f.create(1, 0)
+                              , T = Math.min(z, v.posDelta * e / g.kTeamUpdateRate);
+                            v.pos = f.add(v.pos, f.mul(M, T))
                         }
                 }
             },
             render: function(e) {
-                for (var t = this.tt.m(), a = 0; a < t.length; a++) {
+                for (var t = this.et.m(), a = 0; a < t.length; a++) {
                     var i = t[a];
-                    i.active && i.ht(e)
+                    i.active && i.ut(e)
                 }
             },
-            se: function(e) {
-                for (var t = this.tt.m(), a = 0; a < t.length; a++) {
+            oe: function(e) {
+                for (var t = this.et.m(), a = 0; a < t.length; a++) {
                     var i = t[a];
                     if (i.active && i.__id === e)
                         return i
                 }
                 return null
             },
-            xt: function(e) {
-                this.St[e.id] = {
+            ft: function(e) {
+                this.vt[e.id] = {
                     playerId: e.id,
                     teamId: e.teamId,
                     name: e.name,
                     anonName: "Player" + (e.id - 2750)
                 }
             },
-            H: function(e) {
-                return this.St[e] || {
+            U: function(e) {
+                return this.vt[e] || {
                     name: "unknown",
                     teamId: 0
                 }
@@ -28447,11 +28669,11 @@ webpackJsonp([0], {
             },
             setTeammateData: function(e, t) {
                 var a = this.teammateData[e]
-                  , i = a ? a.pos : y.copy(t.pos)
+                  , i = a ? a.pos : f.copy(t.pos)
                   , r = a || {};
                 r.pos = i,
-                r.posTarget = y.copy(t.pos),
-                r.posDelta = y.length(y.sub(t.pos, i)),
+                r.posTarget = f.copy(t.pos),
+                r.posDelta = f.length(f.sub(t.pos, i)),
                 r.health = t.health,
                 r.disconnected = t.disconnected,
                 r.dead = t.dead,
@@ -28463,7 +28685,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            Ce: s
+            Pe: s
         }
     },
     a5bf0544: function(e, t, a) {
@@ -28603,9 +28825,12 @@ webpackJsonp([0], {
             "game-reloading": "Recargando",
             "game-using": "Usando",
             "game-reviving": "Reviviendo",
-            "game-revive-teammate": "Revive Teammate",
+            "game-revive-teammate": "Revivir miembro",
             "game-equip": "Equipar",
             "game-cancel": "Cancelar",
+            "game-open-door": "Abrir la puerta",
+            "game-close-door": "Cerrar la puerta",
+            "game-unlock": "Desbloquear",
             "game-You": "Tu",
             "game-you": "tu",
             "game-themselves": "a si mismo",
@@ -29566,7 +29791,7 @@ webpackJsonp([0], {
     },
     b4f03d8a: function(e, t, a) {
         t = e.exports = a("95cc1214")(!1),
-        t.push([e.i, 'img{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none}#cvs{-webkit-filter:none;filter:none}.click-through{pointer-events:none}#game-area-wrapper{cursor:crosshair;left:0;position:absolute!important;top:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}#ui-game{-webkit-filter:none;filter:none;height:100%;left:0;position:absolute;top:0;width:100%}#ui-center{color:#fff;pointer-events:all;position:absolute;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%) scale(1);transform:translateX(-50%) translateY(-50%) scale(1);z-index:10}@media (max-width:1200px),screen and (min-width:851px) and (max-height:768px){#ui-center{-webkit-transform:translateX(-50%) translateY(-50%) scale(.85);transform:translateX(-50%) translateY(-50%) scale(.85)}}@media screen and (max-width:850px){#ui-center{pointer-events:all;-webkit-transform:translateX(-50%) translateY(-50%) scale(.85);transform:translateX(-50%) translateY(-50%) scale(.85);z-index:10}}@media (max-width:850px) and (max-height:300px){#ui-center{-webkit-transform:translateX(-50%) translateY(-50%) scale(.775);transform:translateX(-50%) translateY(-50%) scale(.775)}}.btns-game-double-row{display:flex;position:relative}.btns-game-double-row>.btn-game-container{position:relative;width:100%}.btns-game-double-row>.btn-game-container>.btn-double-row{display:inline-block}.btns-game-double-row>div:not(:last-child){margin-right:2px}.game-menu-icon{background-size:22px;background-position:50%;background-repeat:no-repeat;bottom:13px;display:inline-block;height:22px;left:60%;pointer-events:none;position:absolute;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:22px}.btn-game-touch-style{background-color:#50afab;background-position:4px 4px;background-repeat:no-repeat;background-size:20px;border:0;border-bottom:none;border-radius:5px;box-shadow:inset 0 -2px #387c79;box-sizing:border-box;color:#fff;cursor:pointer;display:block;font-size:14px;height:30px;line-height:30px;margin:auto;margin-top:2px;margin-bottom:4px;position:relative;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.25);width:100%}.movement-icon{background-image:url(../img/gui/movement.svg)}.target-icon{background-image:url(../img/gui/target.svg)}#ui-game-menu{background-color:rgba(0,0,0,.5);border-radius:5px;box-sizing:border-box;display:none;margin:10px auto;padding:10px 15px;width:250px}@media screen and (max-width:850px){#ui-game-menu{padding:4px 10px;width:190px}}@media (max-width:850px) and (max-height:300px){#ui-game-menu{margin-top:0}}#ui-game-menu p{bottom:4px;display:inline-block;font-size:14px;position:relative}@media screen and (max-width:850px){#ui-game-menu p{bottom:0;font-size:12px;margin-bottom:8px;margin-top:6px}}#ui-alive-info{position:absolute;color:#fff;width:80px;height:36px;top:174px;left:106px;background:rgba(0,0,0,.4);border-radius:5px}#ui-map-expand-mobile{height:190px;width:190px;left:-4px;top:-22px;z-index:0;background-color:transparent}#ui-map-expand img{display:none}#ui-map-minimize{left:124px}.ui-map-wrapper-mobile{bottom:auto;color:#fff;display:block;font-size:16px;left:6px;top:46px}.ui-map-wrapper-mobile .ui-players-alive{left:4px}.ui-map-wrapper-mobile .ui-map-counter{position:relative;display:inline-block;font-size:24px;text-align:center;bottom:9px;left:2px}.ui-map-wrapper-mobile .ui-map-icon{padding:6px;display:inline-block;height:24px;width:24px;margin-left:2px;background-size:24px;background-repeat:no-repeat;background-position:6px 6px}.ui-map-wrapper-mobile #ui-map-info{position:absolute;color:#fff;width:100px;height:36px;top:174px;left:0;background:rgba(0,0,0,.4);border-radius:5px}.ui-map-wrapper-mobile #ui-spec-counter{position:absolute;color:#fff;width:68px;height:28px;top:135px;left:60px;background:rgba(0,0,0,.4);border-radius:5px}.ui-map-wrapper-mobile #ui-spec-counter-icon{padding:6px;display:inline-block;height:24px;width:18px;margin-left:2px;background-size:20px;background-repeat:no-repeat;background-position:6px 4px;background-image:url(../img/gui/eye.svg)}.ui-map-wrapper-mobile #ui-spec-counter-number{position:relative;display:inline-block;font-size:20px;width:24px;text-align:center;bottom:15px;left:0}.ui-map-wrapper-mobile .gas-icon{background-image:url(../img/gui/gas.svg)}.ui-map-wrapper-mobile .danger-icon{background-image:url(../img/gui/danger.svg)}.ui-map-wrapper-mobile .alive-icon{background-image:url(../img/gui/player-gui.svg)}.ui-map-wrapper-mobile .icon-pulse{-webkit-animation:pulse 2s linear infinite;animation:pulse 2s linear infinite}.ui-map-wrapper-mobile .ui-settings-button{position:absolute;color:#fff;border-radius:5px;pointer-events:all}.ui-map-wrapper-mobile .ui-settings-button img{position:absolute;left:6px;top:6px;height:36px;width:36px;background-size:36px;background-repeat:no-repeat;transform:scale(1);-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-map-wrapper-mobile .ui-settings-button .map-img-after{display:none}.ui-map-wrapper-mobile .ui-settings-button:hover{-webkit-transform:scale(1);transform:scale(1)}.ui-map-wrapper-desktop{position:absolute;bottom:12px;left:12px}#ui-map-wrapper{position:absolute;z-index:1}#ui-settings-container-mobile{position:relative}#ui-menu-display{cursor:pointer;left:2px;top:-18px;height:48px;width:48px;opacity:.8;background-color:rgba(0,0,0,.4);background-size:48px;background-repeat:no-repeat;background-position:50%;background-image:url(../img/gui/cog.svg);z-index:1}#big-map{display:none;height:100%;width:100%}#big-map-collision{height:100%;left:50%;margin:auto;pointer-events:all;position:fixed;top:0;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#big-map-close{display:none;position:absolute;margin-left:auto;height:64px;width:64px;right:6px;top:6px;border-radius:6px;background-color:rgba(0,0,0,.5);background-repeat:no-repeat;background-size:48px;background-position:50%;background-image:url(../img/gui/close.svg);pointer-events:all}#ui-right-center{position:absolute;color:#fff;opacity:.75;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-right-center-desktop{top:40%;-webkit-transform:translateY(-50%);transform:translateY(-50%);right:12px}.ui-right-center-mobile{top:30px;-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:translateY(-50%) scale(.8);transform:translateY(-50%) scale(.8);right:6px}@media (max-height:360px),(max-width:640px){.ui-right-center-mobile{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.85);transform:scale(.85);top:16px}}.ui-right-center-tablet{top:12px!important;-webkit-transform:scale(.8);transform:scale(.8)}@media (max-height:600px){.ui-right-center-tablet{-webkit-transform:scale(.55);transform:scale(.55)}}.ui-bottom-right-tablet{bottom:25%!important;-webkit-transform:scale(.8)!important;transform:scale(.8)!important;-webkit-transform-origin:right!important;transform-origin:right!important}@media (max-height:600px){.ui-bottom-right-tablet{bottom:25%!important;-webkit-transform:scale(.7)!important;transform:scale(.7)!important;-webkit-transform-origin:right!important;transform-origin:right!important}}.ui-bottom-center-right-tablet{left:72%!important;-webkit-transform:scale(.65)!important;transform:scale(.65)!important}#ui-emote-button{background:rgba(0,0,0,.4);background-image:url(../img/gui/emote.svg);background-position:50%;background-repeat:no-repeat;background-size:28px;border-radius:21px;display:none;height:42px;position:absolute;right:108px;top:0;width:42px}@media screen and (max-width:850px){#ui-emote-button{background-size:20px;border-radius:14px;height:28px;left:-35px;top:0;width:28px}}.ui-top-left-tablet{left:120px!important}.ui-spectate-options-wrapper-tablet{bottom:12px!important;top:auto!important}.ui-killfeed-wrapper-tablet{top:60px!important}@media (max-width:850px) and (max-height:320px){.ui-slider-container{margin-bottom:0}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>p{width:75px}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>.slider{bottom:3px;width:85px}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>.slider::-webkit-slider-thumb{width:20px;height:20px}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>.slider::-moz-range-thumb{width:20px;height:20px}}.ui-hidden{display:none}.btn-game-menu{text-align:center;line-height:38px;display:block;width:100%;height:40px;border:0;border-radius:5px;box-sizing:border-box;position:relative;margin:auto;margin-top:5px;margin-bottom:5px;color:#fff;font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.25);background-color:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79;background-repeat:no-repeat;cursor:pointer}#btn-game-fullscreen{background-size:34px;background-position:4px 2px;background-image:url(../img/gui/minimize.svg)}#btn-game-sound{background-size:44px;background-position:2px -3px}#btn-game-quit{margin-top:40px;background-image:url(../img/gui/quit.svg)}#btn-game-quit,#btn-game-resume{background-size:44px;background-position:-2px -3px}#btn-game-resume{margin-top:30px;background-image:url(../img/gui/resume.svg)}#ui-top-center{position:absolute;color:#fff;top:80px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-top-center .top-center-text{text-align:center;width:100vw;padding:8px}#ui-waiting-text{display:none;color:#fff;text-shadow:2px 2px 0 #000}#ui-waiting-text,#ui-waiting-text span{font-size:32px;font-weight:700}.top-center-text .spectate-text{display:inline-block;text-shadow:2px 2px 0 #000;font-size:24px;font-weight:700;overflow:hidden;height:32px}@media (max-width:1024px){.top-center-text .spectate-text{font-size:18px}}.top-center-text .spectate-desc{color:#fff;margin-right:8px}.ui-spectate-mode{display:none}#ui-spectate-text{position:relative}#spectate-player{max-width:250px;white-space:nowrap;text-overflow:ellipsis;color:cyan}#ui-top-center-scopes-wrapper{position:absolute;color:#fff;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:100%}#ui-top-center-scopes{margin-top:12px;text-align:center}@media (max-height:768px),(max-width:1200px){#ui-top-center-scopes{-webkit-transform:scale(.85);transform:scale(.85)}}.ui-zoom{background:rgba(0,0,0,.3);border-radius:36px;width:64px;height:64px;opacity:.6;display:inline-block}.ui-zoom-hover:hover{opacity:1}.ui-zoom-active{vertical-align:baseline;opacity:1;transform:scale(1);-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-zoom .ui-zoom-image{width:64px;height:64px;opacity:.4;padding:2px}.ui-zoom .ui-zoom-text{margin-top:14px;width:100%}.ui-zoom .ui-zoom-level{font-size:32px;text-align:center;width:100%}.ui-zoom .ui-zoom-append{font-size:24px}.ui-zoom-inactive{display:none;margin-left:-8px;margin-right:-8px;-webkit-transition:all .1s ease-in;-webkit-transform:scale(.5);-ms-transition:all .1s ease-in;-ms-transform:scale(.5);-moz-transition:all .1s ease-in;-moz-transform:scale(.5);transition:all .1s ease-in;transform:scale(.5)}.ui-zoom-inactive:hover{cursor:pointer!important;opacity:1}.ui-emote-wheel{z-index:3;display:none;position:fixed}.ui-emote-parent{opacity:.75}.ui-emote-hl{z-index:2;display:none}.ui-emote{position:fixed;width:256px;height:256px;background-size:256px;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-bg-circle{opacity:.5;background-image:url(../img/gui/ping-part-circle.svg)}.ui-emote-bg-quarter{opacity:.5;background-image:url(../img/gui/ping-part-quarter.svg)}.ui-emote-bg-eighth{opacity:.5;background-image:url(../img/gui/ping-part-eighth.svg)}.ui-emote-middle .ui-emote-image{width:24px!important;height:24px!important;background-size:24px!important;background-image:url(../img/gui/close.svg)}.ui-emote-top .ui-emote-image{margin-top:-78px;background-image:url(../img/gui/ping-team-danger.svg)}.ui-emote-right .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(90deg);transform:translate(-50%,-50%) rotate(90deg)}.ui-emote-right .ui-emote-image{margin-left:78px;background-image:url(../img/gui/ping-team-coming.svg)}.ui-emote-bottom .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(180deg);transform:translate(-50%,-50%) rotate(180deg)}.ui-emote-bottom .ui-emote-image{margin-top:78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(270deg);transform:translate(-50%,-50%) rotate(270deg)}.ui-emote-left .ui-emote-image{margin-left:-78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-top-left .ui-emote-image{margin-left:-80px;margin-top:-30px;background-image:url(../img/loot/loot-ammo-box.svg)}.ui-emote-bottom-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)}.ui-emote-bottom-left .ui-emote-image{margin-left:-80px;margin-top:30px;background-image:url(../img/loot/loot-medical-healthkit.svg)}.ui-emote-circle .ui-emote-hl{background-image:url(../img/gui/ping-part-circle-highlight.svg)}.ui-emote-quarter .ui-emote-hl{background-image:url(../img/gui/ping-part-quarter-highlight.svg)}.ui-emote-eighth .ui-emote-hl{background-image:url(../img/gui/ping-part-eighth-highlight.svg)}.ui-emote-image{z-index:1;position:fixed;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-image-large{width:64px;height:64px;background-size:64px}.ui-emote-image-small{width:35px;height:35px;background-size:35px}.ui-team-indicator{z-index:2;display:none;position:fixed;top:0;left:0;border-radius:32px;width:64px;height:64px;background-size:64px;background-repeat:no-repeat;background-image:url(../img/gui/indicator.svg)}.ui-team-indicator,.ui-team-indicator-pos{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-team-indicator-pos{opacity:.75;position:relative;border-radius:24px;width:32px;height:32px;top:23px;left:32px}.ui-team-indicator-image{width:32px;height:32px;background-size:32px;background-repeat:no-repeat;background-image:url(../img/gui/ping-team-danger.svg)}.ui-indicator-ping-border{z-index:0;display:none;position:fixed;top:0;left:0;width:160px;height:160px;position:relative;background-size:160px;background-repeat:no-repeat;background-image:url(../img/gui/ping-border.svg);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#ui-top-left{position:absolute;color:#fff;font-size:16px;top:12px;left:12px;display:block}@media (max-height:768px),(max-width:1200px){#ui-top-left{-webkit-transform-origin:top left;transform-origin:top left;-webkit-transform:scale(.85);transform:scale(.85)}}.ui-bg-standard{background:rgba(0,0,0,.24);border-radius:5px}.ui-team-member{display:none;position:relative;width:200px;height:32px;padding:4px;margin-bottom:8px}.ui-team-member-name{font-weight:700;text-shadow:1px 1px 0 #000;font-size:16px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-team-member-color{position:absolute;top:5px;right:5px;border-radius:7px;width:14px;height:14px}.ui-background-yellow{background-color:#ff0}.ui-background-blue{background-color:blue}.ui-background-red{background-color:red}.ui-background-purple{background-color:purple}.ui-background-cyan{background-color:cyan}.ui-team-member-status{display:none;position:absolute;top:4px;right:-38px;width:32px;height:32px;background-size:32px;background-repeat:no-repeat}.ui-team-member-status-downed{border-radius:16px;display:block!important;background-image:url(../img/gui/down.svg)!important}.ui-team-member-status-dead{display:block!important;background-image:url(../img/gui/skull-team.svg)!important;opacity:.5!important}.ui-team-member-status-disconnected{display:block!important;background-image:url(../img/gui/close.svg)!important;opacity:.5!important}.ui-team-member-health{margin-top:4px}.ui-team-member-health .ui-bar-inner{background-color:#fff;z-index:1;position:absolute;border-radius:4px;width:200px;height:10px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}.ui-team-member-health .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}.ui-team-member-health .ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}#ui-spectate-options-wrapper{color:#fff;display:block;left:12px;position:absolute;top:12px}@media (max-height:768px),(max-width:1200px){#ui-spectate-options-wrapper{-webkit-transform:scale(.85);transform:scale(.85);-webkit-transform-origin:top left;transform-origin:top left}}#ui-spectate-options{position:relative;pointer-events:all;width:100%}#ui-spectate-buttons{display:inline-block;padding:8px 8px 0;text-align:center;width:192px}#ui-spectate-options a{position:relative;color:#fff;font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.25);background:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79;cursor:pointer}#btn-spectate-prev-player{margin-bottom:24px}#ui-spectate-stats{vertical-align:top;display:none}#ui-spectate-stats-header{text-align:center;font-size:24px;font-weight:700;padding:8px}#ui-spectate-stats-table{width:100%;background-color:transparent;margin:auto;margin-right:0;border-collapse:collapse}#ui-spectate-stats tbody,#ui-spectate-stats td,#ui-spectate-stats th{padding:0 8px 8px 16px;font-size:18px}.ui-spectate-stats-category{width:130px;color:hsla(0,0%,100%,.75)}.ui-spectate-stats-value{width:75px;color:#fff}#ui-leaderboard-wrapper{position:absolute;color:#fff;font-size:16px;top:12px;right:12px;display:flex;font-weight:700;text-align:center;width:85px;display:inline-block}@media (max-height:768px),(max-width:1200px){#ui-leaderboard-wrapper{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.85);transform:scale(.85)}}#ui-leaderboard-alive{background:rgba(0,0,0,.4);border-radius:5px;margin-bottom:8px;padding:8px;height:64px;width:72px}.ui-players-alive{position:relative;font-size:54px}.ui-leaderboard-header{font-size:24px;margin-bottom:8px}#ui-kill-counter-wrapper{display:none;margin-top:32px}#ui-kill-counter{background:rgba(0,0,0,.4);border-radius:5px;margin-bottom:8px;padding:8px;height:64px;width:72px}.ui-player-kills{position:relative;font-size:54px}.ui-kill-counter-header{font-size:24px;margin-bottom:8px}#ui-killfeed-wrapper{position:absolute;color:#fff;font-size:16px;top:12px;right:12px;display:flex}@media (max-width:1200px),screen and (min-width:851px) and (max-height:768px){#ui-killfeed-wrapper{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.85);transform:scale(.85)}}#ui-killfeed{display:inline-block;margin-left:24px;height:100px}#ui-killfeed-contents{width:800px}#ui-killfeed-contents .killfeed-div{position:absolute;right:100px;background-color:rgba(0,0,0,.4);padding:4px 8px;border-radius:2px;height:22px;line-height:24px}.killfeed-div div{float:left;font-size:16px;font-weight:700;color:#efeeee}#ui-killfeed .killfeed-text{max-width:550px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#ui-right-center:hover{opacity:1}#ui-ammo-interactive{width:90px}.ui-ammo{background:rgba(0,0,0,.4);border-radius:5px;display:inline-block;height:52px;margin-bottom:5px;margin-left:3px;margin-right:3px;width:35px}.ui-ammo>.ui-loot-count{position:absolute;font-size:20px;font-weight:700;top:28px;text-align:center;width:100%}.ui-ammo-row{display:flex}.ui-ammo-row>div:not(:last-child){margin-right:10px}.ui-ammo>.ui-loot-image,.ui-ammo>.ui-loot-overlay{bottom:0;height:22px;margin-top:5px;position:absolute;right:6px;top:0;width:22px}#ui-loot-ph1{opacity:0!important}#ui-medical-interactive{margin-bottom:32px}.ui-medical>.ui-loot-image{position:absolute;height:30px;width:30px;background-size:30px;background-repeat:no-repeat;right:5px;margin-top:1px;top:0;bottom:0}.ui-medical:hover{cursor:pointer!important}.ui-loot{background:rgba(0,0,0,.4);border-radius:5px;width:85px;height:32px;margin-left:auto;margin-bottom:5px}.ui-loot:hover{opacity:1!important}.ui-outline-hover{border:2px solid rgba(0,255,0,0)}.ui-outline-hover:hover{-webkit-transition:border .1s ease-out;-moz-transition:border .1s ease-out;-o-transition:border .1s ease-out;border:2px solid #0f0}.ui-scale-hover{transform:scale(1);-webkit-transform:scale(1);-ms-transform:scale(1);-moz-transform:scale(1)}.ui-scale-hover,.ui-scale-hover:hover{-webkit-transition:all .1s ease-in;-ms-transition:all .1s ease-in;-moz-transition:all .1s ease-in;transition:all .1s ease-in}.ui-scale-hover:hover{-webkit-transform:scale(1.1);-ms-transform:scale(1.1);-moz-transform:scale(1.1);transform:scale(1.1)}.ui-loot>.ui-loot-count{position:absolute;font-size:24px;font-weight:700;left:10px;top:2px;text-align:center}@media (max-height:864px),(max-width:1024px){.ui-right-center-desktop{top:42%;-webkit-transform-origin:right;transform-origin:right;-webkit-transform:translateY(-50%) scale(.8);transform:translateY(-50%) scale(.8)}#ui-medical-interactive{margin-bottom:8px}}@media (max-height:640px){.ui-right-center-desktop{top:42%;-webkit-transform-origin:right;transform-origin:right;-webkit-transform:translateY(-50%) scale(.7);transform:translateY(-50%) scale(.7)}#ui-medical-interactive{margin-bottom:8px}}#ui-upper-center{position:absolute;display:flex;color:#fff;top:180px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-announcement{display:none;color:#ff0;text-shadow:2px 2px 0 #000;font-size:32px;font-weight:700;text-align:center;width:100vw}#ui-lower-center{position:absolute;color:#fff;bottom:40%;left:50%}@media (max-width:1200px),screen and (min-width:851px) and (max-height:768px){#ui-lower-center{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:scale(.85);transform:scale(.85);bottom:33%}}#ui-interaction{display:flex}#ui-interaction-press{background:rgba(0,0,0,.4);border-radius:5px;margin-left:-24px;width:48px;height:48px;font-size:42px;font-weight:700;text-align:center;background-size:80%;background-position:50%;background-repeat:no-repeat}#ui-interaction-outer{background:rgba(0,0,0,.4);border-radius:5px;margin-left:10px;padding:0 15px;height:48px}#ui-interaction-outer #ui-interaction-description{margin-top:10px;font-size:24px;text-align:center}#ui-map-container{position:absolute;bottom:52px}#ui-map-info{position:absolute;color:#fff;width:100px;height:36px;bottom:218px;left:82px;background:rgba(0,0,0,.4);border-radius:5px}#ui-gas-icon{padding:6px;display:inline-block;height:24px;width:24px;margin-left:2px;background-size:24px;background-repeat:no-repeat;background-position:6px 6px}.gas-icon{background-image:url(../img/gui/gas.svg)}.danger-icon{background-image:url(../img/gui/danger.svg)}.icon-pulse{-webkit-animation:pulse 2s linear infinite;animation:pulse 2s linear infinite}#ui-gas-timer{position:relative;display:inline-block;font-size:24px;text-align:center;bottom:10px;left:2px}#ui-spec-counter{position:absolute;color:#fff;width:68px;height:28px;bottom:218px;left:6px;background:rgba(0,0,0,.4);border-radius:5px}#ui-spec-counter-icon{padding:6px;display:inline-block;height:24px;width:18px;margin-left:2px;background-size:20px;background-repeat:no-repeat;background-position:6px 4px;background-image:url(../img/gui/eye.svg)}#ui-spec-counter-number{position:relative;display:inline-block;font-size:20px;width:24px;text-align:center;bottom:15px;left:0}#ui-settings-container-desktop{position:relative;left:16px;bottom:12px}#ui-settings-container-desktop div{cursor:pointer}.ui-settings-button{position:absolute;color:#fff;border-radius:5px;height:48px;width:48px;pointer-events:all;opacity:.5;background:rgba(0,0,0,.4)}#ui-map-minimize{left:185px}.ui-settings-button img{position:absolute;left:6px;top:6px;height:36px;width:36px;background-size:36px;background-repeat:no-repeat;transform:scale(1);-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-settings-button .map-img-after{display:none}.ui-settings-button:hover{opacity:1;-webkit-transition:all .1s ease-in;-webkit-transform:scale(1.1);-ms-transition:all .1s ease-in;-ms-transform:scale(1.1);-moz-transition:all .1s ease-in;-moz-transform:scale(1.1);transition:all .1s ease-in;transform:scale(1.1)}#ui-bottom-center-0{position:absolute;color:#fff;bottom:12px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media (max-height:768px),(max-width:1200px){#ui-bottom-center-0{-webkit-transform-origin:bottom;transform-origin:bottom;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85)}}#ui-equipped-ammo-wrapper{position:absolute;color:#fff;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);bottom:62px}#ui-equipped-ammo{margin-bottom:12px;text-align:center;opacity:1}#ui-bullet-counter{display:inline-block;width:175px;height:56px;text-align:center;text-shadow:2px 2px #000}#ui-bullet-counter #ui-current-clip{background:rgba(0,0,0,.4);border-radius:5px;font-size:44px;font-weight:700;width:100px;height:50px;-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;position:relative;text-align:center}#ui-bullet-counter #ui-ammo-divider{font-size:22px;left:53%;position:absolute;text-align:center;top:20px}#ui-bullet-counter #ui-remaining-ammo{background:rgba(0,0,0,.4);border-radius:5px;font-size:24px;font-weight:700;line-height:32px;width:65px;height:32px;left:82%;position:absolute;text-align:center;top:18px}#ui-boost-counter{display:inline-flex;width:412px}#ui-boost-counter .ui-boost-base{background:rgba(0,0,0,.4);height:10px;margin-bottom:8px}#ui-boost-counter-0{border-top-left-radius:3px;border-bottom-left-radius:3px;width:100px;margin-right:3px}#ui-boost-counter-0 .ui-bar-inner{background:#ff901a}#ui-boost-counter-1{width:100px;margin-left:3px;margin-right:3px}#ui-boost-counter-1 .ui-bar-inner{background:#ff751a}#ui-boost-counter-2{width:150px;margin-left:3px;margin-right:3px}#ui-boost-counter-2 .ui-bar-inner{background:#ff6616}#ui-boost-counter-3{border-top-right-radius:3px;border-bottom-right-radius:3px;width:50px;margin-left:3px}#ui-boost-counter-3 .ui-bar-inner{background:#ff5600}.ui-boost-base .ui-bar-inner{border-radius:inherit;width:0;height:10px}#ui-health-counter{background:rgba(0,0,0,.4);border-radius:5px;width:400px;height:32px;padding:6px}#ui-health-counter .ui-bar-inner{z-index:1;position:absolute;border-radius:5px;width:100%;height:32px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}#ui-health-container{width:400px;position:relative}#ui-health-counter .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}#ui-health-counter #ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}.health-bar-pulse{-webkit-animation:pulsewhite 1s linear infinite;animation:pulsewhite 1s linear infinite}@-webkit-keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@-webkit-keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}@keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}#ui-bottom-center-1{z-index:3;position:absolute;color:#fff;bottom:220px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media (max-height:768px),(max-width:1200px){#ui-bottom-center-1{-webkit-transform-origin:bottom;transform-origin:bottom;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85);bottom:138px}}#ui-kills{display:none;text-align:center;background:rgba(0,0,0,.4);color:#fff;border-radius:5px;padding:8px}#ui-kill-text{font-size:18px}#ui-kill-count{font-weight:700;color:#ff4100;font-size:32px;text-shadow:1px 1px 1px rgba(0,0,0,.3)}#ui-bottom-center-2{position:absolute;color:#fff;bottom:160px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-pickup-message{color:#fff;opacity:0;text-shadow:2px 2px 0 #000;font-size:32px;font-weight:700;text-align:center;width:100vw}#ui-bottom-center-right{position:absolute;color:#fff;bottom:12px;left:75%}@media (max-height:768px),(max-width:1200px){#ui-bottom-center-right{-webkit-transform:scale(.8);transform:scale(.8)}}.ui-armor-counter{position:absolute;bottom:0;display:block;width:48px;height:60px;background:rgba(0,0,0,.4);border-radius:5px;margin-left:4px}#ui-armor-helmet{right:4px}#ui-armor-backpack{left:60px;border:2px solid transparent}.ui-armor-level{position:relative;font-size:16px;font-weight:700;bottom:24px;text-align:center;text-shadow:1px 1px #000}.ui-armor-counter-inner{z-index:1;position:absolute;background:rgba(0,255,0,.5);border-radius:5px;width:100%;height:0;bottom:0;transition:height .5s;transition-property:height;transition-duration:.5s;transition-timing-function:ease-out;transition-delay:0s}.ui-armor-counter .ui-armor-count{z-index:2;text-shadow:2px 2px #000;position:relative;font-size:18px;font-weight:700;margin-top:-28px;text-align:center}.ui-armor-counter .ui-armor-image{margin:auto;left:0;right:0;bottom:0;top:0;z-index:0;position:absolute;height:36px;width:36px}#ui-bottom-right{position:absolute;color:#fff;bottom:12px;right:12px}@media (max-height:768px),(max-width:1200px){#ui-bottom-right{-webkit-transform-origin:bottom right;transform-origin:bottom right;-webkit-transform:scale(.7);transform:scale(.7)}}#ui-weapon-container{width:192px}.ui-weapon-info{margin-bottom:5px}.ui-weapon-info,.ui-weapon-switch{border-radius:5px;border:2px solid transparent}.ui-weapon-switch{position:absolute;right:0;opacity:.6;width:160px;height:60px;margin-left:auto;pointer-events:all;cursor:pointer!important}#ui-weapon-id-1{bottom:210px}#ui-weapon-id-2{bottom:140px}#ui-weapon-id-3{bottom:70px}#ui-weapon-id-4{bottom:0}.ui-weapon-name{font-size:18px;margin-top:38px}.ui-weapon-name,.ui-weapon-number{position:absolute;font-weight:700;right:8px;text-align:center}.ui-weapon-number{font-size:24px}.ui-weapon-exp{display:none;position:absolute;height:32px;width:32px;font-size:18px;font-weight:700;line-height:34px;right:78px;margin-top:26px;text-align:center}.ui-weapon-image{display:none;position:relative;height:60px;width:60px;left:4px;background-size:60px;background-repeat:no-repeat}#ui-weapon-id-4 .ui-weapon-image{height:52px;width:52px;left:4px;top:4px;background-size:52px}.ui-weapon-dragged{position:fixed!important;width:160px!important;right:auto!important;bottom:auto!important;pointer-events:none!important}#ui-stats{display:none}#ui-stats-bg{display:none;opacity:0;position:absolute;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.75);pointer-events:none;z-index:2}#ui-stats-contents{position:absolute;width:100%;top:10%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);text-align:center;color:#fff;border-radius:5px;z-index:3}@media (max-height:860px){#ui-stats-contents{top:0}}@media (max-width:1024px){#ui-stats-contents{-webkit-transform:translateX(-50%) scale(.8);transform:translateX(-50%) scale(.8);-webkit-transform-origin:top;transform-origin:top}}@media (max-height:768px){#ui-stats-header{-webkit-transform:scale(.75);transform:scale(.75);-webkit-transform-origin:top;transform-origin:top}}.ui-stats-header-title{font-weight:700;font-size:48px;margin:20px;color:gold}.ui-stats-header-reason{font-size:24px}.ui-stats-header-overview{display:inline;margin:10px}.ui-stats-header-overview div{display:inline;padding-bottom:12px;border-bottom:2px solid hsla(0,0%,100%,.25)}.ui-stats-header-overview div:not(:first-child){margin-left:100px}span.ui-stats-header-stat{font-size:32px}span.ui-stats-header-value{margin-left:24px;font-size:48px;font-weight:700}#ui-stats-info-box{position:relative;left:50%;margin:auto;margin-top:50px;height:190px;display:flex}@media (max-height:768px){#ui-stats-info-box{margin-top:-30px;-webkit-transform:scale(.9);transform:scale(.9);-webkit-transform-origin:left;transform-origin:left}}@media (max-width:1024px){#ui-stats-info-box{-webkit-transform:scale(.85);transform:scale(.85);-webkit-transform-origin:left;transform-origin:left}}.ui-stats-info-player{position:relative;width:250px;background-color:rgba(0,0,0,.75);border-radius:4px;border:2px solid #000;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.ui-stats-info-status:after{content:"";display:block;position:absolute;top:15%;left:25%;background-image:url(../img/gui/skull.svg);background-repeat:no-repeat;background-size:128px;width:100%;height:100%;opacity:.1;z-index:-1}.ui-stats-info-player-name{color:gold;font-size:24px;font-weight:700;font-style:italic;margin:8px auto;max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-stats-info{display:flex;height:36px;margin:auto}.ui-stats-info>div{padding:8px;font-size:18px;line-height:12px;text-align:left;font-weight:700}.ui-stats-info>div:first-child{width:55%;margin-right:4px;text-align:right;font-weight:400}.ui-stats-reason{display:flex;height:72px;margin:auto}.ui-stats-reason div{padding:8px;margin:auto;width:100%;text-align:center;font-size:16px}.ui-stats-reason .ui-stats-reason-dead{color:red}.ui-stats-reason .ui-stats-reason-alive{color:#7cfc00}#ui-stats-options{position:absolute;left:50%;margin-top:20px;min-height:60px;z-index:1}@media (max-height:768px){#ui-stats-options{margin-top:8px;-webkit-transform:scale(.9);transform:scale(.9);-webkit-transform-origin:top;transform-origin:top}}.ui-stats-restart{width:200px;margin:auto;margin-bottom:20px}#ui-stats-spectate,.ui-stats-restart{position:absolute;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-stats-spectate{left:102px;width:125px;background:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79}.ui-stats-ad-container{display:none;margin-top:80px}@media (max-height:768px){.ui-stats-ad-container{margin-top:70px}}#ui-spec-ad-container{z-index:1;position:absolute;top:0;left:50%}.tooltip{position:relative}.tooltip .tooltip-text{visibility:hidden;width:240px;background-color:#000;color:#fff;text-align:center;padding:5px 0;border-radius:6px;position:absolute;z-index:1;right:110%;opacity:.75;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.tooltip .tooltip-text:after{content:" ";position:absolute;top:50%;left:100%;margin-top:-5px;border-width:5px;border-style:solid;border-color:transparent transparent transparent #000}.tooltip-title{font-size:18px;font-weight:700;padding:4px;color:#ff0}.tooltip-description{font-size:16px;padding:4px}.tooltip-description span{font-size:16px}.tooltip:hover .tooltip-text{visibility:visible}#ui-editor-top-center{position:absolute;color:#fff;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-editor-top-right{position:absolute;color:#fff;font-size:16px;top:12px;right:12px}.ui-editor-header{text-align:center;font-weight:700;font-size:16px;padding:8px}.ui-editor-info{background:rgba(0,0,0,.4);border-radius:5px;font-size:36px;margin-bottom:8px;padding:8px}.ui-editor-list{margin:0;padding:0;list-style:none}.ui-editor-list li div{font-family:monospace;font-size:14px}#ui-profiler-top-left{position:absolute;color:#fff;font-size:16px;top:12px;left:12px;text-align:center;display:flex}.ui-profiler-list{background:rgba(0,0,0,.4);border-radius:5px;margin-right:16px;padding:8px}.ui-profiler-list-header{font-size:16px;font-weight:700;margin-bottom:8px}.ui-profiler-list ul{list-style:none;text-align:left;padding:0;margin:0}.ui-profiler-list li{display:flex}.kv{font-family:monospace;font-size:14px;font-weight:400}.kv:last-child{width:100%;text-align:right}#ui-settings-container-mobile{display:none}@media screen and (max-width:850px){*{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-touch-down{display:none;position:fixed;background-color:rgba(0,0,0,.5);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-touch-down-landscape{width:112px;height:112px;border-radius:56px}.ui-touch-down-portrait{width:96px;height:96px;border-radius:48px}.ui-touch-pos{display:none;position:fixed;background-color:rgba(0,0,0,.5);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-touch-pos-landscape{width:64px;height:64px;border-radius:32px}.ui-touch-pos-portrait{width:48px;height:48px;border-radius:24px}.btn-game-menu{position:relative;margin:auto;margin-top:2px;margin-bottom:4px;color:#fff;font-size:14px;text-shadow:0 1px 2px rgba(0,0,0,.25);background-color:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79;background-repeat:no-repeat;cursor:pointer;text-align:center;line-height:30px;display:block;width:100%;height:30px;border:0;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;box-sizing:border-box}#btn-game-fullscreen{background-size:22px;background-position:4px 2px;background-image:url(../img/gui/minimize.svg)}#btn-game-sound{background-size:30px;background-position:3px 0;margin-bottom:8px}#btn-game-quit{background-position:-2px -3px;background-image:url(../img/gui/quit.svg)}#btn-game-quit,#btn-game-resume{margin-top:20px;background-size:34px}#btn-game-resume{background-position:-1px -1px;background-image:url(../img/gui/resume.svg)}#ui-top-center{position:absolute;color:#fff;top:15%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-top-center .top-center-text{text-align:center;width:100vw;padding:4px}#ui-waiting-text{display:none;color:#fff;text-shadow:1px 1px 0 #000}#ui-waiting-text,#ui-waiting-text span{font-size:16px;font-weight:700}.top-center-text .spectate-text{display:inline-block;text-shadow:1px 1px 0 #000;font-size:16px;font-weight:700;overflow:hidden;height:32px}.top-center-text .spectate-desc{color:#fff;margin-right:8px}.ui-spectate-mode{display:none}#ui-spectate-text{position:relative}#spectate-player{max-width:250px;white-space:nowrap;text-overflow:ellipsis;color:cyan}#ui-top-center-scopes{margin-top:6px;text-align:center;color:#fff}.ui-zoom{display:inline-block;margin-left:-12px;margin-right:-12px;-webkit-transform:scale(.6);transform:scale(.6);background:rgba(0,0,0,.3);border-radius:32px;width:42px;height:42px;opacity:.6;pointer-events:all}.ui-zoom-active{vertical-align:baseline;opacity:1;margin-left:0;margin-right:0;-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-zoom .ui-zoom-image{width:48px;height:48px;opacity:.4;padding:2px}.ui-zoom .ui-zoom-text{margin-top:14px;width:100%}.ui-zoom .ui-zoom-level{font-size:24px;line-height:16px;text-align:center;width:100%}.ui-zoom .ui-zoom-append{font-size:24px}.ui-zoom-inactive{display:none;margin-left:-8px;margin-right:-8px;transition:all .1s ease-in;-webkit-transform:scale(.6);transform:scale(.6)}.ui-emote-wheel{z-index:3;display:none;position:fixed}.ui-emote-parent{opacity:1}.ui-emote-hl{z-index:2;display:none}.ui-emote{position:fixed;width:256px;height:256px;background-size:256px;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-bg-circle{opacity:.65;background-image:url(../img/gui/ping-part-circle.svg)}.ui-emote-bg-quarter{opacity:.65;background-image:url(../img/gui/ping-part-quarter.svg)}.ui-emote-bg-eighth{opacity:.65;background-image:url(../img/gui/ping-part-eighth.svg)}.ui-emote-middle .ui-emote-image{width:24px!important;height:24px!important;background-size:24px!important;background-image:none!important}.ui-emote-top .ui-emote-image{margin-top:-78px;background-image:url(../img/gui/ping-team-danger.svg)}.ui-emote-right .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(90deg);transform:translate(-50%,-50%) rotate(90deg)}.ui-emote-right .ui-emote-image{margin-left:78px;background-image:url(../img/gui/ping-team-coming.svg)}.ui-emote-bottom .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(180deg);transform:translate(-50%,-50%) rotate(180deg)}.ui-emote-bottom .ui-emote-image{margin-top:78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(270deg);transform:translate(-50%,-50%) rotate(270deg)}.ui-emote-left .ui-emote-image{margin-left:-78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-top-left .ui-emote-image{margin-left:-80px;margin-top:-30px;background-image:url(../img/loot/loot-ammo-box.svg)}.ui-emote-bottom-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)}.ui-emote-bottom-left .ui-emote-image{margin-left:-80px;margin-top:30px;background-image:url(../img/loot/loot-medical-healthkit.svg)}.ui-emote-circle .ui-emote-hl{background-image:url(../img/gui/ping-part-circle-highlight.svg)}.ui-emote-quarter .ui-emote-hl{background-image:url(../img/gui/ping-part-quarter-highlight.svg)}.ui-emote-eighth .ui-emote-hl{background-image:url(../img/gui/ping-part-eighth-highlight.svg)}.ui-emote-image{z-index:1;position:fixed;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-image-large{width:80px;height:80px;background-size:64px;background-position:50%}.ui-emote-image-small{width:35px;height:35px;background-size:35px}.ui-team-indicator{z-index:2;display:none;position:fixed;top:0;left:0;border-radius:32px;width:64px;height:64px;background-size:64px;background-repeat:no-repeat;background-image:url(../img/gui/indicator.svg)}.ui-team-indicator,.ui-team-indicator-pos{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-team-indicator-pos{opacity:.75;position:relative;border-radius:24px;width:32px;height:32px;top:23px;left:32px}.ui-team-indicator-image{width:32px;height:32px;background-size:32px;background-repeat:no-repeat;background-image:url(../img/gui/ping-team-danger.svg)}.ui-indicator-ping-border{z-index:0;display:none;position:fixed;top:0;left:0;width:160px;height:160px;position:relative;background-size:160px;background-repeat:no-repeat;background-image:url(../img/gui/ping-border.svg);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#ui-top-left{position:absolute;color:#fff;font-size:16px;top:6px;left:6px;display:block}.ui-bg-standard{background:rgba(0,0,0,.24);border-radius:5px}#ui-team{position:fixed;left:128px}.ui-team-member{display:none;position:relative;width:110px;height:20px;padding:4px;margin-bottom:4px}.ui-team-member-name{font-weight:700;text-shadow:1px 1px 0 #000;font-size:10px;max-width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-team-member-color{position:absolute;top:4px;right:4px;border-radius:9px;width:9px;height:9px}.ui-background-yellow{background-color:#ff0}.ui-background-blue{background-color:blue}.ui-background-red{background-color:red}.ui-background-purple{background-color:purple}.ui-background-cyan{background-color:cyan}.ui-team-member-status{display:none;position:absolute;top:2px;right:-24px;width:20px;height:20px;background-size:20px;background-repeat:no-repeat}.ui-team-member-status-downed{border-radius:16px;display:block!important;background-image:url(../img/gui/down.svg)!important}.ui-team-member-status-dead{display:block!important;background-image:url(../img/gui/skull-team.svg)!important;opacity:.5!important}.ui-team-member-status-disconnected{display:block!important;background-image:url(../img/gui/close.svg)!important;opacity:.5!important}.ui-team-member-health{margin-top:2px}.ui-team-member-health .ui-bar-inner{background-color:#fff;z-index:1;position:absolute;border-radius:4px;width:110px;height:5px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}.ui-team-member-health .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}.ui-team-member-health .ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}#ui-spectate-options-wrapper{bottom:6px;position:fixed;left:6px;top:auto!important}#ui-spectate-options{bottom:0;z-index:1;position:absolute;pointer-events:all;width:100%}#ui-spectate-buttons{display:inline-block;width:124px;padding:8px 8px 4px;text-align:center}#ui-spectate-options a{position:relative;color:#fff;height:24px;margin-bottom:2px;line-height:22px;font-size:12px;text-shadow:0 1px 2px rgba(0,0,0,.25);background:#50afab;border-bottom:2px solid #387c79;box-shadow:none;cursor:pointer}#btn-spectate-prev-player,#btn-spectate-view-stats{margin-bottom:12px!important}#ui-spectate-stats{position:absolute;top:0;left:146px;width:160px;display:none}#ui-spectate-stats-header{text-align:center;font-size:16px;font-weight:700;padding:6px;color:#fff}#ui-spectate-stats-table{width:100%;background-color:transparent;margin:auto;margin-right:0;margin-bottom:4px;border-collapse:collapse}#ui-spectate-stats tbody,#ui-spectate-stats td,#ui-spectate-stats th{padding:0 2px 2px 14px;font-size:10px}.ui-spectate-stats-category{width:75px;color:hsla(0,0%,100%,.75)}.ui-spectate-stats-value{width:75px;color:#fff}#ui-top-right{position:absolute;color:#fff;font-size:16px;top:6px;left:6px;display:flex}#ui-leaderboard{font-weight:700;text-align:center;width:56px;display:inline-block}#ui-leaderboard-alive{background:rgba(0,0,0,.4);border-radius:5px;margin-bottom:-16px;padding:8px;height:32px;width:40px}.ui-players-alive-pulse{-webkit-animation-name:pulseAlive;animation-name:pulseAlive;-webkit-animation-duration:2s;animation-duration:2s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0s;animation-delay:0s;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}@-webkit-keyframes pulseAlive{0%{color:#fff}20%{color:red}40%{color:#fff}to{color:#fff}}@keyframes pulseAlive{0%{color:#fff}20%{color:red}40%{color:#fff}to{color:#fff}}.ui-leaderboard-header{font-size:12px}#ui-killfeed-wrapper{top:24px;left:6px;right:auto}#ui-killfeed{position:absolute;margin:initial;top:135px}#ui-killfeed-contents{width:800px}#ui-killfeed-contents .killfeed-div{position:absolute;background-color:rgba(0,0,0,.4);padding:3px;border-radius:2px;height:8px;line-height:8px;right:auto}.killfeed-div div,.killfeed-div span{float:left;font-size:8px;line-height:8px;font-weight:700;color:#efeeee}.killfeed-red div,.killfeed-red span{color:#d1777c!important}.killfeed-blue div,.killfeed-blue span{color:#00bfff!important}#ui-killfeed-contents .killfeed-red{color:#d1777c}#ui-killfeed-contents .killfeed-blue{color:#00bfff}#ui-killfeed .killfeed-name{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#ui-ammo-interactive{position:absolute;right:0;top:25px;width:auto}.ui-ammo>.ui-loot-image,.ui-ammo>.ui-loot-overlay{position:absolute;height:11px;width:11px;right:2px;margin-top:2px}.ui-ammo{background:rgba(0,0,0,.4);border-radius:5px;width:85px;height:32px;margin-left:auto;margin-bottom:5px}.ui-ammo>.ui-loot-count{font-size:24px;left:10px;top:2px}.ui-ammo-row{display:flex}.ui-ammo-row>div:not(:last-child){margin-right:10px}#ui-loot-ph1{opacity:0!important}#ui-ammo-interactive>.ui-ammo{display:inline-block;background:rgba(0,0,0,.4);border-radius:5px;width:38px;height:14px;margin-left:auto;margin-bottom:2px}.ui-ammo>.ui-loot-count{position:absolute;font-size:12px;font-weight:700;width:16px;left:3px;margin-top:-1px;text-align:center}#ui-medical-interactive>.ui-loot{display:inline-block;background:rgba(0,0,0,.4);border-radius:5px;width:44px;height:16px;margin-left:auto;margin-bottom:2px}.ui-medical>.ui-loot-image{position:absolute;height:16px;width:16px;background-size:16px;background-repeat:no-repeat;right:2px;margin-top:0}.ui-medical>.ui-loot-count{position:absolute;font-size:16px;font-weight:700;left:4px;width:16px;margin-top:-3px;text-align:center}.ui-loot{background:rgba(0,0,0,.4);border-radius:5px;width:85px;height:32px;margin-left:auto;margin-bottom:5px}.ui-loot:hover{opacity:1!important}.ui-outline-hover,.ui-outline-hover:hover{border:2px solid rgba(0,255,0,0)}.ui-outline-hover:hover{-webkit-transition:border .1s ease-out;-moz-transition:border .1s ease-out;-o-transition:border .1s ease-out}.ui-scale-hover{transform:scale(1);-webkit-transform:scale(1);-ms-transform:scale(1);-moz-transform:scale(1)}.ui-scale-hover,.ui-scale-hover:hover{-webkit-transition:all .1s ease-in;-ms-transition:all .1s ease-in;-moz-transition:all .1s ease-in;transition:all .1s ease-in}.ui-scale-hover:hover{-webkit-transform:scale(1.1);-ms-transform:scale(1.1);-moz-transform:scale(1.1);transform:scale(1.1)}#ui-debug-button{display:none;background:rgba(0,0,0,.4);position:absolute;border-radius:13px;height:26px;width:26px;background-size:18px;bottom:4px;right:4px;background-position:50%;background-image:url(../img/gui/mag-glass.svg);background-repeat:no-repeat;pointer-events:auto;z-index:1}#ui-upper-center{position:absolute;display:flex;color:#fff;top:84px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-announcement{display:none;color:#ff0;text-shadow:1px 1px 0 #000;font-size:16px;font-weight:700;text-align:center;width:100vw}#ui-lower-center{position:absolute;color:#fff;bottom:44%;left:60%}#ui-interaction{display:flex}#ui-interaction-press{background:rgba(0,0,0,.4);border-radius:5px;margin-left:-20px;font-size:34px;width:44px;height:44px;background-size:36px;background-position:50%;background-repeat:no-repeat}#ui-interaction-outer{background:rgba(0,0,0,.4);border-radius:5px;margin-left:6px;padding:0 6px;height:28px}#ui-interaction-outer #ui-interaction-description{margin-top:5px;font-size:16px;text-align:center}#ui-bottom-center-0{bottom:6px}#ui-bottom-center-0,#ui-equipped-ammo-wrapper{position:absolute;color:#fff;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-equipped-ammo-wrapper{bottom:78px}#ui-equipped-ammo{position:absolute;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);text-align:center;opacity:1}#ui-bullet-counter{display:inline-block;width:175px;height:28px;text-align:center;text-shadow:1px 1px #000}#ui-bullet-counter #ui-current-clip{background:rgba(0,0,0,.4);border-radius:5px;font-size:28px;font-weight:700;line-height:30px;width:60px;height:32px;-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;position:relative;text-align:center}#ui-bullet-counter #ui-ammo-divider{font-size:22px;left:53%;position:absolute;text-align:center;top:20px}#ui-bullet-counter #ui-remaining-ammo{background:rgba(0,0,0,.4);border-radius:5px;font-size:16px;font-weight:700;line-height:22px;width:44px;height:22px;left:122px;position:absolute;text-align:center;top:10px}#ui-bullet-counter #ui-reload-button{background:rgba(0,0,0,.4);position:absolute;border-radius:11px;height:22px;width:22px;background-size:14px;top:10px;left:170px;background-position:4px 3px;background-image:url(../img/gui/bullets.svg);background-repeat:no-repeat}#ui-boost-counter{display:inline-flex;width:206px}#ui-boost-counter .ui-boost-base{background:rgba(0,0,0,.4);height:6px;margin-bottom:0}#ui-boost-counter-0{border-top-left-radius:3px;border-bottom-left-radius:3px;width:50px;margin-right:3px}#ui-boost-counter-0 .ui-bar-inner{background:#ff901a}#ui-boost-counter-1{width:50px;margin-left:3px;margin-right:3px}#ui-boost-counter-1 .ui-bar-inner{background:#ff751a}#ui-boost-counter-2{width:75px;margin-left:3px;margin-right:3px}#ui-boost-counter-2 .ui-bar-inner{background:#ff6616}#ui-boost-counter-3{border-top-right-radius:3px;border-bottom-right-radius:3px;width:25px;margin-left:3px}#ui-boost-counter-3 .ui-bar-inner{background:#ff5600}.ui-boost-base .ui-bar-inner{border-radius:inherit;width:0;height:6px}#ui-health-counter{background:rgba(0,0,0,.4);border-radius:5px;width:200px;height:18px;padding:4px}#ui-health-counter .ui-bar-inner{z-index:1;position:absolute;border-radius:5px;width:100%;height:18px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}#ui-health-container{width:200px;position:relative}#ui-health-counter .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}#ui-health-counter #ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}.health-bar-pulse{-webkit-animation:pulsewhite 1s linear infinite;animation:pulsewhite 1s linear infinite}@-webkit-keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@-webkit-keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}@keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}#ui-bottom-center-1{z-index:3;position:absolute;color:#fff;bottom:23%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-kills{display:none;text-align:center;background:rgba(0,0,0,.4);color:#fff;border-radius:5px;padding:6px}#ui-kill-text{font-size:10px}#ui-kill-count{font-weight:700;color:#ff4100;font-size:18px;margin-bottom:-3px;text-shadow:1px 1px 1px rgba(0,0,0,.3)}#ui-bottom-center-2{position:absolute;color:#fff;bottom:82px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-pickup-message{color:#fff;text-shadow:1px 1px 0 #000;font-size:16px;font-weight:700;text-align:center;width:100vw}#ui-bottom-center-right{position:absolute;color:#fff;bottom:6px;left:75%}.ui-armor-counter{position:absolute;bottom:0;display:block;width:20px;height:24px;background:rgba(0,0,0,.4);border-radius:5px;margin-left:2px}#ui-armor-helmet{right:0}#ui-armor-backpack{left:26px}.ui-armor-level{position:relative;font-size:8px;font-weight:700;bottom:12px;text-align:center;text-shadow:1px 1px #000}.ui-armor-counter-inner{z-index:1;position:absolute;background:rgba(0,255,0,.5);border-radius:5px;width:100%;height:0;bottom:0;transition:height .5s;transition-property:height;transition-duration:.5s;transition-timing-function:ease-out;transition-delay:0s}.ui-armor-counter .ui-armor-count{z-index:2;text-shadow:1px 1px #000;position:relative;font-size:18px;font-weight:700;margin-top:-28px;text-align:center}.ui-armor-counter .ui-armor-image{margin:auto;left:0;right:0;bottom:0;top:0;z-index:0;position:absolute;height:18px;width:18px}#ui-bottom-right{bottom:auto;color:#fff;position:absolute;right:6px;top:55%;-webkit-transform-origin:bottom right;transform-origin:bottom right;-webkit-transform:scale(1);transform:scale(1)}#ui-weapon-container{width:84px}.ui-weapon-info{margin-bottom:5px}.ui-weapon-info,.ui-weapon-switch{border-radius:5px;border:2px solid transparent}.ui-weapon-switch{position:absolute;right:0;opacity:.6;width:68px;height:24px;margin-left:auto;pointer-events:all}#ui-weapon-id-1{bottom:90px}#ui-weapon-id-2{bottom:60px}#ui-weapon-id-3{bottom:30px}#ui-weapon-id-4{bottom:0}.ui-weapon-name{position:absolute;font-size:10px;font-weight:700;right:4px;width:48px;margin-top:12px;text-align:right;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.ui-weapon-number{font-size:24px;right:8px}.ui-weapon-exp,.ui-weapon-number{display:none;position:absolute;font-weight:700;text-align:center}.ui-weapon-exp{height:16px;width:16px;font-size:8px;line-height:18px;right:34px;margin-top:10px}.ui-weapon-image{display:none;position:relative;height:28px;width:28px;left:0;bottom:3px;-webkit-transform:rotate(10deg);transform:rotate(10deg)}#ui-weapon-id-4 .ui-weapon-image{height:24px;width:24px;left:0;top:0;background-size:24px}#ui-stats-contents{position:absolute;width:100%;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);text-align:center;color:#fff;border-radius:5px}#ui-stats-header{margin-top:14px}.ui-stats-header-title{font-weight:700;font-size:24px;margin:6px;color:gold}.ui-stats-header-reason{font-size:12px}.ui-stats-header-overview{position:fixed;top:4px;right:12px;margin:5px}.ui-stats-header-overview div{display:block;padding-bottom:6px;border-bottom:2px solid hsla(0,0%,100%,.25)}.ui-stats-header-overview div:not(:first-child){margin:initial}span.ui-stats-header-stat{font-size:22px}span.ui-stats-header-value{margin-left:12px;font-size:28px;font-weight:700}#ui-stats-info-box{position:relative;left:50%;margin:auto;margin-top:0;height:100px;display:flex}.ui-stats-info-player{position:relative;width:125px;background-color:rgba(0,0,0,.75);border-radius:4px;border:2px solid #000;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.ui-stats-info-status:after{background-image:url(../img/gui/skull.svg);background-position:50%;background-repeat:no-repeat;background-size:70px;content:"";display:block;height:100%;left:auto;opacity:.1;position:absolute;top:0;width:100%;z-index:-1}.ui-stats-info-player-name{color:gold;font-size:12px;font-weight:700;font-style:italic;margin:4px auto;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-stats-info{display:flex;height:18px;margin:auto}.ui-stats-info>div{padding:4px;font-size:9px;line-height:6px;text-align:left;font-weight:700}.ui-stats-info>div:first-child{width:55%;margin-right:4px;text-align:right;font-weight:400}.ui-stats-reason{display:flex;height:72px;margin:auto}.ui-stats-reason div{padding:8px;margin:auto;width:100%;text-align:center;font-size:16px}.ui-stats-reason .ui-stats-reason-dead{color:red}.ui-stats-reason .ui-stats-reason-alive{color:#7cfc00}#ui-stats-options{position:absolute;left:50%;margin-top:10px;min-height:30px;z-index:1}.ui-stats-restart{width:130px;margin:auto;margin-bottom:20px}#ui-stats-spectate,.ui-stats-restart{position:absolute;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-stats-spectate{left:68px;width:88px;background:#50afab;border-bottom:2px solid #387c79;box-shadow:none}.ui-stats-ad-container{display:none;margin-top:8px;-webkit-transform:scale(.7);transform:scale(.7)}#ui-spec-ad-container{z-index:1;position:absolute;top:0;left:50%}#ad-block-stats-bottom{-webkit-transform:scale(.6);transform:scale(.6);-webkit-transform-origin:center;transform-origin:center;position:static}.tooltip{position:relative}.tooltip .tooltip-text{visibility:hidden!important;width:240px;background-color:#000;color:#fff;text-align:center;padding:5px 0;border-radius:6px;position:absolute;z-index:1;right:110%;opacity:.75;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.tooltip .tooltip-text:after{content:" ";position:absolute;top:50%;left:100%;margin-top:-5px;border-width:5px;border-style:solid;border-color:transparent transparent transparent #000}.tooltip-title{font-size:18px;font-weight:700;padding:4px;color:#ff0}.tooltip-description{font-size:16px;padding:4px}.tooltip-description span{font-size:16px}#ui-editor-top-center{position:absolute;color:#fff;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-editor-top-right{position:absolute;color:#fff;font-size:16px;top:6px;right:6px}.ui-editor-header{text-align:center;font-weight:700;font-size:16px;padding:8px}.ui-editor-info{background:rgba(0,0,0,.4);border-radius:5px;font-size:36px;margin-bottom:8px;padding:8px}.ui-editor-list{margin:0;padding:0;list-style:none}.ui-editor-list li div{font-family:monospace;font-size:14px}#ui-profiler-top-left{position:absolute;color:#fff;font-size:16px;top:6px;left:6px;text-align:center;display:flex}.ui-profiler-list{background:rgba(0,0,0,.4);border-radius:5px;margin-right:16px;padding:8px}.ui-profiler-list-header{font-size:16px;font-weight:700;margin-bottom:8px}.ui-profiler-list ul{list-style:none;text-align:left;padding:0;margin:0}.ui-profiler-list li{display:flex}.kv{font-family:monospace;font-size:14px;font-weight:400}.kv:last-child{width:100%;text-align:right}#ui-leaderboard-wrapper,#ui-settings-container-desktop{display:none}#ui-settings-container-mobile{display:block}}@media screen and (max-width:850px) and (max-height:360px),screen and (max-width:850px) and (max-width:640px){#ui-top-center{-webkit-transform-origin:top;transform-origin:top;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85)}}@media screen and (max-width:850px) and screen and (max-width:850px){#ui-lower-center{-webkit-transform:scale(1);transform:scale(1)}}@media screen and (max-width:850px) and (max-height:360px),screen and (max-width:850px) and (max-width:640px){#ui-bottom-center-0{-webkit-transform-origin:bottom;transform-origin:bottom;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85)}}@media screen and (max-width:850px) and (max-height:360px),screen and (max-width:850px) and (max-width:640px){#ui-bottom-right{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.8);transform:scale(.8)}}@media screen and (max-width:850px) and (max-width:850px) and (orientation:landscape){.ui-stats-header-overview .ui-stats-header-left{position:fixed;top:6px;left:12px}.ui-stats-header-overview .ui-stats-header-right{position:fixed;top:6px;right:12px}}@media screen and (max-width:850px) and (max-height:360px) and (max-width:640px){.ui-stats-ad-container{margin-top:0;-webkit-transform:scale(.6);transform:scale(.6)}}@media screen and (max-width:850px) and (max-width:850px) and (max-height:320px){.ui-stats-ad-container{position:fixed;right:10px;top:24px;-webkit-transform:scale(.5);transform:scale(.5);-webkit-transform-origin:bottom right;transform-origin:bottom right}}@media screen and (max-width:850px) and (orientation:portrait){#ui-stats-contents{margin-top:32px;margin-bottom:16px}#ui-stats-header-overview{position:static}#ui-stats-info-box{display:inline-block;left:auto;-webkit-transform:scale(.9);transform:scale(.9);-webkit-transform-origin:initial;transform-origin:initial;margin-top:2px;width:100%}.ui-stats-ad-container{width:100%}.ui-stats-info-player{display:inline-block;left:auto!important;margin:8px;-webkit-transform:none;transform:none}.ui-stats-header-overview{display:inline-block;position:static;width:175px}.ui-stats-header-overview div{position:static;margin-bottom:8px}#ui-top-center{top:134px;left:50%}#ui-top-center-scopes-wrapper{display:none;bottom:42px;top:auto}#ui-team{top:40px}.ui-team-member{height:18px;margin-bottom:4px}#ui-upper-center{top:180px}#ui-bottom-center-0{top:-15px;bottom:auto;left:100px;-webkit-transform:scale(.85);transform:scale(.85)}#ui-bottom-center-1{bottom:28%}#ui-bottom-center-2{bottom:218px}#ui-lower-center{bottom:38%;left:38%}#ui-boost-counter{position:relative;top:40px;left:2px}#ui-bottom-right{bottom:20px;right:6px;top:auto}#ui-weapon-id-1{right:240px;bottom:auto}#ui-weapon-id-2{right:160px;bottom:auto}#ui-weapon-id-3{right:80px;bottom:auto}#ui-weapon-id-4{bottom:auto}.ui-weapon-info{display:inline-block}#ui-bottom-center-right{bottom:9px;left:30px}.ui-right-center-mobile{top:6px}#ui-emote-button{left:auto;right:0;top:246px}#ui-debug-button{top:242px}#ui-ammo-interactive{left:8px;margin-top:4px;top:88px}#ui-ammo-interactive>.ui-ammo,#ui-medical-interactive>.ui-loot{display:block}#ui-equipped-ammo{position:static}#ui-equipped-ammo,#ui-equipped-ammo-wrapper{left:auto;-webkit-transform:none;transform:none}#ui-equipped-ammo-wrapper{bottom:auto;color:#fff;position:absolute;right:6px;top:44%}#ui-bullet-counter{width:auto}#ui-bullet-counter #ui-current-clip{left:50%}#ui-bullet-counter #ui-remaining-ammo{left:auto;right:0;top:36px}#ui-bullet-counter #ui-reload-button{left:auto;right:0;top:62px}#big-map-collision{left:auto;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}#big-map-close{bottom:auto;top:12px}#ui-spectate-options-wrapper{bottom:42px;-webkit-transform:scale(.7);transform:scale(.7)}#ui-spectate-options{position:absolute;bottom:12px}#ui-spectate-stats{bottom:0;top:auto}#ui-ammo-interactive{top:90px}#ui-ammo-interactive>.ui-ammo{margin-bottom:2px}}@media screen and (max-width:850px) and (orientation:portrait) and (min-height:668px){#ui-stats-contents{margin-top:32px}#ui-stats-info-box,.ui-stats-ad-container{-webkit-transform:scale(1);transform:scale(1)}.ui-stats-ad-container{margin-top:20px}#ui-stats-options{display:block;left:auto;position:static;margin:auto;margin-top:24px;width:100%}.ui-stats-restart{margin-bottom:0}#ui-stats-spectate,.ui-stats-restart{display:block;position:static;-webkit-transform:initial;transform:none}#ui-stats-spectate{margin:auto;margin-top:6px}}@media screen and (max-width:850px) and (orientation:portrait) and (max-height:667px){#ui-stats-contents{margin-top:0;-webkit-transform:translateX(-50%) scale(.9);transform:translateX(-50%) scale(.9);-webkit-transform-origin:top;transform-origin:top}.ui-stats-ad-container{margin-top:20px}}@media screen and (max-width:850px) and (orientation:portrait) and (max-height:568px) and (max-width:375px){#ui-bottom-center-right{left:22px;-webkit-transform:scale(.8);transform:scale(.8)}#ui-bottom-right{right:0}#ui-bottom-center-0{top:-20px;left:84px;-webkit-transform:scale(.7);transform:scale(.7)}}', ""])
+        t.push([e.i, 'img{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none}#cvs{-webkit-filter:none;filter:none}.click-through{pointer-events:none}#game-area-wrapper{cursor:crosshair;left:0;position:absolute!important;top:0;-webkit-tap-highlight-color:rgba(0,0,0,0)}#ui-game{-webkit-filter:none;filter:none;height:100%;left:0;position:absolute;top:0;width:100%}#ui-center{color:#fff;pointer-events:all;position:absolute;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%) scale(1);transform:translateX(-50%) translateY(-50%) scale(1);z-index:10}@media (max-width:1200px),screen and (min-width:851px) and (max-height:768px){#ui-center{-webkit-transform:translateX(-50%) translateY(-50%) scale(.85);transform:translateX(-50%) translateY(-50%) scale(.85)}}@media screen and (max-width:850px){#ui-center{pointer-events:all;-webkit-transform:translateX(-50%) translateY(-50%) scale(.85);transform:translateX(-50%) translateY(-50%) scale(.85);z-index:10}}@media (max-width:850px) and (max-height:300px){#ui-center{-webkit-transform:translateX(-50%) translateY(-50%) scale(.775);transform:translateX(-50%) translateY(-50%) scale(.775)}}#ui-game-menu{background-color:rgba(0,0,0,.5);border-radius:5px;box-sizing:border-box;display:none;margin:10px auto;padding:10px 15px}@media screen and (max-width:850px){#ui-game-menu{height:auto;padding:4px 10px;width:190px}}@media (max-width:850px) and (max-height:300px){#ui-game-menu{margin-top:0}}#ui-game-menu p{bottom:4px;display:inline-block;font-size:14px;position:relative}@media screen and (max-width:850px){#ui-game-menu p{bottom:0;font-size:12px;margin-bottom:8px;margin-top:6px}}.ui-game-menu-desktop{height:495px;width:350px}.btns-game-double-row{display:flex;position:relative}.btns-game-double-row>.btn-game-container{position:relative;width:100%}.btns-game-double-row>.btn-game-container>.btn-double-row{display:inline-block}.btns-game-double-row>div:not(:last-child){margin-right:2px}.game-menu-icon-toggle{background-size:22px;background-position:50%;background-repeat:no-repeat;bottom:13px;display:inline-block;height:22px;left:60%;pointer-events:none;position:absolute;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:22px}.btn-game-touch-style{background-color:#50afab;background-position:4px 4px;background-repeat:no-repeat;background-size:20px;border:0;border-bottom:none;border-radius:5px;box-shadow:inset 0 -2px #387c79;box-sizing:border-box;color:#fff;cursor:pointer;display:block;font-size:14px;height:30px;line-height:30px;margin:auto;margin-top:2px;margin-bottom:4px;position:relative;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.25);width:100%}.movement-icon{background-image:url(../img/gui/movement.svg)}.target-icon{background-image:url(../img/gui/target.svg)}#btn-game-tabs>.btn-game-container>.btn-game-menu{text-align:center;color:#fff;line-height:36px;font-size:16px;background-color:transparent;border:2px solid;border-color:#fff;box-shadow:none;cursor:pointer;flex:1}#btn-game-tabs>.btn-game-container>.btn-game-menu-selected{border:2px solid!important;border-color:#0f0!important;background-color:rgba(0,0,0,.35)}.game-menu-icon-static{background-size:36px;background-position:50%;background-repeat:no-repeat;bottom:13px;display:inline-block;height:26px;left:50%;pointer-events:none;position:absolute;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:36px}.settings-icon{background-image:url(../img/gui/cog.svg)}.keybind-icon{background-image:url(../img/gui/keyboard.svg)}#ui-game-tab-settings{display:block;height:auto}.ui-game-tab-settings-desktop{height:340px}#ui-game-tab-keybinds{display:none;height:345px}#ui-game-tab-keybinds>.btn-keybind-restore{margin-top:20px}#ui-game-tab-keybinds>#ui-keybind-list{height:295px;overflow-y:scroll;pointer-events:all}#ui-alive-info{position:absolute;color:#fff;width:80px;height:36px;top:174px;left:106px;background:rgba(0,0,0,.4);border-radius:5px}#ui-map-expand-mobile{height:190px;width:190px;left:-4px;top:-22px;z-index:0;background-color:transparent}#ui-map-expand img{display:none}#ui-map-minimize{left:124px}.ui-map-wrapper-mobile{bottom:auto;color:#fff;display:block;font-size:16px;left:6px;top:46px}.ui-map-wrapper-mobile .ui-players-alive{left:4px}.ui-map-wrapper-mobile .ui-map-counter{position:relative;display:inline-block;font-size:24px;text-align:center;bottom:9px;left:2px}.ui-map-wrapper-mobile .ui-map-icon{padding:6px;display:inline-block;height:24px;width:24px;margin-left:2px;background-size:24px;background-repeat:no-repeat;background-position:6px 6px}.ui-map-wrapper-mobile #ui-map-info{position:absolute;color:#fff;width:100px;height:36px;top:174px;left:0;background:rgba(0,0,0,.4);border-radius:5px}.ui-map-wrapper-mobile #ui-spec-counter{position:absolute;color:#fff;width:68px;height:28px;top:135px;left:60px;background:rgba(0,0,0,.4);border-radius:5px}.ui-map-wrapper-mobile #ui-spec-counter-icon{padding:6px;display:inline-block;height:24px;width:18px;margin-left:2px;background-size:20px;background-repeat:no-repeat;background-position:6px 4px;background-image:url(../img/gui/eye.svg)}.ui-map-wrapper-mobile #ui-spec-counter-number{position:relative;display:inline-block;font-size:20px;width:24px;text-align:center;bottom:15px;left:0}.ui-map-wrapper-mobile .gas-icon{background-image:url(../img/gui/gas.svg)}.ui-map-wrapper-mobile .danger-icon{background-image:url(../img/gui/danger.svg)}.ui-map-wrapper-mobile .alive-icon{background-image:url(../img/gui/player-gui.svg)}.ui-map-wrapper-mobile .icon-pulse{-webkit-animation:pulse 2s linear infinite;animation:pulse 2s linear infinite}.ui-map-wrapper-mobile .ui-settings-button{position:absolute;color:#fff;border-radius:5px;pointer-events:all}.ui-map-wrapper-mobile .ui-settings-button img{position:absolute;left:6px;top:6px;height:36px;width:36px;background-size:36px;background-repeat:no-repeat;transform:scale(1);-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-map-wrapper-mobile .ui-settings-button .map-img-after{display:none}.ui-map-wrapper-mobile .ui-settings-button:hover{-webkit-transform:scale(1);transform:scale(1)}.ui-map-wrapper-desktop{position:absolute;bottom:12px;left:12px}#ui-map-wrapper{position:absolute;z-index:1}#ui-settings-container-mobile{position:relative}#ui-menu-display{cursor:pointer;left:2px;top:-18px;height:48px;width:48px;opacity:.8;background-color:rgba(0,0,0,.4);background-size:48px;background-repeat:no-repeat;background-position:50%;background-image:url(../img/gui/cog.svg);z-index:1}#big-map{display:none;height:100%;width:100%}#big-map-collision{height:100%;left:50%;margin:auto;pointer-events:all;position:fixed;top:0;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#big-map-close{display:none;position:absolute;margin-left:auto;height:64px;width:64px;right:6px;top:6px;border-radius:6px;background-color:rgba(0,0,0,.5);background-repeat:no-repeat;background-size:48px;background-position:50%;background-image:url(../img/gui/close.svg);pointer-events:all}#ui-right-center{position:absolute;color:#fff;opacity:.75;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-right-center-desktop{top:40%;-webkit-transform:translateY(-50%);transform:translateY(-50%);right:12px}.ui-right-center-mobile{top:30px;-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:translateY(-50%) scale(.8);transform:translateY(-50%) scale(.8);right:6px}@media (max-height:360px),(max-width:640px){.ui-right-center-mobile{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.85);transform:scale(.85);top:16px}}.ui-right-center-tablet{top:12px!important;-webkit-transform:scale(.8);transform:scale(.8)}@media (max-height:600px){.ui-right-center-tablet{-webkit-transform:scale(.55);transform:scale(.55)}}.ui-bottom-right-tablet{bottom:25%!important;-webkit-transform:scale(.8)!important;transform:scale(.8)!important;-webkit-transform-origin:right!important;transform-origin:right!important}@media (max-height:600px){.ui-bottom-right-tablet{bottom:25%!important;-webkit-transform:scale(.7)!important;transform:scale(.7)!important;-webkit-transform-origin:right!important;transform-origin:right!important}}.ui-bottom-center-right-tablet{left:72%!important;-webkit-transform:scale(.65)!important;transform:scale(.65)!important}#ui-emote-button{background:rgba(0,0,0,.4);background-image:url(../img/gui/emote.svg);background-position:50%;background-repeat:no-repeat;background-size:28px;border-radius:21px;display:none;height:42px;position:absolute;right:108px;top:0;width:42px}@media screen and (max-width:850px){#ui-emote-button{background-size:20px;border-radius:14px;height:28px;left:-35px;top:0;width:28px}}.ui-top-left-tablet{left:120px!important}.ui-spectate-options-wrapper-tablet{bottom:12px!important;top:auto!important}.ui-killfeed-wrapper-tablet{top:60px!important}@media (max-width:850px) and (max-height:320px){.ui-slider-container{margin-bottom:0}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>p{width:75px}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>.slider{bottom:3px;width:85px}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>.slider::-webkit-slider-thumb{width:20px;height:20px}}@media (max-width:850px) and (max-height:320px){.ui-slider-container>.slider::-moz-range-thumb{width:20px;height:20px}}.ui-hidden{display:none}.btn-game-menu{text-align:center;line-height:38px;display:block;width:100%;height:40px;border:0;border-radius:5px;box-sizing:border-box;position:relative;margin:auto;margin-top:5px;margin-bottom:5px;color:#fff;font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.25);background-color:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79;background-repeat:no-repeat;cursor:pointer}#btn-game-fullscreen{background-size:34px;background-position:4px 2px;background-image:url(../img/gui/minimize.svg)}#btn-game-sound{background-size:44px;background-position:2px -3px}#btn-game-quit{margin-top:40px;background-image:url(../img/gui/quit.svg)}#btn-game-quit,#btn-game-resume{background-size:44px;background-position:-2px -3px}#btn-game-resume{margin-top:30px;background-image:url(../img/gui/resume.svg)}#ui-top-center{position:absolute;color:#fff;top:80px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-top-center .top-center-text{text-align:center;width:100vw;padding:8px}#ui-waiting-text{display:none;color:#fff;text-shadow:2px 2px 0 #000}#ui-waiting-text,#ui-waiting-text span{font-size:32px;font-weight:700}.top-center-text .spectate-text{display:inline-block;text-shadow:2px 2px 0 #000;font-size:24px;font-weight:700;overflow:hidden;height:32px}@media (max-width:1024px){.top-center-text .spectate-text{font-size:18px}}.top-center-text .spectate-desc{color:#fff;margin-right:8px}.ui-spectate-mode{display:none}#ui-spectate-text{position:relative}#spectate-player{max-width:250px;white-space:nowrap;text-overflow:ellipsis;color:cyan}#ui-top-center-scopes-wrapper{position:absolute;color:#fff;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:100%}#ui-top-center-scopes{margin-top:12px;text-align:center}@media (max-height:768px),(max-width:1200px){#ui-top-center-scopes{-webkit-transform:scale(.85);transform:scale(.85)}}.ui-zoom{background:rgba(0,0,0,.3);border-radius:36px;width:64px;height:64px;opacity:.6;display:inline-block}.ui-zoom-hover:hover{opacity:1}.ui-zoom-active{vertical-align:baseline;opacity:1;transform:scale(1);-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-zoom .ui-zoom-image{width:64px;height:64px;opacity:.4;padding:2px}.ui-zoom .ui-zoom-text{margin-top:14px;width:100%}.ui-zoom .ui-zoom-level{font-size:32px;text-align:center;width:100%}.ui-zoom .ui-zoom-append{font-size:24px}.ui-zoom-inactive{display:none;margin-left:-8px;margin-right:-8px;-webkit-transition:all .1s ease-in;-webkit-transform:scale(.5);-ms-transition:all .1s ease-in;-ms-transform:scale(.5);-moz-transition:all .1s ease-in;-moz-transform:scale(.5);transition:all .1s ease-in;transform:scale(.5)}.ui-zoom-inactive:hover{cursor:pointer!important;opacity:1}.ui-emote-wheel{z-index:3;display:none;position:fixed}.ui-emote-parent{opacity:.75}.ui-emote-hl{z-index:2;display:none}.ui-emote{position:fixed;width:256px;height:256px;background-size:256px;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-bg-circle{opacity:.5;background-image:url(../img/gui/ping-part-circle.svg)}.ui-emote-bg-quarter{opacity:.5;background-image:url(../img/gui/ping-part-quarter.svg)}.ui-emote-bg-eighth{opacity:.5;background-image:url(../img/gui/ping-part-eighth.svg)}.ui-emote-middle .ui-emote-image{width:24px!important;height:24px!important;background-size:24px!important;background-image:url(../img/gui/close.svg)}.ui-emote-top .ui-emote-image{margin-top:-78px;background-image:url(../img/gui/ping-team-danger.svg)}.ui-emote-right .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(90deg);transform:translate(-50%,-50%) rotate(90deg)}.ui-emote-right .ui-emote-image{margin-left:78px;background-image:url(../img/gui/ping-team-coming.svg)}.ui-emote-bottom .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(180deg);transform:translate(-50%,-50%) rotate(180deg)}.ui-emote-bottom .ui-emote-image{margin-top:78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(270deg);transform:translate(-50%,-50%) rotate(270deg)}.ui-emote-left .ui-emote-image{margin-left:-78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-top-left .ui-emote-image{margin-left:-80px;margin-top:-30px;background-image:url(../img/loot/loot-ammo-box.svg)}.ui-emote-bottom-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)}.ui-emote-bottom-left .ui-emote-image{margin-left:-80px;margin-top:30px;background-image:url(../img/loot/loot-medical-healthkit.svg)}.ui-emote-circle .ui-emote-hl{background-image:url(../img/gui/ping-part-circle-highlight.svg)}.ui-emote-quarter .ui-emote-hl{background-image:url(../img/gui/ping-part-quarter-highlight.svg)}.ui-emote-eighth .ui-emote-hl{background-image:url(../img/gui/ping-part-eighth-highlight.svg)}.ui-emote-image{z-index:1;position:fixed;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-image-large{width:64px;height:64px;background-size:64px}.ui-emote-image-small{width:35px;height:35px;background-size:35px}.ui-team-indicator{z-index:2;display:none;position:fixed;top:0;left:0;border-radius:32px;width:64px;height:64px;background-size:64px;background-repeat:no-repeat;background-image:url(../img/gui/indicator.svg)}.ui-team-indicator,.ui-team-indicator-pos{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-team-indicator-pos{opacity:.75;position:relative;border-radius:24px;width:32px;height:32px;top:23px;left:32px}.ui-team-indicator-image{width:32px;height:32px;background-size:32px;background-repeat:no-repeat;background-image:url(../img/gui/ping-team-danger.svg)}.ui-indicator-ping-border{z-index:0;display:none;position:fixed;top:0;left:0;width:160px;height:160px;position:relative;background-size:160px;background-repeat:no-repeat;background-image:url(../img/gui/ping-border.svg);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#ui-top-left{position:absolute;color:#fff;font-size:16px;top:12px;left:12px;display:block}@media (max-height:768px),(max-width:1200px){#ui-top-left{-webkit-transform-origin:top left;transform-origin:top left;-webkit-transform:scale(.85);transform:scale(.85)}}.ui-bg-standard{background:rgba(0,0,0,.24);border-radius:5px}.ui-team-member{display:none;position:relative;width:200px;height:32px;padding:4px;margin-bottom:8px}.ui-team-member-name{font-weight:700;text-shadow:1px 1px 0 #000;font-size:16px;max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-team-member-color{position:absolute;top:5px;right:5px;border-radius:7px;width:14px;height:14px}.ui-background-yellow{background-color:#ff0}.ui-background-blue{background-color:blue}.ui-background-red{background-color:red}.ui-background-purple{background-color:purple}.ui-background-cyan{background-color:cyan}.ui-team-member-status{display:none;position:absolute;top:4px;right:-38px;width:32px;height:32px;background-size:32px;background-repeat:no-repeat}.ui-team-member-status-downed{border-radius:16px;display:block!important;background-image:url(../img/gui/down.svg)!important}.ui-team-member-status-dead{display:block!important;background-image:url(../img/gui/skull-team.svg)!important;opacity:.5!important}.ui-team-member-status-disconnected{display:block!important;background-image:url(../img/gui/close.svg)!important;opacity:.5!important}.ui-team-member-health{margin-top:4px}.ui-team-member-health .ui-bar-inner{background-color:#fff;z-index:1;position:absolute;border-radius:4px;width:200px;height:10px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}.ui-team-member-health .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}.ui-team-member-health .ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}#ui-spectate-options-wrapper{color:#fff;display:block;left:12px;position:absolute;top:12px}@media (max-height:768px),(max-width:1200px){#ui-spectate-options-wrapper{-webkit-transform:scale(.85);transform:scale(.85);-webkit-transform-origin:top left;transform-origin:top left}}#ui-spectate-options{position:relative;pointer-events:all;width:100%}#ui-spectate-buttons{display:inline-block;padding:8px 8px 0;text-align:center;width:192px}#ui-spectate-options a{position:relative;color:#fff;font-size:16px;text-shadow:0 1px 2px rgba(0,0,0,.25);background:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79;cursor:pointer}#btn-spectate-prev-player{margin-bottom:24px}#ui-spectate-stats{vertical-align:top;display:none}#ui-spectate-stats-header{text-align:center;font-size:24px;font-weight:700;padding:8px}#ui-spectate-stats-table{width:100%;background-color:transparent;margin:auto;margin-right:0;border-collapse:collapse}#ui-spectate-stats tbody,#ui-spectate-stats td,#ui-spectate-stats th{padding:0 8px 8px 16px;font-size:18px}.ui-spectate-stats-category{width:130px;color:hsla(0,0%,100%,.75)}.ui-spectate-stats-value{width:75px;color:#fff}#ui-leaderboard-wrapper{position:absolute;color:#fff;font-size:16px;top:12px;right:12px;display:flex;font-weight:700;text-align:center;width:85px;display:inline-block}@media (max-height:768px),(max-width:1200px){#ui-leaderboard-wrapper{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.85);transform:scale(.85)}}#ui-leaderboard-alive{background:rgba(0,0,0,.4);border-radius:5px;margin-bottom:8px;padding:8px;height:64px;width:72px}.ui-players-alive{position:relative;font-size:54px}.ui-leaderboard-header{font-size:24px;margin-bottom:8px}#ui-kill-counter-wrapper{display:none;margin-top:32px}#ui-kill-counter{background:rgba(0,0,0,.4);border-radius:5px;margin-bottom:8px;padding:8px;height:64px;width:72px}.ui-player-kills{position:relative;font-size:54px}.ui-kill-counter-header{font-size:24px;margin-bottom:8px}#ui-killfeed-wrapper{position:absolute;color:#fff;font-size:16px;top:12px;right:12px;display:flex}@media (max-width:1200px),screen and (min-width:851px) and (max-height:768px){#ui-killfeed-wrapper{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.85);transform:scale(.85)}}#ui-killfeed{display:inline-block;margin-left:24px;height:100px}#ui-killfeed-contents{width:800px}#ui-killfeed-contents .killfeed-div{position:absolute;right:100px;background-color:rgba(0,0,0,.4);padding:4px 8px;border-radius:2px;height:22px;line-height:24px}.killfeed-div div{float:left;font-size:16px;font-weight:700;color:#efeeee}#ui-killfeed .killfeed-text{max-width:550px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#ui-right-center:hover{opacity:1}#ui-ammo-interactive{width:90px}.ui-ammo{background:rgba(0,0,0,.4);border-radius:5px;display:inline-block;height:52px;margin-bottom:5px;margin-left:3px;margin-right:3px;width:35px}.ui-ammo>.ui-loot-count{position:absolute;font-size:20px;font-weight:700;top:28px;text-align:center;width:100%}.ui-ammo-row{display:flex}.ui-ammo-row>div:not(:last-child){margin-right:10px}.ui-ammo>.ui-loot-image,.ui-ammo>.ui-loot-overlay{bottom:0;height:22px;margin-top:5px;position:absolute;right:6px;top:0;width:22px}#ui-loot-ph1{opacity:0!important}#ui-medical-interactive{margin-bottom:32px}.ui-medical>.ui-loot-image{position:absolute;height:30px;width:30px;background-size:30px;background-repeat:no-repeat;right:5px;margin-top:1px;top:0;bottom:0}.ui-medical:hover{cursor:pointer!important}.ui-loot{background:rgba(0,0,0,.4);border-radius:5px;width:85px;height:32px;margin-left:auto;margin-bottom:5px}.ui-loot:hover{opacity:1!important}.ui-outline-hover{border:2px solid rgba(0,255,0,0)}.ui-outline-hover:hover{-webkit-transition:border .1s ease-out;-moz-transition:border .1s ease-out;-o-transition:border .1s ease-out;border:2px solid #0f0}.ui-scale-hover{transform:scale(1);-webkit-transform:scale(1);-ms-transform:scale(1);-moz-transform:scale(1)}.ui-scale-hover,.ui-scale-hover:hover{-webkit-transition:all .1s ease-in;-ms-transition:all .1s ease-in;-moz-transition:all .1s ease-in;transition:all .1s ease-in}.ui-scale-hover:hover{-webkit-transform:scale(1.1);-ms-transform:scale(1.1);-moz-transform:scale(1.1);transform:scale(1.1)}.ui-loot>.ui-loot-count{position:absolute;font-size:24px;font-weight:700;left:10px;top:2px;text-align:center}@media (max-height:864px),(max-width:1024px){.ui-right-center-desktop{top:42%;-webkit-transform-origin:right;transform-origin:right;-webkit-transform:translateY(-50%) scale(.8);transform:translateY(-50%) scale(.8)}#ui-medical-interactive{margin-bottom:8px}}@media (max-height:640px){.ui-right-center-desktop{top:42%;-webkit-transform-origin:right;transform-origin:right;-webkit-transform:translateY(-50%) scale(.7);transform:translateY(-50%) scale(.7)}#ui-medical-interactive{margin-bottom:8px}}#ui-upper-center{position:absolute;display:flex;color:#fff;top:180px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-announcement{display:none;color:#ff0;text-shadow:2px 2px 0 #000;font-size:32px;font-weight:700;text-align:center;width:100vw}#ui-lower-center{position:absolute;color:#fff;bottom:40%;left:50%}@media (max-width:1200px),screen and (min-width:851px) and (max-height:768px){#ui-lower-center{-webkit-transform-origin:left bottom;transform-origin:left bottom;-webkit-transform:scale(.85);transform:scale(.85);bottom:33%}}#ui-interaction{display:flex}#ui-interaction-press{background:rgba(0,0,0,.4);background-size:80%;background-position:50%;background-repeat:no-repeat;border-radius:5px;font-weight:700;margin-left:-24px;text-align:center}.ui-interaction-large{font-size:42px;height:48px;width:48px}.ui-interaction-small{font-size:26px;height:36px;line-height:36px;min-width:24px;padding-left:10px;padding-right:10px}#ui-interaction-outer{background:rgba(0,0,0,.4);border-radius:5px;margin-left:10px;padding:0 15px;height:48px}#ui-interaction-outer #ui-interaction-description{margin-top:10px;font-size:24px;text-align:center}#ui-map-container{position:absolute;bottom:52px}#ui-map-info{position:absolute;color:#fff;width:100px;height:36px;bottom:218px;left:82px;background:rgba(0,0,0,.4);border-radius:5px}#ui-gas-icon{padding:6px;display:inline-block;height:24px;width:24px;margin-left:2px;background-size:24px;background-repeat:no-repeat;background-position:6px 6px}.gas-icon{background-image:url(../img/gui/gas.svg)}.danger-icon{background-image:url(../img/gui/danger.svg)}.icon-pulse{-webkit-animation:pulse 2s linear infinite;animation:pulse 2s linear infinite}#ui-gas-timer{position:relative;display:inline-block;font-size:24px;text-align:center;bottom:10px;left:2px}#ui-spec-counter{position:absolute;color:#fff;width:68px;height:28px;bottom:218px;left:6px;background:rgba(0,0,0,.4);border-radius:5px}#ui-spec-counter-icon{padding:6px;display:inline-block;height:24px;width:18px;margin-left:2px;background-size:20px;background-repeat:no-repeat;background-position:6px 4px;background-image:url(../img/gui/eye.svg)}#ui-spec-counter-number{position:relative;display:inline-block;font-size:20px;width:24px;text-align:center;bottom:15px;left:0}#ui-settings-container-desktop{position:relative;left:16px;bottom:12px}#ui-settings-container-desktop div{cursor:pointer}.ui-settings-button{position:absolute;color:#fff;border-radius:5px;height:48px;width:48px;pointer-events:all;opacity:.5;background:rgba(0,0,0,.4)}#ui-map-minimize{left:185px}.ui-settings-button img{position:absolute;left:6px;top:6px;height:36px;width:36px;background-size:36px;background-repeat:no-repeat;transform:scale(1);-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-settings-button .map-img-after{display:none}.ui-settings-button:hover{opacity:1;-webkit-transition:all .1s ease-in;-webkit-transform:scale(1.1);-ms-transition:all .1s ease-in;-ms-transform:scale(1.1);-moz-transition:all .1s ease-in;-moz-transform:scale(1.1);transition:all .1s ease-in;transform:scale(1.1)}#ui-bottom-center-0{position:absolute;color:#fff;bottom:12px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media (max-height:768px),(max-width:1200px){#ui-bottom-center-0{-webkit-transform-origin:bottom;transform-origin:bottom;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85)}}#ui-equipped-ammo-wrapper{position:absolute;color:#fff;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);bottom:62px}#ui-equipped-ammo{margin-bottom:12px;text-align:center;opacity:1}#ui-bullet-counter{display:inline-block;width:175px;height:56px;text-align:center;text-shadow:2px 2px #000}#ui-bullet-counter #ui-current-clip{background:rgba(0,0,0,.4);border-radius:5px;font-size:44px;font-weight:700;width:100px;height:50px;-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;position:relative;text-align:center}#ui-bullet-counter #ui-ammo-divider{font-size:22px;left:53%;position:absolute;text-align:center;top:20px}#ui-bullet-counter #ui-remaining-ammo{background:rgba(0,0,0,.4);border-radius:5px;font-size:24px;font-weight:700;line-height:32px;width:65px;height:32px;left:82%;position:absolute;text-align:center;top:18px}#ui-boost-counter{display:inline-flex;width:412px}#ui-boost-counter .ui-boost-base{background:rgba(0,0,0,.4);height:10px;margin-bottom:8px}#ui-boost-counter-0{border-top-left-radius:3px;border-bottom-left-radius:3px;width:100px;margin-right:3px}#ui-boost-counter-0 .ui-bar-inner{background:#ff901a}#ui-boost-counter-1{width:100px;margin-left:3px;margin-right:3px}#ui-boost-counter-1 .ui-bar-inner{background:#ff751a}#ui-boost-counter-2{width:150px;margin-left:3px;margin-right:3px}#ui-boost-counter-2 .ui-bar-inner{background:#ff6616}#ui-boost-counter-3{border-top-right-radius:3px;border-bottom-right-radius:3px;width:50px;margin-left:3px}#ui-boost-counter-3 .ui-bar-inner{background:#ff5600}.ui-boost-base .ui-bar-inner{border-radius:inherit;width:0;height:10px}#ui-health-counter{background:rgba(0,0,0,.4);border-radius:5px;width:400px;height:32px;padding:6px}#ui-health-counter .ui-bar-inner{z-index:1;position:absolute;border-radius:5px;width:100%;height:32px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}#ui-health-container{width:400px;position:relative}#ui-health-counter .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}#ui-health-counter #ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}.health-bar-pulse{-webkit-animation:pulsewhite 1s linear infinite;animation:pulsewhite 1s linear infinite}@-webkit-keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@-webkit-keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}@keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}#ui-bottom-center-1{z-index:3;position:absolute;color:#fff;bottom:220px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}@media (max-height:768px),(max-width:1200px){#ui-bottom-center-1{-webkit-transform-origin:bottom;transform-origin:bottom;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85);bottom:138px}}#ui-kills{display:none;text-align:center;background:rgba(0,0,0,.4);color:#fff;border-radius:5px;padding:8px}#ui-kill-text{font-size:18px}#ui-kill-count{font-weight:700;color:#ff4100;font-size:32px;text-shadow:1px 1px 1px rgba(0,0,0,.3)}#ui-bottom-center-2{position:absolute;color:#fff;bottom:160px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-pickup-message{color:#fff;opacity:0;text-shadow:2px 2px 0 #000;font-size:32px;font-weight:700;text-align:center;width:100vw}#ui-bottom-center-right{position:absolute;color:#fff;bottom:12px;left:75%}@media (max-height:768px),(max-width:1200px){#ui-bottom-center-right{-webkit-transform:scale(.8);transform:scale(.8)}}.ui-armor-counter{position:absolute;bottom:0;display:block;width:48px;height:60px;background:rgba(0,0,0,.4);border-radius:5px;margin-left:4px}#ui-armor-helmet{right:4px}#ui-armor-backpack{left:60px;border:2px solid transparent}.ui-armor-level{position:relative;font-size:16px;font-weight:700;bottom:24px;text-align:center;text-shadow:1px 1px #000}.ui-armor-counter-inner{z-index:1;position:absolute;background:rgba(0,255,0,.5);border-radius:5px;width:100%;height:0;bottom:0;transition:height .5s;transition-property:height;transition-duration:.5s;transition-timing-function:ease-out;transition-delay:0s}.ui-armor-counter .ui-armor-count{z-index:2;text-shadow:2px 2px #000;position:relative;font-size:18px;font-weight:700;margin-top:-28px;text-align:center}.ui-armor-counter .ui-armor-image{margin:auto;left:0;right:0;bottom:0;top:0;z-index:0;position:absolute;height:36px;width:36px}#ui-bottom-right{position:absolute;color:#fff;bottom:12px;right:12px}@media (max-height:768px),(max-width:1200px){#ui-bottom-right{-webkit-transform-origin:bottom right;transform-origin:bottom right;-webkit-transform:scale(.7);transform:scale(.7)}}#ui-weapon-container{width:192px}.ui-weapon-info{margin-bottom:5px}.ui-weapon-info,.ui-weapon-switch{border-radius:5px;border:2px solid transparent}.ui-weapon-switch{position:absolute;right:0;opacity:.6;width:160px;height:60px;margin-left:auto;pointer-events:all;cursor:pointer!important}#ui-weapon-id-1{bottom:210px}#ui-weapon-id-2{bottom:140px}#ui-weapon-id-3{bottom:70px}#ui-weapon-id-4{bottom:0}.ui-weapon-name{font-size:18px;margin-top:38px}.ui-weapon-name,.ui-weapon-number{position:absolute;font-weight:700;right:8px;text-align:center}.ui-weapon-number{font-size:24px}.ui-weapon-exp{display:none;position:absolute;height:32px;width:32px;font-size:18px;font-weight:700;line-height:34px;right:78px;margin-top:26px;text-align:center}.ui-weapon-image{display:none;position:relative;height:60px;width:60px;left:4px;background-size:60px;background-repeat:no-repeat}#ui-weapon-id-4 .ui-weapon-image{height:52px;width:52px;left:4px;top:4px;background-size:52px}.ui-weapon-dragged{position:fixed!important;width:160px!important;right:auto!important;bottom:auto!important;pointer-events:none!important}#ui-stats{display:none}#ui-stats-bg{display:none;opacity:0;position:absolute;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.75);pointer-events:none;z-index:2}#ui-stats-contents{position:absolute;width:100%;top:10%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);text-align:center;color:#fff;border-radius:5px;z-index:3}@media (max-height:860px){#ui-stats-contents{top:0}}@media (max-width:1024px){#ui-stats-contents{-webkit-transform:translateX(-50%) scale(.8);transform:translateX(-50%) scale(.8);-webkit-transform-origin:top;transform-origin:top}}@media (max-height:768px){#ui-stats-header{-webkit-transform:scale(.75);transform:scale(.75);-webkit-transform-origin:top;transform-origin:top}}.ui-stats-header-title{font-weight:700;font-size:48px;margin:20px;color:gold}.ui-stats-header-reason{font-size:24px}.ui-stats-header-overview{display:inline;margin:10px}.ui-stats-header-overview div{display:inline;padding-bottom:12px;border-bottom:2px solid hsla(0,0%,100%,.25)}.ui-stats-header-overview div:not(:first-child){margin-left:100px}span.ui-stats-header-stat{font-size:32px}span.ui-stats-header-value{margin-left:24px;font-size:48px;font-weight:700}#ui-stats-info-box{position:relative;left:50%;margin:auto;margin-top:50px;height:190px;display:flex}@media (max-height:768px){#ui-stats-info-box{margin-top:-30px;-webkit-transform:scale(.9);transform:scale(.9);-webkit-transform-origin:left;transform-origin:left}}@media (max-width:1024px){#ui-stats-info-box{-webkit-transform:scale(.85);transform:scale(.85);-webkit-transform-origin:left;transform-origin:left}}.ui-stats-info-player{position:relative;width:250px;background-color:rgba(0,0,0,.75);border-radius:4px;border:2px solid #000;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.ui-stats-info-status:after{content:"";display:block;position:absolute;top:15%;left:25%;background-image:url(../img/gui/skull.svg);background-repeat:no-repeat;background-size:128px;width:100%;height:100%;opacity:.1;z-index:-1}.ui-stats-info-player-name{color:gold;font-size:24px;font-weight:700;font-style:italic;margin:8px auto;max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-stats-info{display:flex;height:36px;margin:auto}.ui-stats-info>div{padding:8px;font-size:18px;line-height:12px;text-align:left;font-weight:700}.ui-stats-info>div:first-child{width:55%;margin-right:4px;text-align:right;font-weight:400}.ui-stats-reason{display:flex;height:72px;margin:auto}.ui-stats-reason div{padding:8px;margin:auto;width:100%;text-align:center;font-size:16px}.ui-stats-reason .ui-stats-reason-dead{color:red}.ui-stats-reason .ui-stats-reason-alive{color:#7cfc00}#ui-stats-options{position:absolute;left:50%;margin-top:20px;min-height:60px;z-index:1}@media (max-height:768px){#ui-stats-options{margin-top:8px;-webkit-transform:scale(.9);transform:scale(.9);-webkit-transform-origin:top;transform-origin:top}}.ui-stats-restart{width:200px;margin:auto;margin-bottom:20px}#ui-stats-spectate,.ui-stats-restart{position:absolute;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-stats-spectate{left:102px;width:125px;background:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79}.ui-stats-ad-container{display:none;margin-top:80px}@media (max-height:768px){.ui-stats-ad-container{margin-top:70px}}#ui-spec-ad-container{z-index:1;position:absolute;top:0;left:50%}.tooltip{position:relative}.tooltip .tooltip-text{visibility:hidden;width:240px;background-color:#000;color:#fff;text-align:center;padding:5px 0;border-radius:6px;position:absolute;z-index:1;right:110%;opacity:.75;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.tooltip .tooltip-text:after{content:" ";position:absolute;top:50%;left:100%;margin-top:-5px;border-width:5px;border-style:solid;border-color:transparent transparent transparent #000}.tooltip-title{font-size:18px;font-weight:700;padding:4px;color:#ff0}.tooltip-description{font-size:16px;padding:4px}.tooltip-description span{font-size:16px}.tooltip:hover .tooltip-text{visibility:visible}#ui-editor-top-center{position:absolute;color:#fff;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-editor-top-right{position:absolute;color:#fff;font-size:16px;top:12px;right:12px}.ui-editor-header{text-align:center;font-weight:700;font-size:16px;padding:8px}.ui-editor-info{background:rgba(0,0,0,.4);border-radius:5px;font-size:36px;margin-bottom:8px;padding:8px}.ui-editor-list{margin:0;padding:0;list-style:none}.ui-editor-list li div{font-family:monospace;font-size:14px}#ui-profiler-top-left{position:absolute;color:#fff;font-size:16px;top:12px;left:12px;text-align:center;display:flex}.ui-profiler-list{background:rgba(0,0,0,.4);border-radius:5px;margin-right:16px;padding:8px}.ui-profiler-list-header{font-size:16px;font-weight:700;margin-bottom:8px}.ui-profiler-list ul{list-style:none;text-align:left;padding:0;margin:0}.ui-profiler-list li{display:flex}.kv{font-family:monospace;font-size:14px;font-weight:400}.kv:last-child{width:100%;text-align:right}#ui-settings-container-mobile{display:none}@media screen and (max-width:850px){*{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.ui-touch-down{display:none;position:fixed;background-color:rgba(0,0,0,.5);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-touch-down-landscape{width:112px;height:112px;border-radius:56px}.ui-touch-down-portrait{width:96px;height:96px;border-radius:48px}.ui-touch-pos{display:none;position:fixed;background-color:rgba(0,0,0,.5);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-touch-pos-landscape{width:64px;height:64px;border-radius:32px}.ui-touch-pos-portrait{width:48px;height:48px;border-radius:24px}.btn-game-menu{position:relative;margin:auto;margin-top:2px;margin-bottom:4px;color:#fff;font-size:14px;text-shadow:0 1px 2px rgba(0,0,0,.25);background-color:#50afab;border-bottom:2px solid #387c79;box-shadow:inset 0 -2px #387c79;background-repeat:no-repeat;cursor:pointer;text-align:center;line-height:30px;display:block;width:100%;height:30px;border:0;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;box-sizing:border-box}#btn-game-fullscreen{background-size:22px;background-position:4px 2px;background-image:url(../img/gui/minimize.svg)}#btn-game-sound{background-size:30px;background-position:3px 0;margin-bottom:8px}#btn-game-quit{background-position:-2px -3px;background-image:url(../img/gui/quit.svg)}#btn-game-quit,#btn-game-resume{margin-top:20px;background-size:34px}#btn-game-resume{background-position:-1px -1px;background-image:url(../img/gui/resume.svg)}#ui-top-center{position:absolute;color:#fff;top:15%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-top-center .top-center-text{text-align:center;width:100vw;padding:4px}#ui-waiting-text{display:none;color:#fff;text-shadow:1px 1px 0 #000}#ui-waiting-text,#ui-waiting-text span{font-size:16px;font-weight:700}.top-center-text .spectate-text{display:inline-block;text-shadow:1px 1px 0 #000;font-size:16px;font-weight:700;overflow:hidden;height:32px}.top-center-text .spectate-desc{color:#fff;margin-right:8px}.ui-spectate-mode{display:none}#ui-spectate-text{position:relative}#spectate-player{max-width:250px;white-space:nowrap;text-overflow:ellipsis;color:cyan}#ui-top-center-scopes{margin-top:6px;text-align:center;color:#fff}.ui-zoom{display:inline-block;margin-left:-12px;margin-right:-12px;-webkit-transform:scale(.6);transform:scale(.6);background:rgba(0,0,0,.3);border-radius:32px;width:42px;height:42px;opacity:.6;pointer-events:all}.ui-zoom-active{vertical-align:baseline;opacity:1;margin-left:0;margin-right:0;-webkit-transition:all .1s ease-in;-webkit-transform:scale(1);-ms-transition:all .1s ease-in;-ms-transform:scale(1);-moz-transition:all .1s ease-in;-moz-transform:scale(1);transition:all .1s ease-in;transition:opacity .25s ease-out;-moz-transition:opacity .25s ease-out;-webkit-transition:opacity .25s ease-out;-o-transition:opacity .25s ease-out}.ui-zoom .ui-zoom-image{width:48px;height:48px;opacity:.4;padding:2px}.ui-zoom .ui-zoom-text{margin-top:14px;width:100%}.ui-zoom .ui-zoom-level{font-size:24px;line-height:16px;text-align:center;width:100%}.ui-zoom .ui-zoom-append{font-size:24px}.ui-zoom-inactive{display:none;margin-left:-8px;margin-right:-8px;transition:all .1s ease-in;-webkit-transform:scale(.6);transform:scale(.6)}.ui-emote-wheel{z-index:3;display:none;position:fixed}.ui-emote-parent{opacity:1}.ui-emote-hl{z-index:2;display:none}.ui-emote{position:fixed;width:256px;height:256px;background-size:256px;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-bg-circle{opacity:.65;background-image:url(../img/gui/ping-part-circle.svg)}.ui-emote-bg-quarter{opacity:.65;background-image:url(../img/gui/ping-part-quarter.svg)}.ui-emote-bg-eighth{opacity:.65;background-image:url(../img/gui/ping-part-eighth.svg)}.ui-emote-middle .ui-emote-image{width:24px!important;height:24px!important;background-size:24px!important;background-image:none!important}.ui-emote-top .ui-emote-image{margin-top:-78px;background-image:url(../img/gui/ping-team-danger.svg)}.ui-emote-right .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(90deg);transform:translate(-50%,-50%) rotate(90deg)}.ui-emote-right .ui-emote-image{margin-left:78px;background-image:url(../img/gui/ping-team-coming.svg)}.ui-emote-bottom .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(180deg);transform:translate(-50%,-50%) rotate(180deg)}.ui-emote-bottom .ui-emote-image{margin-top:78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(270deg);transform:translate(-50%,-50%) rotate(270deg)}.ui-emote-left .ui-emote-image{margin-left:-78px;background-image:url(../img/gui/ping-team-help.svg)}.ui-emote-top-left .ui-emote-image{margin-left:-80px;margin-top:-30px;background-image:url(../img/loot/loot-ammo-box.svg)}.ui-emote-bottom-left .ui-emote{-webkit-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg)}.ui-emote-bottom-left .ui-emote-image{margin-left:-80px;margin-top:30px;background-image:url(../img/loot/loot-medical-healthkit.svg)}.ui-emote-circle .ui-emote-hl{background-image:url(../img/gui/ping-part-circle-highlight.svg)}.ui-emote-quarter .ui-emote-hl{background-image:url(../img/gui/ping-part-quarter-highlight.svg)}.ui-emote-eighth .ui-emote-hl{background-image:url(../img/gui/ping-part-eighth-highlight.svg)}.ui-emote-image{z-index:1;position:fixed;background-repeat:no-repeat;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-emote-image-large{width:80px;height:80px;background-size:64px;background-position:50%}.ui-emote-image-small{width:35px;height:35px;background-size:35px}.ui-team-indicator{z-index:2;display:none;position:fixed;top:0;left:0;border-radius:32px;width:64px;height:64px;background-size:64px;background-repeat:no-repeat;background-image:url(../img/gui/indicator.svg)}.ui-team-indicator,.ui-team-indicator-pos{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ui-team-indicator-pos{opacity:.75;position:relative;border-radius:24px;width:32px;height:32px;top:23px;left:32px}.ui-team-indicator-image{width:32px;height:32px;background-size:32px;background-repeat:no-repeat;background-image:url(../img/gui/ping-team-danger.svg)}.ui-indicator-ping-border{z-index:0;display:none;position:fixed;top:0;left:0;width:160px;height:160px;position:relative;background-size:160px;background-repeat:no-repeat;background-image:url(../img/gui/ping-border.svg);-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}#ui-top-left{position:absolute;color:#fff;font-size:16px;top:6px;left:6px;display:block}.ui-bg-standard{background:rgba(0,0,0,.24);border-radius:5px}#ui-team{position:fixed;left:128px}.ui-team-member{display:none;position:relative;width:110px;height:20px;padding:4px;margin-bottom:4px}.ui-team-member-name{font-weight:700;text-shadow:1px 1px 0 #000;font-size:10px;max-width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-team-member-color{position:absolute;top:4px;right:4px;border-radius:9px;width:9px;height:9px}.ui-background-yellow{background-color:#ff0}.ui-background-blue{background-color:blue}.ui-background-red{background-color:red}.ui-background-purple{background-color:purple}.ui-background-cyan{background-color:cyan}.ui-team-member-status{display:none;position:absolute;top:2px;right:-24px;width:20px;height:20px;background-size:20px;background-repeat:no-repeat}.ui-team-member-status-downed{border-radius:16px;display:block!important;background-image:url(../img/gui/down.svg)!important}.ui-team-member-status-dead{display:block!important;background-image:url(../img/gui/skull-team.svg)!important;opacity:.5!important}.ui-team-member-status-disconnected{display:block!important;background-image:url(../img/gui/close.svg)!important;opacity:.5!important}.ui-team-member-health{margin-top:2px}.ui-team-member-health .ui-bar-inner{background-color:#fff;z-index:1;position:absolute;border-radius:4px;width:110px;height:5px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}.ui-team-member-health .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}.ui-team-member-health .ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}#ui-spectate-options-wrapper{bottom:6px;position:fixed;left:6px;top:auto!important}#ui-spectate-options{bottom:0;z-index:1;position:absolute;pointer-events:all;width:100%}#ui-spectate-buttons{display:inline-block;width:124px;padding:8px 8px 4px;text-align:center}#ui-spectate-options a{position:relative;color:#fff;height:24px;margin-bottom:2px;line-height:22px;font-size:12px;text-shadow:0 1px 2px rgba(0,0,0,.25);background:#50afab;border-bottom:2px solid #387c79;box-shadow:none;cursor:pointer}#btn-spectate-prev-player,#btn-spectate-view-stats{margin-bottom:12px!important}#ui-spectate-stats{position:absolute;top:0;left:146px;width:160px;display:none}#ui-spectate-stats-header{text-align:center;font-size:16px;font-weight:700;padding:6px;color:#fff}#ui-spectate-stats-table{width:100%;background-color:transparent;margin:auto;margin-right:0;margin-bottom:4px;border-collapse:collapse}#ui-spectate-stats tbody,#ui-spectate-stats td,#ui-spectate-stats th{padding:0 2px 2px 14px;font-size:10px}.ui-spectate-stats-category{width:75px;color:hsla(0,0%,100%,.75)}.ui-spectate-stats-value{width:75px;color:#fff}#ui-top-right{position:absolute;color:#fff;font-size:16px;top:6px;left:6px;display:flex}#ui-leaderboard{font-weight:700;text-align:center;width:56px;display:inline-block}#ui-leaderboard-alive{background:rgba(0,0,0,.4);border-radius:5px;margin-bottom:-16px;padding:8px;height:32px;width:40px}.ui-players-alive-pulse{-webkit-animation-name:pulseAlive;animation-name:pulseAlive;-webkit-animation-duration:2s;animation-duration:2s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0s;animation-delay:0s;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}@-webkit-keyframes pulseAlive{0%{color:#fff}20%{color:red}40%{color:#fff}to{color:#fff}}@keyframes pulseAlive{0%{color:#fff}20%{color:red}40%{color:#fff}to{color:#fff}}.ui-leaderboard-header{font-size:12px}#ui-killfeed-wrapper{top:24px;left:6px;right:auto}#ui-killfeed{position:absolute;margin:initial;top:135px}#ui-killfeed-contents{width:800px}#ui-killfeed-contents .killfeed-div{position:absolute;background-color:rgba(0,0,0,.4);padding:3px;border-radius:2px;height:8px;line-height:8px;right:auto}.killfeed-div div,.killfeed-div span{float:left;font-size:8px;line-height:8px;font-weight:700;color:#efeeee}.killfeed-red div,.killfeed-red span{color:#d1777c!important}.killfeed-blue div,.killfeed-blue span{color:#00bfff!important}#ui-killfeed-contents .killfeed-red{color:#d1777c}#ui-killfeed-contents .killfeed-blue{color:#00bfff}#ui-killfeed .killfeed-name{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#ui-ammo-interactive{position:absolute;right:0;top:25px;width:auto}.ui-ammo>.ui-loot-image,.ui-ammo>.ui-loot-overlay{position:absolute;height:11px;width:11px;right:2px;margin-top:2px}.ui-ammo{background:rgba(0,0,0,.4);border-radius:5px;width:85px;height:32px;margin-left:auto;margin-bottom:5px}.ui-ammo>.ui-loot-count{font-size:24px;left:10px;top:2px}.ui-ammo-row{display:flex}.ui-ammo-row>div:not(:last-child){margin-right:10px}#ui-loot-ph1{opacity:0!important}#ui-ammo-interactive>.ui-ammo{display:inline-block;background:rgba(0,0,0,.4);border-radius:5px;width:38px;height:14px;margin-left:auto;margin-bottom:2px}.ui-ammo>.ui-loot-count{position:absolute;font-size:12px;font-weight:700;width:16px;left:3px;margin-top:-1px;text-align:center}#ui-medical-interactive>.ui-loot{display:inline-block;background:rgba(0,0,0,.4);border-radius:5px;width:44px;height:16px;margin-left:auto;margin-bottom:2px}.ui-medical>.ui-loot-image{position:absolute;height:16px;width:16px;background-size:16px;background-repeat:no-repeat;right:2px;margin-top:0}.ui-medical>.ui-loot-count{position:absolute;font-size:16px;font-weight:700;left:4px;width:16px;margin-top:-3px;text-align:center}.ui-loot{background:rgba(0,0,0,.4);border-radius:5px;width:85px;height:32px;margin-left:auto;margin-bottom:5px}.ui-loot:hover{opacity:1!important}.ui-outline-hover,.ui-outline-hover:hover{border:2px solid rgba(0,255,0,0)}.ui-outline-hover:hover{-webkit-transition:border .1s ease-out;-moz-transition:border .1s ease-out;-o-transition:border .1s ease-out}.ui-scale-hover{transform:scale(1);-webkit-transform:scale(1);-ms-transform:scale(1);-moz-transform:scale(1)}.ui-scale-hover,.ui-scale-hover:hover{-webkit-transition:all .1s ease-in;-ms-transition:all .1s ease-in;-moz-transition:all .1s ease-in;transition:all .1s ease-in}.ui-scale-hover:hover{-webkit-transform:scale(1.1);-ms-transform:scale(1.1);-moz-transform:scale(1.1);transform:scale(1.1)}#ui-debug-button{display:none;background:rgba(0,0,0,.4);position:absolute;border-radius:13px;height:26px;width:26px;background-size:18px;bottom:4px;right:4px;background-position:50%;background-image:url(../img/gui/mag-glass.svg);background-repeat:no-repeat;pointer-events:auto;z-index:1}#ui-upper-center{position:absolute;display:flex;color:#fff;top:84px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-announcement{display:none;color:#ff0;text-shadow:1px 1px 0 #000;font-size:16px;font-weight:700;text-align:center;width:100vw}#ui-lower-center{position:absolute;color:#fff;bottom:44%;left:60%}#ui-interaction{display:flex}#ui-interaction-press{background:rgba(0,0,0,.4);border-radius:5px;margin-left:-20px;font-size:34px;width:44px;height:44px;background-size:36px;background-position:50%;background-repeat:no-repeat}#ui-interaction-outer{background:rgba(0,0,0,.4);border-radius:5px;margin-left:6px;padding:0 6px;height:28px}#ui-interaction-outer #ui-interaction-description{margin-top:5px;font-size:16px;text-align:center}#ui-bottom-center-0{bottom:6px}#ui-bottom-center-0,#ui-equipped-ammo-wrapper{position:absolute;color:#fff;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-equipped-ammo-wrapper{bottom:78px}#ui-equipped-ammo{position:absolute;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);text-align:center;opacity:1}#ui-bullet-counter{display:inline-block;width:175px;height:28px;text-align:center;text-shadow:1px 1px #000}#ui-bullet-counter #ui-current-clip{background:rgba(0,0,0,.4);border-radius:5px;font-size:28px;font-weight:700;line-height:30px;width:60px;height:32px;-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;position:relative;text-align:center}#ui-bullet-counter #ui-ammo-divider{font-size:22px;left:53%;position:absolute;text-align:center;top:20px}#ui-bullet-counter #ui-remaining-ammo{background:rgba(0,0,0,.4);border-radius:5px;font-size:16px;font-weight:700;line-height:22px;width:44px;height:22px;left:122px;position:absolute;text-align:center;top:10px}#ui-bullet-counter #ui-reload-button{background:rgba(0,0,0,.4);position:absolute;border-radius:11px;height:22px;width:22px;background-size:14px;top:10px;left:170px;background-position:4px 3px;background-image:url(../img/gui/bullets.svg);background-repeat:no-repeat}#ui-boost-counter{display:inline-flex;width:206px}#ui-boost-counter .ui-boost-base{background:rgba(0,0,0,.4);height:6px;margin-bottom:0}#ui-boost-counter-0{border-top-left-radius:3px;border-bottom-left-radius:3px;width:50px;margin-right:3px}#ui-boost-counter-0 .ui-bar-inner{background:#ff901a}#ui-boost-counter-1{width:50px;margin-left:3px;margin-right:3px}#ui-boost-counter-1 .ui-bar-inner{background:#ff751a}#ui-boost-counter-2{width:75px;margin-left:3px;margin-right:3px}#ui-boost-counter-2 .ui-bar-inner{background:#ff6616}#ui-boost-counter-3{border-top-right-radius:3px;border-bottom-right-radius:3px;width:25px;margin-left:3px}#ui-boost-counter-3 .ui-bar-inner{background:#ff5600}.ui-boost-base .ui-bar-inner{border-radius:inherit;width:0;height:6px}#ui-health-counter{background:rgba(0,0,0,.4);border-radius:5px;width:200px;height:18px;padding:4px}#ui-health-counter .ui-bar-inner{z-index:1;position:absolute;border-radius:5px;width:100%;height:18px;transition:width 0s;transition-property:width;transition-duration:0s;transition-timing-function:ease-out;transition-delay:0s}#ui-health-container{width:200px;position:relative}#ui-health-counter .ui-bar-danger{background:rgba(255,0,0,.8);-webkit-animation-name:pulse;animation-name:pulse;-webkit-animation-duration:.5s;animation-duration:.5s;-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;-webkit-animation-delay:0;animation-delay:0;-webkit-animation-direction:alternate;animation-direction:alternate;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-fill-mode:none;animation-fill-mode:none;-webkit-animation-play-state:running;animation-play-state:running}#ui-health-counter #ui-health-depleted{z-index:0;background:#fff;transition:width 1s;transition-property:width;transition-duration:1s;transition-timing-function:ease-out;transition-delay:0s}.health-bar-pulse{-webkit-animation:pulsewhite 1s linear infinite;animation:pulsewhite 1s linear infinite}@-webkit-keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@keyframes pulsewhite{0%{background-color:rgba(0,0,0,.6)}50%{background-color:hsla(0,0%,100%,.6)}to{background-color:rgba(0,0,0,.6)}}@-webkit-keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}@keyframes pulse{0%{background-color:rgba(0,0,0,.8)}50%{background-color:rgba(255,0,0,.8)}to{background-color:rgba(0,0,0,.8)}}#ui-bottom-center-1{z-index:3;position:absolute;color:#fff;bottom:23%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-kills{display:none;text-align:center;background:rgba(0,0,0,.4);color:#fff;border-radius:5px;padding:6px}#ui-kill-text{font-size:10px}#ui-kill-count{font-weight:700;color:#ff4100;font-size:18px;margin-bottom:-3px;text-shadow:1px 1px 1px rgba(0,0,0,.3)}#ui-bottom-center-2{position:absolute;color:#fff;bottom:82px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-pickup-message{color:#fff;text-shadow:1px 1px 0 #000;font-size:16px;font-weight:700;text-align:center;width:100vw}#ui-bottom-center-right{position:absolute;color:#fff;bottom:6px;left:75%}.ui-armor-counter{position:absolute;bottom:0;display:block;width:20px;height:24px;background:rgba(0,0,0,.4);border-radius:5px;margin-left:2px}#ui-armor-helmet{right:0}#ui-armor-backpack{left:26px}.ui-armor-level{position:relative;font-size:8px;font-weight:700;bottom:12px;text-align:center;text-shadow:1px 1px #000}.ui-armor-counter-inner{z-index:1;position:absolute;background:rgba(0,255,0,.5);border-radius:5px;width:100%;height:0;bottom:0;transition:height .5s;transition-property:height;transition-duration:.5s;transition-timing-function:ease-out;transition-delay:0s}.ui-armor-counter .ui-armor-count{z-index:2;text-shadow:1px 1px #000;position:relative;font-size:18px;font-weight:700;margin-top:-28px;text-align:center}.ui-armor-counter .ui-armor-image{margin:auto;left:0;right:0;bottom:0;top:0;z-index:0;position:absolute;height:18px;width:18px}#ui-bottom-right{bottom:auto;color:#fff;position:absolute;right:6px;top:55%;-webkit-transform-origin:bottom right;transform-origin:bottom right;-webkit-transform:scale(1);transform:scale(1)}#ui-weapon-container{width:84px}.ui-weapon-info{margin-bottom:5px}.ui-weapon-info,.ui-weapon-switch{border-radius:5px;border:2px solid transparent}.ui-weapon-switch{position:absolute;right:0;opacity:.6;width:68px;height:24px;margin-left:auto;pointer-events:all}#ui-weapon-id-1{bottom:90px}#ui-weapon-id-2{bottom:60px}#ui-weapon-id-3{bottom:30px}#ui-weapon-id-4{bottom:0}.ui-weapon-name{position:absolute;font-size:10px;font-weight:700;right:4px;width:48px;margin-top:12px;text-align:right;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.ui-weapon-number{font-size:24px;right:8px}.ui-weapon-exp,.ui-weapon-number{display:none;position:absolute;font-weight:700;text-align:center}.ui-weapon-exp{height:16px;width:16px;font-size:8px;line-height:18px;right:34px;margin-top:10px}.ui-weapon-image{display:none;position:relative;height:28px;width:28px;left:0;bottom:3px;-webkit-transform:rotate(10deg);transform:rotate(10deg)}#ui-weapon-id-4 .ui-weapon-image{height:24px;width:24px;left:0;top:0;background-size:24px}#ui-stats-contents{position:absolute;width:100%;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);text-align:center;color:#fff;border-radius:5px}#ui-stats-header{margin-top:14px}.ui-stats-header-title{font-weight:700;font-size:24px;margin:6px;color:gold}.ui-stats-header-reason{font-size:12px}.ui-stats-header-overview{position:fixed;top:4px;right:12px;margin:5px}.ui-stats-header-overview div{display:block;padding-bottom:6px;border-bottom:2px solid hsla(0,0%,100%,.25)}.ui-stats-header-overview div:not(:first-child){margin:initial}span.ui-stats-header-stat{font-size:22px}span.ui-stats-header-value{margin-left:12px;font-size:28px;font-weight:700}#ui-stats-info-box{position:relative;left:50%;margin:auto;margin-top:0;height:100px;display:flex}.ui-stats-info-player{position:relative;width:125px;background-color:rgba(0,0,0,.75);border-radius:4px;border:2px solid #000;-webkit-transform:translateX(-50%);transform:translateX(-50%)}.ui-stats-info-status:after{background-image:url(../img/gui/skull.svg);background-position:50%;background-repeat:no-repeat;background-size:70px;content:"";display:block;height:100%;left:auto;opacity:.1;position:absolute;top:0;width:100%;z-index:-1}.ui-stats-info-player-name{color:gold;font-size:12px;font-weight:700;font-style:italic;margin:4px auto;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ui-stats-info{display:flex;height:18px;margin:auto}.ui-stats-info>div{padding:4px;font-size:9px;line-height:6px;text-align:left;font-weight:700}.ui-stats-info>div:first-child{width:55%;margin-right:4px;text-align:right;font-weight:400}.ui-stats-reason{display:flex;height:72px;margin:auto}.ui-stats-reason div{padding:8px;margin:auto;width:100%;text-align:center;font-size:16px}.ui-stats-reason .ui-stats-reason-dead{color:red}.ui-stats-reason .ui-stats-reason-alive{color:#7cfc00}#ui-stats-options{position:absolute;left:50%;margin-top:10px;min-height:30px;z-index:1}.ui-stats-restart{width:130px;margin:auto;margin-bottom:20px}#ui-stats-spectate,.ui-stats-restart{position:absolute;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-stats-spectate{left:68px;width:88px;background:#50afab;border-bottom:2px solid #387c79;box-shadow:none}.ui-stats-ad-container{display:none;margin-top:8px;-webkit-transform:scale(.7);transform:scale(.7)}#ui-spec-ad-container{z-index:1;position:absolute;top:0;left:50%}#ad-block-stats-bottom{-webkit-transform:scale(.6);transform:scale(.6);-webkit-transform-origin:center;transform-origin:center;position:static}.tooltip{position:relative}.tooltip .tooltip-text{visibility:hidden!important;width:240px;background-color:#000;color:#fff;text-align:center;padding:5px 0;border-radius:6px;position:absolute;z-index:1;right:110%;opacity:.75;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.tooltip .tooltip-text:after{content:" ";position:absolute;top:50%;left:100%;margin-top:-5px;border-width:5px;border-style:solid;border-color:transparent transparent transparent #000}.tooltip-title{font-size:18px;font-weight:700;padding:4px;color:#ff0}.tooltip-description{font-size:16px;padding:4px}.tooltip-description span{font-size:16px}#ui-editor-top-center{position:absolute;color:#fff;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%)}#ui-editor-top-right{position:absolute;color:#fff;font-size:16px;top:6px;right:6px}.ui-editor-header{text-align:center;font-weight:700;font-size:16px;padding:8px}.ui-editor-info{background:rgba(0,0,0,.4);border-radius:5px;font-size:36px;margin-bottom:8px;padding:8px}.ui-editor-list{margin:0;padding:0;list-style:none}.ui-editor-list li div{font-family:monospace;font-size:14px}#ui-profiler-top-left{position:absolute;color:#fff;font-size:16px;top:6px;left:6px;text-align:center;display:flex}.ui-profiler-list{background:rgba(0,0,0,.4);border-radius:5px;margin-right:16px;padding:8px}.ui-profiler-list-header{font-size:16px;font-weight:700;margin-bottom:8px}.ui-profiler-list ul{list-style:none;text-align:left;padding:0;margin:0}.ui-profiler-list li{display:flex}.kv{font-family:monospace;font-size:14px;font-weight:400}.kv:last-child{width:100%;text-align:right}#ui-leaderboard-wrapper,#ui-settings-container-desktop{display:none}#ui-settings-container-mobile{display:block}}@media screen and (max-width:850px) and (max-height:360px),screen and (max-width:850px) and (max-width:640px){#ui-top-center{-webkit-transform-origin:top;transform-origin:top;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85)}}@media screen and (max-width:850px) and screen and (max-width:850px){#ui-lower-center{-webkit-transform:scale(1);transform:scale(1)}}@media screen and (max-width:850px) and (max-height:360px),screen and (max-width:850px) and (max-width:640px){#ui-bottom-center-0{-webkit-transform-origin:bottom;transform-origin:bottom;-webkit-transform:translateX(-50%) scale(.85);transform:translateX(-50%) scale(.85)}}@media screen and (max-width:850px) and (max-height:360px),screen and (max-width:850px) and (max-width:640px){#ui-bottom-right{-webkit-transform-origin:top right;transform-origin:top right;-webkit-transform:scale(.8);transform:scale(.8)}}@media screen and (max-width:850px) and (max-width:850px) and (orientation:landscape){.ui-stats-header-overview .ui-stats-header-left{position:fixed;top:6px;left:12px}.ui-stats-header-overview .ui-stats-header-right{position:fixed;top:6px;right:12px}}@media screen and (max-width:850px) and (max-height:360px) and (max-width:640px){.ui-stats-ad-container{margin-top:0;-webkit-transform:scale(.6);transform:scale(.6)}}@media screen and (max-width:850px) and (max-width:850px) and (max-height:320px){.ui-stats-ad-container{position:fixed;right:10px;top:24px;-webkit-transform:scale(.5);transform:scale(.5);-webkit-transform-origin:bottom right;transform-origin:bottom right}}@media screen and (max-width:850px) and (orientation:portrait){#ui-stats-contents{margin-top:32px;margin-bottom:16px}#ui-stats-header-overview{position:static}#ui-stats-info-box{display:inline-block;left:auto;-webkit-transform:scale(.9);transform:scale(.9);-webkit-transform-origin:initial;transform-origin:initial;margin-top:2px;width:100%}.ui-stats-ad-container{width:100%}.ui-stats-info-player{display:inline-block;left:auto!important;margin:8px;-webkit-transform:none;transform:none}.ui-stats-header-overview{display:inline-block;position:static;width:175px}.ui-stats-header-overview div{position:static;margin-bottom:8px}#ui-top-center{top:134px;left:50%}#ui-top-center-scopes-wrapper{display:none;bottom:42px;top:auto}#ui-team{top:40px}.ui-team-member{height:18px;margin-bottom:4px}#ui-upper-center{top:180px}#ui-bottom-center-0{top:-15px;bottom:auto;left:100px;-webkit-transform:scale(.85);transform:scale(.85)}#ui-bottom-center-1{bottom:28%}#ui-bottom-center-2{bottom:218px}#ui-lower-center{bottom:38%;left:38%}#ui-boost-counter{position:relative;top:40px;left:2px}#ui-bottom-right{bottom:20px;right:6px;top:auto}#ui-weapon-id-1{right:240px;bottom:auto}#ui-weapon-id-2{right:160px;bottom:auto}#ui-weapon-id-3{right:80px;bottom:auto}#ui-weapon-id-4{bottom:auto}.ui-weapon-info{display:inline-block}#ui-bottom-center-right{bottom:9px;left:30px}.ui-right-center-mobile{top:6px}#ui-emote-button{left:auto;right:0;top:246px}#ui-debug-button{top:242px}#ui-ammo-interactive{left:8px;margin-top:4px;top:88px}#ui-ammo-interactive>.ui-ammo,#ui-medical-interactive>.ui-loot{display:block}#ui-equipped-ammo{position:static}#ui-equipped-ammo,#ui-equipped-ammo-wrapper{left:auto;-webkit-transform:none;transform:none}#ui-equipped-ammo-wrapper{bottom:auto;color:#fff;position:absolute;right:6px;top:44%}#ui-bullet-counter{width:auto}#ui-bullet-counter #ui-current-clip{left:50%}#ui-bullet-counter #ui-remaining-ammo{left:auto;right:0;top:36px}#ui-bullet-counter #ui-reload-button{left:auto;right:0;top:62px}#big-map-collision{left:auto;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}#big-map-close{bottom:auto;top:12px}#ui-spectate-options-wrapper{bottom:42px;-webkit-transform:scale(.7);transform:scale(.7)}#ui-spectate-options{position:absolute;bottom:12px}#ui-spectate-stats{bottom:0;top:auto}#ui-ammo-interactive{top:90px}#ui-ammo-interactive>.ui-ammo{margin-bottom:2px}}@media screen and (max-width:850px) and (orientation:portrait) and (min-height:668px){#ui-stats-contents{margin-top:32px}#ui-stats-info-box,.ui-stats-ad-container{-webkit-transform:scale(1);transform:scale(1)}.ui-stats-ad-container{margin-top:20px}#ui-stats-options{display:block;left:auto;position:static;margin:auto;margin-top:24px;width:100%}.ui-stats-restart{margin-bottom:0}#ui-stats-spectate,.ui-stats-restart{display:block;position:static;-webkit-transform:initial;transform:none}#ui-stats-spectate{margin:auto;margin-top:6px}}@media screen and (max-width:850px) and (orientation:portrait) and (max-height:667px){#ui-stats-contents{margin-top:0;-webkit-transform:translateX(-50%) scale(.9);transform:translateX(-50%) scale(.9);-webkit-transform-origin:top;transform-origin:top}.ui-stats-ad-container{margin-top:20px}}@media screen and (max-width:850px) and (orientation:portrait) and (max-height:568px) and (max-width:375px){#ui-bottom-center-right{left:22px;-webkit-transform:scale(.8);transform:scale(.8)}#ui-bottom-right{right:0}#ui-bottom-center-0{top:-20px;left:84px;-webkit-transform:scale(.7);transform:scale(.7)}}', ""])
     },
     b58076b1: function(e, t, a) {
         "use strict";
@@ -29611,8 +29836,8 @@ webpackJsonp([0], {
                           , P = i.intersectSegment(e, _, o.add(_, o.mul(M, d)))
                           , C = P && o.length(o.sub(P.point, _)) <= T;
                         if (n.debug) {
-                            var A = C ? 65280 : 16711680;
-                            s.addRay(_, M, d, A)
+                            var I = C ? 65280 : 16711680;
+                            s.addRay(_, M, d, I)
                         }
                         if (C)
                             return !0
@@ -30535,7 +30760,7 @@ webpackJsonp([0], {
             this.sprite.visible = !1
         }
         function r() {
-            this.nt = new u.Pool(i)
+            this.ot = new u.Pool(i)
         }
         var o = a("80ac57a6")
           , n = a("989ad62a")
@@ -30590,7 +30815,7 @@ webpackJsonp([0], {
         },
         r.prototype = {
             l: function(e, t, a, i, r, o, u) {
-                for (var g = this.nt.m(), y = 0; y < g.length; y++) {
+                for (var g = this.ot.m(), y = 0; y < g.length; y++) {
                     var f = g[y];
                     if (f.active) {
                         var x = (n.items[f.type],
@@ -30603,7 +30828,7 @@ webpackJsonp([0], {
                         }, b = {
                             obj: null,
                             pen: 0
-                        }, _ = l.createCircle(f.pos, f.rad), v = r.Y.m(), S = 0; S < v.length; S++) {
+                        }, _ = l.createCircle(f.pos, f.rad), v = r.K.m(), S = 0; S < v.length; S++) {
                             var k = v[S];
                             if (k.active && !k.dead && c.sameLayer(k.layer, f.layer)) {
                                 var z = l.intersect(k.collider, _);
@@ -30619,11 +30844,11 @@ webpackJsonp([0], {
                         if (w.obj && w.obj.__id != f.lastSoundObjId && P > 7.5) {
                             f.lastSoundObjId = w.obj.__id;
                             var C = d.mul(d.normalizeSafe(T, d.create(1, 0)), -1)
-                              , A = s.Defs[w.obj.type];
-                            p.playHitFx(A.hitParticle, A.sound.bullet, f.pos, C, f.layer, t, a)
+                              , I = s.Defs[w.obj.type];
+                            p.playHitFx(I.hitParticle, I.sound.bullet, f.pos, C, f.layer, t, a)
                         }
-                        var I = r.getGroundSurface(f.pos, f.layer);
-                        f.posZ <= .01 && !f.inWater && "water" == I && (r.addRipple(f.pos, f.layer, 0),
+                        var A = r.getGroundSurface(f.pos, f.layer);
+                        f.posZ <= .01 && !f.inWater && "water" == A && (r.addRipple(f.pos, f.layer, 0),
                         f.inWater = !0);
                         var D = f.velZ;
                         if (f.velZ = (f.posZ - f.posZOld) / e,
@@ -30636,13 +30861,13 @@ webpackJsonp([0], {
                             if (b.obj) {
                                 if (f.lastSoundObjId != b.obj.__id) {
                                     f.lastSoundObjId = b.obj.__id;
-                                    var E = s.Defs[b.obj.type];
-                                    O.name = E.sound.bullet
+                                    var B = s.Defs[b.obj.type];
+                                    O.name = B.sound.bullet
                                 }
                             } else
                                 f.grounded = !0,
-                                O.name = h[I],
-                                void 0 === O.name && (O.name = "footstep_" + I,
+                                O.name = h[A],
+                                void 0 === O.name && (O.name = "footstep_" + A,
                                 O.fn = "playGroup",
                                 O.channel = "sfx");
                             "" != O.name && a[O.fn](O.name, {
@@ -30652,19 +30877,19 @@ webpackJsonp([0], {
                                 muffled: !0
                             })
                         }
-                        var L = f.layer
-                          , B = f.posZ < .25 ? 14 : 25
+                        var E = f.layer
+                          , L = f.posZ < .25 ? 14 : 25
                           , F = l.createCircle(f.pos, 3 * f.rad)
                           , R = r.insideStructureStairs(F)
                           , j = r.insideStructureMask(F);
-                        !(f.posZ >= .25 && R && (1 & f.layer) == (1 & i.layer)) || j && 2 & i.layer || (L |= 2,
-                        B += 100),
-                        o.addPIXIObj(f.sprite, L, B);
-                        var q = f.imgScale * m.remap(f.posZ, 0, n.projectile.maxHeight, 1, 2.5)
-                          , N = u.pointToScreen(f.pos)
-                          , G = u.pixels(q);
-                        f.sprite.position.set(N.x, N.y),
-                        f.sprite.scale.set(G, G),
+                        !(f.posZ >= .25 && R && (1 & f.layer) == (1 & i.layer)) || j && 2 & i.layer || (E |= 2,
+                        L += 100),
+                        o.addPIXIObj(f.sprite, E, L);
+                        var N = f.imgScale * m.remap(f.posZ, 0, n.projectile.maxHeight, 1, 2.5)
+                          , q = u.pointToScreen(f.pos)
+                          , U = u.pixels(N);
+                        f.sprite.position.set(q.x, q.y),
+                        f.sprite.scale.set(U, U),
                         f.sprite.rotation = f.rot,
                         f.sprite.alpha = f.inWater ? .3 : 1
                     }
@@ -30672,7 +30897,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            Le: r
+            Be: r
         }
     },
     bdd2570b: function(e, t, a) {
@@ -30807,6 +31032,9 @@ webpackJsonp([0], {
             "game-revive-teammate": "Knap Teamgenoot op",
             "game-equip": "Uitrusten",
             "game-cancel": "Annuleren",
+            "game-open-door": "Open Door",
+            "game-close-door": "Close Door",
+            "game-unlock": "Unlock",
             "game-You": "You",
             "game-you": "you",
             "game-themselves": "themselves",
@@ -30910,7 +31138,23 @@ webpackJsonp([0], {
             "game-outfitCamo": "Bos Camouflage",
             "game-outfitRed": "Doelpraktijk",
             "game-outfitWhite": "Arctische Wreker",
-            "game-fists": "Punch",
+            "game-fists": "Fists",
+            "game-karambit_rugged": "Karambit Rugged",
+            "game-hud-karambit_rugged": "Karambit",
+            "game-karambit_prismatic": "Karambit Prismatic",
+            "game-hud-karambit_prismatic": "Karambit",
+            "game-bayonet_rugged": "Bayonet Rugged",
+            "game-hud-bayonet_rugged": "Bayonet",
+            "game-bayonet_woodland": "Bayonet Woodland",
+            "game-hud-bayonet_woodland": "Bayonet",
+            "game-huntsman_rugged": "Huntsman Rugged",
+            "game-hud-huntsman_rugged": "Huntsman",
+            "game-huntsman_burnished": "Huntsman Burnished",
+            "game-hud-huntsman_burnished": "Huntsman",
+            "game-woodaxe": "Wood Axe",
+            "game-fireaxe": "Fire Axe",
+            "game-hook": "Hook",
+            "game-pan": "Pan",
             "game-ak47": "AK-47",
             "game-dp28": "DP-28",
             "game-mosin": "Mosin-Nagant",
@@ -30930,7 +31174,13 @@ webpackJsonp([0], {
             "game-hud-smoke": "Smoke",
             "game-barrel_01": "een vat",
             "game-silo_01": "een silo",
-            "game-oven_01": "een oven"
+            "game-oven_01": "een oven",
+            "game-control_panel_01": "Control Panel",
+            "game-control_panel_02": "Control Panel",
+            "game-control_panel_03": "a computer terminal",
+            "game-power_box_01": "a power box",
+            "game-airdrop_crate_01": "Air Drop",
+            "game-airdrop_crate_02": "Air Drop"
         };
         e.exports = i
     },
@@ -31382,7 +31632,7 @@ webpackJsonp([0], {
                     this.layerMaskActive) {
                         a.beginFill(16777215, 1),
                         a.drawRect(0, 0, e.screenWidth, e.screenHeight);
-                        for (var i = t.ot.m(), r = 0; r < i.length; r++) {
+                        for (var i = t.rt.m(), r = 0; r < i.length; r++) {
                             var o = i[r];
                             if (o.active)
                                 for (var n = 0; n < o.mask.length; n++) {
@@ -31403,7 +31653,7 @@ webpackJsonp([0], {
                         a.beginFill(16777215, 1),
                         a.drawRect(0, 0, e.screenWidth, e.screenHeight),
                         a.beginFill(0, 1);
-                        for (var u = t.ot.m(), h = 0; h < u.length; h++) {
+                        for (var u = t.rt.m(), h = 0; h < u.length; h++) {
                             var g = u[h];
                             if (g.active)
                                 for (var y = 0; y < g.mask.length; y++) {
@@ -31448,7 +31698,7 @@ webpackJsonp([0], {
         },
         e.exports = {
             RenderGroup: u,
-            ke: s
+            Se: s
         }
     },
     c73dee75: function(e, t, a) {
@@ -31524,7 +31774,7 @@ webpackJsonp([0], {
                 var p = Math.atan2(i.dir.x, i.dir.y);
                 i.container.rotation = p - Math.PI / 2,
                 i.layer = e.layer;
-                var h = t.se(i.playerId);
+                var h = t.oe(i.playerId);
                 h && 2 & h.layer && (i.layer |= 2);
                 var g = m.tracerColors[o.tracerColor]
                   , y = g.regular;
@@ -31540,7 +31790,7 @@ webpackJsonp([0], {
                 a.addPIXIObj(i.container, i.layer, 19)
             },
             l: function(e, t, a, o, n, h, g, y) {
-                for (var f = t.tt.m(), x = 0; x < this.bullets.length; x++) {
+                for (var f = t.et.m(), x = 0; x < this.bullets.length; x++) {
                     var w = this.bullets[x];
                     if (w.collided && (w.scale = Math.max(w.scale - 6 * e, 0),
                     w.scale <= 0 && (w.collided = !1,
@@ -31564,7 +31814,7 @@ webpackJsonp([0], {
                             n.__id == w.playerId ? w.tracerAlphaRate : .9 * w.tracerAlphaRate);
                             w.bulletTrail.alpha = Math.max(w.tracerAlphaMin, w.bulletTrail.alpha * k)
                         }
-                        for (var z = [], M = a.Y.m(), T = 0; T < M.length; T++) {
+                        for (var z = [], M = a.K.m(), T = 0; T < M.length; T++) {
                             var P = M[T];
                             if (!(!P.active || P.dead || !p.sameLayer(P.layer, w.layer) || P.height < m.bullet.height || w.reflectCount > 0 && P.__id == w.reflectObjId)) {
                                 var C = l.intersectSegment(P.collider, v, w.pos);
@@ -31577,65 +31827,65 @@ webpackJsonp([0], {
                                 })
                             }
                         }
-                        for (var A = 0; A < f.length; A++) {
-                            var I = f[A];
-                            if (I.active && !I.N.dead && (p.sameLayer(I.N.layer, w.layer) || 2 & I.N.layer) && (I.__id != w.playerId || w.damageSelf)) {
+                        for (var I = 0; I < f.length; I++) {
+                            var A = f[I];
+                            if (A.active && !A.N.dead && (p.sameLayer(A.N.layer, w.layer) || 2 & A.N.layer) && (A.__id != w.playerId || w.damageSelf)) {
                                 var D = null;
-                                if (I.hasActivePan()) {
-                                    var O = I
-                                      , E = O.getPanSegment()
-                                      , L = i(E.p0, E.p1, O.posOld, O.dirOld)
-                                      , B = i(E.p0, E.p1, O.pos, O.dir)
-                                      , F = s.intersectSegmentSegment(v, w.pos, L.p0, L.p1)
-                                      , R = s.intersectSegmentSegment(v, w.pos, B.p0, B.p1)
+                                if (A.hasActivePan()) {
+                                    var O = A
+                                      , B = O.getPanSegment()
+                                      , E = i(B.p0, B.p1, O.posOld, O.dirOld)
+                                      , L = i(B.p0, B.p1, O.pos, O.dir)
+                                      , F = s.intersectSegmentSegment(v, w.pos, E.p0, E.p1)
+                                      , R = s.intersectSegmentSegment(v, w.pos, L.p0, L.p1)
                                       , j = R || F;
                                     if (j) {
-                                        var q = u.normalize(u.perp(u.sub(B.p1, B.p0)));
+                                        var N = u.normalize(u.perp(u.sub(L.p1, L.p0)));
                                         D = {
                                             point: j.point,
-                                            normal: q
+                                            normal: N
                                         }
                                     }
                                 }
-                                var N = s.intersectSegmentCircle(v, w.pos, I.pos, m.player.radius);
-                                if (N && (!D || u.length(u.sub(N.point, w.startPos)) < u.length(u.sub(D.point, w.startPos))) ? z.push({
+                                var q = s.intersectSegmentCircle(v, w.pos, A.pos, m.player.radius);
+                                if (q && (!D || u.length(u.sub(q.point, w.startPos)) < u.length(u.sub(D.point, w.startPos))) ? z.push({
                                     type: "player",
-                                    player: I,
-                                    point: N.point,
-                                    normal: N.normal
+                                    player: A,
+                                    point: q.point,
+                                    normal: q.normal
                                 }) : D && z.push({
                                     type: "pan",
                                     collidable: !0,
                                     point: D.point,
                                     normal: D.normal,
-                                    layer: I.layer
+                                    layer: A.layer
                                 }),
-                                N || D)
+                                q || D)
                                     break
                             }
                         }
-                        for (var G = 0; G < z.length; G++) {
-                            var U = z[G];
-                            U.dist = u.length(u.sub(U.point, v))
+                        for (var U = 0; U < z.length; U++) {
+                            var G = z[U];
+                            G.dist = u.length(u.sub(G.point, v))
                         }
                         z.sort(function(e, t) {
                             return e.dist - t.dist
                         });
                         var V = !1
-                          , H = t.se(w.playerId);
-                        H && (H.N.dead || H.N.downed) && (V = !0);
-                        for (var W = !1, K = 0; K < z.length; K++) {
+                          , W = t.oe(w.playerId);
+                        W && (W.N.dead || W.N.downed) && (V = !0);
+                        for (var H = !1, K = 0; K < z.length; K++) {
                             var X = z[K];
                             if ("obstacle" == X.type) {
                                 var Y = c.Defs[X.obstacleType];
                                 r(Y.hitParticle, Y.sound.bullet, X.point, X.normal, w.layer, g, y),
-                                W = X.collidable
+                                H = X.collidable
                             } else if ("player" == X.type) {
                                 if (!V) {
                                     var Z = X.player
-                                      , Q = u.sub(X.point, Z.pos);
-                                    Q.y *= -1,
-                                    g.addParticle("bloodSplat", Z.layer, u.mul(Q, o.ppu), u.create(0, 0), 1, 1, Z.container),
+                                      , J = u.sub(X.point, Z.pos);
+                                    J.y *= -1,
+                                    g.addParticle("bloodSplat", Z.layer, u.mul(J, o.ppu), u.create(0, 0), 1, 1, Z.container),
                                     y.playGroup("player_bullet_hit", {
                                         soundPos: Z.pos,
                                         fallOff: 1,
@@ -31643,18 +31893,18 @@ webpackJsonp([0], {
                                         muffled: !0
                                     })
                                 }
-                                W = !0
+                                H = !0
                             } else
                                 "pan" == X.type && (r("barrelChip", m.items.pan.sound.bullet, X.point, X.normal, X.layer, g, y),
-                                W = !0);
-                            if (W) {
+                                H = !0);
+                            if (H) {
                                 w.pos = X.point;
                                 break
                             }
                         }
                         if (!(2 & w.layer)) {
-                            for (var J = a.ot.m(), $ = w.layer, ee = 0; ee < J.length; ee++) {
-                                var te = J[ee];
+                            for (var Q = a.rt.m(), $ = w.layer, ee = 0; ee < Q.length; ee++) {
+                                var te = Q[ee];
                                 if (te.active) {
                                     for (var ae = !1, ie = !1, re = 0; re < te.stairs.length; re++)
                                         if (l.intersectSegment(te.stairs[re].collision, w.pos, v)) {
@@ -31672,14 +31922,14 @@ webpackJsonp([0], {
                             $ != w.layer && (w.layer = $,
                             h.addPIXIObj(w.container, w.layer, 19))
                         }
-                        (W || d.eqAbs(b, _)) && (w.collided = !0,
+                        (H || d.eqAbs(b, _)) && (w.collided = !0,
                         w.alive = !1),
                         w.isNew = !1
                     }
                 }
             },
             createBulletHit: function(e, t, a) {
-                var i = e.se(t);
+                var i = e.oe(t);
                 i && a.playGroup("player_bullet_hit", {
                     soundPos: i.pos,
                     fallOff: 1,
@@ -31732,18 +31982,21 @@ webpackJsonp([0], {
             this.languageSelect = n(".language-select"),
             this.startMenuWrapper = n("#start-menu-wrapper"),
             this.gameAreaWrapper = n("#game-area-wrapper"),
-            this.config = new S,
+            this.config = new M,
             this.config.onModified = this.onConfigModified.bind(this),
-            this.localization = new x,
+            this.localization = new b,
             this.localization.setLocale("en"),
             this.localization.localizeIndex(),
             this.account = new d(this.config,this.localization),
-            this.loadoutMenu = new f(this.config),
-            this.pingTest = new w,
+            this.loadoutMenu = new w(this.config),
+            this.pingTest = new v,
             this.audioManager = new p,
-            this.teamMenu = new _(this.config,this.pingTest,this.localization,this.joinGame.bind(this),this.audioManager),
+            this.teamMenu = new k(this.config,this.pingTest,this.localization,this.joinGame.bind(this),this.audioManager),
             this.teamMenu.onLeave = this.onTeamMenuLeave.bind(this),
             this.pixi = null,
+            this.input = null,
+            this.inputBinds = null,
+            this.inputBindUi = null,
             this.game = null,
             this.initialized = !1,
             this.active = !1,
@@ -31790,14 +32043,16 @@ webpackJsonp([0], {
         a("f398b7c7"))
           , g = a("9b5f96fd")
           , y = a("26be8056")
-          , f = a("153d9481")
-          , x = a("7d64d541")
-          , w = (a("484b3444"),
-        a("c4623452"))
-          , b = a("076760a2")
-          , _ = a("61fc98e9")
-          , v = a("d3da5587")
-          , S = function() {
+          , f = a("4b8d140f")
+          , x = a("d306eab6")
+          , w = a("153d9481")
+          , b = a("7d64d541")
+          , _ = a("484b3444")
+          , v = a("c4623452")
+          , S = a("076760a2")
+          , k = a("61fc98e9")
+          , z = a("d3da5587")
+          , M = function() {
             function e() {
                 i(this, e),
                 this.useLocalStorage = !0,
@@ -31879,28 +32134,31 @@ webpackJsonp([0], {
                   , d = (this.loadoutMenu,
                 this.localization)
                   , p = this.muteBtns
-                  , f = this.masterSliders
-                  , x = this.musicSliders
-                  , w = this.nameInput
-                  , _ = this.playSoloBtn
-                  , S = this.playDuoBtn
-                  , k = this.playSquadBtn
-                  , z = this.serverSelect
-                  , M = this.soundSliders
-                  , T = this.teamMenu;
+                  , w = this.masterSliders
+                  , b = this.musicSliders
+                  , v = this.nameInput
+                  , k = this.playSoloBtn
+                  , M = this.playDuoBtn
+                  , T = this.playSquadBtn
+                  , P = this.serverSelect
+                  , C = this.soundSliders
+                  , I = this.teamMenu;
                 if (!this.initialized) {
-                    if (w.maxLength = c.kNameMaxLen,
-                    _.on("click", function() {
+                    if (v.maxLength = c.kNameMaxLen,
+                    k.on("click", function() {
                         e.tryQuickStartGame(1)
                     }),
-                    S.on("click", function() {
+                    M.on("click", function() {
                         e.tryQuickStartGame(2)
                     }),
-                    k.on("click", function() {
+                    T.on("click", function() {
                         e.tryQuickStartGame(4)
                     }),
-                    z.change(function() {
-                        var t = z.find(":selected").val();
+                    n(document).on("mouseup", function(e) {
+                        4 != e.which && 5 != e.which || e.preventDefault()
+                    }),
+                    P.change(function() {
+                        var t = P.find(":selected").val();
                         e.pingTest.start(t)
                     }),
                     n.ajax("/api/site_info?language=" + this.localization.getLocale()).done(function(t, a) {
@@ -31936,23 +32194,35 @@ webpackJsonp([0], {
                         b && n(".btn-youtuber").attr("href", t.youtube.link).html(t.youtube.name),
                         w.css("display", b ? "block" : "none")
                     }),
-                    w.on("blur", function(t) {
+                    v.on("blur", function(t) {
                         e.setConfigFromDOM()
                     }),
-                    p.on("click", function() {
+                    p.on("mousedown", function(e) {
+                        e.stopPropagation()
+                    }),
+                    p.on("click", function(e) {
                         a.set("muteAudio", !a.get("muteAudio"))
                     }),
-                    f.on("input", function() {
+                    n(w).on("mousedown", function(e) {
+                        e.stopPropagation()
+                    }),
+                    n(C).on("mousedown", function(e) {
+                        e.stopPropagation()
+                    }),
+                    n(b).on("mousedown", function(e) {
+                        e.stopPropagation()
+                    }),
+                    w.on("input", function() {
                         var e = n(this).val() / 100;
                         t.setMasterVolume(e),
                         a.set("masterVolume", e)
                     }),
-                    M.on("input", function() {
+                    C.on("input", function() {
                         var e = n(this).val() / 100;
                         t.setSoundVolume(e),
                         a.set("soundVolume", e)
                     }),
-                    x.on("input", function() {
+                    b.on("input", function() {
                         var e = n(this).val() / 100;
                         t.setMusicVolume(e),
                         a.set("musicVolume", e)
@@ -31985,67 +32255,69 @@ webpackJsonp([0], {
                     l.on("click", function() {
                         window.history && window.history.replaceState("", "", "/"),
                         e.game && e.game.o(),
-                        T.leave()
+                        I.leave()
                     }),
                     "WebSocket"in window)
                         if (y.authLocation()) {
                             if (y.detectIE()) {
-                                var P = 'Please use the <a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">Chrome browser</a> for a better playing experience!';
-                                P += '<br><br>¡Usa el <a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">navegador Chrome</a> para una mejor experiencia de juego!',
-                                P += '<br><br><a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">구글 크롬</a> 브라우저로이 게임을 즐겨보세요.';
-                                var C = n("#modal-notification");
-                                C.find(".modal-settings-text").html(P),
-                                C.fadeIn(200)
+                                var A = 'Please use the <a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">Chrome browser</a> for a better playing experience!';
+                                A += '<br><br>¡Usa el <a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">navegador Chrome</a> para una mejor experiencia de juego!',
+                                A += '<br><br><a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">구글 크롬</a> 브라우저로이 게임을 즐겨보세요.';
+                                var D = n("#modal-notification");
+                                D.find(".modal-settings-text").html(A),
+                                D.fadeIn(200)
                             }
                         } else {
-                            h.storeGeneric("proxy", "used"),
                             h.logProxy(window.location.hostname);
-                            var A = n("#modal-notification");
-                            A.find(".modal-settings-text").html('Please use the <a href="https://surviv.io" target="_blank">official surviv.io site</a> for a better playing experience!'),
-                            A.fadeIn(200)
+                            var O = n("#modal-notification");
+                            O.find(".modal-settings-text").html('Please use the <a href="https://surviv.io" target="_blank">official surviv.io site</a> for a better playing experience!'),
+                            O.fadeIn(200)
                         }
                     else {
                         h.storeGeneric("error", "no_websocket");
-                        var I = n("#modal-notification");
-                        I.find(".modal-settings-text").html('WebSockets are required to play.<br><br>Please use the <a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">Chrome browser</a> for a better playing experience!'),
-                        I.fadeIn(200)
+                        var B = n("#modal-notification");
+                        B.find(".modal-settings-text").html('WebSockets are required to play.<br><br>Please use the <a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank">Chrome browser</a> for a better playing experience!'),
+                        B.fadeIn(200)
                     }
                     this.account.load(),
                     this.loadoutMenu.init(this.account),
                     this.playEnabled = !0,
                     this.setDOMFromConfig(),
                     this.setAppActive(!0);
-                    var D = window.devicePixelRatio > 1 ? 2 : 1
-                      , O = new s.Application({
+                    var E = window.devicePixelRatio > 1 ? 2 : 1
+                      , L = new s.Application({
                         width: window.innerWidth,
                         height: window.innerHeight,
                         view: this.gameCanvas[0],
                         antialias: !1,
-                        resolution: D
+                        resolution: E
                     });
-                    O.renderer.plugins.interaction.destroy(),
-                    O.ticker.add(this.update, this),
-                    this.pixi = O;
-                    var E = Math.min(window.screen.width, window.screen.height)
-                      , L = Math.max(window.screen.width, window.screen.height);
-                    E *= window.devicePixelRatio,
-                    L *= window.devicePixelRatio;
-                    var B = L < 1366 && E < 768
-                      , F = B || !this.config.get("highResTex") ? "low" : "high";
-                    b.loadAllTextures(O.renderer, F),
-                    v.loadStaticDomImages();
-                    var R = function() {
+                    L.renderer.plugins.interaction.destroy(),
+                    L.ticker.add(this.update, this),
+                    this.pixi = L,
+                    this.input = new f.ie(this.pixi.view),
+                    this.inputBinds = new x.InputBinds(this.input,this.config),
+                    this.inputBindUi = new x.InputBindUi(this.input,this.inputBinds);
+                    var F = Math.min(window.screen.width, window.screen.height)
+                      , R = Math.max(window.screen.width, window.screen.height);
+                    F *= window.devicePixelRatio,
+                    R *= window.devicePixelRatio;
+                    var j = R < 1366 && F < 768
+                      , N = j || !this.config.get("highResTex") ? "low" : "high";
+                    S.loadAllTextures(L.renderer, N),
+                    z.loadStaticDomImages();
+                    var q = function() {
                         e.setAppActive(!1);
                         var t = void 0 != window.menu;
                         h.storeGeneric("socketOn", t)
                     }
-                      , j = function(t) {
+                      , U = function(t) {
                         e.game.o(),
                         e.errorMessage = t || "",
                         e.teamMenu.onGameComplete(),
                         e.setAppActive(!0)
                     };
-                    this.game = new g.bt(O,t,d,a,R,j),
+                    this.game = new g.wt(L,t,d,a,this.input,this.inputBinds,this.inputBindUi,q,U),
                     this.onResize(),
                     this.tryJoinTeam(!1),
                     this.audioManager.preloadSounds(),
@@ -32055,6 +32327,7 @@ webpackJsonp([0], {
                         loop: !1,
                         forceStart: !0
                     }),
+                    _.init(this.inputBinds, this.inputBindUi),
                     this.initialized = !0
                 }
             },
@@ -32082,11 +32355,12 @@ webpackJsonp([0], {
                             top: "38%"
                         })
                     }
-                if (e) {
+                if (n(".btn-keybind").css("display", u.mobile ? "none" : "inline-block"),
+                e) {
                     var r = y.getScreenDimensions();
                     e.renderer.resize(r.width, r.height)
                 }
-                t && t.initialized && t.dt(),
+                t && t.initialized && t.ct(),
                 this.refreshUi(!1)
             },
             setAppActive: function(e) {
@@ -32296,6 +32570,7 @@ webpackJsonp([0], {
                 a.ambientSounds.windInst = this.windInst),
                 i.isSoundPlaying(c) && a.playing && i.stopSound(c),
                 a.initialized && a.playing ? a.l(l) : t.renderer.backgroundColor = 7378501,
+                this.input.flush(),
                 window.appk && (a.ws && a.ws.close(),
                 s && s.parentNode && s.parentNode.removeChild(s),
                 h.storeGeneric("error", "err"),
@@ -32312,27 +32587,27 @@ webpackJsonp([0], {
                 document.body.appendChild(t)
             }(e)
         }();
-        var k = new r;
+        var T = new r;
         document.addEventListener("DOMContentLoaded", function(e) {
             setTimeout(function() {
-                k.a()
+                T.a()
             }, 0)
         }),
         window.addEventListener("load", function() {
             setTimeout(function() {
-                k.a()
+                T.a()
             }, 0)
         }),
         "#_=_" == window.location.hash && (window.location.hash = "",
         history.pushState("", document.title, window.location.pathname)),
         window.addEventListener("resize", function() {
-            k.onResize()
+            T.onResize()
         }),
         window.addEventListener("hashchange", function() {
-            k.tryJoinTeam(!1)
+            T.tryJoinTeam(!1)
         }),
         window.addEventListener("beforeunload", function(e) {
-            if (k.game && k.game.pt()) {
+            if (T.game && T.game.dt()) {
                 var t = "Do you want to reload the game?";
                 return e.returnValue = t,
                 t
@@ -32461,16 +32736,16 @@ webpackJsonp([0], {
             return e % 4 * .5 * Math.PI
         }
         function o(e) {
-            var t = q[e];
+            var t = N[e];
             if ("structure" == t.type) {
                 for (var a = [], i = 0; i < t.layers.length; i++) {
                     var n = t.layers[i]
                       , s = r(n.ori)
-                      , l = B.transform(o(n.type), n.pos, s, 1);
-                    a.push(B.toAabb(l))
+                      , l = L.transform(o(n.type), n.pos, s, 1);
+                    a.push(L.toAabb(l))
                 }
-                var m = L.boundingAabb(a);
-                return B.createAabb(m.min, m.max)
+                var m = E.boundingAabb(a);
+                return L.createAabb(m.min, m.max)
             }
             if ("building" == t.type) {
                 for (var c = [], d = 0; d < t.floor.surfaces.length; d++)
@@ -32483,14 +32758,14 @@ webpackJsonp([0], {
                     if ("function" == typeof h && (h = h()),
                     "" != h) {
                         var g = r(u.ori)
-                          , y = B.transform(o(h), u.pos, g, u.scale);
-                        c.push(B.toAabb(y))
+                          , y = L.transform(o(h), u.pos, g, u.scale);
+                        c.push(L.toAabb(y))
                     }
                 }
-                var f = L.boundingAabb(c);
-                return B.createAabb(f.min, f.max)
+                var f = E.boundingAabb(c);
+                return L.createAabb(f.min, f.max)
             }
-            return "decal" == t.type ? B.toAabb(t.collision) : (E(t.collision),
+            return "decal" == t.type ? L.toAabb(t.collision) : (B(t.collision),
             t.collision)
         }
         function n(e, t, a) {
@@ -32528,7 +32803,7 @@ webpackJsonp([0], {
                     type: a,
                     weight: e[a]
                 });
-            E(t.length > 0);
+            B(t.length > 0);
             for (var i = 0, r = 0; r < t.length; r++)
                 i += t[r].weight;
             return function() {
@@ -32555,7 +32830,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .8
                 },
-                collision: B.createCircle(R.create(0, 0), 1.75),
+                collision: L.createCircle(R.create(0, 0), 1.75),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -32597,7 +32872,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(3.5, 1)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(3.5, 1)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -32639,7 +32914,7 @@ webpackJsonp([0], {
                     createMax: 1.2,
                     destroy: 1
                 },
-                collision: B.createCircle(R.create(0, 0), 1.4),
+                collision: L.createCircle(R.create(0, 0), 1.4),
                 height: 10,
                 collidable: !1,
                 destructible: !0,
@@ -32682,7 +32957,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .9
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.25, 1.6)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.25, 1.6)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -32724,7 +32999,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.25, 1.6)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.25, 1.6)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -32827,7 +33102,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [e.open ? B.createAabbExtents(R.create(0, 0), R.create(2.5, 11)) : B.createAabbExtents(R.create(0, 0), R.create(2.5, 8))]
+                        collision: [e.open ? L.createAabbExtents(R.create(0, 0), R.create(2.5, 11)) : L.createAabbExtents(R.create(0, 0), R.create(2.5, 8))]
                     }],
                     imgs: [{
                         sprite: e.open ? "map-building-container-open-floor.img" : "map-building-container-floor-01.img",
@@ -32837,8 +33112,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [e.open ? B.createAabbExtents(R.create(0, 0), R.create(2.5, 5.75)) : B.createAabbExtents(R.create(0, 2.25), R.create(2.5, 5.5))],
-                    scopeOut: [e.open ? B.createAabbExtents(R.create(0, 0), R.create(2.5, 11)) : B.createAabbExtents(R.create(0, -.5), R.create(2.5, 8.75))],
+                    scopeIn: [e.open ? L.createAabbExtents(R.create(0, 0), R.create(2.5, 5.75)) : L.createAabbExtents(R.create(0, 2.25), R.create(2.5, 5.5))],
+                    scopeOut: [e.open ? L.createAabbExtents(R.create(0, 0), R.create(2.5, 11)) : L.createAabbExtents(R.create(0, -.5), R.create(2.5, 8.75))],
                     imgs: [{
                         sprite: e.ceilingSprite,
                         scale: .5,
@@ -32857,7 +33132,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .5
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.25, 2.25)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.25, 2.25)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -32899,7 +33174,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(R.create(0, .15), R.create(2.5, 1)),
+                collision: L.createAabbExtents(R.create(0, .15), R.create(2.5, 1)),
                 height: 10,
                 collidable: !0,
                 destructible: !0,
@@ -32945,7 +33220,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(e.hinge, e.extents),
+                collision: L.createAabbExtents(e.hinge, e.extents),
                 height: 10,
                 collidable: !0,
                 destructible: !0,
@@ -32989,7 +33264,7 @@ webpackJsonp([0], {
                     enter: "none"
                 }
             };
-            return E(j[e.material]),
+            return B(j[e.material]),
             m(t, j[e.material], e || {})
         }
         function _(e) {
@@ -33033,7 +33308,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, .15), R.create(2.5, 1.25)),
+                collision: L.createAabbExtents(R.create(0, .15), R.create(2.5, 1.25)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -33075,7 +33350,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(R.create(0, .15), R.create(1.5, .6)),
+                collision: L.createAabbExtents(R.create(0, .15), R.create(1.5, .6)),
                 height: 10,
                 collidable: !0,
                 destructible: !0,
@@ -33121,7 +33396,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .8
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(1, 1)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(1, 1)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -33162,7 +33437,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .8
                 },
-                collision: B.createCircle(R.create(0, 0), 1.5),
+                collision: L.createCircle(R.create(0, 0), 1.5),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -33204,7 +33479,7 @@ webpackJsonp([0], {
                     createMax: 1.2,
                     destroy: .5
                 },
-                collision: B.createCircle(R.create(0, 0), 1.6),
+                collision: L.createCircle(R.create(0, 0), 1.6),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -33246,7 +33521,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .8
                 },
-                collision: B.createCircle(R.create(0, .25), 1.18),
+                collision: L.createCircle(R.create(0, .25), 1.18),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -33288,7 +33563,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.copy(e.extents)),
+                collision: L.createAabbExtents(R.create(0, 0), R.copy(e.extents)),
                 height: 10,
                 isWall: !0,
                 collidable: !0,
@@ -33309,7 +33584,7 @@ webpackJsonp([0], {
                     enter: "none"
                 }
             };
-            return E(j[e.material]),
+            return B(j[e.material]),
             m(t, j[e.material], e || {})
         }
         function C(e) {
@@ -33318,10 +33593,10 @@ webpackJsonp([0], {
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(0, 0), R.create(7, 7)),
+                        collider: L.createAabbExtents(R.create(0, 0), R.create(7, 7)),
                         color: 15181895
                     }, {
-                        collider: B.createAabbExtents(R.create(0, -18.9), R.create(2, 12)),
+                        collider: L.createAabbExtents(R.create(0, -18.9), R.create(2, 12)),
                         color: 6171907
                     }]
                 },
@@ -33337,7 +33612,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "shack",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(7, 7)), B.createAabbExtents(R.create(0, -18.9), R.create(2, 12))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(7, 7)), L.createAabbExtents(R.create(0, -18.9), R.create(2, 12))]
                     }],
                     imgs: [{
                         sprite: "map-building-hut-floor-01.img",
@@ -33354,8 +33629,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(6, 6))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(6, 6))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(6, 6))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(6, 6))],
                     vision: {
                         width: 4
                     },
@@ -33447,7 +33722,7 @@ webpackJsonp([0], {
                 }]
             }, e || {})
         }
-        function A(e) {
+        function I(e) {
             return m({
                 type: "obstacle",
                 scale: {
@@ -33455,8 +33730,8 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .5
                 },
-                collision: B.createCircle(R.create(0, 0), 1.55),
-                aabb: B.createAabbExtents(R.create(0, 0), R.create(5.75, 5.75)),
+                collision: L.createCircle(R.create(0, 0), 1.55),
+                aabb: L.createAabbExtents(R.create(0, 0), R.create(5.75, 5.75)),
                 height: 10,
                 collidable: !0,
                 destructible: !0,
@@ -33490,7 +33765,7 @@ webpackJsonp([0], {
                 }
             }, e || {})
         }
-        function I(e) {
+        function A(e) {
             return m({
                 type: "obstacle",
                 scale: {
@@ -33498,7 +33773,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(.4, 2)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(.4, 2)),
                 height: 10,
                 collidable: !0,
                 destructible: !0,
@@ -33533,7 +33808,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(.4, 2)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(.4, 2)),
                 height: .2,
                 isWall: !0,
                 collidable: !0,
@@ -33564,9 +33839,9 @@ webpackJsonp([0], {
         : function(e) {
             return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
         }
-          , E = a("0e566746")
-          , L = a("34e32c48")
-          , B = a("6b42806d")
+          , B = a("0e566746")
+          , E = a("34e32c48")
+          , L = a("6b42806d")
           , F = a("1901e2d9")
           , R = a("c2a798c8")
           , j = {
@@ -33627,7 +33902,7 @@ webpackJsonp([0], {
                 }
             }
         }
-          , q = {
+          , N = {
             barrel_01: {
                 type: "obstacle",
                 name: "a barrel",
@@ -33636,7 +33911,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .6
                 },
-                collision: B.createCircle(R.create(0, 0), 1.75),
+                collision: L.createCircle(R.create(0, 0), 1.75),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -33673,7 +33948,7 @@ webpackJsonp([0], {
                 health: 60
             }),
             barrel_03: p({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(1.25, .5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(1.25, .5)),
                 health: 20,
                 img: {
                     sprite: "map-barrel-03.img",
@@ -33682,7 +33957,7 @@ webpackJsonp([0], {
                 }
             }),
             barrel_04: p({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(1.25, .5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(1.25, .5)),
                 health: 20,
                 loot: [n("tier_soviet", 2, 3)],
                 img: {
@@ -33698,7 +33973,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createCircle(R.create(0, 0), 1.25),
+                collision: L.createCircle(R.create(0, 0), 1.25),
                 height: .5,
                 collidable: !0,
                 destructible: !1,
@@ -33781,7 +34056,7 @@ webpackJsonp([0], {
                 loot: [n("tier_chest", 2, 2)]
             }),
             control_panel_01: k({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.25, 1.7)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.25, 1.7)),
                 button: {
                     interactionRad: 1.75,
                     interactionText: "game-use",
@@ -33797,14 +34072,14 @@ webpackJsonp([0], {
                 }
             }),
             control_panel_02: k({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.25, 1.7)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.25, 1.7)),
                 health: 175,
                 img: {
                     sprite: "map-control-panel-02.img"
                 }
             }),
             control_panel_03: k({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(1.25, 1.2)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(1.25, 1.2)),
                 health: 150,
                 img: {
                     sprite: "map-control-panel-03.img"
@@ -33830,7 +34105,7 @@ webpackJsonp([0], {
             }),
             crate_03: x({
                 health: 100,
-                collision: B.createAabbExtents(R.create(0, 0), R.create(1.575, 1.575)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(1.575, 1.575)),
                 loot: [n("tier_throwables", 2, 4)],
                 map: {
                     color: 5066014,
@@ -33867,7 +34142,7 @@ webpackJsonp([0], {
                 }
             }),
             crate_05: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2, 2)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2, 2)),
                 destructible: !1,
                 hitParticle: "goldChip",
                 loot: [],
@@ -33883,7 +34158,7 @@ webpackJsonp([0], {
                 }
             }),
             crate_06: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.25, 1.1)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.25, 1.1)),
                 health: 175,
                 destructible: !0,
                 armorPlated: !0,
@@ -33966,7 +34241,7 @@ webpackJsonp([0], {
                 }
             }),
             crate_11: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.5, 2.5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.5, 2.5)),
                 scale: {
                     destroy: .75
                 },
@@ -33988,7 +34263,7 @@ webpackJsonp([0], {
                 }
             }),
             crate_14: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.7, 1.25)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.7, 1.25)),
                 health: 100,
                 loot: [n("tier_knives", 1, 1)],
                 map: {
@@ -34006,7 +34281,7 @@ webpackJsonp([0], {
                 }
             }),
             crate_15: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.7, 1.25)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.7, 1.25)),
                 health: 100,
                 loot: [n("tier_knives", 2, 2)],
                 map: {
@@ -34024,7 +34299,7 @@ webpackJsonp([0], {
                 }
             }),
             crate_16: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.7, 1.25)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.7, 1.25)),
                 health: 100,
                 loot: [n("tier_knives", 4, 4)],
                 map: {
@@ -34042,7 +34317,7 @@ webpackJsonp([0], {
                 }
             }),
             airdrop_crate_01: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.5, 2.5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.5, 2.5)),
                 button: {
                     interactionRad: 2,
                     interactionText: "game-unlock",
@@ -34078,7 +34353,7 @@ webpackJsonp([0], {
                 reflectBullets: !0
             }),
             airdrop_crate_02: x({
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.5, 2.5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.5, 2.5)),
                 button: {
                     interactionRad: 2,
                     interactionText: "game-unlock",
@@ -34145,7 +34420,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .8
                 },
-                collision: B.createCircle(R.create(.35, 0), 1),
+                collision: L.createCircle(R.create(.35, 0), 1),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -34199,7 +34474,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, .15), R.create(1.7, 1.3)),
+                collision: L.createAabbExtents(R.create(0, .15), R.create(1.7, 1.3)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -34247,7 +34522,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, .15), R.create(1.7, 1.25)),
+                collision: L.createAabbExtents(R.create(0, .15), R.create(1.7, 1.25)),
                 height: .5,
                 collidable: !0,
                 destructible: !1,
@@ -34292,7 +34567,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .5
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(3.1, 1.4)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(3.1, 1.4)),
                 height: .5,
                 collidable: !0,
                 destructible: !1,
@@ -34339,7 +34614,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))]
                     }],
                     imgs: [{
                         sprite: "",
@@ -34349,8 +34624,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 2.4), R.create(2.5, 5.75))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 2.4), R.create(2.5, 5.75))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 2.4), R.create(2.5, 5.75))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 2.4), R.create(2.5, 5.75))],
                     imgs: [{
                         sprite: "map-building-container-ceiling-05.img",
                         scale: .5,
@@ -34372,7 +34647,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createCircle(R.create(0, 0), 7.75),
+                collision: L.createCircle(R.create(0, 0), 7.75),
                 height: 10,
                 collidable: !0,
                 destructible: !1,
@@ -34411,7 +34686,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.5, 2)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.5, 2)),
                 height: .5,
                 collidable: !1,
                 destructible: !0,
@@ -34451,7 +34726,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, .15), R.create(1.25, 1.25)),
+                collision: L.createAabbExtents(R.create(0, .15), R.create(1.25, 1.25)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -34498,7 +34773,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(2.5, 2)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(2.5, 2)),
                 height: .5,
                 collidable: !1,
                 destructible: !0,
@@ -34538,7 +34813,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(4.5, 2.5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(4.5, 2.5)),
                 height: .5,
                 collidable: !1,
                 destructible: !0,
@@ -34613,11 +34888,11 @@ webpackJsonp([0], {
                     explode: "toilet_break_02"
                 }
             }),
-            tree_01: A(),
-            tree_02: A({
+            tree_01: I(),
+            tree_02: I({
                 health: 120,
-                collision: B.createCircle(R.create(0, 0), 1.6),
-                aabb: B.createAabbExtents(R.create(0, 0), R.create(1.6, 1.6)),
+                collision: L.createCircle(R.create(0, 0), 1.6),
+                aabb: L.createAabbExtents(R.create(0, 0), R.create(1.6, 1.6)),
                 height: .5,
                 loot: [s("woodaxe", 1)],
                 map: {
@@ -34645,7 +34920,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .9
                 },
-                collision: B.createCircle(R.create(0, 0), 2),
+                collision: L.createCircle(R.create(0, 0), 2),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -34685,7 +34960,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .95
                 },
-                collision: B.createCircle(R.create(0, 0), 3.1),
+                collision: L.createCircle(R.create(0, 0), 3.1),
                 height: .5,
                 collidable: !0,
                 destructible: !1,
@@ -34725,7 +35000,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: .75
                 },
-                collision: B.createAabbExtents(R.create(0, .15), R.create(1.7, 1.25)),
+                collision: L.createAabbExtents(R.create(0, .15), R.create(1.7, 1.25)),
                 height: .5,
                 collidable: !0,
                 destructible: !0,
@@ -34765,7 +35040,7 @@ webpackJsonp([0], {
                     createMax: 1,
                     destroy: 1
                 },
-                collision: B.createAabbExtents(R.create(0, 0), R.create(.4, 2)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(.4, 2)),
                 height: 10,
                 collidable: !0,
                 destructible: !0,
@@ -34848,9 +35123,9 @@ webpackJsonp([0], {
                     openOneWay: !0
                 }
             }),
-            house_window_01: I(),
+            house_window_01: A(),
             house_window_broken_01: D(),
-            lab_window_01: I({
+            lab_window_01: A({
                 destroyType: "lab_window_broken_01"
             }),
             lab_window_broken_01: D({
@@ -34882,7 +35157,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "grass",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(3, 3))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(3, 3))]
                     }],
                     imgs: [{
                         sprite: "map-hedgehog-01.img",
@@ -34892,8 +35167,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
                     imgs: []
                 },
                 mapObjects: [{
@@ -34923,7 +35198,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "grass",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))]
                     }],
                     imgs: [{
                         sprite: "",
@@ -34933,8 +35208,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
                     imgs: []
                 },
                 mapObjects: [{
@@ -35004,13 +35279,13 @@ webpackJsonp([0], {
                     map: {
                         display: !0,
                         shapes: [{
-                            collider: B.createAabbExtents(R.create(27, 0), R.create(3, 12.25)),
+                            collider: L.createAabbExtents(R.create(27, 0), R.create(3, 12.25)),
                             color: 10066329
                         }, {
-                            collider: B.createAabbExtents(R.create(-27, 0), R.create(3, 12.25)),
+                            collider: L.createAabbExtents(R.create(-27, 0), R.create(3, 12.25)),
                             color: 10066329
                         }, {
-                            collider: B.createAabbExtents(R.create(0, 0), R.create(24.5, 12.25)),
+                            collider: L.createAabbExtents(R.create(0, 0), R.create(24.5, 12.25)),
                             color: 5915450
                         }]
                     },
@@ -35022,7 +35297,7 @@ webpackJsonp([0], {
                     floor: {
                         surfaces: [{
                             type: "warehouse",
-                            collision: [B.createAabbExtents(R.create(0, 0), R.create(32, 12.5))]
+                            collision: [L.createAabbExtents(R.create(0, 0), R.create(32, 12.5))]
                         }],
                         imgs: [{
                             sprite: "map-building-warehouse-floor-01.img",
@@ -35032,8 +35307,8 @@ webpackJsonp([0], {
                         }]
                     },
                     ceiling: {
-                        scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(24.5, 12.25))],
-                        scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(32, 12.5))],
+                        scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(24.5, 12.25))],
+                        scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(32, 12.5))],
                         vision: {
                             dist: 8,
                             width: 5
@@ -35163,13 +35438,13 @@ webpackJsonp([0], {
                     map: {
                         display: !0,
                         shapes: [{
-                            collider: B.createAabbExtents(R.create(25, 0), R.create(3, 12.25)),
+                            collider: L.createAabbExtents(R.create(25, 0), R.create(3, 12.25)),
                             color: 10066329
                         }, {
-                            collider: B.createAabbExtents(R.create(-25, 0), R.create(3, 12.25)),
+                            collider: L.createAabbExtents(R.create(-25, 0), R.create(3, 12.25)),
                             color: 10066329
                         }, {
-                            collider: B.createAabbExtents(R.create(0, 0), R.create(22.5, 12.25)),
+                            collider: L.createAabbExtents(R.create(0, 0), R.create(22.5, 12.25)),
                             color: 2240064
                         }]
                     },
@@ -35181,7 +35456,7 @@ webpackJsonp([0], {
                     floor: {
                         surfaces: [{
                             type: "warehouse",
-                            collision: [B.createAabbExtents(R.create(0, 0), R.create(27.5, 12.5))]
+                            collision: [L.createAabbExtents(R.create(0, 0), R.create(27.5, 12.5))]
                         }],
                         imgs: [{
                             sprite: "map-building-warehouse-floor-02.img",
@@ -35191,8 +35466,8 @@ webpackJsonp([0], {
                         }]
                     },
                     ceiling: {
-                        scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(22, 12.25))],
-                        scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(27.5, 12.5))],
+                        scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(22, 12.25))],
+                        scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(27.5, 12.5))],
                         vision: {
                             dist: 8,
                             width: 5
@@ -35333,64 +35608,64 @@ webpackJsonp([0], {
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(26, 70.5), R.create(47, 7.5)),
+                        collider: L.createAabbExtents(R.create(26, 70.5), R.create(47, 7.5)),
                         color: 5855577
                     }, {
-                        collider: B.createAabbExtents(R.create(15.5, 52.5), R.create(57.5, 10.5)),
+                        collider: L.createAabbExtents(R.create(15.5, 52.5), R.create(57.5, 10.5)),
                         color: 5855577
                     }, {
-                        collider: B.createAabbExtents(R.create(33, 11), R.create(75, 31)),
+                        collider: L.createAabbExtents(R.create(33, 11), R.create(75, 31)),
                         color: 5855577
                     }, {
-                        collider: B.createAabbExtents(R.create(5, -30), R.create(47, 10)),
+                        collider: L.createAabbExtents(R.create(5, -30), R.create(47, 10)),
                         color: 5855577
                     }, {
-                        collider: B.createAabbExtents(R.create(-39.75, 11.25), R.create(2, 51)),
+                        collider: L.createAabbExtents(R.create(-39.75, 11.25), R.create(2, 51)),
                         color: 16109568
                     }, {
-                        collider: B.createCircle(R.create(-39, 55), 1.25),
+                        collider: L.createCircle(R.create(-39, 55), 1.25),
                         color: 6310464
                     }, {
-                        collider: B.createCircle(R.create(-39, 20.5), 1.25),
+                        collider: L.createCircle(R.create(-39, 20.5), 1.25),
                         color: 6310464
                     }, {
-                        collider: B.createCircle(R.create(-39, 2), 1.25),
+                        collider: L.createCircle(R.create(-39, 2), 1.25),
                         color: 6310464
                     }, {
-                        collider: B.createCircle(R.create(-39, -31.5), 1.25),
+                        collider: L.createCircle(R.create(-39, -31.5), 1.25),
                         color: 6310464
                     }, {
-                        collider: B.createAabbExtents(R.create(-28, -30), R.create(2, 2)),
+                        collider: L.createAabbExtents(R.create(-28, -30), R.create(2, 2)),
                         color: 6697728
                     }, {
-                        collider: B.createAabbExtents(R.create(-23, -33), R.create(2, 2)),
+                        collider: L.createAabbExtents(R.create(-23, -33), R.create(2, 2)),
                         color: 6697728
                     }, {
-                        collider: B.createAabbExtents(R.create(7, 70), R.create(2, 2)),
+                        collider: L.createAabbExtents(R.create(7, 70), R.create(2, 2)),
                         color: 6697728
                     }, {
-                        collider: B.createAabbExtents(R.create(12, 72), R.create(2, 2)),
+                        collider: L.createAabbExtents(R.create(12, 72), R.create(2, 2)),
                         color: 6697728
                     }, {
-                        collider: B.createCircle(R.create(-26.5, 54.75), 1.75),
+                        collider: L.createCircle(R.create(-26.5, 54.75), 1.75),
                         color: 8026746
                     }, {
-                        collider: B.createCircle(R.create(-23.5, 57), 1.75),
+                        collider: L.createCircle(R.create(-23.5, 57), 1.75),
                         color: 8026746
                     }, {
-                        collider: B.createCircle(R.create(84, -15.5), 1.75),
+                        collider: L.createCircle(R.create(84, -15.5), 1.75),
                         color: 8026746
                     }, {
-                        collider: B.createCircle(R.create(40, -35), 1.5),
+                        collider: L.createCircle(R.create(40, -35), 1.5),
                         color: 8026746
                     }, {
-                        collider: B.createCircle(R.create(65, 61), 1.5),
+                        collider: L.createCircle(R.create(65, 61), 1.5),
                         color: 8026746
                     }, {
-                        collider: B.createAabbExtents(R.create(44.5, -25), R.create(1.4, 3.1)),
+                        collider: L.createAabbExtents(R.create(44.5, -25), R.create(1.4, 3.1)),
                         color: 13278307
                     }, {
-                        collider: B.createAabbExtents(R.create(58, 47.5), R.create(1.4, 3.1)),
+                        collider: L.createAabbExtents(R.create(58, 47.5), R.create(1.4, 3.1)),
                         color: 13278307
                     }]
                 },
@@ -35403,11 +35678,11 @@ webpackJsonp([0], {
                         distMax: 72
                     }
                 },
-                mapObstacleBounds: [B.createAabbExtents(R.create(26, 70.5), R.create(47, 7.5)), B.createAabbExtents(R.create(15.5, 52.5), R.create(57.5, 10.5)), B.createAabbExtents(R.create(33, 11), R.create(75, 31)), B.createAabbExtents(R.create(5, -30), R.create(47, 10))],
+                mapObstacleBounds: [L.createAabbExtents(R.create(26, 70.5), R.create(47, 7.5)), L.createAabbExtents(R.create(15.5, 52.5), R.create(57.5, 10.5)), L.createAabbExtents(R.create(33, 11), R.create(75, 31)), L.createAabbExtents(R.create(5, -30), R.create(47, 10))],
                 floor: {
                     surfaces: [{
                         type: "asphalt",
-                        collision: [B.createAabbExtents(R.create(26, 70.5), R.create(47, 7.5)), B.createAabbExtents(R.create(15.5, 52.5), R.create(57.5, 10.5)), B.createAabbExtents(R.create(33, 11), R.create(75, 31)), B.createAabbExtents(R.create(5, -30), R.create(47, 10))]
+                        collision: [L.createAabbExtents(R.create(26, 70.5), R.create(47, 7.5)), L.createAabbExtents(R.create(15.5, 52.5), R.create(57.5, 10.5)), L.createAabbExtents(R.create(33, 11), R.create(75, 31)), L.createAabbExtents(R.create(5, -30), R.create(47, 10))]
                     }],
                     imgs: [{
                         sprite: "map-complex-warehouse-floor.img",
@@ -35418,8 +35693,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
                     imgs: []
                 },
                 mapObjects: [{
@@ -35696,7 +35971,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "shack",
-                        collision: [B.createAabbExtents(R.create(0, .9), R.create(5.6, 3.5)), B.createAabbExtents(R.create(3.75, -4), R.create(2.25, 1.5))]
+                        collision: [L.createAabbExtents(R.create(0, .9), R.create(5.6, 3.5)), L.createAabbExtents(R.create(3.75, -4), R.create(2.25, 1.5))]
                     }],
                     imgs: [{
                         sprite: "map-building-shack-floor-01.img",
@@ -35706,8 +35981,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, .9), R.create(5.6, 3.5))],
-                    scopeOut: [B.createAabbExtents(R.create(0, .8), R.create(5.9, 3.8))],
+                    scopeIn: [L.createAabbExtents(R.create(0, .9), R.create(5.6, 3.5))],
+                    scopeOut: [L.createAabbExtents(R.create(0, .8), R.create(5.9, 3.8))],
                     vision: {
                         width: 4
                     },
@@ -35787,7 +36062,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "shack",
-                        collision: [B.createAabbExtents(R.create(0, 1), R.create(5, 4)), B.createAabbExtents(R.create(3.75, -4), R.create(2.25, 1.5))]
+                        collision: [L.createAabbExtents(R.create(0, 1), R.create(5, 4)), L.createAabbExtents(R.create(3.75, -4), R.create(2.25, 1.5))]
                     }],
                     imgs: [{
                         sprite: "map-building-shack-floor-02.img",
@@ -35797,8 +36072,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 1), R.create(4.75, 3.75))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 1), R.create(0, 0))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 1), R.create(4.75, 3.75))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 1), R.create(0, 0))],
                     vision: {
                         width: 4
                     },
@@ -35896,7 +36171,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "shack",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(3.8, 5))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(3.8, 5))]
                     }],
                     imgs: [{
                         sprite: "map-building-outhouse-floor.img",
@@ -35906,8 +36181,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 1.45), R.create(3.6, 3.2))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 1.4), R.create(3.8, 3.4))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 1.45), R.create(3.6, 3.2))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 1.4), R.create(3.8, 3.4))],
                     imgs: [{
                         sprite: "map-building-outhouse-ceiling.img",
                         scale: .5,
@@ -36282,7 +36557,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(4.5, 6))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(4.5, 6))]
                     }],
                     imgs: [{
                         sprite: "map-building-panicroom-floor.img",
@@ -36292,8 +36567,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(4.5, 6))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(4.5, 6))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(4.5, 6))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(4.5, 6))],
                     imgs: [{
                         sprite: "map-building-panicroom-ceiling.img",
                         scale: .5,
@@ -36395,10 +36670,10 @@ webpackJsonp([0], {
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(0, 12), R.create(5, 2)),
+                        collider: L.createAabbExtents(R.create(0, 12), R.create(5, 2)),
                         color: 12300935
                     }, {
-                        collider: B.createAabbExtents(R.create(0, -2), R.create(24.5, 12.8)),
+                        collider: L.createAabbExtents(R.create(0, -2), R.create(24.5, 12.8)),
                         color: 3816739
                     }]
                 },
@@ -36410,7 +36685,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "house",
-                        collision: [B.createAabbExtents(R.create(0, -2), R.create(25, 13.2)), B.createAabbExtents(R.create(0, 12), R.create(5.5, 2.5))]
+                        collision: [L.createAabbExtents(R.create(0, -2), R.create(25, 13.2)), L.createAabbExtents(R.create(0, 12), R.create(5.5, 2.5))]
                     }],
                     imgs: [{
                         sprite: "map-building-barn-floor-01.img",
@@ -36420,8 +36695,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, -2), R.create(24.5, 12.8)), B.createAabbExtents(R.create(0, 12), R.create(5.5, 2.5))],
-                    scopeOut: [B.createAabbExtents(R.create(0, -14.5), R.create(5.5, 4)), B.createAabbExtents(R.create(0, 14.5), R.create(5.5, 4))],
+                    scopeIn: [L.createAabbExtents(R.create(0, -2), R.create(24.5, 12.8)), L.createAabbExtents(R.create(0, 12), R.create(5.5, 2.5))],
+                    scopeOut: [L.createAabbExtents(R.create(0, -14.5), R.create(5.5, 4)), L.createAabbExtents(R.create(0, 14.5), R.create(5.5, 4))],
                     vision: {
                         dist: 5.5,
                         width: 2.75,
@@ -36802,13 +37077,13 @@ webpackJsonp([0], {
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(-16, 7), R.create(10.75, 11)),
+                        collider: L.createAabbExtents(R.create(-16, 7), R.create(10.75, 11)),
                         color: 7820585
                     }, {
-                        collider: B.createAabbExtents(R.create(6, 0), R.create(11.5, 18.25)),
+                        collider: L.createAabbExtents(R.create(6, 0), R.create(11.5, 18.25)),
                         color: 9989427
                     }, {
-                        collider: B.createAabbExtents(R.create(22, 4), R.create(4.5, 7.5)),
+                        collider: L.createAabbExtents(R.create(22, 4), R.create(4.5, 7.5)),
                         color: 7820585
                     }]
                 },
@@ -36820,7 +37095,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(6, -1), R.create(11.25, 18.25)), B.createAabbExtents(R.create(21.5, 4), R.create(4.75, 7.25))]
+                        collision: [L.createAabbExtents(R.create(6, -1), R.create(11.25, 18.25)), L.createAabbExtents(R.create(21.5, 4), R.create(4.75, 7.25))]
                     }],
                     imgs: [{
                         sprite: "map-building-bank-floor.img",
@@ -36830,8 +37105,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(6, -1), R.create(11.25, 18.25)), B.createAabbExtents(R.create(21.5, 4), R.create(4.75, 7.25)), B.createAabbExtents(R.create(-16, 6), R.create(10.25, 11))],
-                    scopeOut: [B.createAabbExtents(R.create(6, 1.25), R.create(15.25, 20))],
+                    scopeIn: [L.createAabbExtents(R.create(6, -1), R.create(11.25, 18.25)), L.createAabbExtents(R.create(21.5, 4), R.create(4.75, 7.25)), L.createAabbExtents(R.create(-16, 6), R.create(10.25, 11))],
+                    scopeOut: [L.createAabbExtents(R.create(6, 1.25), R.create(15.25, 20))],
                     vision: {
                         dist: 5.5,
                         width: 2.75,
@@ -37161,7 +37436,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(-3.5, 0), R.create(10, 10.5))]
+                        collision: [L.createAabbExtents(R.create(-3.5, 0), R.create(10, 10.5))]
                     }],
                     imgs: [{
                         sprite: "map-building-vault-floor.img",
@@ -37171,8 +37446,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(-3.5, 0), R.create(9.25, 10.5))],
-                    scopeOut: [B.createAabbExtents(R.create(-3.5, 0), R.create(10, 10.5))],
+                    scopeIn: [L.createAabbExtents(R.create(-3.5, 0), R.create(9.25, 10.5))],
+                    scopeOut: [L.createAabbExtents(R.create(-3.5, 0), R.create(10, 10.5))],
                     vision: {
                         dist: 7.25,
                         width: 2.75,
@@ -37325,34 +37600,34 @@ webpackJsonp([0], {
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(-21, -8), R.create(21.25, 14)),
+                        collider: L.createAabbExtents(R.create(-21, -8), R.create(21.25, 14)),
                         color: 5855577
                     }, {
-                        collider: B.createAabbExtents(R.create(-24.5, 8.5), R.create(17.75, 9.75)),
+                        collider: L.createAabbExtents(R.create(-24.5, 8.5), R.create(17.75, 9.75)),
                         color: 3355970
                     }, {
-                        collider: B.createAabbExtents(R.create(-3.5, 12), R.create(3.5, 6.25)),
+                        collider: L.createAabbExtents(R.create(-3.5, 12), R.create(3.5, 6.25)),
                         color: 4278620
                     }, {
-                        collider: B.createAabbExtents(R.create(10.35, 0), R.create(10.5, 22)),
+                        collider: L.createAabbExtents(R.create(10.35, 0), R.create(10.5, 22)),
                         color: 3355970
                     }, {
-                        collider: B.createAabbExtents(R.create(31.25, 12.5), R.create(10.75, 9.5)),
+                        collider: L.createAabbExtents(R.create(31.25, 12.5), R.create(10.75, 9.5)),
                         color: 3355970
                     }, {
-                        collider: B.createAabbExtents(R.create(-3.5, 2.5), R.create(2.25, 2.25)),
+                        collider: L.createAabbExtents(R.create(-3.5, 2.5), R.create(2.25, 2.25)),
                         color: 6310464
                     }, {
-                        collider: B.createCircle(R.create(-30.5, -18), 1.5),
+                        collider: L.createCircle(R.create(-30.5, -18), 1.5),
                         color: 8026746
                     }, {
-                        collider: B.createCircle(R.create(-20.5, -10.5), 1.5),
+                        collider: L.createCircle(R.create(-20.5, -10.5), 1.5),
                         color: 8026746
                     }, {
-                        collider: B.createAabbExtents(R.create(-38.5, -7), R.create(1.4, 3.1)),
+                        collider: L.createAabbExtents(R.create(-38.5, -7), R.create(1.4, 3.1)),
                         color: 13278307
                     }, {
-                        collider: B.createAabbExtents(R.create(-7.5, -19.5), R.create(3.1, 1.4)),
+                        collider: L.createAabbExtents(R.create(-7.5, -19.5), R.create(3.1, 1.4)),
                         color: 13278307
                     }]
                 },
@@ -37364,10 +37639,10 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(-24.5, 8.5), R.create(17.75, 9.75)), B.createAabbExtents(R.create(-3.5, 12), R.create(3.5, 6.25)), B.createAabbExtents(R.create(10.35, 0), R.create(10.5, 22)), B.createAabbExtents(R.create(31.25, 12.5), R.create(10.75, 9.5))]
+                        collision: [L.createAabbExtents(R.create(-24.5, 8.5), R.create(17.75, 9.75)), L.createAabbExtents(R.create(-3.5, 12), R.create(3.5, 6.25)), L.createAabbExtents(R.create(10.35, 0), R.create(10.5, 22)), L.createAabbExtents(R.create(31.25, 12.5), R.create(10.75, 9.5))]
                     }, {
                         type: "asphalt",
-                        collision: [B.createAabbExtents(R.create(-21.5, -13), R.create(21, 11.5)), B.createAabbExtents(R.create(-3.5, 2), R.create(3, 3.5))]
+                        collision: [L.createAabbExtents(R.create(-21.5, -13), R.create(21, 11.5)), L.createAabbExtents(R.create(-3.5, 2), R.create(3, 3.5))]
                     }],
                     imgs: [{
                         sprite: "map-building-police-floor.img",
@@ -37377,8 +37652,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(-24.5, 8.5), R.create(17.75, 9.75)), B.createAabbExtents(R.create(-3.5, 12), R.create(3.5, 6.25)), B.createAabbExtents(R.create(10.35, 0), R.create(10.5, 22)), B.createAabbExtents(R.create(31.25, 12.5), R.create(10.75, 9.5))],
-                    scopeOut: [B.createAabbExtents(R.create(12, 0), R.create(12.75, 26))],
+                    scopeIn: [L.createAabbExtents(R.create(-24.5, 8.5), R.create(17.75, 9.75)), L.createAabbExtents(R.create(-3.5, 12), R.create(3.5, 6.25)), L.createAabbExtents(R.create(10.35, 0), R.create(10.5, 22)), L.createAabbExtents(R.create(31.25, 12.5), R.create(10.75, 9.5))],
+                    scopeOut: [L.createAabbExtents(R.create(12, 0), R.create(12.75, 26))],
                     vision: {
                         dist: 5.5,
                         width: 2.75,
@@ -37944,7 +38219,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "house",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(14.5, 13))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(14.5, 13))]
                     }],
                     imgs: [{
                         sprite: "map-building-house-floor.img",
@@ -37954,8 +38229,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(14.5, 13))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(16.5, 15))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(14.5, 13))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(16.5, 15))],
                     vision: {
                         dist: 5.5,
                         width: 2.75,
@@ -38260,7 +38535,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(0, 0), R.create(6, 4))]
+                        collision: [L.createAabbExtents(R.create(0, 0), R.create(6, 4))]
                     }],
                     imgs: [{
                         sprite: "map-building-saferoom-floor.img",
@@ -38270,8 +38545,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(5, 3))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(5, 3))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(5, 3))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(5, 3))],
                     imgs: [{
                         sprite: "map-building-saferoom-ceiling.img",
                         scale: .5,
@@ -38315,19 +38590,19 @@ webpackJsonp([0], {
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(-1.5, 20.5), R.create(12.5, 4.5)),
+                        collider: L.createAabbExtents(R.create(-1.5, 20.5), R.create(12.5, 4.5)),
                         color: 8671554
                     }, {
-                        collider: B.createAabbExtents(R.create(-2, -23), R.create(3, 2.5)),
+                        collider: L.createAabbExtents(R.create(-2, -23), R.create(3, 2.5)),
                         color: 8671554
                     }, {
-                        collider: B.createAabbExtents(R.create(-20.5, -22.5), R.create(10, 2)),
+                        collider: L.createAabbExtents(R.create(-20.5, -22.5), R.create(10, 2)),
                         color: 7750457
                     }, {
-                        collider: B.createAabbExtents(R.create(28, 1.5), R.create(3.75, 3)),
+                        collider: L.createAabbExtents(R.create(28, 1.5), R.create(3.75, 3)),
                         color: 7237230
                     }, {
-                        collider: B.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)),
+                        collider: L.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)),
                         color: 6175023
                     }]
                 },
@@ -38339,16 +38614,16 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)), B.createAabbExtents(R.create(-1.5, 20.5), R.create(12.5, 4.5)), B.createAabbExtents(R.create(0, 0), R.create(20, 20))]
+                        collision: [L.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)), L.createAabbExtents(R.create(-1.5, 20.5), R.create(12.5, 4.5)), L.createAabbExtents(R.create(0, 0), R.create(20, 20))]
                     }, {
                         type: "asphalt",
-                        collision: [B.createAabbExtents(R.create(-21, -17), R.create(11, 8)), B.createAabbExtents(R.create(-23, -6), R.create(8, 3)), B.createAabbExtents(R.create(-2, -24), R.create(2, 3)), B.createAabbExtents(R.create(28, 1.5), R.create(3, 3))]
+                        collision: [L.createAabbExtents(R.create(-21, -17), R.create(11, 8)), L.createAabbExtents(R.create(-23, -6), R.create(8, 3)), L.createAabbExtents(R.create(-2, -24), R.create(2, 3)), L.createAabbExtents(R.create(28, 1.5), R.create(3, 3))]
                     }, {
                         type: "grass",
-                        collision: [B.createAabbExtents(R.create(-2, 4), R.create(5, 5))]
+                        collision: [L.createAabbExtents(R.create(-2, 4), R.create(5, 5))]
                     }, {
                         type: "house",
-                        collision: [B.createAabbExtents(R.create(1, 13), R.create(2, 3.25))]
+                        collision: [L.createAabbExtents(R.create(1, 13), R.create(2, 3.25))]
                     }],
                     imgs: [{
                         sprite: "map-building-mansion-floor.img",
@@ -38358,8 +38633,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(-15, -22.4), R.create(17, 2.2)), B.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)), B.createAabbExtents(R.create(-1.5, 20.6), R.create(12, 4.2))],
-                    scopeOut: [B.createAabbExtents(R.create(-15, -24.4), R.create(21, 4.2)), B.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)), B.createAabbExtents(R.create(-9, 23.1), R.create(5, 6.7))],
+                    scopeIn: [L.createAabbExtents(R.create(-15, -22.4), R.create(17, 2.2)), L.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)), L.createAabbExtents(R.create(-1.5, 20.6), R.create(12, 4.2))],
+                    scopeOut: [L.createAabbExtents(R.create(-15, -24.4), R.create(21, 4.2)), L.createAabbExtents(R.create(-3.5, -2), R.create(28, 18.5)), L.createAabbExtents(R.create(-9, 23.1), R.create(5, 6.7))],
                     vision: {
                         dist: 5.5,
                         width: 2.75,
@@ -38825,7 +39100,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "brick",
-                        collision: [B.createAabbExtents(R.create(18, 3), R.create(7, 13)), B.createAabbExtents(R.create(5, 0), R.create(6, 10))]
+                        collision: [L.createAabbExtents(R.create(18, 3), R.create(7, 13)), L.createAabbExtents(R.create(5, 0), R.create(6, 10))]
                     }],
                     imgs: [{
                         sprite: "map-building-mansion-cellar-02.img",
@@ -38842,8 +39117,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(18, 3), R.create(7, 13)), B.createAabbExtents(R.create(5, 1.5), R.create(6, 12))],
-                    scopeOut: [B.createAabbExtents(R.create(18, 3), R.create(7, 13)), B.createAabbExtents(R.create(5, 1.5), R.create(6, 12))],
+                    scopeIn: [L.createAabbExtents(R.create(18, 3), R.create(7, 13)), L.createAabbExtents(R.create(5, 1.5), R.create(6, 12))],
+                    scopeOut: [L.createAabbExtents(R.create(18, 3), R.create(7, 13)), L.createAabbExtents(R.create(5, 1.5), R.create(6, 12))],
                     vision: {
                         dist: 5.5,
                         width: 2.75,
@@ -39036,14 +39311,14 @@ webpackJsonp([0], {
                     ori: 0
                 }],
                 stairs: [{
-                    collision: B.createAabbExtents(R.create(28, 1.5), R.create(3, 2.55)),
+                    collision: L.createAabbExtents(R.create(28, 1.5), R.create(3, 2.55)),
                     downDir: R.create(-1, 0),
                     noCeilingReveal: !0
                 }, {
-                    collision: B.createAabbExtents(R.create(1, 13.5), R.create(2, 3.5)),
+                    collision: L.createAabbExtents(R.create(1, 13.5), R.create(2, 3.5)),
                     downDir: R.create(0, -1)
                 }],
-                mask: [B.createAabbExtents(R.create(10, -.1), R.create(15, 10.1)), B.createAabbExtents(R.create(17.5, 13.5), R.create(7.5, 3.5))]
+                mask: [L.createAabbExtents(R.create(10, -.1), R.create(15, 10.1)), L.createAabbExtents(R.create(17.5, 13.5), R.create(7.5, 3.5))]
             },
             bunker_egg_01: {
                 type: "building",
@@ -39060,7 +39335,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(0, 7.75), R.create(2, 3.25))]
+                        collision: [L.createAabbExtents(R.create(0, 7.75), R.create(2, 3.25))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-generic-floor-01.img",
@@ -39071,8 +39346,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 0), R.create(0, 0))],
                     vision: {
                         dist: 5,
                         width: 2.75,
@@ -39149,7 +39424,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "bunker",
-                        collision: [B.createAabbExtents(R.create(0, -4.5), R.create(10, 9))]
+                        collision: [L.createAabbExtents(R.create(0, -4.5), R.create(10, 9))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-egg-chamber-floor-01.img",
@@ -39159,8 +39434,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, -4.5), R.create(10, 9))],
-                    scopeOut: [B.createAabbExtents(R.create(0, -4.5), R.create(10, 9))],
+                    scopeIn: [L.createAabbExtents(R.create(0, -4.5), R.create(10, 9))],
+                    scopeOut: [L.createAabbExtents(R.create(0, -4.5), R.create(10, 9))],
                     imgs: [{
                         sprite: "map-bunker-egg-chamber-ceiling-01.img",
                         scale: .5,
@@ -39236,7 +39511,7 @@ webpackJsonp([0], {
                     grass: !0,
                     beach: !1
                 },
-                mapObstacleBounds: [B.createAabbExtents(R.create(0, 5), R.create(7, 12))],
+                mapObstacleBounds: [L.createAabbExtents(R.create(0, 5), R.create(7, 12))],
                 layers: [{
                     type: "bunker_egg_01",
                     pos: R.create(0, 0),
@@ -39247,20 +39522,20 @@ webpackJsonp([0], {
                     ori: 0
                 }],
                 stairs: [{
-                    collision: B.createAabbExtents(R.create(0, 8.4), R.create(2, 2.6)),
+                    collision: L.createAabbExtents(R.create(0, 8.4), R.create(2, 2.6)),
                     downDir: R.create(0, -1)
                 }],
-                mask: [B.createAabbExtents(R.create(0, -3.7), R.create(10, 9.5))]
+                mask: [L.createAabbExtents(R.create(0, -3.7), R.create(10, 9.5))]
             },
             bunker_hydra_01: {
                 type: "building",
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(20.25, 3.5), R.create(6.25, 5.5)),
+                        collider: L.createAabbExtents(R.create(20.25, 3.5), R.create(6.25, 5.5)),
                         color: 2894892
                     }, {
-                        collider: B.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25)),
+                        collider: L.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25)),
                         color: 3815994
                     }]
                 },
@@ -39272,10 +39547,10 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(20.25, 3.5), R.create(6.25, 5.5)), B.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25))]
+                        collision: [L.createAabbExtents(R.create(20.25, 3.5), R.create(6.25, 5.5)), L.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25))]
                     }, {
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(16.25, 3.5), R.create(3.25, 2)), B.createAabbExtents(R.create(-16.5, -90.75), R.create(2, 3.25)), B.createAabbExtents(R.create(40, -50.5), R.create(2, 3.25))]
+                        collision: [L.createAabbExtents(R.create(16.25, 3.5), R.create(3.25, 2)), L.createAabbExtents(R.create(-16.5, -90.75), R.create(2, 3.25)), L.createAabbExtents(R.create(40, -50.5), R.create(2, 3.25))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-hydra-floor-01.img",
@@ -39299,8 +39574,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(19.25, 3.5), R.create(6.25, 5.5)), B.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25))],
-                    scopeOut: [B.createAabbExtents(R.create(19.25, 3.5), R.create(6.25, 5.5)), B.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25))],
+                    scopeIn: [L.createAabbExtents(R.create(19.25, 3.5), R.create(6.25, 5.5)), L.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25))],
+                    scopeOut: [L.createAabbExtents(R.create(19.25, 3.5), R.create(6.25, 5.5)), L.createAabbExtents(R.create(32.25, 3.5), R.create(6.75, 9.25))],
                     imgs: [{
                         sprite: "map-bunker-hydra-ceiling-01.img",
                         pos: R.create(25.25, 3.5),
@@ -39511,10 +39786,10 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "bunker",
-                        collision: [B.createAabbExtents(R.create(3.5, 3), R.create(9.5, 9))]
+                        collision: [L.createAabbExtents(R.create(3.5, 3), R.create(9.5, 9))]
                     }, {
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(-15.5, -79.5), R.create(3, 8)), B.createAabbExtents(R.create(40.5, -62), R.create(9.5, 8))]
+                        collision: [L.createAabbExtents(R.create(-15.5, -79.5), R.create(3, 8)), L.createAabbExtents(R.create(40.5, -62), R.create(9.5, 8))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-hydra-chamber-floor-01.img",
@@ -39537,8 +39812,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(3.5, 2.25), R.create(10, 10)), B.createAabbExtents(R.create(-15, -77), R.create(5.5, 10.5)), B.createAabbExtents(R.create(38, -62), R.create(11.5, 8))],
-                    scopeOut: [B.createAabbExtents(R.create(3.5, 2.25), R.create(10, 10)), B.createAabbExtents(R.create(-15, -77), R.create(5.5, 10.5)), B.createAabbExtents(R.create(38, -62), R.create(11.5, 8))],
+                    scopeIn: [L.createAabbExtents(R.create(3.5, 2.25), R.create(10, 10)), L.createAabbExtents(R.create(-15, -77), R.create(5.5, 10.5)), L.createAabbExtents(R.create(38, -62), R.create(11.5, 8))],
+                    scopeOut: [L.createAabbExtents(R.create(3.5, 2.25), R.create(10, 10)), L.createAabbExtents(R.create(-15, -77), R.create(5.5, 10.5)), L.createAabbExtents(R.create(38, -62), R.create(11.5, 8))],
                     imgs: [{
                         sprite: "map-bunker-hydra-chamber-ceiling-01.img",
                         pos: R.create(7, 2),
@@ -39803,7 +40078,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(0, 1.5), R.create(9.5, 12.5))]
+                        collision: [L.createAabbExtents(R.create(0, 1.5), R.create(9.5, 12.5))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-hydra-compartment-floor-01.img",
@@ -39813,8 +40088,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 1.25), R.create(10, 10))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 1.25), R.create(10, 10))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 1.25), R.create(10, 10))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 1.25), R.create(10, 10))],
                     imgs: [{
                         sprite: "map-bunker-hydra-compartment-ceiling-01.img",
                         pos: R.create(0, 1.25),
@@ -39920,7 +40195,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(-2.5, 16), R.create(22, 4)), B.createAabbExtents(R.create(-2.5, 9.5), R.create(6, 2.5)), B.createAabbExtents(R.create(0, -4.5), R.create(25, 17))]
+                        collision: [L.createAabbExtents(R.create(-2.5, 16), R.create(22, 4)), L.createAabbExtents(R.create(-2.5, 9.5), R.create(6, 2.5)), L.createAabbExtents(R.create(0, -4.5), R.create(25, 17))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-hydra-compartment-floor-02.img",
@@ -39931,8 +40206,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(-2, 3), R.create(22.5, 19.5))],
-                    scopeOut: [B.createAabbExtents(R.create(-2, 3), R.create(22.5, 19.5))],
+                    scopeIn: [L.createAabbExtents(R.create(-2, 3), R.create(22.5, 19.5))],
+                    scopeOut: [L.createAabbExtents(R.create(-2, 3), R.create(22.5, 19.5))],
                     imgs: [{
                         sprite: "map-bunker-hydra-compartment-ceiling-02.img",
                         pos: R.create(0, 1),
@@ -40153,7 +40428,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "bunker",
-                        collision: [B.createAabbExtents(R.create(0, 2), R.create(9, 8.75))]
+                        collision: [L.createAabbExtents(R.create(0, 2), R.create(9, 8.75))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-hydra-compartment-floor-03.img",
@@ -40164,8 +40439,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, .75), R.create(10, 7.75))],
-                    scopeOut: [B.createAabbExtents(R.create(0, .75), R.create(10, 7.75))],
+                    scopeIn: [L.createAabbExtents(R.create(0, .75), R.create(10, 7.75))],
+                    scopeOut: [L.createAabbExtents(R.create(0, .75), R.create(10, 7.75))],
                     imgs: [{
                         sprite: "map-bunker-hydra-compartment-ceiling-03.img",
                         pos: R.create(0, 1),
@@ -40222,7 +40497,7 @@ webpackJsonp([0], {
                     grass: !0,
                     beach: !1
                 },
-                mapObstacleBounds: [B.createAabbExtents(R.create(25.5, 3.5), R.create(16, 11.5)), B.createAabbExtents(R.create(-16.5, -89.5), R.create(7, 7.5)), B.createAabbExtents(R.create(40, -47.25), R.create(6.5, 7.25)), B.createAabbExtents(R.create(-5.75, -38.5), R.create(3, 3))],
+                mapObstacleBounds: [L.createAabbExtents(R.create(25.5, 3.5), R.create(16, 11.5)), L.createAabbExtents(R.create(-16.5, -89.5), R.create(7, 7.5)), L.createAabbExtents(R.create(40, -47.25), R.create(6.5, 7.25)), L.createAabbExtents(R.create(-5.75, -38.5), R.create(3, 3))],
                 layers: [{
                     type: "bunker_hydra_01",
                     pos: R.create(0, 0),
@@ -40233,23 +40508,23 @@ webpackJsonp([0], {
                     ori: 0
                 }],
                 stairs: [{
-                    collision: B.createAabbExtents(R.create(16.4, 3.5), R.create(2.6, 2)),
+                    collision: L.createAabbExtents(R.create(16.4, 3.5), R.create(2.6, 2)),
                     downDir: R.create(-1, 0)
                 }, {
-                    collision: B.createAabbExtents(R.create(-16.5, -90.4), R.create(2, 3.1)),
+                    collision: L.createAabbExtents(R.create(-16.5, -90.4), R.create(2, 3.1)),
                     downDir: R.create(0, 1)
                 }, {
-                    collision: B.createAabbExtents(R.create(40, -50.5), R.create(2, 3.1)),
+                    collision: L.createAabbExtents(R.create(40, -50.5), R.create(2, 3.1)),
                     downDir: R.create(0, -1)
                 }],
-                mask: [B.createAabbExtents(R.create(3.5, -7.2), R.create(10.5, 20)), B.createAabbExtents(R.create(-15, -79.75), R.create(5, 8.5)), B.createAabbExtents(R.create(39, -61.85), R.create(12, 9)), B.createAabbExtents(R.create(3.5, -49.2), R.create(23.5, 22)), B.createAabbExtents(R.create(10.5, -76.7), R.create(10, 5.5))]
+                mask: [L.createAabbExtents(R.create(3.5, -7.2), R.create(10.5, 20)), L.createAabbExtents(R.create(-15, -79.75), R.create(5, 8.5)), L.createAabbExtents(R.create(39, -61.85), R.create(12, 9)), L.createAabbExtents(R.create(3.5, -49.2), R.create(23.5, 22)), L.createAabbExtents(R.create(10.5, -76.7), R.create(10, 5.5))]
             },
             bunker_storm_01: {
                 type: "building",
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(0, 10), R.create(3.6, 5.8)),
+                        collider: L.createAabbExtents(R.create(0, 10), R.create(3.6, 5.8)),
                         color: 6707790
                     }]
                 },
@@ -40261,10 +40536,10 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(0, 7.75), R.create(2, 3.25))]
+                        collision: [L.createAabbExtents(R.create(0, 7.75), R.create(2, 3.25))]
                     }, {
                         type: "shack",
-                        collision: [B.createAabbExtents(R.create(0, 13.5), R.create(3.75, 2.5)), B.createAabbExtents(R.create(5, 13.75), R.create(1.25, 2.25))]
+                        collision: [L.createAabbExtents(R.create(0, 13.5), R.create(3.75, 2.5)), L.createAabbExtents(R.create(5, 13.75), R.create(1.25, 2.25))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-storm-floor-02.img",
@@ -40275,8 +40550,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(0, 10), R.create(3.5, 5.6))],
-                    scopeOut: [B.createAabbExtents(R.create(0, 10), R.create(3.8, 5.9))],
+                    scopeIn: [L.createAabbExtents(R.create(0, 10), R.create(3.5, 5.6))],
+                    scopeOut: [L.createAabbExtents(R.create(0, 10), R.create(3.8, 5.9))],
                     vision: {
                         dist: 5,
                         width: 2.75,
@@ -40382,10 +40657,10 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "bunker",
-                        collision: [B.createAabbExtents(R.create(1, -4.4), R.create(10.5, 9))]
+                        collision: [L.createAabbExtents(R.create(1, -4.4), R.create(10.5, 9))]
                     }, {
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(19, -5.5), R.create(7.5, 8))]
+                        collision: [L.createAabbExtents(R.create(19, -5.5), R.create(7.5, 8))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-storm-chamber-floor-01.img",
@@ -40396,8 +40671,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(8.5, -4.5), R.create(18, 9.1))],
-                    scopeOut: [B.createAabbExtents(R.create(8.5, -4.5), R.create(18, 9.1))],
+                    scopeIn: [L.createAabbExtents(R.create(8.5, -4.5), R.create(18, 9.1))],
+                    scopeOut: [L.createAabbExtents(R.create(8.5, -4.5), R.create(18, 9.1))],
                     imgs: [{
                         sprite: "map-bunker-storm-chamber-ceiling-01.img",
                         pos: R.create(8.5, -1),
@@ -40546,7 +40821,7 @@ webpackJsonp([0], {
                     grass: !0,
                     beach: !1
                 },
-                mapObstacleBounds: [B.createAabbExtents(R.create(1, 6), R.create(7, 13.5))],
+                mapObstacleBounds: [L.createAabbExtents(R.create(1, 6), R.create(7, 13.5))],
                 layers: [{
                     type: "bunker_storm_01",
                     pos: R.create(0, 0),
@@ -40557,20 +40832,20 @@ webpackJsonp([0], {
                     ori: 0
                 }],
                 stairs: [{
-                    collision: B.createAabbExtents(R.create(0, 8.4), R.create(2, 2.6)),
+                    collision: L.createAabbExtents(R.create(0, 8.4), R.create(2, 2.6)),
                     downDir: R.create(0, -1)
                 }],
-                mask: [B.createAabbExtents(R.create(8.5, -3.7), R.create(18, 9.5))]
+                mask: [L.createAabbExtents(R.create(8.5, -3.7), R.create(18, 9.5))]
             },
             bunker_conch_01: {
                 type: "building",
                 map: {
                     display: !0,
                     shapes: [{
-                        collider: B.createAabbExtents(R.create(20, 3.35), R.create(5.5, 2.5)),
+                        collider: L.createAabbExtents(R.create(20, 3.35), R.create(5.5, 2.5)),
                         color: 2703694
                     }, {
-                        collider: B.createAabbExtents(R.create(46.5, -32.55), R.create(5.5, 2.5)),
+                        collider: L.createAabbExtents(R.create(46.5, -32.55), R.create(5.5, 2.5)),
                         color: 2703694
                     }]
                 },
@@ -40582,7 +40857,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "container",
-                        collision: [B.createAabbExtents(R.create(16.25, 3.5), R.create(3.25, 2)), B.createAabbExtents(R.create(44.25, -32.5), R.create(3.25, 2)), B.createAabbExtents(R.create(22, 3.35), R.create(8, 2.5)), B.createAabbExtents(R.create(50.5, -32.55), R.create(8, 2.5))]
+                        collision: [L.createAabbExtents(R.create(16.25, 3.5), R.create(3.25, 2)), L.createAabbExtents(R.create(44.25, -32.5), R.create(3.25, 2)), L.createAabbExtents(R.create(22, 3.35), R.create(8, 2.5)), L.createAabbExtents(R.create(50.5, -32.55), R.create(8, 2.5))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-conch-floor-01.img",
@@ -40599,8 +40874,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(19, 3.35), R.create(5.5, 2.5)), B.createAabbExtents(R.create(47.5, -32.55), R.create(5.5, 2.5))],
-                    scopeOut: [B.createAabbExtents(R.create(22, 3.35), R.create(8, 2.5)), B.createAabbExtents(R.create(50.5, -32.55), R.create(8, 2.5))],
+                    scopeIn: [L.createAabbExtents(R.create(19, 3.35), R.create(5.5, 2.5)), L.createAabbExtents(R.create(47.5, -32.55), R.create(5.5, 2.5))],
+                    scopeOut: [L.createAabbExtents(R.create(22, 3.35), R.create(8, 2.5)), L.createAabbExtents(R.create(50.5, -32.55), R.create(8, 2.5))],
                     imgs: [{
                         sprite: "map-bunker-conch-ceiling-01.img",
                         pos: R.create(19.25, 3.35),
@@ -40683,7 +40958,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "tile",
-                        collision: [B.createAabbExtents(R.create(1, 4), R.create(12.5, 3.5)), B.createAabbExtents(R.create(28, -30), R.create(13.5, 4.5))]
+                        collision: [L.createAabbExtents(R.create(1, 4), R.create(12.5, 3.5)), L.createAabbExtents(R.create(28, -30), R.create(13.5, 4.5))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-conch-chamber-floor-01.img",
@@ -40700,8 +40975,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(1, 3.5), R.create(12.5, 5)), B.createAabbExtents(R.create(26.75, -30), R.create(14.75, 4.5))],
-                    scopeOut: [B.createAabbExtents(R.create(1, 3.5), R.create(12.5, 5)), B.createAabbExtents(R.create(26.75, -30), R.create(14.75, 4.5))],
+                    scopeIn: [L.createAabbExtents(R.create(1, 3.5), R.create(12.5, 5)), L.createAabbExtents(R.create(26.75, -30), R.create(14.75, 4.5))],
+                    scopeOut: [L.createAabbExtents(R.create(1, 3.5), R.create(12.5, 5)), L.createAabbExtents(R.create(26.75, -30), R.create(14.75, 4.5))],
                     imgs: [{
                         sprite: "map-bunker-conch-chamber-ceiling-01.img",
                         pos: R.create(-2, 3.5),
@@ -40848,7 +41123,7 @@ webpackJsonp([0], {
                 floor: {
                     surfaces: [{
                         type: "water",
-                        collision: [B.createAabbExtents(R.create(1, -2.5), R.create(15, 15.5))]
+                        collision: [L.createAabbExtents(R.create(1, -2.5), R.create(15, 15.5))]
                     }],
                     imgs: [{
                         sprite: "map-bunker-conch-compartment-floor-01.img",
@@ -40860,8 +41135,8 @@ webpackJsonp([0], {
                     }]
                 },
                 ceiling: {
-                    scopeIn: [B.createAabbExtents(R.create(-1.5, -1), R.create(12.5, 12)), B.createAabbExtents(R.create(9.5, -14.5), R.create(4, 2.5))],
-                    scopeOut: [B.createAabbExtents(R.create(-1.5, -1), R.create(12.5, 12)), B.createAabbExtents(R.create(9.5, -14.5), R.create(4, 2.5))],
+                    scopeIn: [L.createAabbExtents(R.create(-1.5, -1), R.create(12.5, 12)), L.createAabbExtents(R.create(9.5, -14.5), R.create(4, 2.5))],
+                    scopeOut: [L.createAabbExtents(R.create(-1.5, -1), R.create(12.5, 12)), L.createAabbExtents(R.create(9.5, -14.5), R.create(4, 2.5))],
                     imgs: [{
                         sprite: "map-bunker-conch-compartment-ceiling-01.img",
                         pos: R.create(-.75, -5.5),
@@ -41011,7 +41286,7 @@ webpackJsonp([0], {
                         distMax: 16
                     }
                 },
-                mapObstacleBounds: [B.createAabbExtents(R.create(21, 3.5), R.create(9.5, 8)), B.createAabbExtents(R.create(48, -32.5), R.create(10, 8))],
+                mapObstacleBounds: [L.createAabbExtents(R.create(21, 3.5), R.create(9.5, 8)), L.createAabbExtents(R.create(48, -32.5), R.create(10, 8))],
                 layers: [{
                     type: "bunker_conch_01",
                     pos: R.create(0, 0),
@@ -41022,13 +41297,13 @@ webpackJsonp([0], {
                     ori: 0
                 }],
                 stairs: [{
-                    collision: B.createAabbExtents(R.create(16.9, 3.5), R.create(2.6, 2)),
+                    collision: L.createAabbExtents(R.create(16.9, 3.5), R.create(2.6, 2)),
                     downDir: R.create(-1, 0)
                 }, {
-                    collision: B.createAabbExtents(R.create(44.9, -32.5), R.create(2.6, 2)),
+                    collision: L.createAabbExtents(R.create(44.9, -32.5), R.create(2.6, 2)),
                     downDir: R.create(-1, 0)
                 }],
-                mask: [B.createAabbExtents(R.create(3.5, -7.2), R.create(10.7, 20)), B.createAabbExtents(R.create(37.25, -32), R.create(5, 5))]
+                mask: [L.createAabbExtents(R.create(3.5, -7.2), R.create(10.7, 20)), L.createAabbExtents(R.create(37.25, -32), R.create(5, 5))]
             },
             container_wall_top: P({
                 material: "metal",
@@ -41071,7 +41346,7 @@ webpackJsonp([0], {
             }),
             loot_tier_1: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_world",
                 terrain: {
                     grass: !0,
@@ -41080,7 +41355,7 @@ webpackJsonp([0], {
             },
             loot_tier_2: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_container",
                 terrain: {
                     grass: !0,
@@ -41089,7 +41364,7 @@ webpackJsonp([0], {
             },
             loot_tier_beach: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_world",
                 terrain: {
                     grass: !1,
@@ -41098,7 +41373,7 @@ webpackJsonp([0], {
             },
             loot_tier_vault_floor: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_vault_floor",
                 terrain: {
                     grass: !0,
@@ -41107,7 +41382,7 @@ webpackJsonp([0], {
             },
             loot_tier_police_floor: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_police_floor",
                 terrain: {
                     grass: !0,
@@ -41116,7 +41391,7 @@ webpackJsonp([0], {
             },
             loot_tier_mansion_floor: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_mansion_floor",
                 terrain: {
                     grass: !0,
@@ -41125,7 +41400,7 @@ webpackJsonp([0], {
             },
             loot_tier_sv98: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_sv98",
                 terrain: {
                     grass: !0,
@@ -41134,7 +41409,7 @@ webpackJsonp([0], {
             },
             loot_tier_scopes_sniper: {
                 type: "loot_spawner",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 tier: "tier_scopes_sniper",
                 terrain: {
                     grass: !0,
@@ -41143,7 +41418,7 @@ webpackJsonp([0], {
             },
             decal_barrel_explosion: {
                 type: "decal",
-                collision: B.createCircle(R.create(0, 0), 1),
+                collision: L.createCircle(R.create(0, 0), 1),
                 height: 0,
                 img: {
                     sprite: "map-barrel-res-01.img",
@@ -41155,7 +41430,7 @@ webpackJsonp([0], {
             },
             decal_frag_explosion: {
                 type: "decal",
-                collision: B.createCircle(R.create(0, 0), 1),
+                collision: L.createCircle(R.create(0, 0), 1),
                 height: 0,
                 img: {
                     sprite: "map-barrel-res-01.img",
@@ -41167,7 +41442,7 @@ webpackJsonp([0], {
             },
             decal_smoke_explosion: {
                 type: "decal",
-                collision: B.createCircle(R.create(0, 0), 1),
+                collision: L.createCircle(R.create(0, 0), 1),
                 height: 0,
                 img: {
                     sprite: "map-smoke-res.img",
@@ -41179,7 +41454,7 @@ webpackJsonp([0], {
             },
             decal_vent_01: {
                 type: "decal",
-                collision: B.createCircle(R.create(0, 0), 2),
+                collision: L.createCircle(R.create(0, 0), 2),
                 height: 0,
                 img: {
                     sprite: "map-bunker-vent-01.img",
@@ -41191,7 +41466,7 @@ webpackJsonp([0], {
             },
             decal_vent_02: {
                 type: "decal",
-                collision: B.createCircle(R.create(0, 0), 2),
+                collision: L.createCircle(R.create(0, 0), 2),
                 height: 0,
                 img: {
                     sprite: "map-bunker-vent-02.img",
@@ -41203,7 +41478,7 @@ webpackJsonp([0], {
             },
             decal_hydra_01: {
                 type: "decal",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 height: 0,
                 img: {
                     sprite: "map-bunker-hydra-floor-04.img",
@@ -41215,7 +41490,7 @@ webpackJsonp([0], {
             },
             decal_pipes_01: {
                 type: "decal",
-                collision: B.createAabbExtents(R.create(0, 0), R.create(1, 4.5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(1, 4.5)),
                 height: 1,
                 img: {
                     sprite: "map-pipes-01.img",
@@ -41227,7 +41502,7 @@ webpackJsonp([0], {
             },
             decal_pipes_02: {
                 type: "decal",
-                collision: B.createAabbExtents(R.create(0, 0), R.create(4, 3)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(4, 3)),
                 height: 1,
                 img: {
                     sprite: "map-pipes-02.img",
@@ -41239,7 +41514,7 @@ webpackJsonp([0], {
             },
             decal_pipes_03: {
                 type: "decal",
-                collision: B.createAabbExtents(R.create(0, 0), R.create(10.5, 4)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(10.5, 4)),
                 height: 1,
                 img: {
                     sprite: "map-pipes-03.img",
@@ -41251,7 +41526,7 @@ webpackJsonp([0], {
             },
             decal_pipes_04: {
                 type: "decal",
-                collision: B.createAabbExtents(R.create(0, 0), R.create(1, 5.5)),
+                collision: L.createAabbExtents(R.create(0, 0), R.create(1, 5.5)),
                 height: 1,
                 img: {
                     sprite: "map-pipes-04.img",
@@ -41263,7 +41538,7 @@ webpackJsonp([0], {
             },
             decal_initiative_01: {
                 type: "decal",
-                collision: B.createCircle(R.create(0, 0), 3),
+                collision: L.createCircle(R.create(0, 0), 3),
                 height: 0,
                 img: {
                     sprite: "map-decal-initiative.img",
@@ -41275,7 +41550,7 @@ webpackJsonp([0], {
             }
         };
         e.exports = {
-            Defs: q,
+            Defs: N,
             MinScale: .125,
             MaxScale: 2.5,
             oriToRad: r,
@@ -41283,6 +41558,299 @@ webpackJsonp([0], {
             t: function(e, t) {
                 return e.sprite && e.sprite.visible && e.sprite.alpha < t
             }
+        }
+    },
+    d306eab6: function(e, t, a) {
+        "use strict";
+        function i(e, t) {
+            if (!(e instanceof t))
+                throw new TypeError("Cannot call a class as a function")
+        }
+        function r(e, t, a) {
+            return t in e ? Object.defineProperty(e, t, {
+                value: a,
+                enumerable: !0,
+                configurable: !0,
+                writable: !0
+            }) : e[t] = a,
+            e
+        }
+        function o(e, t) {
+            return {
+                name: e,
+                defaultValue: t
+            }
+        }
+        function n(e) {
+            return new w(x.Key,e)
+        }
+        function s(e) {
+            return new w(x.MouseButton,e)
+        }
+        function l(e) {
+            return new w(x.MouseWheel,e)
+        }
+        var m, c = function() {
+            function e(e, t) {
+                for (var a = 0; a < t.length; a++) {
+                    var i = t[a];
+                    i.enumerable = i.enumerable || !1,
+                    i.configurable = !0,
+                    "value"in i && (i.writable = !0),
+                    Object.defineProperty(e, i.key, i)
+                }
+            }
+            return function(t, a, i) {
+                return a && e(t.prototype, a),
+                i && e(t, i),
+                t
+            }
+        }(), d = a("8ee62bea"), p = a("ca1f6916"), u = a("14a25ec1"), h = a("6d61bfc0"), g = a("989ad62a"), y = g.Input, f = a("4b8d140f"), x = f.InputType, w = f.InputValue, b = f.Key, _ = f.MouseButton, v = f.MouseWheel, S = (m = {},
+        r(m, y.MoveLeft, o("Move Left", n(b.A))),
+        r(m, y.MoveRight, o("Move Right", n(b.D))),
+        r(m, y.MoveUp, o("Move Up", n(b.W))),
+        r(m, y.MoveDown, o("Move Down", n(b.S))),
+        r(m, y.Fire, o("Fire", s(_.Left))),
+        r(m, y.Reload, o("Reload", n(b.R))),
+        r(m, y.Cancel, o("Cancel", n(b.X))),
+        r(m, y.Interact, o("Interact", n(b.F))),
+        r(m, y.Revive, o("Revive", null)),
+        r(m, y.Use, o("Open/Use", null)),
+        r(m, y.Loot, o("Loot", null)),
+        r(m, y.EquipPrimary, o("Equip Primary", n(b.One))),
+        r(m, y.EquipSecondary, o("Equip Secondary", n(b.Two))),
+        r(m, y.EquipMelee, o("Equip Melee", n(b.Three))),
+        r(m, y.EquipThrowable, o("Equip Throwable", n(b.Four))),
+        r(m, y.EquipNextWeap, o("Equip Next Weapon", l(v.Down))),
+        r(m, y.EquipPrevWeap, o("Equip Previous Weapon", l(v.Up))),
+        r(m, y.EquipLastWeap, o("Equip Last Weapon", n(b.Q))),
+        r(m, y.StowWeapons, o("Stow Weapons", n(b.E))),
+        r(m, y.EquipPrevScope, o("Equip Previous Scope", null)),
+        r(m, y.EquipNextScope, o("Equip Next Scope", null)),
+        r(m, y.UseBandage, o("Use Bandage", n(b.Seven))),
+        r(m, y.UseHealthKit, o("Use Med Kit", n(b.Eight))),
+        r(m, y.UseSoda, o("Use Soda", n(b.Nine))),
+        r(m, y.UsePainkiller, o("Use Pills", n(b.Zero))),
+        r(m, y.SwapWeapSlots, o("Switch Gun Slots", n(b.T))),
+        r(m, y.ToggleMap, o("Toggle Map", n(b.M))),
+        r(m, y.CycleUIMode, o("Toggle Minimap", n(b.V))),
+        r(m, y.EmoteMenu, o("Emote Menu", s(_.Right))),
+        r(m, y.TeamPingMenu, o("Team Ping Hold", n(b.C))),
+        r(m, y.EquipOtherGun, o("Equip Other Gun", null)),
+        r(m, y.Fullscreen, o("Full Screen", n(b.L))),
+        r(m, y.HideUI, o("Hide UI", null)),
+        m), k = function() {
+            function e(t, a) {
+                i(this, e),
+                this.input = t,
+                this.config = a,
+                this.binds = [],
+                this.boundKeys = {},
+                this.menuHovered = !1,
+                this.loadBinds()
+            }
+            return c(e, [{
+                key: "toArray",
+                value: function() {
+                    var e = new ArrayBuffer(2 * this.binds.length + 1)
+                      , t = new u.BitStream(e);
+                    t.writeUint8(1);
+                    for (var a = 0; a < this.binds.length; a++) {
+                        var i = this.binds[a]
+                          , r = i ? i.type : 0
+                          , o = i ? i.code : 0;
+                        t.writeBits(3 & r, 2),
+                        t.writeUint8(255 & o)
+                    }
+                    var n = new Uint8Array(e,0,t.byteIndex)
+                      , s = h.crc16(n)
+                      , l = new Uint8Array(n.length + 2);
+                    return l.set(n),
+                    l[l.length - 2] = s >> 8 & 255,
+                    l[l.length - 1] = 255 & s,
+                    l
+                }
+            }, {
+                key: "fromArray",
+                value: function(e) {
+                    var t = new Uint8Array(e);
+                    if (!t || t.length < 3)
+                        return !1;
+                    var a = t[t.length - 2] << 8 | t[t.length - 1];
+                    if (t = t.slice(0, t.length - 2),
+                    h.crc16(t) != a)
+                        return !1;
+                    for (var i = new ArrayBuffer(t.length), r = new Uint8Array(i), o = 0; o < t.length; o++)
+                        r[o] = t[o];
+                    var n = new u.BitStream(i);
+                    n.readUint8(),
+                    this.clearAllBinds();
+                    for (var s = 0; n.length - n.index >= 10; ) {
+                        var l = s++
+                          , m = n.readBits(2)
+                          , c = n.readUint8();
+                        l >= 0 && l < y.Count && m != x.None && this.setBind(l, 0 != m ? new w(m,c) : null)
+                    }
+                    return !0
+                }
+            }, {
+                key: "toBase64",
+                value: function() {
+                    return p.fromByteArray(Uint8Array.from(this.toArray()))
+                }
+            }, {
+                key: "fromBase64",
+                value: function(e) {
+                    var t = !1;
+                    try {
+                        t = this.fromArray(p.toByteArray(e))
+                    } catch (e) {}
+                    return t
+                }
+            }, {
+                key: "saveBinds",
+                value: function() {
+                    this.config.set("binds", this.toBase64())
+                }
+            }, {
+                key: "loadBinds",
+                value: function() {
+                    this.fromBase64(this.config.get("binds") || "") || (this.loadDefaultBinds(),
+                    this.saveBinds())
+                }
+            }, {
+                key: "clearAllBinds",
+                value: function() {
+                    for (var e = 0; e < y.Count; e++)
+                        this.binds[e] = null;
+                    this.boundKeys = {}
+                }
+            }, {
+                key: "setBind",
+                value: function(e, t) {
+                    if (t)
+                        for (var a = 0; a < this.binds.length; a++)
+                            this.binds[a] && this.binds[a].equals(t) && (this.binds[a] = null);
+                    var i = this.binds[e];
+                    i && i.type == x.Key && (this.boundKeys[i.code] = null),
+                    this.binds[e] = t,
+                    t && t.type == x.Key && (this.boundKeys[t.code] = !0)
+                }
+            }, {
+                key: "getBind",
+                value: function(e) {
+                    return this.binds[e]
+                }
+            }, {
+                key: "preventMenuBind",
+                value: function(e) {
+                    return e && this.menuHovered && (2 == e.type || 3 == e.type)
+                }
+            }, {
+                key: "isKeyBound",
+                value: function(e) {
+                    return this.boundKeys[e]
+                }
+            }, {
+                key: "isBindPressed",
+                value: function(e) {
+                    var t = this.binds[e];
+                    return !this.preventMenuBind(t) && t && this.input.isInputValuePressed(t)
+                }
+            }, {
+                key: "isBindReleased",
+                value: function(e) {
+                    var t = this.binds[e];
+                    return !this.preventMenuBind(t) && t && this.input.isInputValueReleased(t)
+                }
+            }, {
+                key: "isBindDown",
+                value: function(e) {
+                    var t = this.binds[e];
+                    return !this.preventMenuBind(t) && t && this.input.isInputValueDown(t)
+                }
+            }, {
+                key: "loadDefaultBinds",
+                value: function() {
+                    this.clearAllBinds();
+                    for (var e = Object.keys(S), t = 0; t < e.length; t++) {
+                        var a = e[t]
+                          , i = S[a];
+                        this.setBind(parseInt(a), i.defaultValue)
+                    }
+                }
+            }]),
+            e
+        }(), z = function() {
+            function e(t, a) {
+                var r = this;
+                i(this, e),
+                this.input = t,
+                this.inputBinds = a,
+                d(".js-btn-keybind-restore").on("click", function() {
+                    r.inputBinds.loadDefaultBinds(),
+                    r.inputBinds.saveBinds(),
+                    r.refresh()
+                })
+            }
+            return c(e, [{
+                key: "cancelBind",
+                value: function() {
+                    this.input.captureNextInput(null)
+                }
+            }, {
+                key: "refresh",
+                value: function() {
+                    var e = this
+                      , t = Object.keys(S)
+                      , a = this.inputBinds.binds
+                      , i = d(".js-keybind-list");
+                    i.empty();
+                    for (var r = 0; r < t.length; r++)
+                        !function(r) {
+                            var o = t[r]
+                              , s = S[o]
+                              , l = a[o]
+                              , m = d("<a/>", {
+                                class: "btn-game-menu btn-darken btn-keybind-desc",
+                                text: s.name
+                            })
+                              , c = d("<div/>", {
+                                class: "btn-keybind-display",
+                                text: l ? l.toString() : ""
+                            });
+                            m.on("click", function(t) {
+                                var a = d(t.target);
+                                a.addClass("btn-keybind-desc-selected"),
+                                e.input.captureNextInput(function(t, i) {
+                                    t.preventDefault(),
+                                    t.stopPropagation();
+                                    var r = [b.Control, b.Shift, b.Alt, b.Windows, b.ContextMenu, b.F1, b.F2, b.F3, b.F4, b.F5, b.F6, b.F7, b.F8, b.F9, b.F10, b.F11, b.F12];
+                                    if (i.type == x.Key && -1 != r.indexOf(i.code))
+                                        return !1;
+                                    if (a.removeClass("btn-keybind-desc-selected"),
+                                    !i.equals(n(b.Escape))) {
+                                        var s = i;
+                                        i.equals(n(b.Backspace)) && (s = null),
+                                        e.inputBinds.setBind(parseInt(o), s),
+                                        e.inputBinds.saveBinds(),
+                                        e.refresh()
+                                    }
+                                    return !0
+                                })
+                            }),
+                            i.append(d("<div/>", {
+                                class: "ui-keybind-container"
+                            }).append(m).append(c))
+                        }(r);
+                    d("#keybind-link").html(this.inputBinds.toBase64())
+                }
+            }]),
+            e
+        }();
+        e.exports = {
+            InputBinds: k,
+            InputBindUi: z
         }
     },
     d3da5587: function(e, t, a) {
@@ -41363,7 +41931,7 @@ webpackJsonp([0], {
                 opacity: 0
             },
             this.killFeed = [];
-            for (var e = 0; e < T; e++)
+            for (var e = 0; e < P; e++)
                 this.killFeed.push({
                     text: "",
                     color: "#000000",
@@ -41390,7 +41958,7 @@ webpackJsonp([0], {
                 displayRemaining: !1
             },
             this.interaction = {
-                type: C.None,
+                type: I.None,
                 text: "",
                 key: "",
                 usable: !1
@@ -41426,9 +41994,10 @@ webpackJsonp([0], {
             this.boost = 0,
             this.downed = !1
         }
-        function h(e) {
-            var t = this;
+        function h(e, t) {
+            var a = this;
             this.localization = e,
+            this.inputBinds = t,
             this.oldState = new u,
             this.newState = new u,
             this.frameCount = 0,
@@ -41467,136 +42036,136 @@ webpackJsonp([0], {
                 loot: [],
                 gear: []
             };
-            for (var a = 0; a < T; a++) {
-                var i = "ui-killfeed-" + a
-                  , s = r(i);
-                if (!s) {
-                    s = document.createElement("div"),
-                    s.id = i,
-                    s.classList.add("killfeed-div");
-                    var l = document.createElement("div");
-                    l.classList.add("killfeed-text"),
-                    s.appendChild(l),
-                    this.dom.killFeed.div.appendChild(s)
+            for (var i = 0; i < P; i++) {
+                var s = "ui-killfeed-" + i
+                  , l = r(s);
+                if (!l) {
+                    l = document.createElement("div"),
+                    l.id = s,
+                    l.classList.add("killfeed-div");
+                    var m = document.createElement("div");
+                    m.classList.add("killfeed-text"),
+                    l.appendChild(m),
+                    this.dom.killFeed.div.appendChild(l)
                 }
                 this.dom.killFeed.lines.push({
-                    line: s,
-                    text: s.firstElementChild
+                    line: l,
+                    text: l.firstElementChild
                 })
             }
-            for (var m = 0; m < 4; m++) {
-                var h = r("ui-weapon-id-" + (m + 1))
-                  , g = {
-                    div: h,
-                    name: h.getElementsByClassName("ui-weapon-name")[0],
-                    number: h.getElementsByClassName("ui-weapon-number")[0],
-                    image: h.getElementsByClassName("ui-weapon-image")[0],
-                    ammo: h.getElementsByClassName("ui-weapon-ammo-counter")[0]
+            for (var h = 0; h < 4; h++) {
+                var g = r("ui-weapon-id-" + (h + 1))
+                  , y = {
+                    div: g,
+                    name: g.getElementsByClassName("ui-weapon-name")[0],
+                    number: g.getElementsByClassName("ui-weapon-number")[0],
+                    image: g.getElementsByClassName("ui-weapon-image")[0],
+                    ammo: g.getElementsByClassName("ui-weapon-ammo-counter")[0]
                 };
-                this.dom.weapons.push(g)
+                this.dom.weapons.push(y)
             }
-            for (var y = c(), x = 0; x < y.length; x++) {
-                var w = y[x]
-                  , b = {
-                    scopeType: w,
-                    div: r("ui-scope-" + w)
+            for (var x = c(), w = 0; w < x.length; w++) {
+                var b = x[w]
+                  , _ = {
+                    scopeType: b,
+                    div: r("ui-scope-" + b)
                 };
-                this.dom.scopes.push(b)
+                this.dom.scopes.push(_)
             }
-            for (var _ = d(), v = 0; v < _.length; v++) {
-                var S = _[v]
-                  , k = r("ui-loot-" + S);
-                if (k) {
-                    var z = {
-                        lootType: S,
-                        div: k,
-                        count: k.getElementsByClassName("ui-loot-count")[0],
-                        image: k.getElementsByClassName("ui-loot-image")[0],
-                        overlay: k.getElementsByClassName("ui-loot-overlay")[0]
+            for (var v = d(), S = 0; S < v.length; S++) {
+                var z = v[S]
+                  , M = r("ui-loot-" + z);
+                if (M) {
+                    var T = {
+                        lootType: z,
+                        div: M,
+                        count: M.getElementsByClassName("ui-loot-count")[0],
+                        image: M.getElementsByClassName("ui-loot-image")[0],
+                        overlay: M.getElementsByClassName("ui-loot-overlay")[0]
                     };
-                    this.dom.loot.push(z)
+                    this.dom.loot.push(T)
                 }
             }
-            for (var M = p(), C = 0; C < M.length; C++) {
-                var A = M[C]
-                  , I = r("ui-armor-" + A)
-                  , D = {
-                    gearType: A,
-                    div: I,
-                    level: I.getElementsByClassName("ui-armor-level")[0],
-                    image: I.getElementsByClassName("ui-armor-image")[0]
+            for (var I = p(), A = 0; A < I.length; A++) {
+                var D = I[A]
+                  , O = r("ui-armor-" + D)
+                  , B = {
+                    gearType: D,
+                    div: O,
+                    level: O.getElementsByClassName("ui-armor-level")[0],
+                    image: O.getElementsByClassName("ui-armor-image")[0]
                 };
-                this.dom.gear.push(D)
+                this.dom.gear.push(B)
             }
             this.uiEvents = [],
             this.eventListeners = [];
-            var O = function(e, a, i) {
-                t.eventListeners.push({
+            var E = function(e, t, i) {
+                a.eventListeners.push({
                     event: e,
-                    elem: a,
+                    elem: t,
                     fn: i
                 }),
-                a.addEventListener(e, i)
+                t.addEventListener(e, i)
             };
             this.itemActions = [];
-            for (var E = function(e, a, i, r) {
-                t.itemActions.push({
+            for (var L = function(e, t, i, r) {
+                a.itemActions.push({
                     action: e,
-                    type: a,
+                    type: t,
                     data: i,
                     div: r,
                     actionQueued: !1,
                     actionTime: 0
                 })
-            }, L = 0; L < this.dom.weapons.length; L++)
-                E("use", "weapon", L, this.dom.weapons[L].div),
-                E("drop", "weapon", L, this.dom.weapons[L].div);
-            for (var B = 0; B < this.dom.scopes.length; B++) {
-                var F = this.dom.scopes[B];
-                E("use", "scope", F.scopeType, F.div),
-                "1xscope" != F.scopeType && E("drop", "loot", F.scopeType, F.div)
+            }, F = 0; F < this.dom.weapons.length; F++)
+                L("use", "weapon", F, this.dom.weapons[F].div),
+                L("drop", "weapon", F, this.dom.weapons[F].div);
+            for (var R = 0; R < this.dom.scopes.length; R++) {
+                var j = this.dom.scopes[R];
+                L("use", "scope", j.scopeType, j.div),
+                "1xscope" != j.scopeType && L("drop", "loot", j.scopeType, j.div)
             }
-            for (var R = 0; R < this.dom.loot.length; R++) {
-                var j = this.dom.loot[R]
-                  , q = f.items[j.lootType];
-                "heal" != q.type && "boost" != q.type || E("use", "loot", j.lootType, j.div),
-                E("drop", "loot", j.lootType, j.div)
+            for (var N = 0; N < this.dom.loot.length; N++) {
+                var q = this.dom.loot[N]
+                  , U = f.items[q.lootType];
+                "heal" != U.type && "boost" != U.type || L("use", "loot", q.lootType, q.div),
+                L("drop", "loot", q.lootType, q.div)
             }
-            for (var N = 0; N < this.dom.gear.length; N++) {
-                var G = this.dom.gear[N];
-                "backpack" != G.gearType && E("drop", "loot", G.gearType, G.div)
+            for (var G = 0; G < this.dom.gear.length; G++) {
+                var V = this.dom.gear[G];
+                "backpack" != V.gearType && L("drop", "loot", V.gearType, V.div)
             }
-            for (var U = 0; U < this.itemActions.length; U++)
+            for (var W = 0; W < this.itemActions.length; W++)
                 !function(e) {
-                    var a = t.itemActions[e];
-                    O("mousedown", a.div, function(e) {
-                        ("use" == a.action && o(e) || "drop" == a.action && n(e)) && (e.stopPropagation(),
-                        a.actionQueued = !0)
+                    var t = a.itemActions[e];
+                    E("mousedown", t.div, function(e) {
+                        ("use" == t.action && o(e) || "drop" == t.action && n(e)) && (e.stopPropagation(),
+                        t.actionQueued = !0)
                     }),
-                    O("mouseup", a.div, function(e) {
-                        a.actionQueued && ("use" == a.action && o(e) || "drop" == a.action && n(e)) && (e.stopPropagation(),
-                        t.pushAction(a),
-                        a.actionQueued = !1)
+                    E("mouseup", t.div, function(e) {
+                        t.actionQueued && ("use" == t.action && o(e) || "drop" == t.action && n(e)) && (e.stopPropagation(),
+                        a.pushAction(t),
+                        t.actionQueued = !1)
                     }),
-                    O("touchstart", a.div, function(e) {
+                    E("touchstart", t.div, function(e) {
                         e.changedTouches.length > 0 && (e.stopPropagation(),
-                        a.actionQueued = !0,
-                        a.actionTime = (new Date).getTime(),
-                        a.touchOsId = e.changedTouches[0].identifier)
+                        t.actionQueued = !0,
+                        t.actionTime = (new Date).getTime(),
+                        t.touchOsId = e.changedTouches[0].identifier)
                     }),
-                    O("touchend", a.div, function(e) {
-                        (new Date).getTime() - a.actionTime < P && a.actionQueued && "use" == a.action && t.pushAction(a),
-                        a.actionQueued = !1
+                    E("touchend", t.div, function(e) {
+                        (new Date).getTime() - t.actionTime < C && t.actionQueued && "use" == t.action && a.pushAction(t),
+                        t.actionQueued = !1
                     }),
-                    O("touchcancel", a.div, function(e) {
-                        a.actionQueued = !1
+                    E("touchcancel", t.div, function(e) {
+                        t.actionQueued = !1
                     })
-                }(U);
-            var V = document.getElementById("cvs");
+                }(W);
+            var H = document.getElementById("cvs");
             this.clearQueuedItemActions = function() {
-                for (var e = 0; e < t.itemActions.length; e++)
-                    t.itemActions[e].actionQueued = !1;
-                V.focus()
+                for (var e = 0; e < a.itemActions.length; e++)
+                    a.itemActions[e].actionQueued = !1;
+                k.touch && H.focus()
             }
             ,
             window.addEventListener("mouseup", this.clearQueuedItemActions),
@@ -41622,18 +42191,19 @@ webpackJsonp([0], {
         }
         var y = a("6b42806d")
           , f = a("989ad62a")
-          , x = f.Action
-          , w = a("10899aea")
-          , b = a("300e2704")
-          , _ = a("1901e2d9")
-          , v = a("c2a798c8")
-          , S = a("ce29f17f")
-          , k = a("26be8056")
-          , z = f.DamageType
-          , M = b.PickupMsgType
-          , T = 6
-          , P = 750
-          , C = {
+          , x = f.Input
+          , w = f.Action
+          , b = a("10899aea")
+          , _ = a("300e2704")
+          , v = a("1901e2d9")
+          , S = a("c2a798c8")
+          , k = a("ce29f17f")
+          , z = a("26be8056")
+          , M = f.DamageType
+          , T = _.PickupMsgType
+          , P = 6
+          , C = 750
+          , I = {
             None: 0,
             Cancel: 1,
             Loot: 2,
@@ -41661,134 +42231,134 @@ webpackJsonp([0], {
             },
             l: function(e, t, a, i, r, o) {
                 var n = this.newState;
-                if (n.mobile = S.mobile,
-                n.touch = S.touch,
+                if (n.mobile = k.mobile,
+                n.touch = k.touch,
                 n.touch)
                     for (var s = 0; s < this.itemActions.length; s++) {
                         var c = this.itemActions[s];
                         if (c.actionQueued && "drop" == c.action) {
                             var d = (new Date).getTime()
                               , p = d - c.actionTime;
-                            p >= P && (this.pushAction(c),
+                            p >= C && (this.pushAction(c),
                             c.actionTime = d)
                         }
                     }
                 n.pickupMessage.ticker += e;
                 var u = n.pickupMessage.ticker
                   , h = n.pickupMessage.duration;
-                n.pickupMessage.opacity = w.smoothstep(u, 0, .2) * (1 - w.smoothstep(u, h, h + .2));
-                for (var g = 0, b = 0; b < n.killFeed.length; b++) {
-                    var k = n.killFeed[b];
-                    k.ticker += e;
-                    var z = k.ticker;
-                    k.offset = g,
-                    k.opacity = w.smoothstep(z, 0, .25) * (1 - w.smoothstep(z, 6, 6.5)),
-                    g += w.min(z / .25, 1),
-                    S.mobile && (k.opacity = z < 6.5 ? 1 : 0)
+                n.pickupMessage.opacity = b.smoothstep(u, 0, .2) * (1 - b.smoothstep(u, h, h + .2));
+                for (var g = 0, x = 0; x < n.killFeed.length; x++) {
+                    var _ = n.killFeed[x];
+                    _.ticker += e;
+                    var z = _.ticker;
+                    _.offset = g,
+                    _.opacity = b.smoothstep(z, 0, .25) * (1 - b.smoothstep(z, 6, 6.5)),
+                    g += b.min(z / .25, 1),
+                    k.mobile && (_.opacity = z < 6.5 ? 1 : 0)
                 }
-                n.health = t.N.dead ? 0 : w.max(t.U.health, 1),
-                n.boost = t.U.boost,
+                n.health = t.N.dead ? 0 : b.max(t.q.health, 1),
+                n.boost = t.q.boost,
                 n.downed = t.N.downed;
-                var M = C.None
+                var M = I.None
                   , T = null
-                  , A = !0;
+                  , P = !0;
                 if (!t.N.dead) {
-                    for (var I = null, D = 0, O = o.Y.m(), E = 0; E < O.length; E++) {
-                        var L = O[E];
-                        if (L.active && !L.dead && _.sameLayer(L.layer, t.layer)) {
-                            var B = L.getInteraction();
-                            if (B) {
-                                var F = y.intersectCircle(L.collider, t.N.pos, B.rad);
-                                F && F.pen >= D && (I = L,
+                    for (var A = null, D = 0, O = o.K.m(), B = 0; B < O.length; B++) {
+                        var E = O[B];
+                        if (E.active && !E.dead && v.sameLayer(E.layer, t.layer)) {
+                            var L = E.getInteraction();
+                            if (L) {
+                                var F = y.intersectCircle(E.collider, t.N.pos, L.rad);
+                                F && F.pen >= D && (A = E,
                                 D = F.pen)
                             }
                         }
                     }
-                    I && !t.N.downed && (M = C.Object,
-                    T = I,
-                    A = !0);
-                    var R = r.vt();
+                    A && !t.N.downed && (M = I.Object,
+                    T = A,
+                    P = !0);
+                    var R = r._t();
                     if (R && !t.N.downed) {
                         var j = f.items[R.name]
-                          , q = t.Mt(f.WeaponSlot.Primary)
-                          , N = t.Mt(f.WeaponSlot.Secondary)
-                          , G = q && N
-                          , U = "gun" != j.type || !G || "gun" == t.zt();
-                        (U || S.layout == S.Layout.Sm) && (M = C.Loot,
+                          , N = t.zt(f.WeaponSlot.Primary)
+                          , q = t.zt(f.WeaponSlot.Secondary)
+                          , U = N && q
+                          , G = "gun" != j.type || !U || "gun" == t.kt();
+                        (G || k.layout == k.Layout.Sm) && (M = I.Loot,
                         T = R),
-                        A = U && (!n.touch || "gun" == j.type || "skin" == j.type)
+                        P = G && (!n.touch || "gun" == j.type || "skin" == j.type)
                     }
-                    if (t.N.actionType == x.None && !t.N.downed)
-                        for (var V = i.H(t.__id).teamId, H = i.tt.m(), W = 0; W < H.length; W++) {
-                            var K = H[W]
-                              , X = i.H(K.__id).teamId;
-                            if (K.__id != t.__id && V == X && K.N.downed && !K.N.dead && K.N.actionType != x.Revive) {
-                                var Y = v.length(v.sub(K.N.pos, t.N.pos));
-                                Y < f.player.reviveMaxRange && _.sameLayer(K.layer, t.layer) && (M = C.Revive,
+                    if (t.N.actionType == w.None && !t.N.downed)
+                        for (var V = i.U(t.__id).teamId, W = i.et.m(), H = 0; H < W.length; H++) {
+                            var K = W[H]
+                              , X = i.U(K.__id).teamId;
+                            if (K.__id != t.__id && V == X && K.N.downed && !K.N.dead && K.N.actionType != w.Revive) {
+                                var Y = S.length(S.sub(K.N.pos, t.N.pos));
+                                Y < f.player.reviveMaxRange && v.sameLayer(K.layer, t.layer) && (M = I.Revive,
                                 T = t,
-                                A = !0)
+                                P = !0)
                             }
                         }
-                    t.N.actionType == x.Revive && t.N.downed && (M = C.None,
+                    t.N.actionType == w.Revive && t.N.downed && (M = I.None,
                     T = null,
-                    A = !1),
-                    (t.N.actionType == x.UseItem || t.N.actionType == x.Revive && !t.N.downed) && (M = C.Cancel,
+                    P = !1),
+                    (t.N.actionType == w.UseItem || t.N.actionType == w.Revive && !t.N.downed) && (M = I.Cancel,
                     T = null,
-                    A = !0)
+                    P = !0)
                 }
                 n.interaction.type = M,
                 n.interaction.text = this.getInteractionText(M, T),
                 n.interaction.key = this.getInteractionKey(M),
-                n.interaction.usable = A && !a;
-                for (var Z = 0; Z < t.U.weapons.length; Z++) {
-                    var Q = t.U.weapons[Z]
-                      , J = n.weapons[Z];
-                    J.name = Q.name,
-                    J.ammo = Q.ammo,
-                    "" != Q.name && "throwable" == f.items[Q.name].type && (J.ammo = t.U.inventory[Q.name]);
-                    var $ = J.equipped;
-                    J.equipped = Z == t.U.curWeapIdx,
-                    J.selectable = ("" != Q.name || 0 == Z || 1 == Z) && !a;
-                    var ee = J.equipped ? 1 : .6
-                      , te = ee - J.opacity
-                      , ae = w.min(te, w.sign(te) * e / .15);
-                    J.opacity = w.clamp(J.opacity + ae, 0, 1),
-                    S.mobile && (J.opacity = ee),
-                    J.ticker += e,
-                    J.equipped && $ || (J.ticker = 0),
-                    this.frameCount < 2 && (J.ticker = 1);
-                    var ie = w.min(J.ticker / .09, Math.PI)
+                n.interaction.usable = P && !a;
+                for (var Z = 0; Z < t.q.weapons.length; Z++) {
+                    var J = t.q.weapons[Z]
+                      , Q = n.weapons[Z];
+                    Q.name = J.name,
+                    Q.ammo = J.ammo,
+                    "" != J.name && "throwable" == f.items[J.name].type && (Q.ammo = t.q.inventory[J.name]);
+                    var $ = Q.equipped;
+                    Q.equipped = Z == t.q.curWeapIdx,
+                    Q.selectable = ("" != J.name || 0 == Z || 1 == Z) && !a;
+                    var ee = Q.equipped ? 1 : .6
+                      , te = ee - Q.opacity
+                      , ae = b.min(te, b.sign(te) * e / .15);
+                    Q.opacity = b.clamp(Q.opacity + ae, 0, 1),
+                    k.mobile && (Q.opacity = ee),
+                    Q.ticker += e,
+                    Q.equipped && $ || (Q.ticker = 0),
+                    this.frameCount < 2 && (Q.ticker = 1);
+                    var ie = b.min(Q.ticker / .09, Math.PI)
                       , re = Math.sin(ie);
-                    J.width = re < .001 ? 0 : re,
-                    S.mobile && (J.width = 0)
+                    Q.width = re < .001 ? 0 : re,
+                    k.mobile && (Q.width = 0)
                 }
-                var oe = n.weapons[t.U.curWeapIdx]
+                var oe = n.weapons[t.q.curWeapIdx]
                   , ne = f.items[oe.name]
                   , se = oe.ammo
-                  , le = "throwable" == ne.type ? 0 : t.U.inventory[ne.ammo];
+                  , le = "throwable" == ne.type ? 0 : t.q.inventory[ne.ammo];
                 n.ammo.current = se,
                 n.ammo.remaining = le,
                 n.ammo.displayCurrent = "melee" != ne.type,
                 n.ammo.displayRemaining = le > 0;
                 for (var me = 0; me < n.scopes.length; me++) {
                     var ce = n.scopes[me];
-                    ce.visible = t.U.inventory[ce.type] > 0,
-                    ce.equipped = ce.visible && t.U.curScope == ce.type,
+                    ce.visible = t.q.inventory[ce.type] > 0,
+                    ce.equipped = ce.visible && t.q.curScope == ce.type,
                     ce.selectable = ce.visible && !a
                 }
-                for (var de = t.kt(), pe = 0; pe < n.loot.length; pe++) {
+                for (var de = t.St(), pe = 0; pe < n.loot.length; pe++) {
                     var ue = n.loot[pe]
                       , he = ue.count;
-                    ue.count = t.U.inventory[ue.type] || 0,
+                    ue.count = t.q.inventory[ue.type] || 0,
                     ue.maximum = f.bagSizes[ue.type][de],
                     ue.selectable = ue.count > 0 && !a,
                     ue.count > he && (ue.ticker = 0),
                     this.frameCount < 2 && (ue.ticker = 1),
                     ue.ticker += e;
-                    var ge = w.min(ue.ticker / .05, Math.PI)
+                    var ge = b.min(ue.ticker / .05, Math.PI)
                       , ye = Math.sin(ge);
                     ue.width = ye < .001 ? 0 : ye,
-                    S.mobile && (ue.width = 0)
+                    k.mobile && (ue.width = 0)
                 }
                 for (var fe = 0; fe < n.gear.length; fe++) {
                     var xe = n.gear[fe]
@@ -41800,10 +42370,10 @@ webpackJsonp([0], {
                     be != xe.item && (xe.ticker = 0),
                     this.frameCount < 2 && (xe.ticker = 1),
                     xe.ticker += e;
-                    var _e = w.min(xe.ticker / .05, Math.PI)
+                    var _e = b.min(xe.ticker / .05, Math.PI)
                       , ve = Math.sin(_e);
                     xe.width = ve < .001 ? 0 : ve,
-                    S.mobile && (xe.width = 0)
+                    k.mobile && (xe.width = 0)
                 }
                 var Se = m(this.oldState, this.newState, 0 == this.frameCount++);
                 this.render(Se, this.newState),
@@ -41812,7 +42382,7 @@ webpackJsonp([0], {
             render: function(e, t) {
                 var a = this.dom;
                 if (e.mobile) {
-                    var i = k.detectiOS();
+                    var i = z.detectiOS();
                     a.menu.fullScreen.style.display = i ? "none" : "block"
                 }
                 e.touch && (a.interaction.key.style.backgroundImage = t.touch ? "url('img/gui/tap.svg')" : "none",
@@ -41829,7 +42399,7 @@ webpackJsonp([0], {
                       , l = t.killFeed[r];
                     if (o.text && (n.text.innerHTML = l.text),
                     o.offset) {
-                        var m = S.layout != S.Layout.Sm || S.tablet ? 35 : 15;
+                        var m = k.layout != k.Layout.Sm || k.tablet ? 35 : 15;
                         n.line.style.top = Math.floor(l.offset * m) + "px"
                     }
                     o.color && (n.text.style.color = l.color),
@@ -41859,10 +42429,10 @@ webpackJsonp([0], {
                         color: [255, 0, 0]
                     }], d = 0, p = Math.ceil(t.health); c[d].health > p && d < c.length - 1; )
                         d++;
-                    var u = c[w.max(d - 1, 0)]
+                    var u = c[b.max(d - 1, 0)]
                       , h = c[d]
-                      , g = w.delerp(t.health, u.health, h.health)
-                      , y = [Math.floor(w.lerp(g, u.color[0], h.color[0])), Math.floor(w.lerp(g, u.color[1], h.color[1])), Math.floor(w.lerp(g, u.color[2], h.color[2]))];
+                      , g = b.delerp(t.health, u.health, h.health)
+                      , y = [Math.floor(b.lerp(g, u.color[0], h.color[0])), Math.floor(b.lerp(g, u.color[1], h.color[1])), Math.floor(b.lerp(g, u.color[2], h.color[2]))];
                     t.downed && (y = [255, 0, 0]),
                     a.health.inner.style.backgroundColor = "rgba(" + y[0] + ", " + y[1] + ", " + y[2] + ", 1.0)",
                     a.health.inner.style.width = t.health + "%",
@@ -41871,76 +42441,77 @@ webpackJsonp([0], {
                     t.health > 25 ? a.health.inner.classList.remove("ui-bar-danger") : a.health.inner.classList.add("ui-bar-danger")
                 }
                 if (e.boost) {
-                    for (var x = f.player.boostBreakpoints, b = 0, _ = 0; _ < x.length; _++)
-                        b += x[_];
-                    for (var v = t.boost / 100, z = 0; z < a.boost.bars.length; z++) {
-                        var M = x[z] / b
-                          , T = w.clamp(v / M, 0, 1);
-                        v = w.max(v - M, 0),
-                        a.boost.bars[z].style.width = 100 * T + "%"
+                    for (var x = f.player.boostBreakpoints, w = 0, _ = 0; _ < x.length; _++)
+                        w += x[_];
+                    for (var v = t.boost / 100, S = 0; S < a.boost.bars.length; S++) {
+                        var M = x[S] / w
+                          , T = b.clamp(v / M, 0, 1);
+                        v = b.max(v - M, 0),
+                        a.boost.bars[S].style.width = 100 * T + "%"
                     }
                     a.boost.div.style.opacity = 0 == t.boost ? 0 : 1
                 }
-                e.interaction.type && (a.interaction.div.style.display = t.interaction.type == C.None ? "none" : "flex"),
+                e.interaction.type && (a.interaction.div.style.display = t.interaction.type == I.None ? "none" : "flex"),
                 e.interaction.text && (a.interaction.text.innerHTML = t.interaction.text),
-                e.interaction.key && (a.interaction.key.innerHTML = t.touch ? "" : t.interaction.key),
+                e.interaction.key && (a.interaction.key.innerHTML = t.touch ? "" : t.interaction.key,
+                a.interaction.key.className = a.interaction.key.innerHTML.length > 1 ? "ui-interaction-small" : "ui-interaction-large"),
                 e.interaction.usable && (a.interaction.key.style.display = t.interaction.usable ? "block" : "none");
                 for (var P = 0; P < e.weapons.length; P++) {
-                    var A = e.weapons[P]
-                      , I = a.weapons[P]
+                    var C = e.weapons[P]
+                      , A = a.weapons[P]
                       , D = t.weapons[P];
-                    if (A.name) {
+                    if (C.name) {
                         var O = "" != D.name
+                          , B = ""
                           , E = ""
-                          , L = ""
-                          , B = !1
+                          , L = !1
                           , F = 0
                           , R = 1;
                         if (O) {
                             var j = f.items[D.name];
-                            E = this.localization.translate("game-hud-" + D.name) || this.localization.translate("game-" + D.name),
-                            L = j.lootImg.sprite,
-                            B = j.isDual && S.layout == S.Layout.Sm || j.lootImg.rot,
+                            B = this.localization.translate("game-hud-" + D.name) || this.localization.translate("game-" + D.name),
+                            E = j.lootImg.sprite,
+                            L = j.isDual && k.layout == k.Layout.Sm || j.lootImg.rot,
                             j.lootImg.rot && (F = 180 * j.lootImg.rot / Math.PI),
                             j.lootImg.mirror && (R = -1)
                         }
-                        I.name.innerHTML = E,
-                        I.image.src = s(L),
-                        I.image.style.display = O ? "inline" : "none",
-                        I.image.style.transform = B ? "rotate(" + F + "deg) scaleX(" + R + ")" : ""
+                        A.name.innerHTML = B,
+                        A.image.src = s(E),
+                        A.image.style.display = O ? "inline" : "none",
+                        A.image.style.transform = L ? "rotate(" + F + "deg) scaleX(" + R + ")" : ""
                     }
-                    if (A.equipped && (I.div.style.backgroundColor = D.equipped ? "rgba(0, 0, 0, 0.4)" : "rgba(0, 0, 0, 0)"),
-                    A.selectable && (I.div.style.pointerEvents = "" != D.name || D.selectable ? "auto" : "none"),
-                    A.width) {
-                        var q = w.lerp(D.width, 83.33, 100);
-                        I.div.style.width = q + "%"
+                    if (C.equipped && (A.div.style.backgroundColor = D.equipped ? "rgba(0, 0, 0, 0.4)" : "rgba(0, 0, 0, 0)"),
+                    C.selectable && (A.div.style.pointerEvents = "" != D.name || D.selectable ? "auto" : "none"),
+                    C.width) {
+                        var N = b.lerp(D.width, 83.33, 100);
+                        A.div.style.width = N + "%"
                     }
-                    A.opacity && (I.div.style.opacity = D.opacity),
-                    A.ammo && I.ammo && (I.ammo.innerHTML = D.ammo,
-                    I.ammo.style.display = D.ammo > 0 ? "block" : "none")
+                    C.opacity && (A.div.style.opacity = D.opacity),
+                    C.ammo && A.ammo && (A.ammo.innerHTML = D.ammo,
+                    A.ammo.style.display = D.ammo > 0 ? "block" : "none")
                 }
                 if (e.ammo.current) {
-                    var N = t.ammo.current;
-                    a.ammo.current.innerHTML = N,
-                    a.ammo.current.style.color = N > 0 ? "white" : "red"
+                    var q = t.ammo.current;
+                    a.ammo.current.innerHTML = q,
+                    a.ammo.current.style.color = q > 0 ? "white" : "red"
                 }
                 if (e.ammo.remaining) {
-                    var G = t.ammo.remaining;
-                    a.ammo.remaining.innerHTML = G,
-                    a.ammo.remaining.style.color = G > 0 ? "white" : "red"
+                    var U = t.ammo.remaining;
+                    a.ammo.remaining.innerHTML = U,
+                    a.ammo.remaining.style.color = U > 0 ? "white" : "red"
                 }
                 e.ammo.displayCurrent && (a.ammo.current.style.opacity = t.ammo.displayCurrent ? 1 : 0),
                 e.ammo.displayRemaining && (a.ammo.remaining.style.opacity = t.ammo.displayRemaining ? 1 : 0,
                 a.ammo.reloadButton.style.opacity = t.ammo.displayRemaining ? 1 : 0);
-                for (var U = 0; U < e.scopes.length; U++) {
-                    var V = e.scopes[U]
-                      , H = a.scopes[U]
-                      , W = t.scopes[U];
-                    V.visible && (H.div.style.display = W.visible ? "inline-block" : "none"),
-                    V.equipped && (W.equipped ? (H.div.classList.add("ui-zoom-active"),
-                    H.div.classList.remove("ui-zoom-inactive")) : (H.div.classList.remove("ui-zoom-active"),
-                    H.div.classList.add("ui-zoom-inactive"))),
-                    V.selectable && (H.div.style.pointerEvents = W.selectable ? "auto" : "none")
+                for (var G = 0; G < e.scopes.length; G++) {
+                    var V = e.scopes[G]
+                      , W = a.scopes[G]
+                      , H = t.scopes[G];
+                    V.visible && (W.div.style.display = H.visible ? "inline-block" : "none"),
+                    V.equipped && (H.equipped ? (W.div.classList.add("ui-zoom-active"),
+                    W.div.classList.remove("ui-zoom-inactive")) : (W.div.classList.remove("ui-zoom-active"),
+                    W.div.classList.add("ui-zoom-inactive"))),
+                    V.selectable && (W.div.style.pointerEvents = H.selectable ? "auto" : "none")
                 }
                 for (var K = 0; K < e.loot.length; K++) {
                     var X = e.loot[K]
@@ -41951,10 +42522,10 @@ webpackJsonp([0], {
                         Y.div.style.opacity = f.items[Y.lootType].special && 0 == Z.count ? 0 : Z.count > 0 ? 1 : .25,
                         Y.div.style.color = Z.count == Z.maximum ? "#ff9900" : "#ffffff"),
                         X.width) {
-                            var Q = 1 + .33 * Z.width
-                              , J = "scale(" + Q + ", " + Q + ")";
-                            Y.image.style.transform = J,
-                            Y.overlay && (Y.overlay.style.transform = J)
+                            var J = 1 + .33 * Z.width
+                              , Q = "scale(" + J + ", " + J + ")";
+                            Y.image.style.transform = Q,
+                            Y.overlay && (Y.overlay.style.transform = Q)
                         }
                         X.selectable && (Y.div.style.pointerEvents = Z.selectable ? "auto" : "none")
                     }
@@ -41996,22 +42567,22 @@ webpackJsonp([0], {
             },
             getKillFeedText: function(e, t, a, i, r) {
                 var o = function(e) {
-                    return k.truncateString(e || "", "bold 16px arial", 180)
+                    return z.truncateString(e || "", "bold 16px arial", 180)
                 };
                 switch (e = o(e),
                 t = o(t),
                 i) {
-                case z.Player:
+                case M.Player:
                     return t + " " + this.localization.translate(r ? "game-knocked-out" : "game-killed") + " " + e + " " + this.localization.translate("game-with") + " " + a;
-                case z.Bleeding:
+                case M.Bleeding:
                     var n = this.localization.translate(t ? "game-finally-killed" : "game-finally-bled-out");
                     return t ? t + " " + n + " " + e : e + " " + n;
-                case z.Gas:
+                case M.Gas:
                     var s = void 0;
                     return r ? (t = this.localization.translate("game-the-red-zone"),
                     s = this.localization.translate("game-knocked-out")) : s = this.localization.translate(t ? "game-finally-killed" : "game-died-outside"),
                     t ? t + " " + s + " " + e : e + " " + s;
-                case z.Airdrop:
+                case M.Airdrop:
                     var l = void 0;
                     return r ? (t = this.localization.translate("game-the-air-drop"),
                     l = this.localization.translate("game-knocked-out")) : (t = this.localization.translate("game-the-air-drop"),
@@ -42026,26 +42597,26 @@ webpackJsonp([0], {
             },
             getPickupMessageText: function(e) {
                 var t, a = (t = {},
-                i(t, M.Full, "game-not-enough-space"),
-                i(t, M.AlreadyOwned, "game-item-already-owned"),
-                i(t, M.AlreadyEquipped, "game-item-already-equipped"),
-                i(t, M.BetterItemEquipped, "game-better-item-equipped"),
-                i(t, M.GunCannotFire, "game-gun-cannot-fire"),
-                t), r = a[e] || a[M.Full];
+                i(t, T.Full, "game-not-enough-space"),
+                i(t, T.AlreadyOwned, "game-item-already-owned"),
+                i(t, T.AlreadyEquipped, "game-item-already-equipped"),
+                i(t, T.BetterItemEquipped, "game-better-item-equipped"),
+                i(t, T.GunCannotFire, "game-gun-cannot-fire"),
+                t), r = a[e] || a[T.Full];
                 return this.localization.translate(r)
             },
             getInteractionText: function(e, t) {
                 switch (e) {
-                case C.None:
+                case I.None:
                     return "";
-                case C.Cancel:
+                case I.Cancel:
                     return this.localization.translate("game-cancel");
-                case C.Revive:
+                case I.Revive:
                     return this.localization.translate("game-revive-teammate");
-                case C.Object:
+                case I.Object:
                     var a = t.getInteraction();
                     return this.localization.translate(a.action) + " " + this.localization.translate(a.object);
-                case C.Loot:
+                case I.Loot:
                     var i = this.localization.translate("game-" + t.name) || t.name;
                     return t.count > 1 && (i += " (" + t.count + ")"),
                     i;
@@ -42054,11 +42625,29 @@ webpackJsonp([0], {
                 }
             },
             getInteractionKey: function(e) {
-                return e == C.Cancel ? "X" : "F"
+                var t = null;
+                switch (e) {
+                case I.Cancel:
+                    t = this.inputBinds.getBind(x.Cancel);
+                    break;
+                case I.Loot:
+                    t = this.inputBinds.getBind(x.Loot) || this.inputBinds.getBind(x.Interact);
+                    break;
+                case I.Object:
+                    t = this.inputBinds.getBind(x.Use) || this.inputBinds.getBind(x.Interact);
+                    break;
+                case I.Revive:
+                    t = this.inputBinds.getBind(x.Revive) || this.inputBinds.getBind(x.Interact);
+                    break;
+                case I.None:
+                default:
+                    t = this.inputBinds.getBind(x.Use)
+                }
+                return t ? t.toString() : "<Unbound>"
             }
         },
         e.exports = {
-            Qe: h,
+            Ze: h,
             loadStaticDomImages: g
         }
     },
@@ -42088,10 +42677,10 @@ webpackJsonp([0], {
             },
             this.dataLoaded = !1,
             this.mapTexture = null,
-            this.Y = new u.Pool(b),
-            this.it = new u.Pool(o),
-            this.rt = new u.Pool(w),
-            this.ot = new u.Pool(_),
+            this.K = new u.Pool(b),
+            this.at = new u.Pool(o),
+            this.it = new u.Pool(w),
+            this.rt = new u.Pool(_),
             this.deadObstacleIds = [],
             this.deadCeilingIds = [],
             this.terrain = null,
@@ -42165,17 +42754,17 @@ webpackJsonp([0], {
                 return this.mapTexture
             },
             l: function(e, t, a, i, r, o) {
-                for (var n = this.Y.m(), s = 0; s < n.length; s++) {
+                for (var n = this.K.m(), s = 0; s < n.length; s++) {
                     var l = n[s];
                     l.active && (l.l(e, this, a, i, t, r),
                     l.render(o))
                 }
-                for (var m = this.rt.m(), c = 0; c < m.length; c++) {
+                for (var m = this.it.m(), c = 0; c < m.length; c++) {
                     var d = m[c];
                     d.active && (d.l(e, this, a, i, t, r, o),
                     d.render(o))
                 }
-                for (var u = this.ot.m(), h = 0; h < u.length; h++) {
+                for (var u = this.rt.m(), h = 0; h < u.length; h++) {
                     var g = u[h];
                     g.active && g.l(o)
                 }
@@ -42339,24 +42928,24 @@ webpackJsonp([0], {
                     for (var k = new s.Graphics, z = 0; z < _.length; z++)
                         for (var M = _[z], T = M.obj, P = 0; P < M.shapes.length; P++) {
                             var C = M.shapes[P]
-                              , A = l.transform(C.collider, T.pos, m.oriToRad(T.ori), T.scale)
-                              , I = void 0 !== C.scale ? C.scale : 1;
+                              , I = l.transform(C.collider, T.pos, m.oriToRad(T.ori), T.scale)
+                              , A = void 0 !== C.scale ? C.scale : 1;
                             switch (k.beginFill(C.color, 1),
-                            A.type) {
+                            I.type) {
                             case l.Type.Circle:
-                                k.drawCircle(A.pos.x, c - A.pos.y, A.rad * I);
+                                k.drawCircle(I.pos.x, c - I.pos.y, I.rad * A);
                                 break;
                             case l.Type.Aabb:
-                                var D = p.mul(p.sub(A.max, A.min), .5)
-                                  , O = p.add(A.min, D);
-                                D = p.mul(D, I),
+                                var D = p.mul(p.sub(I.max, I.min), .5)
+                                  , O = p.add(I.min, D);
+                                D = p.mul(D, A),
                                 k.drawRect(O.x - D.x, c - O.y - D.y, 2 * D.x, 2 * D.y)
                             }
                             k.endFill()
                         }
                     t.addChild(k);
-                    for (var E = new s.Container, L = 0; L < r.length; L++) {
-                        var B = r[L]
+                    for (var B = new s.Container, E = 0; E < r.length; E++) {
+                        var L = r[E]
                           , F = new s.TextStyle({
                             fontFamily: "Arial",
                             fontSize: g.pixelRatio > 1 ? 20 : 22,
@@ -42372,14 +42961,14 @@ webpackJsonp([0], {
                             wordWrap: !1,
                             align: "center"
                         })
-                          , R = new s.Text(B.name,F);
+                          , R = new s.Text(L.name,F);
                         R.anchor.set(.5, .5),
-                        R.x = B.pos.x * this.height / u,
-                        R.y = B.pos.y * this.height / u,
+                        R.x = L.pos.x * this.height / u,
+                        R.y = L.pos.y * this.height / u,
                         R.alpha = .75,
-                        E.addChild(R)
+                        B.addChild(R)
                     }
-                    a.addChild(E),
+                    a.addChild(B),
                     this.mapTexture ? this.mapTexture.resize(d, d) : this.mapTexture = s.RenderTexture.create(d, d, s.SCALE_MODES.LINEAR, e.resolution),
                     t.scale = new s.Point(d / c,d / c),
                     e.render(t, this.mapTexture, !0),
@@ -42397,7 +42986,7 @@ webpackJsonp([0], {
                 }
             },
             getGroundSurface: function(e, t) {
-                var a = this.rt
+                var a = this.it
                   , i = this.terrain
                   , r = void 0;
                 r = f.inside(e, i.shore) ? f.inside(e, i.grass) ? "grass" : "sand" : "water";
@@ -42420,7 +43009,7 @@ webpackJsonp([0], {
                 return f.distToPoly(e, this.terrain.shore)
             },
             insideStructureStairs: function(e) {
-                for (var t = this.ot.m(), a = 0; a < t.length; a++) {
+                for (var t = this.rt.m(), a = 0; a < t.length; a++) {
                     var i = t[a];
                     if (i.active && i.insideStairs(e))
                         return !0
@@ -42428,7 +43017,7 @@ webpackJsonp([0], {
                 return !1
             },
             insideStructureMask: function(e) {
-                for (var t = this.ot.m(), a = 0; a < t.length; a++) {
+                for (var t = this.rt.m(), a = 0; a < t.length; a++) {
                     var i = t[a];
                     if (i.active && i.insideMask(e))
                         return !0
@@ -42450,7 +43039,7 @@ webpackJsonp([0], {
                     i.sprite = o,
                     this.ripples.push(i)
                 }
-                for (var n = this.display.water, m = this.rt.m(), c = 0; c < m.length; c++) {
+                for (var n = this.display.water, m = this.it.m(), c = 0; c < m.length; c++) {
                     var u = m[c];
                     if (d.sameLayer(u.layer, t)) {
                         for (var h = !1, g = 0; g < u.surfaces.length; g++) {
@@ -42485,7 +43074,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            Te: n
+            Me: n
         }
     },
     e100c355: function(e, t, a) {
@@ -42597,8 +43186,8 @@ webpackJsonp([0], {
                 this.aimStyle = "locked";
                 var o = function(e) {
                     var t = n.Sprite.fromImage("pad.img");
-                    return t.anchor = new n.Point(.5,.5),
-                    t.scale = new n.Point(1,1),
+                    return t.anchor.set(.5, .5),
+                    t.scale.set(1, 1),
                     t.alpha = .5,
                     t.visible = !1,
                     e.addChild(t),
@@ -42931,10 +43520,16 @@ webpackJsonp([0], {
                     o("#ui-settings-container-desktop").css("display", "none"),
                     o("#ui-right-center").addClass("ui-right-center-mobile").removeClass("ui-right-center-desktop"),
                     o("#ui-leaderboard-wrapper").css("display", "none"),
-                    o("#big-map-close").css("display", "block")) : (o("#ui-map-wrapper").removeClass("ui-map-wrapper-mobile").addClass("ui-map-wrapper-desktop"),
+                    o("#big-map-close").css("display", "block"),
+                    o("#ui-game-menu").removeClass("ui-game-menu-desktop"),
+                    o("#btn-game-tabs").css("display", "none"),
+                    o("#ui-game-tab-settings").removeClass("ui-game-tab-settings-desktop")) : (o("#ui-map-wrapper").removeClass("ui-map-wrapper-mobile").addClass("ui-map-wrapper-desktop"),
                     o("#ui-settings-container-mobile").css("display", "none"),
                     o("#ui-settings-container-desktop").css("display", "block"),
-                    o("#ui-right-center").removeClass("ui-right-center-mobile").addClass("ui-right-center-desktop")),
+                    o("#ui-right-center").removeClass("ui-right-center-mobile").addClass("ui-right-center-desktop"),
+                    o("#ui-game-menu").addClass("ui-game-menu-desktop"),
+                    o("#btn-game-tabs").css("display", "flex"),
+                    o("#ui-game-tab-settings").addClass("ui-game-tab-settings-desktop")),
                     m.tablet && ("landscape" == e ? (o("#ui-bottom-right").addClass("ui-bottom-right-tablet"),
                     o("#ui-right-center").addClass("ui-right-center-tablet"),
                     o("#ui-bottom-center-right").addClass("ui-bottom-center-right-tablet"),
@@ -42974,7 +43569,7 @@ webpackJsonp([0], {
             e
         }();
         e.exports = {
-            ve: c
+            _e: c
         }
     },
     e5d16b4d: function(e, t, a) {
@@ -42987,22 +43582,21 @@ webpackJsonp([0], {
             return t < 0 && (t += 360),
             t
         }
-        function o(e, t, a, i, o, l) {
-            var p = this;
-            this.game = e,
-            this.audioManager = t,
-            this.uiManager = a,
+        function o(e, t, a, i, o) {
+            var l = this;
+            this.audioManager = e,
+            this.uiManager = t,
             this.gameElem = n("#ui-game"),
             this.disable = !1,
-            this.mt = null,
-            this.playerBarn = i,
-            this.camera = o,
-            this.map = l,
-            this.worldPos = f.create(0, 0),
+            this.lt = null,
+            this.playerBarn = a,
+            this.camera = i,
+            this.map = o,
+            this.worldPos = x.create(0, 0),
             this.zIdxNext = 0,
             this.emoteSelector = {
-                ping: u.None,
-                emote: c.None
+                ping: h.None,
+                emote: d.None
             },
             this.emoteSoftTicker = 0,
             this.emoteHardTicker = 0,
@@ -43018,44 +43612,21 @@ webpackJsonp([0], {
             this.emoteKeyTriggered = !1,
             this.emoteKeyDown = !1,
             this.emoteMouseTriggered = !1,
-            this.emoteScreenPos = f.create(0, 0),
-            n(document).on("keydown", function(e) {
-                67 != e.which || p.pingKeyDown || p.game.gameOver || (p.pingKeyDown = !0,
-                p.pingKeyTriggered = !0)
-            }),
-            n(document).on("keyup", function(e) {
-                67 == e.which && p.pingKeyDown && !p.game.gameOver && (p.pingKeyDown = !1,
-                p.pingKeyTriggered = p.wheelDisplayed)
-            }),
-            n(document).on("mousedown", function(e) {
-                var t = "which"in e ? 3 == e.which : 2 == e.button;
-                t && !p.pingMouseTriggered && !p.emoteMouseTriggered && p.pingKeyDown && (e.stopPropagation(),
-                e.preventDefault(),
-                p.emoteScreenPos = f.create(e.clientX, e.clientY),
-                p.pingMouseTriggered = !0),
-                t && !p.pingMouseTriggered && (e.stopPropagation(),
-                e.preventDefault(),
-                p.emoteScreenPos = f.create(e.clientX, e.clientY),
-                p.emoteMouseTriggered = !0)
-            }),
-            n(document).on("mouseup", function(e) {
-                3 == e.which && p.pingKeyTriggered && p.pingMouseTriggered && p.triggerPing(),
-                3 == e.which && p.emoteMouseTriggered && p.triggerEmote()
-            }),
+            this.emoteScreenPos = x.create(0, 0),
             this.triggerPing = function() {
-                if (this.mt) {
+                if (this.lt) {
                     var e = void 0;
-                    this.emoteSelector.ping == u.None || this.emoteWheelsGreyed ? this.emoteSelector.emote == c.None || this.emoteWheelsGreyed || (e = this.mt.pos,
+                    this.emoteSelector.ping == h.None || this.emoteWheelsGreyed ? this.emoteSelector.emote == d.None || this.emoteWheelsGreyed || (e = this.lt.pos,
                     this.sendEmote({
                         type: this.emoteSelector.emote,
                         useLoadout: this.emoteSelector.useLoadout,
                         emoteSlot: this.emoteSelector.emoteSlot,
                         pos: e
                     }),
-                    this.uiManager.displayMapLarge(!0)) : h[this.emoteSelector.ping].pingMap && (e = this.uiManager.getWorldPosFromMapPos(this.bigmapPingPos || this.emoteScreenPos, this.map, this.camera),
+                    this.uiManager.displayMapLarge(!0)) : g[this.emoteSelector.ping].pingMap && (e = this.uiManager.getWorldPosFromMapPos(this.bigmapPingPos || this.emoteScreenPos, this.map, this.camera),
                     e || (e = this.camera.screenToPoint(this.emoteScreenPos)),
-                    e.x = x.clamp(e.x, 0, this.uiManager.mapWidth),
-                    e.y = x.clamp(e.y, 0, this.uiManager.mapHeight),
+                    e.x = w.clamp(e.x, 0, this.uiManager.mapWidth),
+                    e.y = w.clamp(e.y, 0, this.uiManager.mapHeight),
                     this.sendPing({
                         type: this.emoteSelector.ping,
                         pos: e
@@ -43066,9 +43637,9 @@ webpackJsonp([0], {
             }
             ,
             this.triggerEmote = function() {
-                if (this.mt) {
+                if (this.lt) {
                     var e = void 0;
-                    this.emoteSelector.emote == c.None || this.emoteWheelsGreyed || (e = this.mt.pos,
+                    this.emoteSelector.emote == d.None || this.emoteWheelsGreyed || (e = this.lt.pos,
                     this.sendEmote({
                         type: this.emoteSelector.emote,
                         useLoadout: this.emoteSelector.useLoadout,
@@ -43081,218 +43652,212 @@ webpackJsonp([0], {
             ,
             this.emoteTouchedPos = null,
             this.bigmapPingPos = null,
-            b.touch && (this.emoteElems = n(".ui-emote"),
+            _.touch && (this.emoteElems = n(".ui-emote"),
             this.emoteElems.css("pointer-events", "auto"),
             this.bigmapCollision = n("#big-map-collision"),
             this.bigmapCollision.on("touchend", function(e) {
                 e.stopPropagation(),
-                p.bigmapPingPos = {
+                l.bigmapPingPos = {
                     x: e.originalEvent.changedTouches[0].pageX,
                     y: e.originalEvent.changedTouches[0].pageY
                 },
-                p.emoteScreenPos = f.create(p.camera.screenWidth / 2, p.camera.screenHeight / 2),
-                p.pingMouseTriggered = !0
+                l.emoteScreenPos = x.create(l.camera.screenWidth / 2, l.camera.screenHeight / 2),
+                l.pingMouseTriggered = !0
             }),
             this.emoteButtonElem = n("#ui-emote-button"),
             this.emoteButtonElem.css("pointer-events", "auto"),
             this.emoteButtonElem.on("touchstart", function(e) {
                 e.stopPropagation(),
-                p.emoteScreenPos = f.create(p.camera.screenWidth / 2, p.camera.screenHeight / 2),
-                p.emoteMouseTriggered = !0
+                l.emoteScreenPos = x.create(l.camera.screenWidth / 2, l.camera.screenHeight / 2),
+                l.emoteMouseTriggered = !0
             }),
             this.emoteElems.on("touchstart", function(e) {
                 e.stopPropagation(),
-                p.emoteTouchedPos = {
+                l.emoteTouchedPos = {
                     x: e.originalEvent.changedTouches[0].pageX,
                     y: e.originalEvent.changedTouches[0].pageY
                 }
             }),
             n(document).on("touchstart", function(e) {
-                p.wheelDisplayed && (e.stopPropagation(),
-                p.inputReset())
+                l.wheelDisplayed && (e.stopPropagation(),
+                l.inputReset())
             })),
-            n(window).on("blur", function(e) {
-                p.inputReset()
-            }),
-            n(document).on("keydown", function(e) {
-                9 == e.which && e.preventDefault()
-            }),
             this.emoteWheels = n("#ui-emotes, #ui-team-pings"),
             this.teamEmotes = n(".ui-emote-bottom-left, .ui-emote-top-left"),
             this.emoteWheel = n("#ui-emotes"),
             this.emoteWheelData = {
                 middle: {
                     parent: n("#ui-emote-middle"),
-                    vA: f.create(-1, 1),
-                    vC: f.create(1, 1),
-                    ping: u.None,
-                    emote: c.None,
+                    vA: x.create(-1, 1),
+                    vC: x.create(1, 1),
+                    ping: h.None,
+                    emote: d.None,
                     modular: !1,
                     displayCloseIcon: !0
                 },
                 top: {
                     parent: n("#ui-emote-top"),
-                    vA: f.create(-1, 1),
-                    vC: f.create(1, 1),
-                    ping: u.None,
-                    emote: c.HappyFace,
+                    vA: x.create(-1, 1),
+                    vC: x.create(1, 1),
+                    ping: h.None,
+                    emote: d.HappyFace,
                     modular: !1,
                     useLoadout: !0,
-                    emoteSlot: m.Top
+                    emoteSlot: c.Top
                 },
                 right: {
                     parent: n("#ui-emote-right"),
-                    vA: f.create(1, 1),
-                    vC: f.create(1, -1),
-                    ping: u.None,
-                    emote: c.ThumbsUp,
+                    vA: x.create(1, 1),
+                    vC: x.create(1, -1),
+                    ping: h.None,
+                    emote: d.ThumbsUp,
                     modular: !1,
                     useLoadout: !0,
-                    emoteSlot: m.Right
+                    emoteSlot: c.Right
                 },
                 bottom: {
                     parent: n("#ui-emote-bottom"),
-                    vA: f.create(1, -1),
-                    vC: f.create(-1, -1),
-                    ping: u.None,
-                    emote: c.Surviv,
+                    vA: x.create(1, -1),
+                    vC: x.create(-1, -1),
+                    ping: h.None,
+                    emote: d.Surviv,
                     modular: !1,
                     useLoadout: !0,
-                    emoteSlot: m.Bottom
+                    emoteSlot: c.Bottom
                 },
                 left: {
                     parent: n("#ui-emote-left"),
-                    vA: f.create(-1, -1),
-                    vC: f.create(-1, 1),
-                    ping: u.None,
-                    emote: c.SadFace,
+                    vA: x.create(-1, -1),
+                    vC: x.create(-1, 1),
+                    ping: h.None,
+                    emote: d.SadFace,
                     modular: !1,
                     useLoadout: !0,
-                    emoteSlot: m.Left
+                    emoteSlot: c.Left
                 }
             },
             this.teamPingWheel = n("#ui-team-pings");
-            var y = {
+            var m = {
                 middle: {
                     parent: n("#ui-team-ping-middle"),
-                    vA: f.create(-1, 1),
-                    vC: f.create(1, 1),
-                    ping: u.None,
-                    emote: c.None,
+                    vA: x.create(-1, 1),
+                    vC: x.create(1, 1),
+                    ping: h.None,
+                    emote: d.None,
                     modular: !1,
                     displayCloseIcon: !0
                 },
                 top: {
                     parent: n("#ui-team-ping-top"),
-                    vA: f.create(-1, 1),
-                    vC: f.create(1, 1),
-                    ping: u.Danger,
-                    emote: c.None,
+                    vA: x.create(-1, 1),
+                    vC: x.create(1, 1),
+                    ping: h.Danger,
+                    emote: d.None,
                     modular: !1
                 },
                 right: {
                     parent: n("#ui-team-ping-right"),
-                    vA: f.create(1, 1),
-                    vC: f.create(1, -1),
-                    ping: u.Coming,
-                    emote: c.None,
+                    vA: x.create(1, 1),
+                    vC: x.create(1, -1),
+                    ping: h.Coming,
+                    emote: d.None,
                     modular: !1
                 },
                 bottom: {
                     parent: n("#ui-team-ping-bottom"),
-                    vA: f.create(1, -1),
-                    vC: f.create(-1, -1),
-                    ping: u.Help,
-                    emote: c.None,
+                    vA: x.create(1, -1),
+                    vC: x.create(-1, -1),
+                    ping: h.Help,
+                    emote: d.None,
                     modular: !1
                 },
                 "bottom-left": {
                     parent: n("#ui-team-ping-bottom-left"),
-                    vA: f.create(-1, -1),
-                    vC: f.create(-1, 0),
-                    ping: u.None,
-                    emote: c.Medical,
+                    vA: x.create(-1, -1),
+                    vC: x.create(-1, 0),
+                    ping: h.None,
+                    emote: d.Medical,
                     modular: !1
                 },
                 "top-left": {
                     parent: n("#ui-team-ping-top-left"),
-                    vA: f.create(-1, 0),
-                    vC: f.create(-1, 1),
-                    ping: u.None,
-                    emote: c.Ammo,
+                    vA: x.create(-1, 0),
+                    vC: x.create(-1, 1),
+                    ping: h.None,
+                    emote: d.Ammo,
                     modular: !0
                 }
             };
             this.teamPingSelectors = [];
-            for (var w in y)
-                if (y.hasOwnProperty(w)) {
-                    var _ = y[w]
-                      , v = _.ping != u.None ? h[_.ping] : d[_.emote]
-                      , S = r(_.vA)
-                      , k = r(_.vC)
-                      , z = v.texture;
-                    v.displayCloseIcon && (z = "close.img"),
+            for (var u in m)
+                if (m.hasOwnProperty(u)) {
+                    var f = m[u]
+                      , b = f.ping != h.None ? g[f.ping] : p[f.emote]
+                      , v = r(f.vA)
+                      , S = r(f.vC)
+                      , k = b.texture;
+                    b.displayCloseIcon && (k = "close.img"),
                     this.teamPingSelectors.push({
-                        parent: _.parent,
-                        angleA: S,
-                        angleC: k,
-                        highlight: _.parent.find(".ui-emote-hl"),
+                        parent: f.parent,
+                        angleA: v,
+                        angleC: S,
+                        highlight: f.parent.find(".ui-emote-hl"),
                         highlightDisplayed: !1,
-                        texture: z,
-                        ping: _.ping,
-                        emote: _.emote,
-                        modular: _.modular
+                        texture: k,
+                        ping: f.ping,
+                        emote: f.emote,
+                        modular: f.modular
                     })
                 }
             this.displayedSelectors = this.teamPingSelectors,
             this.baseScale = 1,
-            this.container = new g.Container,
-            this.container.scale = new g.Point(this.baseScale,this.baseScale),
-            this.pingContainer = new g.Container,
+            this.container = new y.Container,
+            this.container.scale = new y.Point(this.baseScale,this.baseScale),
+            this.pingContainer = new y.Container,
             this.container.addChild(this.pingContainer),
-            this.indContainer = new g.Container,
+            this.indContainer = new y.Container,
             this.teamIndicators = [];
-            for (var M = 0; M < 4; M++) {
-                var T = M
-                  , P = new g.Container
-                  , C = new g.Container
-                  , A = g.Sprite.fromImage("ping-border.img");
-                A.scale = new g.Point(.4,.4),
-                A.anchor = new g.Point(.5,.5),
-                A.tint = s.teamColors[M],
+            for (var z = 0; z < 4; z++) {
+                var M = z
+                  , T = new y.Container
+                  , P = new y.Container
+                  , C = y.Sprite.fromImage("ping-border.img");
+                C.scale = new y.Point(.4,.4),
+                C.anchor = new y.Point(.5,.5),
+                C.tint = s.teamColors[z],
+                C.alpha = 0,
+                C.visible = !0,
+                T.addChild(C);
+                var I = y.Sprite.fromImage("ping-team-danger.img");
+                I.scale = new y.Point(.4,.4),
+                I.anchor = new y.Point(.5,.5),
+                I.tint = s.teamColors[z],
+                I.alpha = 0,
+                I.visible = !0,
+                T.addChild(I);
+                var A = y.Sprite.fromImage("ping-team-danger.img");
+                A.scale = new y.Point(.5,.5),
+                A.anchor = new y.Point(.5,.5),
+                A.tint = s.teamColors[z],
                 A.alpha = 0,
                 A.visible = !0,
                 P.addChild(A);
-                var I = g.Sprite.fromImage("ping-team-danger.img");
-                I.scale = new g.Point(.4,.4),
-                I.anchor = new g.Point(.5,.5),
-                I.tint = s.teamColors[M],
-                I.alpha = 0,
-                I.visible = !0,
-                P.addChild(I);
-                var D = g.Sprite.fromImage("ping-team-danger.img");
-                D.scale = new g.Point(.5,.5),
-                D.anchor = new g.Point(.5,.5),
-                D.tint = s.teamColors[M],
+                var D = y.Sprite.fromImage("ping-indicator.img");
+                D.scale = new y.Point(.5,.5),
+                D.anchor = new y.Point(.5,0),
                 D.alpha = 0,
                 D.visible = !0,
-                C.addChild(D);
-                var O = g.Sprite.fromImage("ping-indicator.img");
-                O.scale = new g.Point(.5,.5),
-                O.anchor = new g.Point(.5,0),
-                O.alpha = 0,
-                O.visible = !0,
-                C.addChild(O),
-                this.pingContainer.addChild(P),
-                this.indContainer.addChild(C),
+                P.addChild(D),
+                this.pingContainer.addChild(T),
+                this.indContainer.addChild(P),
                 this.teamIndicators.push({
                     ping: {
-                        elem: n("#ui-team-indicators").find(".ui-indicator-ping[data-id=" + T + "]"),
-                        borderElem: n("#ui-team-indicators").find(".ui-indicator-ping-border[data-id=" + T + "]"),
-                        pingContainer: P,
-                        indContainer: C,
+                        elem: n("#ui-team-indicators").find(".ui-indicator-ping[data-id=" + M + "]"),
+                        borderElem: n("#ui-team-indicators").find(".ui-indicator-ping-border[data-id=" + M + "]"),
+                        pingContainer: T,
+                        indContainer: P,
                         borderSprite: {
-                            sprite: A,
+                            sprite: C,
                             baseScale: .4
                         },
                         pingSprite: {
@@ -43300,20 +43865,20 @@ webpackJsonp([0], {
                             baseScale: .4
                         },
                         indSpriteOuter: {
-                            sprite: O,
-                            baseScale: .5,
-                            baseTint: O.tint
-                        },
-                        indSpriteInner: {
                             sprite: D,
                             baseScale: .5,
                             baseTint: D.tint
+                        },
+                        indSpriteInner: {
+                            sprite: A,
+                            baseScale: .5,
+                            baseTint: A.tint
                         },
                         displayed: !1,
                         fadeIn: 0,
                         life: 0,
                         fadeOut: 0,
-                        pos: f.create(0, 0)
+                        pos: x.create(0, 0)
                     }
                 })
             }
@@ -43323,7 +43888,7 @@ webpackJsonp([0], {
             this.pingFadeIn = .5,
             this.pingLife = 4.25,
             this.pingFadeOut = .1,
-            this.wedgeOpacityReset = b.touch ? 1 : .75,
+            this.wedgeOpacityReset = _.touch ? 1 : .75,
             this.teamEmoteOpacityReset = .2,
             this.emotes = [],
             this.newPings = [],
@@ -43331,29 +43896,25 @@ webpackJsonp([0], {
         }
         var n = a("8ee62bea")
           , s = a("989ad62a")
-          , l = a("b78cf179")
-          , m = l.EmoteSlot
-          , c = l.EmoteType
-          , d = l.EmoteData
-          , p = a("b198b546")
-          , u = p.PingType
-          , h = p.PingData
-          , g = a("80ac57a6")
-          , y = a("34e32c48")
-          , f = a("c2a798c8")
-          , x = a("10899aea")
-          , w = a("1901e2d9")
-          , b = a("ce29f17f");
+          , l = s.Input
+          , m = a("b78cf179")
+          , c = m.EmoteSlot
+          , d = m.EmoteType
+          , p = m.EmoteData
+          , u = a("b198b546")
+          , h = u.PingType
+          , g = u.PingData
+          , y = a("80ac57a6")
+          , f = a("34e32c48")
+          , x = a("c2a798c8")
+          , w = a("10899aea")
+          , b = a("1901e2d9")
+          , _ = a("ce29f17f");
         a("119e8c4c"),
         a("4b8d140f"),
         o.prototype = {
             o: function() {
-                n(document).off("keydown"),
-                n(document).off("keyup"),
-                n(document).off("mousedown"),
-                n(document).off("mouseup"),
-                n(window).off("blur"),
-                b.touch && (n(document).off("touchstart"),
+                _.touch && (n(document).off("touchstart"),
                 this.emoteButtonElem.off("touchstart"),
                 this.emoteElems.off("touchstart"),
                 this.bigmapCollision.off("touchend")),
@@ -43380,7 +43941,7 @@ webpackJsonp([0], {
                 this.emoteTimeoutTicker = 0;
                 for (var e = 0; e < this.displayedSelectors.length; e++) {
                     var t = this.displayedSelectors[e]
-                      , a = d[t.emote];
+                      , a = p[t.emote];
                     this.teamEmotesGreyed && a.teamOnly ? t.parent.css("opacity", this.teamEmoteOpacityReset) : t.parent.css("opacity", this.wedgeOpacityReset),
                     t.highlight.css("display", "none"),
                     t.highlightDisplayed = !1
@@ -43394,23 +43955,23 @@ webpackJsonp([0], {
                 this.incrementEmote()
             },
             addPing: function(e) {
-                if (this.mt) {
-                    var t = h[e.type];
+                if (this.lt) {
+                    var t = g[e.type];
                     if (t) {
-                        this.teamId = this.playerBarn.H(this.mt.__id).teamId;
+                        this.teamId = this.playerBarn.U(this.lt.__id).teamId;
                         for (var a = this.playerBarn.getTeamInfo(this.teamId), i = a.playerIds.length, r = 0; r < i; r++) {
                             var o = a.playerIds[r];
                             if (o == e.playerId) {
                                 var n = this.teamIndicators[r];
-                                this.playerBarn.H(o),
-                                this.mt.__id,
+                                this.playerBarn.U(o),
+                                this.lt.__id,
                                 this.uiManager.setPlayerPing(e.type, r, e.pos, t.mapLife);
                                 for (var s in n)
                                     if (n.hasOwnProperty(s) && "ping" == s) {
                                         var l = n[s];
                                         l.pos = e.pos,
-                                        l.pingSprite.sprite.texture = g.Texture.fromImage(t.texture),
-                                        l.indSpriteInner.sprite.texture = g.Texture.fromImage(t.texture),
+                                        l.pingSprite.sprite.texture = y.Texture.fromImage(t.texture),
+                                        l.indSpriteInner.sprite.texture = y.Texture.fromImage(t.texture),
                                         l.indSpriteInner.sprite.tint = t.mapEvent ? t.tint : l.indSpriteInner.baseTint,
                                         l.indSpriteOuter.sprite.tint = t.mapEvent ? t.tint : l.indSpriteOuter.baseTint,
                                         l.fadeIn = this.pingFadeIn,
@@ -43435,56 +43996,68 @@ webpackJsonp([0], {
                 this.incrementEmote()
             },
             addEmote: function(e) {
-                var t = d[e.type];
+                var t = p[e.type];
                 if (t) {
                     for (var a = null, i = 0; i < this.emotes.length; i++)
                         this.emotes[i].alive || a ? this.emotes[i].alive && this.emotes[i].playerId == e.playerId && (this.emotes[i].alive = !1) : a = this.emotes[i];
                     a || (a = {},
                     a.alive = !1,
-                    a.pos = f.create(0, 0),
-                    a.container = new g.Container,
-                    a.circleOuter = new g.Sprite.fromImage("emote-circle-outer.img"),
-                    a.circleOuter.anchor = new g.Point(.5,.5),
+                    a.pos = x.create(0, 0),
+                    a.container = new y.Container,
+                    a.circleOuter = new y.Sprite.fromImage("emote-circle-outer.img"),
+                    a.circleOuter.anchor = new y.Point(.5,.5),
                     a.baseScale = .55,
-                    a.circleOuter.scale = new g.Point(.8 * a.baseScale,.8 * a.baseScale),
+                    a.circleOuter.scale = new y.Point(.8 * a.baseScale,.8 * a.baseScale),
                     a.circleOuter.tint = 0,
                     a.circleOuter.visible = !0,
                     a.container.addChild(a.circleOuter),
-                    a.sprite = new g.Sprite,
-                    a.sprite.anchor = new g.Point(.5,.5),
+                    a.sprite = new y.Sprite,
+                    a.sprite.anchor = new y.Point(.5,.5),
                     a.container.addChild(a.sprite),
-                    a.sprite.scale = new g.Point(a.baseScale,a.baseScale),
-                    a.posOffset = new g.Point(0,4),
-                    a.container.scale = new g.Point(1,1),
+                    a.sprite.scale = new y.Point(a.baseScale,a.baseScale),
+                    a.posOffset = new y.Point(0,4),
+                    a.container.scale = new y.Point(1,1),
                     a.container.visible = !1,
                     this.emotes.push(a)),
                     a.alive = !0,
                     a.isNew = !0,
                     a.type = e.type,
                     a.playerId = e.playerId,
-                    a.pos = f.create(0, 0),
+                    a.pos = x.create(0, 0),
                     a.lifeIn = this.emoteLifeIn,
                     a.life = this.emoteLife,
                     a.lifeOut = this.emoteLifeOut,
                     a.zIdx = this.zIdxNext++,
-                    a.sprite.texture = g.Texture.fromImage(t.texture),
+                    a.sprite.texture = y.Texture.fromImage(t.texture),
                     a.container.visible = !1
                 }
             },
             incrementEmote: function() {
                 ++this.emoteCounter >= s.player.emoteThreshold && (this.emoteHardTicker = this.emoteHardTicker > 0 ? this.emoteHardTicker : 1.5 * s.player.emoteHardCooldown)
             },
-            l: function(e, t, a, o, n, l, m) {
-                var p = this.playerBarn
-                  , h = this.camera;
-                if (this.mt = a,
+            l: function(e, t, a, o, n, m, c, u, g) {
+                var y = this.playerBarn
+                  , v = this.camera
+                  , S = x.create(c.mousePos.x, c.mousePos.y);
+                if (c.lostFocus && this.inputReset(),
+                u.isBindPressed(l.TeamPingMenu) && (this.pingKeyDown || g || (this.pingKeyDown = !0,
+                this.pingKeyTriggered = !0)),
+                u.isBindReleased(l.TeamPingMenu) && this.pingKeyDown && (this.pingKeyDown = !1,
+                this.pingKeyTriggered = this.wheelDisplayed),
+                u.isBindPressed(l.EmoteMenu) && (this.pingMouseTriggered || this.emoteMouseTriggered || !this.pingKeyDown || (this.emoteScreenPos = x.copy(S),
+                this.pingMouseTriggered = !0),
+                this.pingMouseTriggered || (this.emoteScreenPos = x.copy(S),
+                this.emoteMouseTriggered = !0)),
+                u.isBindReleased(l.EmoteMenu) && (this.pingKeyTriggered && this.pingMouseTriggered && this.triggerPing(),
+                this.emoteMouseTriggered && this.triggerEmote()),
+                this.lt = a,
                 t == a.__id && !a.N.dead || this.disable || (this.o(),
                 this.disable = !0),
                 !this.disable) {
-                    var g = a.U.weapons[a.U.curWeapIdx]
-                      , _ = s.items[g.name]
-                      , v = "";
-                    if (_ && (v = _.ammo ? _.ammo : v),
+                    var k = a.q.weapons[a.q.curWeapIdx]
+                      , z = s.items[k.name]
+                      , M = "";
+                    if (z && (M = z.ammo ? z.ammo : M),
                     this.wheelKeyTriggered = this.pingKeyTriggered || this.emoteMouseTriggered,
                     this.emoteSoftTicker -= e,
                     this.emoteCounter >= s.player.emoteThreshold && this.emoteHardTicker > 0 ? (this.emoteHardTicker -= e,
@@ -43499,7 +44072,7 @@ webpackJsonp([0], {
                     this.displayWheel(this.parentDisplayed, !0),
                     this.wheelDisplayed = !0,
                     this.displayedSelectors = this.pingMouseTriggered ? this.teamPingSelectors : this.emoteWheelSelectors,
-                    this.worldPos = h.screenToPoint(this.emoteScreenPos)),
+                    this.worldPos = v.screenToPoint(this.emoteScreenPos)),
                     this.wheelDisplayed)
                         if (this.emoteTimeoutTicker += e,
                         this.emoteTimeoutTicker > 10)
@@ -43508,185 +44081,185 @@ webpackJsonp([0], {
                             this.emoteHardTicker > 0 && !this.emoteWheelsGreyed ? (this.emoteWheels.css("opacity", .5),
                             this.emoteWheelsGreyed = !0) : this.emoteHardTicker <= 0 && this.emoteWheelsGreyed && (this.emoteWheels.css("opacity", 1),
                             this.emoteWheelsGreyed = !1),
-                            this.teamEmotesGreyed || 1 != n || (this.teamEmotes.css("opacity", this.teamEmoteOpacityReset),
+                            this.teamEmotesGreyed || 1 != o || (this.teamEmotes.css("opacity", this.teamEmoteOpacityReset),
                             this.teamEmotesGreyed = !0);
-                            var S = null;
-                            if (u.None,
-                            b.touch && (o = this.emoteTouchedPos),
-                            o) {
-                                var k = f.sub(o, this.emoteScreenPos);
-                                k.y *= -1;
-                                for (var z = f.length(k), M = r(k), T = 0; T < this.displayedSelectors.length; T++) {
-                                    var P = this.displayedSelectors[T];
-                                    if (P.modular) {
-                                        var C = P.emote;
-                                        switch (v) {
+                            var T = null;
+                            if (h.None,
+                            _.touch && (S = this.emoteTouchedPos),
+                            S) {
+                                var P = x.sub(S, this.emoteScreenPos);
+                                P.y *= -1;
+                                for (var C = x.length(P), I = r(P), A = 0; A < this.displayedSelectors.length; A++) {
+                                    var D = this.displayedSelectors[A];
+                                    if (D.modular) {
+                                        var O = D.emote;
+                                        switch (M) {
                                         case "9mm":
-                                            P.emote = c.Ammo9mm,
-                                            P.texture = d[c.Ammo9mm].texture;
+                                            D.emote = d.Ammo9mm,
+                                            D.texture = p[d.Ammo9mm].texture;
                                             break;
                                         case "12gauge":
-                                            P.emote = c.Ammo12Gauge,
-                                            P.texture = d[c.Ammo12Gauge].texture;
+                                            D.emote = d.Ammo12Gauge,
+                                            D.texture = p[d.Ammo12Gauge].texture;
                                             break;
                                         case "762mm":
-                                            P.emote = c.Ammo762mm,
-                                            P.texture = d[c.Ammo762mm].texture;
+                                            D.emote = d.Ammo762mm,
+                                            D.texture = p[d.Ammo762mm].texture;
                                             break;
                                         case "556mm":
-                                            P.emote = c.Ammo556mm,
-                                            P.texture = d[c.Ammo556mm].texture;
+                                            D.emote = d.Ammo556mm,
+                                            D.texture = p[d.Ammo556mm].texture;
                                             break;
                                         case "50AE":
-                                            P.emote = c.Ammo50AE,
-                                            P.texture = d[c.Ammo50AE].texture;
+                                            D.emote = d.Ammo50AE,
+                                            D.texture = p[d.Ammo50AE].texture;
                                             break;
                                         case "308sub":
-                                            P.emote = c.Ammo308sub,
-                                            P.texture = d[c.Ammo308sub].texture;
+                                            D.emote = d.Ammo308sub,
+                                            D.texture = p[d.Ammo308sub].texture;
                                             break;
                                         case "flare":
-                                            P.emote = c.AmmoFlare,
-                                            P.texture = d[c.AmmoFlare].texture;
+                                            D.emote = d.AmmoFlare,
+                                            D.texture = p[d.AmmoFlare].texture;
                                             break;
                                         default:
-                                            P.emote = c.Ammo,
-                                            P.texture = d[c.Ammo].texture
+                                            D.emote = d.Ammo,
+                                            D.texture = p[d.Ammo].texture
                                         }
-                                        if (C != P.emote) {
-                                            var A = P.parent.find(".ui-emote-image")
-                                              , I = i(P.texture);
-                                            A.css("background-image", "url(" + I + ")")
+                                        if (O != D.emote) {
+                                            var B = D.parent.find(".ui-emote-image")
+                                              , E = i(D.texture);
+                                            B.css("background-image", "url(" + E + ")")
                                         }
                                     }
-                                    var D = P.ping != u.None || P.emote != c.None
-                                      , O = d[P.emote]
-                                      , E = O.teamOnly && 1 == n;
-                                    z <= 35 && !D && this.emoteHardTicker <= 0 && !E ? S = P : x.isAngleBetween(M, P.angleC, P.angleA) && z > 35 && D && this.emoteHardTicker <= 0 && !E ? S = P : P.highlightDisplayed && (P.parent.css("opacity", this.wedgeOpacityReset),
-                                    P.highlight.css("display", "none"),
-                                    P.highlightDisplayed = !1)
+                                    var L = D.ping != h.None || D.emote != d.None
+                                      , F = p[D.emote]
+                                      , R = F.teamOnly && 1 == o;
+                                    C <= 35 && !L && this.emoteHardTicker <= 0 && !R ? T = D : w.isAngleBetween(I, D.angleC, D.angleA) && C > 35 && L && this.emoteHardTicker <= 0 && !R ? T = D : D.highlightDisplayed && (D.parent.css("opacity", this.wedgeOpacityReset),
+                                    D.highlight.css("display", "none"),
+                                    D.highlightDisplayed = !1)
                                 }
                             }
-                            S && (this.emoteSelector = S,
-                            S.highlightDisplayed || (S.parent.css("opacity", 1),
-                            S.highlight.css("display", "block"),
-                            S.highlightDisplayed = !0),
-                            b.touch && this.emoteTouchedPos && (this.pingMouseTriggered ? this.triggerPing() : this.triggerEmote()))
+                            T && (this.emoteSelector = T,
+                            T.highlightDisplayed || (T.parent.css("opacity", 1),
+                            T.highlight.css("display", "block"),
+                            T.highlightDisplayed = !0),
+                            _.touch && this.emoteTouchedPos && (this.pingMouseTriggered ? this.triggerPing() : this.triggerEmote()))
                         }
                 }
-                for (var L = 0; L < this.emotes.length; L++) {
-                    var B = this.emotes[L];
-                    if (B.alive) {
-                        var F = !1
-                          , R = f.create(0, 0)
-                          , j = 0
-                          , q = p.se(B.playerId);
-                        if (q && !q.N.dead && (R = f.copy(q.pos),
-                        j = q.layer,
-                        F = !0),
-                        !F) {
-                            var N = l.getDeadBodyById(B.playerId);
-                            N && (R = f.copy(N.pos),
-                            j = N.layer,
-                            F = !0)
+                for (var j = 0; j < this.emotes.length; j++) {
+                    var N = this.emotes[j];
+                    if (N.alive) {
+                        var q = !1
+                          , U = x.create(0, 0)
+                          , G = 0
+                          , V = y.oe(N.playerId);
+                        if (V && !V.N.dead && (U = x.copy(V.pos),
+                        G = V.layer,
+                        q = !0),
+                        !q) {
+                            var W = n.getDeadBodyById(N.playerId);
+                            W && (U = x.copy(W.pos),
+                            G = W.layer,
+                            q = !0)
                         }
-                        if (F) {
-                            if (B.isNew) {
-                                var G = d[B.type];
-                                this.audioManager.playSound(G.sound, {
+                        if (q) {
+                            if (N.isNew) {
+                                var H = p[N.type];
+                                this.audioManager.playSound(H.sound, {
                                     channel: "ui",
-                                    soundPos: R,
-                                    layer: j
+                                    soundPos: U,
+                                    layer: G
                                 })
                             }
-                            B.isNew = !1,
-                            B.pos = R,
-                            B.lifeIn > 0 ? B.lifeIn -= e : B.life > 0 ? B.life -= e : B.lifeOut > 0 && (B.lifeOut -= e);
-                            var U = w.sameLayer(j, this.mt.layer) ? 3 : j;
-                            m.addPIXIObj(B.container, U, 1e3, B.zIdx),
-                            B.alive = B.alive && B.lifeOut > 0
+                            N.isNew = !1,
+                            N.pos = U,
+                            N.lifeIn > 0 ? N.lifeIn -= e : N.life > 0 ? N.life -= e : N.lifeOut > 0 && (N.lifeOut -= e);
+                            var K = b.sameLayer(G, this.lt.layer) ? 3 : G;
+                            m.addPIXIObj(N.container, K, 1e3, N.zIdx),
+                            N.alive = N.alive && N.lifeOut > 0
                         } else
-                            B.alive = !1
+                            N.alive = !1
                     }
                 }
-                var V = f.create(.5 * h.screenWidth / h.z(), .5 * h.screenHeight / h.z())
-                  , H = {
-                    min: f.sub(h.pos, V),
-                    max: f.add(h.pos, V)
+                var X = x.create(.5 * v.screenWidth / v.z(), .5 * v.screenHeight / v.z())
+                  , Y = {
+                    min: x.sub(v.pos, X),
+                    max: x.add(v.pos, X)
                 };
-                this.teamId = p.H(a.__id).teamId;
-                for (var W = p.getTeamInfo(this.teamId), K = W.playerIds.length, X = 0; X < K; X++) {
-                    var Y = this.teamIndicators[X]
-                      , Z = W.playerIds[X]
-                      , Q = (p.H(Z),
-                    Z == this.mt.__id)
-                      , J = p.getTeammateData(Z);
-                    if (J)
-                        for (var $ in Y)
-                            if (Y.hasOwnProperty($)) {
-                                var ee = Y[$]
-                                  , te = ee.pingContainer
-                                  , ae = ee.indContainer
-                                  , ie = ee.borderSprite.sprite
-                                  , re = ee.pingSprite.sprite
-                                  , oe = ee.indSpriteOuter.sprite
-                                  , ne = ee.indSpriteInner.sprite
-                                  , se = !0;
-                                if (ee.fadeIn -= e,
-                                ee.life -= e,
-                                ee.fadeOut -= ee.life > 0 ? 0 : e,
-                                ee.fadeOut > 0) {
-                                    var le = ee.pos
-                                      , me = f.normalizeSafe(f.sub(le, h.pos), f.create(1, 0))
-                                      , ce = y.intersectRayAabb(h.pos, me, H.min, H.max)
-                                      , de = Math.atan2(me.y, -me.x) + .5 * Math.PI
-                                      , pe = h.pointToScreen(ce)
-                                      , ue = y.testCircleAabb(le, s.player.radius, H.min, H.max)
-                                      , he = h.pixels(ee.borderSprite.baseScale)
-                                      , ge = h.pixels(ee.pingSprite.baseScale);
-                                    if (ie.scale.set(he, he),
-                                    re.scale.set(ge, ge),
-                                    !J.dead) {
-                                        se = ee.fadeOut < 0;
-                                        var ye = ue ? h.pointToScreen(le).x : x.clamp(pe.x, 64, h.screenWidth - 64)
-                                          , fe = ue ? h.pointToScreen(le).y : x.clamp(pe.y, 64, h.screenHeight - 64)
-                                          , xe = h.pointToScreen(le).x
-                                          , we = h.pointToScreen(le).y;
-                                        re.position.x = xe,
-                                        re.position.y = we,
-                                        ie.position.x = xe,
-                                        ie.position.y = we,
-                                        oe.position.x = ye,
-                                        oe.position.y = fe,
-                                        oe.rotation = de,
-                                        ne.position.x = ye,
-                                        ne.position.y = fe;
-                                        var be = ie.alpha <= 0 ? 1 : ie.alpha - e;
-                                        ie.alpha = be;
-                                        var _e = h.pixels(ee.borderSprite.baseScale * (2 - be));
-                                        if (ie.scale.set(_e, _e),
-                                        ne.alpha = ue ? 0 : be,
-                                        ee.fadeIn > 0) {
-                                            var ve = 1 - ee.fadeIn / this.pingFadeIn;
-                                            te.alpha = 1,
-                                            ae.alpha = 1,
-                                            re.alpha = 1,
-                                            oe.alpha = ue ? 0 : ve
+                this.teamId = y.U(a.__id).teamId;
+                for (var Z = y.getTeamInfo(this.teamId), J = Z.playerIds.length, Q = 0; Q < J; Q++) {
+                    var $ = this.teamIndicators[Q]
+                      , ee = Z.playerIds[Q]
+                      , te = (y.U(ee),
+                    ee == this.lt.__id)
+                      , ae = y.getTeammateData(ee);
+                    if (ae)
+                        for (var ie in $)
+                            if ($.hasOwnProperty(ie)) {
+                                var re = $[ie]
+                                  , oe = re.pingContainer
+                                  , ne = re.indContainer
+                                  , se = re.borderSprite.sprite
+                                  , le = re.pingSprite.sprite
+                                  , me = re.indSpriteOuter.sprite
+                                  , ce = re.indSpriteInner.sprite
+                                  , de = !0;
+                                if (re.fadeIn -= e,
+                                re.life -= e,
+                                re.fadeOut -= re.life > 0 ? 0 : e,
+                                re.fadeOut > 0) {
+                                    var pe = re.pos
+                                      , ue = x.normalizeSafe(x.sub(pe, v.pos), x.create(1, 0))
+                                      , he = f.intersectRayAabb(v.pos, ue, Y.min, Y.max)
+                                      , ge = Math.atan2(ue.y, -ue.x) + .5 * Math.PI
+                                      , ye = v.pointToScreen(he)
+                                      , fe = f.testCircleAabb(pe, s.player.radius, Y.min, Y.max)
+                                      , xe = v.pixels(re.borderSprite.baseScale)
+                                      , we = v.pixels(re.pingSprite.baseScale);
+                                    if (se.scale.set(xe, xe),
+                                    le.scale.set(we, we),
+                                    !ae.dead) {
+                                        de = re.fadeOut < 0;
+                                        var be = fe ? v.pointToScreen(pe).x : w.clamp(ye.x, 64, v.screenWidth - 64)
+                                          , _e = fe ? v.pointToScreen(pe).y : w.clamp(ye.y, 64, v.screenHeight - 64)
+                                          , ve = v.pointToScreen(pe).x
+                                          , Se = v.pointToScreen(pe).y;
+                                        le.position.x = ve,
+                                        le.position.y = Se,
+                                        se.position.x = ve,
+                                        se.position.y = Se,
+                                        me.position.x = be,
+                                        me.position.y = _e,
+                                        me.rotation = ge,
+                                        ce.position.x = be,
+                                        ce.position.y = _e;
+                                        var ke = se.alpha <= 0 ? 1 : se.alpha - e;
+                                        se.alpha = ke;
+                                        var ze = v.pixels(re.borderSprite.baseScale * (2 - ke));
+                                        if (se.scale.set(ze, ze),
+                                        ce.alpha = fe ? 0 : ke,
+                                        re.fadeIn > 0) {
+                                            var Me = 1 - re.fadeIn / this.pingFadeIn;
+                                            oe.alpha = 1,
+                                            ne.alpha = 1,
+                                            le.alpha = 1,
+                                            me.alpha = fe ? 0 : Me
                                         } else
-                                            oe.alpha = ue ? 0 : 1;
-                                        if (ee.life < 0) {
-                                            var Se = ee.fadeOut / this.pingFadeOut;
-                                            te.alpha = Se,
-                                            ae.alpha = Se
+                                            me.alpha = fe ? 0 : 1;
+                                        if (re.life < 0) {
+                                            var Te = re.fadeOut / this.pingFadeOut;
+                                            oe.alpha = Te,
+                                            ne.alpha = Te
                                         }
-                                        ee.displayed || (te.visible = !ee.mapEvent,
-                                        ae.visible = !Q || ee.mapEvent,
-                                        ee.displayed = !0)
+                                        re.displayed || (oe.visible = !re.mapEvent,
+                                        ne.visible = !te || re.mapEvent,
+                                        re.displayed = !0)
                                     }
                                 }
-                                se && ee.displayed && (te.visible = !1,
-                                ae.visible = !1,
-                                ee.displayed = !1)
+                                de && re.displayed && (oe.visible = !1,
+                                ne.visible = !1,
+                                re.displayed = !1)
                             }
                 }
             },
@@ -43695,16 +44268,16 @@ webpackJsonp([0], {
             },
             updateEmoteWheel: function(e) {
                 var t = {
-                    top: e[m.Top],
-                    right: e[m.Right],
-                    bottom: e[m.Bottom],
-                    left: e[m.Left]
+                    top: e[c.Top],
+                    right: e[c.Right],
+                    bottom: e[c.Bottom],
+                    left: e[c.Left]
                 };
                 for (var a in t)
                     if (t.hasOwnProperty(a)) {
-                        var o = d[t[a]];
+                        var o = p[t[a]];
                         if (this.emoteWheelData[a] && void 0 != o) {
-                            var n = d[t[a]];
+                            var n = p[t[a]];
                             n.teamOnly || (this.emoteWheelData[a].emote = t[a])
                         }
                     }
@@ -43712,13 +44285,13 @@ webpackJsonp([0], {
                 for (var s in this.emoteWheelData)
                     if (this.emoteWheelData.hasOwnProperty(s)) {
                         var l = this.emoteWheelData[s]
-                          , c = d[l.emote]
-                          , p = r(l.vA)
+                          , m = p[l.emote]
+                          , d = r(l.vA)
                           , u = r(l.vC)
-                          , h = c.texture;
+                          , h = m.texture;
                         l.displayCloseIcon && (h = "close.img"),
                         this.emoteWheelSelectors.push(Object.assign({}, {
-                            angleA: p,
+                            angleA: d,
                             angleC: u,
                             highlight: l.parent.find(".ui-emote-hl"),
                             highlightDisplayed: !1,
@@ -43729,32 +44302,32 @@ webpackJsonp([0], {
                         g.css("background-image", "url(" + y + ")")
                     }
             },
-            render: function(e, t) {
-                for (var a = 0; a < this.emotes.length; a++) {
-                    var i = this.emotes[a];
-                    if (i.container.visible = i.alive,
-                    i.alive) {
-                        var r = 0;
-                        if (i.lifeIn > 0) {
-                            var o = 1 - i.lifeIn / this.emoteLifeIn;
-                            r = x.easeOutElastic(o)
-                        } else if (i.life > 0)
-                            r = 1;
-                        else if (i.lifeOut > 0) {
-                            var n = i.lifeOut / this.emoteLifeOut;
-                            r = n
+            render: function(e) {
+                for (var t = 0; t < this.emotes.length; t++) {
+                    var a = this.emotes[t];
+                    if (a.container.visible = a.alive,
+                    a.alive) {
+                        var i = 0;
+                        if (a.lifeIn > 0) {
+                            var r = 1 - a.lifeIn / this.emoteLifeIn;
+                            i = w.easeOutElastic(r)
+                        } else if (a.life > 0)
+                            i = 1;
+                        else if (a.lifeOut > 0) {
+                            var o = a.lifeOut / this.emoteLifeOut;
+                            i = o
                         }
-                        var s = f.add(i.pos, f.mul(i.posOffset, 1 / x.clamp(e.zoom, .75, 1)))
-                          , l = e.pointToScreen(s)
-                          , m = r * i.baseScale * x.clamp(e.zoom, .9, 1.75);
-                        i.container.position.set(l.x, l.y),
-                        i.container.scale.set(m, m)
+                        var n = x.add(a.pos, x.mul(a.posOffset, 1 / w.clamp(e.zoom, .75, 1)))
+                          , s = e.pointToScreen(n)
+                          , l = i * a.baseScale * w.clamp(e.zoom, .9, 1.75);
+                        a.container.position.set(s.x, s.y),
+                        a.container.scale.set(l, l)
                     }
                 }
             }
         },
         e.exports = {
-            $e: o
+            Qe: o
         }
     },
     e9735f40: function(e, t, a) {
@@ -44094,9 +44667,9 @@ webpackJsonp([0], {
                 i.append(s("<li/>").append(n.append(this.uiDebug)))
             },
             l: function(e, t, a, i) {
-                t.J(c.Key.Plus) && (this.zoom -= 8),
-                t.J(c.Key.Minus) && (this.zoom += 8),
-                t.J(c.Key.Zero) && (this.zoom = a.ut()),
+                t.Y(c.Key.Plus) && (this.zoom -= 8),
+                t.Y(c.Key.Minus) && (this.zoom += 8),
+                t.Y(c.Key.Zero) && (this.zoom = a.pt()),
                 this.zoom = m.clamp(this.zoom, .5, 400);
                 var r = a.N.pos.x.toFixed(2)
                   , o = a.N.pos.y.toFixed(2);
@@ -53895,7 +54468,7 @@ webpackJsonp([0], {
                 }
             }, {
                 meta: {
-                    image: "imgs-889f18eb.png",
+                    image: "imgs-030c6d51.png",
                     size: {
                         w: 1024,
                         h: 1024
@@ -54384,7 +54957,7 @@ webpackJsonp([0], {
                 i.flareContainer.rotation = u - Math.PI / 2,
                 i.trailContainer.rotation = u - Math.PI / 2,
                 i.layer = e.layer;
-                var h = t.se(i.playerId);
+                var h = t.oe(i.playerId);
                 h && 2 & h.layer && (i.layer |= 2);
                 var g = o.tracerColors[l.tracerColor]
                   , y = g.regular;
@@ -54404,7 +54977,7 @@ webpackJsonp([0], {
                 i.trailContainer.visible = !0
             },
             l: function(e, t, a, i, r, o, c, d) {
-                for (var p = (t.tt.m(),
+                for (var p = (t.et.m(),
                 0); p < this.bullets.length; p++) {
                     var u = this.bullets[p];
                     if (u.collided && (u.flareScale = Math.max(u.flareScale - .5 * e, 0),
@@ -54457,7 +55030,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            Oe: i
+            De: i
         }
     },
     f2372804: function(e, t, a) {
@@ -55536,7 +56109,7 @@ webpackJsonp([0], {
                 for (var e = 0; e < this.planes.length; e++)
                     this.planes[e].o(this.audioManager)
             },
-            ft: function(e) {
+            yt: function(e) {
                 for (var t = 0; t < this.planes.length; t++)
                     this.planes[t].dirty = !0;
                 for (var a = 0; a < e.length; a++) {
@@ -55547,7 +56120,7 @@ webpackJsonp([0], {
                             break
                         }
                     }
-                    r || (r = this.Ct(i)),
+                    r || (r = this.Pt(i)),
                     r.dirty = !1,
                     r.dropDeployed = i.dropDeployed
                 }
@@ -55556,7 +56129,7 @@ webpackJsonp([0], {
                     l.active && l.dirty && l.o(this.audioManager)
                 }
             },
-            Ct: function(e) {
+            Pt: function(e) {
                 for (var t = null, a = 0; a < this.planes.length; a++)
                     if (!this.planes[a].active) {
                         t = this.planes[a];
@@ -55605,7 +56178,7 @@ webpackJsonp([0], {
                         var u = t.pointToScreen(d.pos)
                           , h = t.pixels(d.rad / t.ppu)
                           , g = d.alpha;
-                        1 == a.layer ? g = 0 : (a.U.scopedIn || 1 & a.layer) && (g = .15),
+                        1 == a.layer ? g = 0 : (a.q.scopedIn || 1 & a.layer) && (g = .15),
                         d.renderAlpha = l.lerp(3 * e, d.renderAlpha, g),
                         d.sprite.position.set(u.x, u.y),
                         d.sprite.scale.set(h, h),
@@ -55617,7 +56190,7 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            Re: r
+            Fe: r
         }
     },
     feb8fc30: function(e, t, a) {
@@ -55757,8 +56330,8 @@ webpackJsonp([0], {
             }
         },
         e.exports = {
-            Xe: i
+            Ke: i
         }
     }
 }, ["c99e6613"]);
-//# sourceMappingURL=app.bc4ebdef.js.map
+//# sourceMappingURL=app.ddf36474.js.map
