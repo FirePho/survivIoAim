@@ -22,11 +22,6 @@ All actions you take at your own risk. The author is not responsible for the con
 Follow me in tox: DD5149809F2320BC81215D2A363A95778D39A0BC260BE7DC90923A933552C765A21E305E722C  
 https://qtox.github.io/
 
-Donate: BTC: 3EKypcfMxiSHdL8zGTCq9BBvAxaCtzqV4y  
-Donate: LTC: MWaRYHWMcQquJ6zHkvwgoiEKPeBHut35Yz  
-Donate: NMC: N57AAQ4Qy1sYtPDX6DgFujNc3CutgSip82  
-Donate: NVC: 4FLCK697s3kPCwaPJQF4in1qnGExJeEn6J  
-
 ---
 ## Руководство на русском языке
 ### Установка расширения для Chrome/Chromium
